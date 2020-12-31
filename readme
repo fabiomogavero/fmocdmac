@@ -1,0 +1,15 @@
+
+--------:| ---------------------------------------------------------------------
+fmocdmac:| FM's OCD LaTeX Macros
+  Author:| Fabio Mogavero
+  E-mail:| fm@fabiomogavero.com
+ License:| Released under the LaTeX Project Public License v1.3c or later
+     See:| http://www.latex-project.org/lppl.txt
+--------:| ---------------------------------------------------------------------
+
+This package contains almost all the latex macros I heavily use in my tcs
+research activity and, in particular, in the writing of conference and journal
+articles. As few of my co-authors have kindly pointed out, and probably many
+have thought, they are somehow a clear expression of an underlying ocd-like
+behavior... hence the name!
+

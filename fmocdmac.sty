@@ -1,0 +1,2105 @@
+%%
+%% This is file `fmocdmac.sty',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% fmocdmac.dtx  (with options: `package')
+%% 
+%% --------:| ------------------------------------------------------------------
+%% fmocdmac:| FM's OCD LaTeX Macros
+%%   Author:| Fabio Mogavero
+%%   E-mail:| fm@fabiomogavero.com
+%%  License:| Released under the LaTeX Project Public License v1.3c or later
+%%      See:| http://www.latex-project.org/lppl.txt
+%% --------:| ------------------------------------------------------------------
+%% 
+\NeedsTeXFormat{LaTeX2e}[1999/12/01]
+\ProvidesPackage{fmocdmac}
+  [2020/12/31 v0.0 FM's OCD LaTeX Macro]
+
+\RequirePackage{etoolbox}
+
+\RequirePackage{xargs}
+\RequirePackage{xspace}
+\RequirePackage{stringstrings}
+
+\RequirePackage{loops}
+
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
+\interdisplaylinepenalty=2500
+
+
+%% Text macro generation
+\newif\iftxtgen@ \txtgen@false
+\DeclareOption{txtgen}{\txtgen@true}
+\DeclareOption{notxtgen}
+  {\txtgen@false\text@false\com@false\gam@false\log@false\aut@false}
+
+%% Math macro generation
+\newif\ifmthgen@ \mthgen@false
+\DeclareOption{mthgen}{\mthgen@true}
+\DeclareOption{nomthgen}
+  {\mthgen@false\math@false\gam@false\log@false\aut@false}
+
+%% Elementary macros for text
+\newif\iftext@ \text@false
+\DeclareOption{text}{\text@true\txtgen@true}
+\DeclareOption{notext}{\text@false}
+
+%% Elementary macros for math
+\newif\ifmath@ \math@false
+\DeclareOption{math}{\math@true\mthgen@true}
+\DeclareOption{nomath}{\math@false}
+
+%% Macros for computational-complexity classes
+\newif\ifcom@ \com@false
+\DeclareOption{com}{\com@true\txtgen@true}
+\DeclareOption{nocom}{\com@false}
+
+%% Macros for games
+\newif\ifgam@ \gam@false
+\DeclareOption{gam}{\gam@true\txtgen@true\mthgen@true}
+\DeclareOption{nogam}{\gam@false}
+
+%% Macros for logics
+\newif\iflog@ \log@false
+\DeclareOption{log}{\log@true\txtgen@true\mthgen@true}
+\DeclareOption{nolog}{\log@false}
+
+%% Macros for automata
+\newif\ifaut@ \aut@false
+\DeclareOption{aut}{\aut@true\txtgen@true\mthgen@true}
+\DeclareOption{noaut}{\aut@false}
+
+%% Format-related tricks
+\newif\iffrm@ \frm@false
+\DeclareOption{frm}{\frm@true}
+\DeclareOption{nofrm}{\frm@false}
+
+%% Figure-related tricks
+\newif\iffig@ \fig@false
+\DeclareOption{fig}{\fig@true}
+\DeclareOption{nofig}{\fig@false}
+
+%% Table-related tricks
+\newif\iftab@ \tab@false
+\DeclareOption{tab}{\tab@true}
+\DeclareOption{notab}{\tab@false}
+
+%% Algorithm-related tricks
+\newif\ifalg@ \alg@false
+\DeclareOption{alg}{\alg@true}
+\DeclareOption{noalg}{\alg@false}
+
+%% Auxiliary tricks
+\newif\ifaux@ \aux@false
+\DeclareOption{aux}{\aux@true}
+\DeclareOption{noaux}{\aux@false}
+
+%% Camera-ready version
+\newif\ifcrv@ \crv@false
+\DeclareOption{crv}{\crv@true}
+
+
+\DeclareOption*{\PackageWarning{fmocdmac}{Unknown~‘\CurrentOption’}}%
+
+\ExecuteOptions{txtgen,mthgen,text,math,com,gam,log,aut,aux}%
+
+\ProcessOptions\relax%
+
+
+%%****************************************************************************%%
+%%** Auxiliary Font Declarations *********************************************%%
+%%****************************************************************************%%
+
+\ifdef{\matheus}{}{\DeclareMathAlphabet{\matheus}{U}{eus}{m}{n}}
+
+\ifdef{\mathpzc}{}{\DeclareMathAlphabet{\mathpzc}{T1}{pzc}{m}{it}}
+
+\ifdef{\mathscr}{}{\DeclareMathAlphabet{\mathscr}{U}{rsfs}{m}{n}}
+
+%%****************************************************************************%%
+
+%%****************************************************************************%%
+%%** Auxiliary Alphabet Letters **********************************************%%
+%%****************************************************************************%%
+
+\csdef{omicron}{o}
+
+\csdef{Alpha}{A} \csdef{Beta}{B} \csdef{Epsilon}{E} \csdef{varEpsilon}{E}
+\csdef{Zeta}{Z} \csdef{Eta}{H} \csdef{Iota}{I} \csdef{Kappa}{K}
+\csdef{varKappa}{K} \csdef{Mu}{M} \csdef{Nu}{N} \csdef{Omicron}{O}
+\csdef{Rho}{P} \csdef{varRho}{P} \csdef{Tau}{T} \csdef{Chi}{X}
+
+%%****************************************************************************%%
+
+%%****************************************************************************%%
+%%** Tools *******************************************************************%%
+%%****************************************************************************%%
+
+\newcommand{\empchk}[2]
+  {\if&#1&\else#2\fi}
+
+\newcommand{\defval}[2]
+  {\if&#1&#2\else#1\fi}
+
+%%****************************************************************************%%
+
+\newcommand{\arglef}[2]
+  {\empchk{#2}{#1\allowbreak#2}}
+
+\newcommand{\argrig}[2]
+  {\empchk{#1}{#1\allowbreak#2}}
+
+\newcommand{\argmid}[3]
+  {\empchk{#2}{#1\allowbreak#2\allowbreak#3}}
+
+\newcommand{\argsep}[3]
+  {\if&#1&#3\else#1\allowbreak\arglef{#2}{#3}\fi}
+
+%%****************************************************************************%%
+
+\newcommand{\varcmd}[6]
+  {\expandafter\newcommand\csname gobble#1arg\endcsname[2]
+    {\csname check#1arg\endcsname{\argsep{##1}{#4}{##2}}}%
+  \expandafter\newcommand\csname check#1arg\endcsname[1]
+    {\csname @ifnextchar\endcsname%
+      \bgroup{\csname gobble#1arg\endcsname{##1}}{#2{##1#5}#6}}%
+  \expandafter\newcommand\csname#1\endcsname[1]
+    {\csname check#1arg\endcsname{#3##1}}}
+
+%%****************************************************************************%%
+
+\newcommand{\seqoftag}[3]
+  {\newforeach \itr in {#1}%
+    {\expandafter\csedef{\itr#2}%
+      {\noexpand\csname #3\endcsname{\itr}}}}
+
+\newcommand{\seqofcmd}[3]
+  {\newforeach \itr in {#1}%
+    {\expandafter\csedef{\itr#2}%
+      {\noexpand\csname #3\endcsname{\csname \itr\endcsname}}}}
+
+%%****************************************************************************%%
+
+\newcommand{\seqoflatlow}
+  {\seqoftag{a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z}}
+
+\newcommand{\seqoflatupp}
+  {\seqoftag{A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z}}
+
+\newcommand{\seqoflatlet}[2]
+  {\seqoflatlow{#1}{#2}\seqoflatupp{#1}{#2}}
+
+%%****************************************************************************%%
+
+\newcommand{\seqofgrklow}
+  {\seqofcmd{alpha,beta,gamma,delta,epsilon,varepsilon,zeta,eta,theta,vartheta,%
+  iota,kappa,varkappa,lambda,mu,nu,xi,omicron,pi,varpi,rho,varrho,sigma,%
+  varsigma,tau,upsilon,phi,varphi,chi,psi,omega}}
+
+\newcommand{\seqofgrkupp}
+  {\seqofcmd{Alpha,Beta,Gamma,Delta,Epsilon,varEpsilon,Zeta,Eta,Theta,varTheta,%
+  Iota,Kappa,varKappa,Lambda,Mu,Nu,Xi,Omicron,Pi,varPi,Rho,varRho,Sigma,%
+  varSigma,Tau,Upsilon,Phi,varPhi,Chi,Psi,Omega}}
+
+\newcommand{\seqofgrklet}[2]
+  {\seqofgrklow{#1}{#2}\seqofgrkupp{#1}{#2}}
+
+%%****************************************************************************%%
+
+\newcommand{\seqoflow}[2]
+  {\seqoflatlow{#1}{#2}\seqofgrklow{#1}{#2}}
+
+\newcommand{\seqofupp}[2]
+  {\seqoflatupp{#1}{#2}\seqofgrkupp{#1}{#2}}
+
+\newcommand{\seqoflet}[2]
+  {\seqoflow{#1}{#2}\seqofupp{#1}{#2}}
+
+%%****************************************************************************%%
+
+%%****************************************************************************%%
+%%** Text Meta Commands ******************************************************%%
+%%****************************************************************************%%
+
+\newcommandx{\newtxt}[5][1=, 3=, 4=, 5=]
+  {\text{#1#2\txtsubsup[#1]{#3}{#4}#5}\xspace}
+
+\newcommandx{\newtxtsty}[2][2=]
+  {\newtxt[\defval{#2}{#1}]}
+
+\newcommandx{\newtxtarg}[7][1=, 3=, 4=, 5=, 7=]
+  {\newtxt[#1]{#2}[#3][#4][#5\argmid{(}{#6}{)}#7]}
+
+\newcommandx{\newtxtargsty}[2][2=]
+  {\newtxtarg[\defval{#2}{#1}]}
+
+\newcommandx{\newtxtoarg}[5][1=, 3=, 4=, 5=]
+  {\newtxtarg[#1]{#2}[#3][#4][]{#5}[]}
+
+\newcommandx{\newtxtoargsty}[2][2=]
+  {\newtxtoarg[\defval{#2}{#1}]}
+
+\newcommandx{\newtxtpar}[7][1=, 3=, 4=, 5=, 7=]
+  {\newtxt[#1]{#2}[#3][#4][#5\argmid{[}{#6}{]}#7]}
+
+\newcommandx{\newtxtparsty}[2][2=]
+  {\newtxtpar[\defval{#2}{#1}]}
+
+\newcommandx{\newtxtopar}[5][1=, 3=, 4=, 5=]
+  {\newtxtpar[#1]{#2}[#3][#4][]{#5}[]}
+
+\newcommandx{\newtxtoparsty}[2][2=]
+  {\newtxtopar[\defval{#2}{#1}]}
+
+\newcommand{\txtsubsup}[3][]
+  {\ensuremath{\empchk{#2}{_{\text{#1#2}}}\empchk{#3}{^{\text{#1#3}}}}}
+
+%%****************************************************************************%%
+
+\newcommand{\txt}
+  {\newtxtsty{\txtsty}}
+
+\newcommand{\txtarg}
+  {\newtxtargsty{\txtsty}}
+
+\newcommand{\txtoarg}
+  {\newtxtoargsty{\txtsty}}
+
+\newcommand{\txtpar}
+  {\newtxtparsty{\txtsty}}
+
+\newcommand{\txtopar}
+  {\newtxtoparsty{\txtsty}}
+
+\newcommand{\txtsty}
+  {\mdseries\upshape\rmfamily}
+
+%%****************************************************************************%%
+
+\newcommand{\cmdtxt}[1]
+  {\csdef{txt#1}{\newtxtsty{\csname txtsty#1\endcsname}}}
+
+\newcommand{\cmdtxtarg}[1]
+  {\csdef{txtarg#1}{\newtxtargsty{\csname txtsty#1\endcsname}}}
+
+\newcommand{\cmdtxtoarg}[1]
+  {\csdef{txtoarg#1}{\newtxtoargsty{\csname txtsty#1\endcsname}}}
+
+\newcommand{\cmdtxtpar}[1]
+  {\csdef{txtpar#1}{\newtxtparsty{\csname txtsty#1\endcsname}}}
+
+\newcommand{\cmdtxtopar}[1]
+  {\csdef{txtopar#1}{\newtxtoparsty{\csname txtsty#1\endcsname}}}
+
+\newcommand{\cmdtxtall}[1]
+  {\cmdtxt{#1}\cmdtxtarg{#1}\cmdtxtoarg{#1}\cmdtxtpar{#1}\cmdtxtopar{#1}}
+
+%%****************************************************************************%%
+
+\newcommandx{\usrtxt}[4][4=]
+  {\csdef{#1#2}{\csname txt#3\endcsname{\defval{#4}{#1}}}}
+
+%%****************************************************************************%%
+
+%%****************************************************************************%%
+%%** Math Meta Commands ******************************************************%%
+%%****************************************************************************%%
+
+\newcommandx{\newmth}[5][1=, 3=, 4=, 5=]
+  {\ensuremath{\csname#1\endcsname{#2}\mthsubsup{#3}{#4}#5}}
+
+\newcommandx{\newmthsty}[2][2=]
+  {\newmth[\defval{#2}{#1}]}
+
+\newcommandx{\newmtharg}[7][1=, 3=, 4=, 5=, 7=]
+  {\newmth[#1]{#2}[#3][#4][#5\argmid{\!\left(}{#6}{\right)\!}#7]}
+
+\newcommandx{\newmthargsty}[2][2=]
+  {\newmtharg[\defval{#2}{#1}]}
+
+\newcommandx{\newmthoarg}[5][1=, 3=, 4=, 5=]
+  {\newmtharg[#1]{#2}[#3][#4][]{#5}[]}
+
+\newcommandx{\newmthoargsty}[2][2=]
+  {\newmthoarg[\defval{#2}{#1}]}
+
+\newcommandx{\newmthpar}[7][1=, 3=, 4=, 5=, 7=]
+  {\newmth[#1]{#2}[#3][#4][#5\argmid{\!\left[}{#6}{\right]\!}#7]}
+
+\newcommandx{\newmthparsty}[2][2=]
+  {\newmthpar[\defval{#2}{#1}]}
+
+\newcommandx{\newmthopar}[5][1=, 3=, 4=, 5=]
+  {\newmthpar[#1]{#2}[#3][#4][]{#5}[]}
+
+\newcommandx{\newmthoparsty}[2][2=]
+  {\newmthopar[\defval{#2}{#1}]}
+
+\newcommand{\mthsubsup}[2]
+  {\empchk{#1}{_{#1}}\empchk{#2}{^{#2}}}
+
+%%****************************************************************************%%
+
+\newcommand{\mth}
+  {\newmthsty{\mthsty}}
+
+\newcommand{\mtharg}
+  {\newmthargsty{\mthsty}}
+
+\newcommand{\mthoarg}
+  {\newmthoargsty{\mthsty}}
+
+\newcommand{\mthpar}
+  {\newmthparsty{\mthsty}}
+
+\newcommand{\mthopar}
+  {\newmthoparsty{\mthsty}}
+
+\newcommand{\mthsty}
+  {}
+
+%%****************************************************************************%%
+
+\newcommand{\cmdmth}[1]
+  {\csdef{mth#1}{\newmthsty{mthsty#1}}}
+
+\newcommand{\cmdmtharg}[1]
+  {\csdef{mtharg#1}{\newmthargsty{mthsty#1}}}
+
+\newcommand{\cmdmthoarg}[1]
+  {\csdef{mthoarg#1}{\newmthoargsty{mthsty#1}}}
+
+\newcommand{\cmdmthpar}[1]
+  {\csdef{mthpar#1}{\newmthparsty{mthsty#1}}}
+
+\newcommand{\cmdmthopar}[1]
+  {\csdef{mthopar#1}{\newmthoparsty{mthsty#1}}}
+
+\newcommand{\cmdmthall}[1]
+  {\cmdmth{#1}\cmdmtharg{#1}\cmdmthoarg{#1}\cmdmthpar{#1}\cmdmthopar{#1}}
+
+%%****************************************************************************%%
+
+\newcommandx{\usrmth}[4][4=]
+  {\csdef{#1#2}{\csname mth#3\endcsname{\defval{#4}{#1}}}}
+
+%%****************************************************************************%%
+
+\newcommandx{\usrmthlatlow}[4][4=]
+  {\usrmth{#1}{#2}{#3}[#4]\seqoflatlow{#1#2}{mth#3}}
+
+\newcommandx{\usrmthlatupp}[4][4=]
+  {\usrmth{#1}{#2}{#3}[#4]\seqoflatupp{#1#2}{mth#3}}
+
+\newcommandx{\usrmthlatlet}[4][4=]
+  {\usrmth{#1}{#2}{#3}[#4]\seqoflatlet{#1#2}{mth#3}}
+
+\newcommandx{\usrmthgrklow}[4][4=]
+  {\usrmth{#1}{#2}{#3}[#4]\seqofgrklow{#1#2}{mth#3}}
+
+\newcommandx{\usrmthgrkupp}[4][4=]
+  {\usrmth{#1}{#2}{#3}[#4]\seqofgrkupp{#1#2}{mth#3}}
+
+\newcommandx{\usrmthgrklet}[4][4=]
+  {\usrmth{#1}{#2}{#3}[#4]\seqofgrklet{#1#2}{mth#3}}
+
+\newcommandx{\usrmthlow}[4][4=]
+  {\usrmth{#1}{#2}{#3}[#4]\seqoflow{#1#2}{mth#3}}
+
+\newcommandx{\usrmthupp}[4][4=]
+  {\usrmth{#1}{#2}{#3}[#4]\seqofupp{#1#2}{mth#3}}
+
+\newcommandx{\usrmthlet}[4][4=]
+  {\usrmth{#1}{#2}{#3}[#4]\seqoflet{#1#2}{mth#3}}
+
+%%****************************************************************************%%
+
+%%****************************************************************************%%
+%%** Text Macro Generators ***************************************************%%
+%%****************************************************************************%%
+\iftxtgen@
+
+%% Style for Definitions
+\cmdtxtall{def}\newcommand{\txtstydef}{\bfseries\em}
+
+\newcommandx{\cmdtxtdef}[2][2=]
+  {\usrtxt{#1}{}{def}[#2]}
+
+\newcommandx{\cmdtxtargdef}[2][2=]
+  {\usrtxt{#1}{}{argdef}[#2]}
+
+\newcommandx{\cmdtxtoargdef}[2][2=]
+  {\usrtxt{#1}{}{oargdef}[#2]}
+
+\newcommandx{\cmdtxtpardef}[2][2=]
+  {\usrtxt{#1}{}{pardef}[#2]}
+
+\newcommandx{\cmdtxtopardef}[2][2=]
+  {\usrtxt{#1}{}{opardef}[#2]}
+
+%% Style for Abbreviations
+\cmdtxtall{abr}\newcommand{\txtstyabr}{\em}
+
+\newcommandx{\cmdtxtabr}[2][2=]
+  {\usrtxt{#1}{}{abr}[#2]}
+
+\newcommandx{\cmdtxtargabr}[2][2=]
+  {\usrtxt{#1}{}{argabr}[#2]}
+
+\newcommandx{\cmdtxtoargabr}[2][2=]
+  {\usrtxt{#1}{}{oargabr}[#2]}
+
+\newcommandx{\cmdtxtparabr}[2][2=]
+  {\usrtxt{#1}{}{parabr}[#2]}
+
+\newcommandx{\cmdtxtoparabr}[2][2=]
+  {\usrtxt{#1}{}{oparabr}[#2]}
+
+%%****************************************************************************%%
+
+%% Style for Names
+\cmdtxtall{name}\newcommand{\txtstyname}{\mdseries\scshape\sffamily}
+
+\newcommandx{\cmdtxtname}[2][2=]
+  {\usrtxt{#1}{}{name}[#2]}
+
+\newcommandx{\cmdtxtargname}[2][2=]
+  {\usrtxt{#1}{}{argname}[#2]}
+
+\newcommandx{\cmdtxtoargname}[2][2=]
+  {\usrtxt{#1}{}{oargname}[#2]}
+
+\newcommandx{\cmdtxtparname}[2][2=]
+  {\usrtxt{#1}{}{parname}[#2]}
+
+\newcommandx{\cmdtxtoparname}[2][2=]
+  {\usrtxt{#1}{}{oparname}[#2]}
+
+%% Style for Complexities
+\cmdtxtall{com}\newcommand{\txtstycom}{\mdseries\scshape\rmfamily}
+
+\newcommandx{\cmdtxtcom}[2][2=]
+  {\usrtxt{#1}{}{com}[#2]}
+
+\newcommandx{\cmdtxtargcom}[2][2=]
+  {\usrtxt{#1}{}{argcom}[#2]}
+
+\newcommandx{\cmdtxtoargcom}[2][2=]
+  {\usrtxt{#1}{}{oargcom}[#2]}
+
+\newcommandx{\cmdtxtparcom}[2][2=]
+  {\usrtxt{#1}{}{parcom}[#2]}
+
+\newcommandx{\cmdtxtoparcom}[2][2=]
+  {\usrtxt{#1}{}{oparcom}[#2]}
+
+\fi
+%%****************************************************************************%%
+
+%%****************************************************************************%%
+%%** Math Macro Generators ***************************************************%%
+%%****************************************************************************%%
+\ifmthgen@
+
+%% Style for Names
+\cmdmthall{name}\newcommand{\mthstyname}{\mathcal}
+
+\seqoflatupp{Name}{mthname}
+
+\newcommandx{\cmdmthname}[2][2=]
+  {\usrmth{#1}{Name}{name}[#2]}
+
+\newcommandx{\cmdmthargname}[2][2=]
+  {\usrmth{#1}{Name}{argname}[#2]}
+
+\newcommandx{\cmdmthoargname}[2][2=]
+  {\usrmth{#1}{Name}{oargname}[#2]}
+
+\newcommandx{\cmdmthparname}[2][2=]
+  {\usrmth{#1}{Name}{parname}[#2]}
+
+\newcommandx{\cmdmthoparname}[2][2=]
+  {\usrmth{#1}{Name}{oparname}[#2]}
+
+%% Style for Families
+\cmdmthall{fam}\newcommand{\mthstyfam}{\mathscr}
+
+\seqoflatupp{Fam}{mthfam}
+
+\newcommandx{\cmdmthfam}[2][2=]
+  {\usrmth{#1}{Fam}{fam}[#2]}
+
+\newcommandx{\cmdmthargfam}[2][2=]
+  {\usrmth{#1}{Fam}{argfam}[#2]}
+
+\newcommandx{\cmdmthoargfam}[2][2=]
+  {\usrmth{#1}{Fam}{oargfam}[#2]}
+
+\newcommandx{\cmdmthparfam}[2][2=]
+  {\usrmth{#1}{Fam}{parfam}[#2]}
+
+\newcommandx{\cmdmthoparfam}[2][2=]
+  {\usrmth{#1}{Fam}{oparfam}[#2]}
+
+%% Style for Classes
+\cmdmthall{cls}\newcommand{\mthstycls}{\matheus}
+
+\seqoflatupp{Cls}{mthcls}
+
+\newcommandx{\cmdmthcls}[2][2=]
+  {\usrmth{#1}{Cls}{cls}[#2]}
+
+\newcommandx{\cmdmthargcls}[2][2=]
+  {\usrmth{#1}{Cls}{argcls}[#2]}
+
+\newcommandx{\cmdmthoargcls}[2][2=]
+  {\usrmth{#1}{Cls}{oargcls}[#2]}
+
+\newcommandx{\cmdmthparcls}[2][2=]
+  {\usrmth{#1}{Cls}{parcls}[#2]}
+
+\newcommandx{\cmdmthoparcls}[2][2=]
+  {\usrmth{#1}{Cls}{oparcls}[#2]}
+
+%% Style for Signatures
+\cmdmthall{sig}\newcommand{\mthstysig}{\mathpzc}
+
+\seqoflatlet{Sig}{mthsig}\seqofgrklow{Sig}{mthsig}
+
+\newcommandx{\cmdmthsig}[2][2=]
+  {\usrmth{#1}{Sig}{sig}[#2]}
+
+\newcommandx{\cmdmthargsig}[2][2=]
+  {\usrmth{#1}{Sig}{argsig}[#2]}
+
+\newcommandx{\cmdmthoargsig}[2][2=]
+  {\usrmth{#1}{Sig}{oargsig}[#2]}
+
+\newcommandx{\cmdmthparsig}[2][2=]
+  {\usrmth{#1}{Sig}{parsig}[#2]}
+
+\newcommandx{\cmdmthoparsig}[2][2=]
+  {\usrmth{#1}{Sig}{oparsig}[#2]}
+
+%% Style for Structures
+\cmdmthall{str}\newcommand{\mthstystr}{\mathfrak}
+
+\seqoflatlet{Str}{mthstr}\seqofgrklow{Str}{mthstr}
+
+\newcommandx{\cmdmthstr}[2][2=]
+  {\usrmth{#1}{Str}{str}[#2]}
+
+\newcommandx{\cmdmthargstr}[2][2=]
+  {\usrmth{#1}{Str}{argstr}[#2]}
+
+\newcommandx{\cmdmthoargstr}[2][2=]
+  {\usrmth{#1}{Str}{oargstr}[#2]}
+
+\newcommandx{\cmdmthparstr}[2][2=]
+  {\usrmth{#1}{Str}{parstr}[#2]}
+
+\newcommandx{\cmdmthoparstr}[2][2=]
+  {\usrmth{#1}{Str}{oparstr}[#2]}
+
+%% Style for Sets
+\cmdmthall{set}\newcommand{\mthstyset}{\mathrm}
+
+\seqoflet{Set}{mthset}
+
+\newcommandx{\cmdmthset}[2][2=]
+  {\usrmth{#1}{Set}{set}[#2]}
+
+\newcommandx{\cmdmthargset}[2][2=]
+  {\usrmth{#1}{Set}{argset}[#2]}
+
+\newcommandx{\cmdmthoargset}[2][2=]
+  {\usrmth{#1}{Set}{oargset}[#2]}
+
+\newcommandx{\cmdmthparset}[2][2=]
+  {\usrmth{#1}{Set}{parset}[#2]}
+
+\newcommandx{\cmdmthoparset}[2][2=]
+  {\usrmth{#1}{Set}{oparset}[#2]}
+
+\newcommandx{\cmdmthsetext}[3][2=, 3=]
+  {\cmdmthset{#1}[#2]\caselower[q]{#1}%
+  \usrmthlet{\thestring}{Sym}{sym}[\defval{#3}{\lowercase{#2}}]%
+  \usrmthlet{\thestring}{Elm}{elm}[\defval{#3}{\lowercase{#2}}]}
+
+%% Style for Relations
+\cmdmthall{rel}\newcommand{\mthstyrel}{\mathit}
+
+\seqoflet{Rel}{mthrel}
+
+\newcommandx{\cmdmthrel}[2][2=]
+  {\usrmth{#1}{Rel}{rel}[#2]}
+
+\newcommandx{\cmdmthargrel}[2][2=]
+  {\usrmth{#1}{Rel}{argrel}[#2]}
+
+\newcommandx{\cmdmthoargrel}[2][2=]
+  {\usrmth{#1}{Rel}{oargrel}[#2]}
+
+\newcommandx{\cmdmthparrel}[2][2=]
+  {\usrmth{#1}{Rel}{parrel}[#2]}
+
+\newcommandx{\cmdmthoparrel}[2][2=]
+  {\usrmth{#1}{Rel}{oparrel}[#2]}
+
+%% Style for Functions
+\cmdmthall{fun}\newcommand{\mthstyfun}{\mathsf}
+
+\seqoflet{Fun}{mthfun}
+
+\newcommandx{\cmdmthfun}[2][2=]
+  {\usrmth{#1}{Fun}{fun}[#2]}
+
+\newcommandx{\cmdmthargfun}[2][2=]
+  {\usrmth{#1}{Fun}{argfun}[#2]}
+
+\newcommandx{\cmdmthoargfun}[2][2=]
+  {\usrmth{#1}{Fun}{oargfun}[#2]}
+
+\newcommandx{\cmdmthparfun}[2][2=]
+  {\usrmth{#1}{Fun}{parfun}[#2]}
+
+\newcommandx{\cmdmthoparfun}[2][2=]
+  {\usrmth{#1}{Fun}{oparfun}[#2]}
+
+%% Style for Symbols
+\cmdmthall{sym}\newcommand{\mthstysym}{\mathtt}
+
+\seqoflet{Sym}{mthsym}
+
+\newcommandx{\cmdmthsym}[2][2=]
+  {\usrmth{#1}{Sym}{sym}[#2]}
+
+\newcommandx{\cmdmthargsym}[2][2=]
+  {\usrmth{#1}{Sym}{argsym}[#2]}
+
+\newcommandx{\cmdmthoargsym}[2][2=]
+  {\usrmth{#1}{Sym}{oargsym}[#2]}
+
+\newcommandx{\cmdmthparsym}[2][2=]
+  {\usrmth{#1}{Sym}{parsym}[#2]}
+
+\newcommandx{\cmdmthoparsym}[2][2=]
+  {\usrmth{#1}{Sym}{oparsym}[#2]}
+
+%% Style for Elements
+\cmdmthall{elm}\newcommand{\mthstyelm}{\mathnormal}
+
+\seqoflet{Elm}{mthelm}
+
+\newcommandx{\cmdmthelm}[2][2=]
+  {\usrmth{#1}{Elm}{elm}[#2]}
+
+\newcommandx{\cmdmthargelm}[2][2=]
+  {\usrmth{#1}{Elm}{argelm}[#2]}
+
+\newcommandx{\cmdmthoargelm}[2][2=]
+  {\usrmth{#1}{Elm}{oargelm}[#2]}
+
+\newcommandx{\cmdmthparelm}[2][2=]
+  {\usrmth{#1}{Elm}{parelm}[#2]}
+
+\newcommandx{\cmdmthoparelm}[2][2=]
+  {\usrmth{#1}{Elm}{oparelm}[#2]}
+
+%%****************************************************************************%%
+
+\newcommandx{\cmdmthsymelm}[2][2=]
+  {\cmdmthsym{#1}[#2]%
+  \cmdmthelm{#1}[#2]}
+
+\newcommandx{\cmdmthargsymelm}[2][2=]
+  {\cmdmthargsym{#1}[#2]%
+  \cmdmthargelm{#1}[#2]}
+
+\newcommandx{\cmdmthoargsymelm}[2][2=]
+  {\cmdmthoargsym{#1}[#2]%
+  \cmdmthoargelm{#1}[#2]}
+
+\newcommandx{\cmdmthparsymelm}[2][2=]
+  {\cmdmthparsym{#1}[#2]%
+  \cmdmthparelm{#1}[#2]}
+
+\newcommandx{\cmdmthoparsymelm}[2][2=]
+  {\cmdmthoparsym{#1}[#2]%
+  \cmdmthoparelm{#1}[#2]}
+
+%%****************************************************************************%%
+
+%% Style for Sentences
+\cmdmthall{snt}\newcommand{\mthstysnt}{\mathsf}
+
+\seqoflet{Snt}{mthsnt}
+
+\newcommandx{\cmdmthsnt}[2][2=]
+  {\usrmth{#1}{Snt}{snt}[#2]}
+
+\newcommandx{\cmdmthargsnt}[2][2=]
+  {\usrmth{#1}{Snt}{argsnt}[#2]}
+
+\newcommandx{\cmdmthoargsnt}[2][2=]
+  {\usrmth{#1}{Snt}{oargsnt}[#2]}
+
+\newcommandx{\cmdmthparsnt}[2][2=]
+  {\usrmth{#1}{Snt}{parsnt}[#2]}
+
+\newcommandx{\cmdmthoparsnt}[2][2=]
+  {\usrmth{#1}{Snt}{oparsnt}[#2]}
+
+%% Style for Formulae
+\cmdmthall{frm}\newcommand{\mthstyfrm}{\mathit}
+
+\seqoflet{Frm}{mthfrm}
+
+\newcommandx{\cmdmthfrm}[2][2=]
+  {\usrmth{#1}{Frm}{frm}[#2]}
+
+\newcommandx{\cmdmthargfrm}[2][2=]
+  {\usrmth{#1}{Frm}{argfrm}[#2]}
+
+\newcommandx{\cmdmthoargfrm}[2][2=]
+  {\usrmth{#1}{Frm}{oargfrm}[#2]}
+
+\newcommandx{\cmdmthparfrm}[2][2=]
+  {\usrmth{#1}{Frm}{parfrm}[#2]}
+
+\newcommandx{\cmdmthoparfrm}[2][2=]
+  {\usrmth{#1}{Frm}{oparfrm}[#2]}
+
+%%****************************************************************************%%
+
+%% Style for Matrices
+\cmdmthall{mat}\newcommand{\mthstymat}[1]{\boldsymbol{\mathsf{#1}}}
+
+\seqoflet{Mat}{mthmat}
+
+\newcommandx{\cmdmthmat}[2][2=]
+  {\usrmth{#1}{Mat}{mat}[#2]}
+
+\newcommandx{\cmdmthargmat}[2][2=]
+  {\usrmth{#1}{Mat}{argmat}[#2]}
+
+\newcommandx{\cmdmthoargmat}[2][2=]
+  {\usrmth{#1}{Mat}{oargmat}[#2]}
+
+\newcommandx{\cmdmthparmat}[2][2=]
+  {\usrmth{#1}{Mat}{parmat}[#2]}
+
+\newcommandx{\cmdmthoparmat}[2][2=]
+  {\usrmth{#1}{Mat}{oparmat}[#2]}
+
+%% Style for Vectors
+\cmdmthall{vec}\newcommand{\mthstyvec}[1]{\boldsymbol{\mathit{#1}}}
+
+\seqoflet{Vec}{mthvec}
+
+\newcommandx{\cmdmthvec}[2][2=]
+  {\usrmth{#1}{Vec}{vec}[#2]}
+
+\newcommandx{\cmdmthargvec}[2][2=]
+  {\usrmth{#1}{Vec}{argvec}[#2]}
+
+\newcommandx{\cmdmthoargvec}[2][2=]
+  {\usrmth{#1}{Vec}{oargvec}[#2]}
+
+\newcommandx{\cmdmthparvec}[2][2=]
+  {\usrmth{#1}{Vec}{parvec}[#2]}
+
+\newcommandx{\cmdmthoparvec}[2][2=]
+  {\usrmth{#1}{Vec}{oparvec}[#2]}
+
+\fi
+%%****************************************************************************%%
+
+%%****************************************************************************%%
+%%** Elementary Macros for Text **********************************************%%
+%%****************************************************************************%%
+\iftext@
+
+%%** Latin Abbreviations *****************************************************%%
+
+\cmdtxtabr{adhoc}[ad hoc]
+
+\cmdtxtabr{afortiori}[a fortiori]
+
+\cmdtxtabr{apriori}[a priori]
+
+\cmdtxtabr{cf}[cf.]
+
+\cmdtxtabr{dedicto}[de dicto]
+
+\cmdtxtabr{defacto}[de facto]
+
+\cmdtxtabr{dere}[de re]
+
+\cmdtxtabr{divideetimpera}[divide et impera]
+
+\cmdtxtabr{eg}[e.g.]
+
+\cmdtxtabr{ergo}
+
+\cmdtxtabr{errata}
+
+\cmdtxtabr{erratum}
+
+\cmdtxtabr{etal}[et al.]
+
+\cmdtxtabr{etc}[etc.]
+
+\cmdtxtabr{ie}[i.e.]
+
+\cmdtxtabr{mutatismutandis}[mutatis mutandis]
+
+\cmdtxtabr{percontra}[per contra]
+
+\cmdtxtabr{viceversa}[vice versa]
+
+\cmdtxtabr{vs}[vs.]
+
+\cmdtxtabr{viz}[viz.]
+
+%%****************************************************************************%%
+
+\cmdtxtabr{Dedicto}[De dicto]
+
+\cmdtxtabr{Defacto}[De facto]
+
+\cmdtxtabr{Dere}[De re]
+
+\cmdtxtabr{Divideetimpera}[Divide et impera]
+
+\cmdtxtabr{Eg}[E.g.]
+
+\cmdtxtabr{Errata}
+
+\cmdtxtabr{Erratum}
+
+\cmdtxtabr{Percontra}[Per contra]
+
+\cmdtxtabr{Viceversa}[Vice versa]
+
+%%** Italian Abbreviations ***************************************************%%
+
+%% ...
+
+%%****************************************************************************%%
+
+%% ...
+
+%%** French Abbreviations ****************************************************%%
+
+\cmdtxtabr{role}[r\^{o}le]
+
+%%****************************************************************************%%
+
+\cmdtxtabr{Role}[R\^{o}le]
+
+%%** English Abbreviations ***************************************************%%
+
+\cmdtxtabr{aka}[a.k.a.]
+
+\cmdtxtabr{contd}[contd.]
+
+\cmdtxtabr{iff}
+
+\cmdtxtabr{stx}[s.t.]
+
+\cmdtxtabr{resp}[resp.]
+
+\cmdtxtabr{wrt}[w.r.t.]
+
+\cmdtxtabr{wlogx}[w.l.o.g.]
+
+%%****************************************************************************%%
+
+\cmdtxtabr{Contd}[Contd.]
+
+\cmdtxtabr{Wlogx}[W.l.o.g.]
+
+\fi
+%%****************************************************************************%%
+
+%%****************************************************************************%%
+%%** Elementary Macros for Math **********************************************%%
+%%****************************************************************************%%
+\ifmath@
+
+%%** General Notation ********************************************************%%
+
+\DeclareRobustCommand{\implies}
+  {\ensuremath{\Rightarrow}}
+\DeclareRobustCommand{\coimplies}
+  {\ensuremath{\Leftrightarrow}}
+
+%%****************************************************************************%%
+
+\DeclareMathOperator{\defeq}
+  {\ensuremath{\triangleq}}
+\DeclareMathOperator{\seteq}
+  {\ensuremath{:\!=\,}}
+
+%%****************************************************************************%%
+
+\DeclareRobustCommand{\cmodels}
+  {\mth{\,\models}}
+\DeclareRobustCommand{\notcmodels}
+  {\mth{\,\not\models}}
+
+\DeclareRobustCommand{\cequiv}
+  {\mth{\,\equiv}}
+\DeclareRobustCommand{\notcequiv}
+  {\mth{\,\not\equiv}}
+
+%%****************************************************************************%%
+
+\DeclareRobustCommand{\dual}[1]
+  {\mth{\overline{#1}}}
+\DeclareRobustCommand{\adj}[1]
+  {\mth{\mathring{#1}}}
+\DeclareRobustCommand{\der}[1]
+  {\mth{\widehat{#1}}}
+\DeclareRobustCommand{\trn}[1]
+  {\mth{\widetilde{#1}}}
+
+\let\oldvec\vec
+\DeclareRobustCommand{\vec}[1]
+  {\mth{\oldvec{#1}}}
+
+%%****************************************************************************%%
+
+\varcmd{enumeration}{\mth}{}{,}{}{}
+\varcmd{enumerationx}{\mth}{}{;}{}{}
+
+\varcmd{sequence}{\mth}{\left[}{,}{\right]}{}
+\varcmd{sequencex}{\mth}{\left[}{;}{\right]}{}
+
+\varcmd{tuple}{\mth}{\left\langle}{,}{\right\rangle}{}
+\varcmd{tuplex}{\mth}{\left\langle}{;}{\right\rangle}{}
+
+%%** Sets ********************************************************************%%
+
+\DeclareRobustCommand{\set}[2]
+  {\mth{\argmid{\{\,}{\argsep{#1}{\allowbreak\mid\allowbreak}{#2}}{\,\}}}}
+
+\DeclareRobustCommand{\card}[1]
+  {\mth{\argmid{\lvert}{#1}{\rvert}}}
+
+\DeclareRobustCommand{\denot}[1]
+  {\mth{\argmid{\lVert}{#1}{\rVert}}}
+
+\DeclareRobustCommand{\pow}[1]
+  {\ensuremath{2^{\defval{#1}{\cdot}}}}
+
+%%** Relations ***************************************************************%%
+
+\DeclareRobustCommand{\emptyrel}
+  {\mth{\varnothing}}
+
+%%****************************************************************************%%
+
+\DeclareRobustCommand{\dom}
+  {\mthargfun{dom}}
+\DeclareRobustCommand{\cod}
+  {\mthargfun{cod}}
+\DeclareRobustCommand{\rng}
+  {\mthargfun{rng}}
+\DeclareRobustCommand{\img}
+  {\mthargfun{img}}
+
+%%****************************************************************************%%
+
+\DeclareRobustCommand{\prj}
+  {\mthargfun{prj}}
+
+\DeclareMathOperator{\rst}
+  {\ensuremath{\upharpoonright}}
+
+\DeclareMathOperator{\cmp}
+  {\ensuremath{\circ}}
+
+%%** Functions ***************************************************************%%
+
+\DeclareRobustCommand{\emptyfun}
+  {\mth{\varnothing}}
+
+%%****************************************************************************%%
+
+\DeclareMathOperator{\pto}
+  {\ensuremath{\rightharpoonup}}
+\DeclareMathOperator{\pmapsto}
+  {\ensuremath{\mathrel{\raisebox{0.5ex}{\footnotesize${\llcorner}$}%
+    \kern-1.5ex\rightharpoonup}}}
+
+%%****************************************************************************%%
+
+\DeclareRobustCommand{\Aomega}
+  {\mthargset{\omega}}
+\DeclareRobustCommand{\AOmega}
+  {\mthargset{\Omega}}
+
+\DeclareRobustCommand{\Atheta}
+  {\mthargset{\theta}}
+\DeclareRobustCommand{\ATheta}
+  {\mthargset{\Theta}}
+
+\DeclareRobustCommand{\Aomicron}
+  {\mthargset{\omicron}}
+\DeclareRobustCommand{\AOmicron}
+  {\mthargset{\Omicron}}
+
+%%** Numbers *****************************************************************%%
+
+\DeclareRobustCommand{\SetB}
+  {\mthset[mathbb]{B}}
+
+\DeclareRobustCommand{\SetF}
+  {\mthset[mathbb]{F}}
+
+\DeclareRobustCommand{\SetN}
+  {\mthset[mathbb]{N}}
+\DeclareRobustCommand{\SetNI}[1][]
+  {\SetN[\infty #1]}
+
+\DeclareRobustCommand{\SetZ}
+  {\mthset[mathbb]{Z}}
+\DeclareRobustCommand{\SetZI}[1][]
+  {\SetZ[\pm\infty #1]}
+\DeclareRobustCommand{\SetZPI}[1][]
+  {\SetZ[+\infty #1]}
+\DeclareRobustCommand{\SetZNI}[1][]
+  {\SetZ[-\infty #1]}
+
+\DeclareRobustCommand{\SetQ}
+  {\mthset[mathbb]{Q}}
+\DeclareRobustCommand{\SetQI}[1][]
+  {\SetQ[\pm\infty #1]}
+\DeclareRobustCommand{\SetQPI}[1][]
+  {\SetQ[+\infty #1]}
+\DeclareRobustCommand{\SetQNI}[1][]
+  {\SetQ[-\infty #1]}
+
+\DeclareRobustCommand{\SetR}
+  {\mthset[mathbb]{R}}
+\DeclareRobustCommand{\SetRI}[1][]
+  {\SetR[\pm\infty #1]}
+\DeclareRobustCommand{\SetRPI}[1][]
+  {\SetR[+\infty #1]}
+\DeclareRobustCommand{\SetRNI}[1][]
+  {\SetR[-\infty #1]}
+
+\DeclareRobustCommand{\SetC}
+  {\mthset[mathbb]{C}}
+\DeclareRobustCommand{\SetCI}[1][]
+  {\SetC[\infty #1]}
+
+%%****************************************************************************%%
+
+\DeclareRobustCommand{\num}[1]
+  {\mth{[#1]}}
+\DeclareRobustCommand{\numcc}[2]
+  {\mth{[\argsep{#1}{,}{#2}]}}
+\DeclareRobustCommand{\numco}[2]
+  {\mth{[\argsep{#1}{,}{#2})}}
+\DeclareRobustCommand{\numoc}[2]
+  {\mth{(\argsep{#1}{,}{#2}]}}
+\DeclareRobustCommand{\numoo}[2]
+  {\mth{(\argsep{#1}{,}{#2})}}
+
+%%****************************************************************************%%
+
+\DeclareRobustCommand{\floor}[1]
+  {\mth{\argmid{\left\lfloor}{#1}{\right\rfloor}}}
+\DeclareRobustCommand{\ceil}[1]
+  {\mth{\argmid{\left\lceil}{#1}{\right\rceil}}}
+
+%%****************************************************************************%%
+
+\DeclareRobustCommand{\arg}
+  {\mthfun{arg}}
+
+\DeclareRobustCommand{\evn}
+  {\mthfun{evn}}
+\DeclareRobustCommand{\odd}
+  {\mthfun{odd}}
+
+\DeclareRobustCommand{\bst}
+  {\mthfun{bst}}
+\DeclareRobustCommand{\argbst}
+  {\mthfun{arg bst}}
+
+\DeclareRobustCommand{\min}
+  {\mthfun{min}}
+\DeclareRobustCommand{\max}
+  {\mthfun{max}}
+\DeclareRobustCommand{\argmin}
+  {\mthfun{arg min}}
+\DeclareRobustCommand{\argmax}
+  {\mthfun{arg max}}
+
+\DeclareRobustCommand{\inf}
+  {\mthfun{inf}}
+\DeclareRobustCommand{\sup}
+  {\mthfun{sup}}
+
+%%** Sequences ***************************************************************%%
+
+\DeclareRobustCommand{\fst}
+  {\mthargfun{fst}}
+\DeclareRobustCommand{\lst}
+  {\mthargfun{lst}}
+
+\fi
+%%****************************************************************************%%
+
+%%****************************************************************************%%
+%%** Macros for Computational-Complexity Classes *****************************%%
+%%****************************************************************************%%
+\ifcom@
+
+\newcommandx{\defcomcls}[2][2=]
+  {\defcomclssem{#1}{\defval{#2}{#1}}%
+  \defcomclssem{#1}{\defval{#2}{#1}}[Co]}
+\newcommandx{\defcomclssem}[3][3=]
+  {\defcomclsred{#3#1}{#2}[#3]%
+  \defcomclsred{#3N#1}{#2}[#3N]%
+  \defcomclsred{#3U#1}{#2}[#3U]%
+  \defcomclsred{#3A#1}{#2}[#3A]}
+\newcommandx{\defcomclsred}[3][3=]
+  {\defcomclscmd{#1}{#2}[#3]%
+  \defcomclscmd{#1E}{#2}[#3][-easy]%
+  \defcomclscmd{#1H}{#2}[#3][-hard]%
+  \defcomclscmd{#1C}{#2}[#3][-complete]}%
+\newcommandx{\defcomclscmd}[4][3=, 4=]
+  {\csdef{#1}{\txtcom{#3#2#4}}}
+
+%%****************************************************************************%%
+
+\defcomcls{Time}
+
+\defcomcls{Space}
+
+\defcomcls{LogTime}
+
+\defcomcls{LogSpace}
+
+\defcomcls{PTime}
+
+\defcomcls{PSpace}
+
+\defcomcls{ExpTime}
+
+\defcomcls{ExpSpace}
+
+%%****************************************************************************%%
+
+%% ...
+
+\fi
+%%****************************************************************************%%
+
+%%****************************************************************************%%
+%%** Macros for Games ********************************************************%%
+%%****************************************************************************%%
+\ifgam@
+
+%%** Logic Games *************************************************************%%
+
+%% Satisfiability Games
+\cmdtxtoparname{SATG}[Sat]
+
+%% Validity Games
+\cmdtxtoparname{VALG}[Val]
+
+%% Evaluation Games
+\cmdtxtoparname{EVLG}[Evl]
+
+%% Synthesis Games
+\cmdtxtoparname{SYNG}[Syn]
+
+%% Model-Checking Games
+\cmdtxtoparname{MCG}[MC]
+
+%% Ehrenfeucht-Fraisse Games
+\cmdtxtoparname{EFG}[EF]
+
+%%** Syntax ******************************************************************%%
+
+\newcommand{\plrsym}{E}
+\cmdmthsym{Plr}[\plrsym]
+\newcommand{\oppsym}{A}
+\cmdmthsym{Opp}[\oppsym]
+
+\newcommand{\arenaname}{A}
+\usrmthlatupp{Arena}{Name}{name}[\arenaname]
+
+\newcommand{\possym}{v}
+\newcommand{\posset}{Ps}
+\cmdmthsetext{Pos}[\posset][\possym]
+\cmdmthsymelm{ipos}[\possym_{I}]
+\cmdmthsymelm{fpos}[\possym_{F}]
+\cmdmthset{PPos}[\posset_{\PlrSym}]
+\cmdmthsymelm{ppos}[\possym_{\PlrSym}]
+\cmdmthset{OPos}[\posset_{\OppSym}]
+\cmdmthsymelm{opos}[\possym_{\OppSym}]
+
+\newcommand{\movrel}{Mv}
+\cmdmthrel{Mov}[\movrel]
+
+\newcommand{\gamename}{\Game}
+\usrmthlatupp{Game}{Name}{name}[\gamename]
+
+\newcommand{\winset}{Wn}
+\cmdmthset{Win}[\winset]
+
+\newcommand{\obsset}{Ob}
+\cmdmthset{Obs}[\obsset]
+\cmdmthfun{obs}
+
+%%** Semantics ***************************************************************%%
+
+\newcommand{\pthsym}{\pi}
+\newcommand{\pthset}{Pth}
+\cmdmthsetext{Pth}[\pthset][\pthsym]
+\cmdmthfun{pth}
+
+\newcommand{\hstsym}{\rho}
+\newcommand{\hstset}{Hst}
+\cmdmthsetext{Hst}[\hstset][\hstsym]
+\cmdmthset{PHst}[\hstset_{\PlrSym}]
+\cmdmthsymelm{phst}[\hstsym_{\PlrSym}]
+\cmdmthset{OHst}[\hstset_{\OppSym}]
+\cmdmthsymelm{ohst}[\hstsym_{\OppSym}]
+\cmdmthfun{hst}
+
+\newcommand{\playsym}{\pi}
+\newcommand{\playset}{Play}
+\cmdmthsetext{Play}[\playset][\playsym]
+\cmdmthfun{play}
+
+\newcommand{\strsym}{\sigma}
+\newcommand{\strset}{Str}
+\cmdmthsetext{Str}[\strset][\strsym]
+\cmdmthset{PStr}[\strset_{\PlrSym}]
+\cmdmthsymelm{pstr}[\strsym_{\PlrSym}]
+\cmdmthset{OStr}[\strset_{\OppSym}]
+\cmdmthsymelm{ostr}[\strsym_{\OppSym}]
+
+\newcommand{\prfsym}{\xi}
+\newcommand{\prfset}{Prf}
+\cmdmthsetext{Prf}[\prfset][\prfsym]
+
+\cmdmthfun{prd}
+\cmdmthfun{suc}
+
+\cmdmthfun{atr}
+\cmdmthfun{rch}
+
+\cmdmthfun{sol}
+
+%%** Qualitative Games on Graph **********************************************%%
+
+%% Buchi Games
+\cmdtxtoparname{BG}
+
+%% Co-Buchi Games
+\cmdtxtoparname{CG}
+
+%% Parity Games
+\cmdtxtoparname{PG}
+
+%% Rabin Games
+\cmdtxtoparname{RG}
+
+%% Streett Games
+\cmdtxtoparname{SG}
+
+%% Muller Games
+\cmdtxtoparname{MG}
+
+%%** Syntax ******************************************************************%%
+
+\newcommand{\prtsym}{p}
+\newcommand{\prtset}{Pr}
+\cmdmthsetext{Prt}[\prtset][\prtsym]
+\cmdmthfun{prt}[pr]
+
+%%** Semantics ***************************************************************%%
+
+%%...
+
+%%** Quantitative Games on Graph *********************************************%%
+
+%% Energy Games
+\cmdtxtoparname{EG}
+
+%% Mean-Payoff Games
+\cmdtxtoparname{MPG}
+
+%% Discounted-Payoff Games
+\cmdtxtoparname{DPG}
+
+%%** Syntax ******************************************************************%%
+
+\newcommand{\wghsym}{w}
+\newcommand{\wghset}{Wg}
+\cmdmthsetext{Wgh}[\wghset][\wghsym]
+\cmdmthfun{wgh}[wg]
+
+%%** Semantics ***************************************************************%%
+
+%%...
+
+\fi
+%%****************************************************************************%%
+
+%%****************************************************************************%%
+%%** Macros for Logics *******************************************************%%
+%%****************************************************************************%%
+\iflog@
+
+%%** Propositional Logics ****************************************************%%
+
+\cmdtxtoparname{BF}
+
+\DeclareRobustCommand{\QBF}
+  {{\txtname{Q}}\BF}
+\DeclareRobustCommand{\EBF}
+  {\ensuremath{\exists}\BF}
+\DeclareRobustCommand{\UBF}
+  {\ensuremath{\forall}\BF}
+
+%%** Syntax ******************************************************************%%
+
+\newcommand{\logsig}{L}
+\usrmthlatupp{Log}{Sig}{sig}[\logsig]
+
+\newcommand{\ttsym}{\top}
+\usrmth{Tt}{}{sym}[\ttsym]
+\newcommand{\ffsym}{\bot}
+\usrmth{Ff}{}{sym}[\ffsym]
+
+\newcommand{\apsym}{p}
+\newcommand{\apset}{AP}
+\cmdmthsetext{AP}[\apset][\apsym]
+\cmdmthfun{ap}\usrmth{ap}{}{argfun}
+
+\usrmth{Cnt}{}{sym}[Cn]
+
+\usrmth{sub}{}{argfun}
+
+\usrmth{Qnt}{}{sym}[Qn]
+
+\newcommand{\qntsym}{\wp}
+\newcommand{\qntset}{Qn}
+\cmdmthsetext{Qnt}[\qntset][\qntsym]
+
+\usrmth{free}{}{argfun}
+
+\usrmth{dep}{}{argfun}
+\usrmth{alt}{}{argfun}
+
+%%** Semantics ***************************************************************%%
+
+\newcommand{\logstr}{L}
+\usrmthlatupp{Log}{Str}{str}[\logstr]
+
+\newcommand{\valsym}{\xi}
+\newcommand{\valset}{Val}
+\cmdmthsetext{Val}[\valset][\valsym]
+
+\newcommand{\asgsym}{\chi}
+\newcommand{\asgset}{Asg}
+\cmdmthsetext{Asg}[\asgset][\asgsym]
+
+%%** First-Order Logics I ****************************************************%%
+
+\cmdtxtoparname{FOL}[Fol]
+
+\DeclareRobustCommand{\MFOL}
+  {{\txtname{M}}\FOL}
+
+%%** Syntax ******************************************************************%%
+
+\newcommand{\varsig}{V}
+\usrmthlatupp{Var}{Sig}{sig}[\varsig]
+\newcommand{\varsym}{x}
+\newcommand{\varset}{Vr}
+\cmdmthsetext{Var}[\varset][\varsym]
+\usrmth{var}{}{argfun}[vr]
+\cmdmthfun{dim}[dm]\usrmth{dim}{}{argfun}[dm]
+
+\newcommand{\consig}{C}
+\usrmthlatupp{Con}{Sig}{sig}[\consig]
+\newcommand{\consym}{c}
+\newcommand{\conset}{Cn}
+\cmdmthsetext{Con}[\conset][\consym]
+\usrmth{con}{}{argfun}[cn]
+
+\newcommand{\funsig}{F}
+\usrmthlatupp{Fun}{Sig}{sig}[\funsig]
+\newcommand{\funsym}{f}
+\newcommand{\funset}{Fn}
+\cmdmthsetext{Fun}[\funset][\funsym]
+\usrmth{fun}{}{argfun}[fn]
+\cmdmthfun{art}[ar]\usrmth{art}{}{argfun}[ar]
+
+\newcommand{\tersig}{T}
+\usrmthlatupp{Ter}{Sig}{sig}[\tersig]
+\newcommand{\tersym}{t}
+\newcommand{\terset}{Tr}
+\cmdmthsetext{Ter}[\terset][\tersym]
+\usrmth{ter}{}{argfun}
+
+\newcommand{\relsig}{R}
+\usrmthlatupp{Rel}{Sig}{sig}[\relsig]
+\newcommand{\relsym}{r}
+\newcommand{\relset}{Rl}
+\cmdmthsetext{Rel}[\relset][\relsym]
+\usrmth{rel}{}{argfun}[rl]
+
+\usrmth{skm}{}{argfun}
+
+%%** Semantics ***************************************************************%%
+
+\newcommand{\constr}{C}
+\usrmthlatupp{Con}{Str}{str}[\constr]
+
+\newcommand{\funstr}{F}
+\usrmthlatupp{Fun}{Str}{str}[\funstr]
+
+\newcommand{\terstr}{T}
+\usrmthlatupp{Ter}{Str}{str}[\terstr]
+
+\newcommand{\relstr}{R}
+\usrmthlatupp{Rel}{Str}{str}[\relstr]
+
+%%** First-Order Logics II ***************************************************%%
+
+%% ...
+
+%%** Syntax ******************************************************************%%
+
+%% ...
+
+%%** Semantics ***************************************************************%%
+
+%% ...
+
+%%** Second-Order Logics I ***************************************************%%
+
+\cmdtxtoparname{SOL}[Sol]
+
+\DeclareRobustCommand{\MSOL}
+  {{\txtname{M}}\SOL}
+
+%%** Syntax ******************************************************************%%
+
+\newcommand{\fvarsym}{x}
+\newcommand{\fvarset}{FVr}
+\cmdmthsetext{FVar}[\fvarset][\fvarsym]
+
+\newcommand{\svarsym}{X}
+\newcommand{\svarset}{SVr}
+\cmdmthsetext{SVar}[\svarset][\svarsym]
+
+%%** Semantics ***************************************************************%%
+
+%% ...
+
+%%** Second-Order Logics II **************************************************%%
+
+\cmdtxtoparname{TL}
+
+\DeclareRobustCommand{\MTL}
+  {{\txtname{M}}\TL}
+
+\cmdtxtoparname{PL}
+
+\DeclareRobustCommand{\MPL}
+  {{\txtname{M}}\PL}
+
+%%** Syntax ******************************************************************%%
+
+%% ...
+
+%%** Semantics ***************************************************************%%
+
+%% ...
+
+%%** Modal Logics I **********************************************************%%
+
+\cmdtxtoparname{ML}
+
+\DeclareRobustCommand{\QML}
+  {{\txtname{Q}}\ML}
+\DeclareRobustCommand{\EML}
+  {\ensuremath{\exists}\ML}
+\DeclareRobustCommand{\UML}
+  {\ensuremath{\forall}\ML}
+
+%%** Syntax ******************************************************************%%
+
+\usrmth{Opr}{}{sym}[Op]
+
+\usrmth{DMod}{}{sym}[\Diamond]
+\usrmth{BMod}{}{sym}[\Box]
+
+\DeclareRobustCommand{\Exs}[1]
+  {\mth{\defval{\argmid{\langle}{#1}{\rangle}}{\DMod}}}
+\DeclareRobustCommand{\All}[1]
+  {\mth{\defval{\argmid{\left[}{#1}{\right]}}{\BMod}}}
+
+%%** Semantics ***************************************************************%%
+
+\newcommand{\krpstr}{K}
+\usrmthlatupp{Krp}{Str}{str}[\krpstr]
+
+\newcommand{\wrlsym}{w}
+\newcommand{\wrlset}{W}
+\cmdmthsetext{Wrl}[\wrlset][\wrlsym]
+\cmdmthsymelm{iwrl}[\wrlsym_{I}]
+
+\newcommand{\accsym}{R}
+\cmdmthrel{Acc}[\accsym]
+\cmdmthrel{Trn}[\accsym]
+
+\newcommand{\labsym}{\lambda}
+\cmdmthfun{lab}[\labsym]
+
+\providecommand{\pthsym}{\pi}
+\providecommand{\pthset}{Pth}
+\cmdmthsetext{Pth}[\pthset][\pthsym]
+\cmdmthfun{pth}
+
+%%** Modal Logics II *********************************************************%%
+
+\cmdtxtoparname{MC}[\ensuremath{\mu}-Calculus]
+
+\DeclareRobustCommand{\QMC}
+  {{\txtname{Q}}\MC}
+\DeclareRobustCommand{\EMC}
+  {\ensuremath{\exists}\MC}
+\DeclareRobustCommand{\UMC}
+  {\ensuremath{\forall}\MC}
+
+%%** Syntax ******************************************************************%%
+
+%% ...
+
+%%** Semantics ***************************************************************%%
+
+%% ...
+
+%%** Temporal Logics I *******************************************************%%
+
+\cmdtxtoparname{PTL}
+
+\DeclareRobustCommand{\QPTL}
+  {{\txtname{Q}}\PTL}
+\DeclareRobustCommand{\EPTL}
+  {\ensuremath{\exists}\PTL}
+\DeclareRobustCommand{\UPTL}
+  {\ensuremath{\forall}\PTL}
+
+\cmdtxtoparname{LTL}
+
+\DeclareRobustCommand{\QLTL}
+  {{\txtname{Q}}\LTL}
+\DeclareRobustCommand{\ELTL}
+  {\ensuremath{\exists}\LTL}
+\DeclareRobustCommand{\ULTL}
+  {\ensuremath{\forall}\LTL}
+
+%%** Syntax ******************************************************************%%
+
+\usrmth{X}{}{sym}
+\usrmth{F}{}{sym}
+\usrmth{G}{}{sym}
+\usrmth{U}{}{sym}
+\usrmth{R}{}{sym}
+
+\usrmth{Y}{}{sym}
+\usrmth{P}{}{sym}\let\SavePilcrow\P
+\usrmth{H}{}{sym}\let\SaveDoubleAcute\H
+\usrmth{S}{}{sym}\let\SaveSectionSymbol\S
+\usrmth{B}{}{sym}
+
+%%** Semantics ***************************************************************%%
+
+%% ...
+
+%%** Temporal Logics II ******************************************************%%
+
+\cmdtxtoparname{CTL}
+
+\DeclareRobustCommand{\QCTL}
+  {{\txtname{Q}}\CTL}
+\DeclareRobustCommand{\ECTL}
+  {\ensuremath{\exists}\CTL}
+\DeclareRobustCommand{\UCTL}
+  {\ensuremath{\forall}\CTL}
+
+\cmdtxtoparname{CTLP}[CTL$^{+}$]
+
+\DeclareRobustCommand{\QCTLP}
+  {{\txtname{Q}}\CTLP}
+\DeclareRobustCommand{\ECTLP}
+  {\ensuremath{\exists}\CTLP}
+\DeclareRobustCommand{\UCTLP}
+  {\ensuremath{\forall}\CTLP}
+
+\cmdtxtoparname{CTLS}[CTL*]
+
+\DeclareRobustCommand{\QCTLS}
+  {{\txtname{Q}}\CTLS}
+\DeclareRobustCommand{\ECTLS}
+  {\ensuremath{\exists}\CTLS}
+\DeclareRobustCommand{\UCTLS}
+  {\ensuremath{\forall}\CTLS}
+
+%%** Syntax ******************************************************************%%
+
+\usrmth{E}{}{sym}
+\usrmth{A}{}{sym}
+
+%%** Semantics ***************************************************************%%
+
+%% ...
+
+%%** Strategic Logics I ******************************************************%%
+
+\cmdtxtoparname{ATL}
+
+\DeclareRobustCommand{\QATL}
+  {{\txtname{Q}}\ATL}
+\DeclareRobustCommand{\EATL}
+  {\ensuremath{\exists}\ATL}
+\DeclareRobustCommand{\UATL}
+  {\ensuremath{\forall}\ATL}
+
+\cmdtxtoparname{ATLP}[ATL$^{+}$]
+
+\DeclareRobustCommand{\QATLP}
+  {{\txtname{Q}}\ATLP}
+\DeclareRobustCommand{\EATLP}
+  {\ensuremath{\exists}\ATLP}
+\DeclareRobustCommand{\UATLP}
+  {\ensuremath{\forall}\ATLP}
+
+\cmdtxtoparname{ATLS}[ATL*]
+
+\DeclareRobustCommand{\QATLS}
+  {{\txtname{Q}}\ATLS}
+\DeclareRobustCommand{\EATLS}
+  {\ensuremath{\exists}\ATLS}
+\DeclareRobustCommand{\UATLS}
+  {\ensuremath{\forall}\ATLS}
+
+%%** Syntax ******************************************************************%%
+
+\DeclareRobustCommand{\EExs}[1]
+  {\mth{\argmid{\langle\!\langle}{\defval{#1}{\emptyset}}{\rangle\!\rangle}}}
+\DeclareRobustCommand{\AAll}[1]
+  {\mth{\argmid{\left[\left[}{\defval{#1}{\emptyset}}{\right]\right]}}}
+
+%%** Semantics ***************************************************************%%
+
+\cmdtxtname{CGS}
+
+\newcommand{\cgsstr}{G}
+\usrmthlatupp{CGS}{Str}{str}[\cgsstr]
+
+\newcommand{\agnsym}{a}
+\newcommand{\agnset}{Ag}
+\cmdmthsetext{Agn}[\agnset][\agnsym]
+
+\providecommand{\possym}{v}
+\providecommand{\posset}{Ps}
+\cmdmthsetext{Pos}[\posset][\possym]
+\cmdmthsymelm{ipos}[\possym_{I}]
+\cmdmthsymelm{fpos}[\possym_{F}]
+\cmdmthset{PPos}[\posset_{\PlrSym}]
+\cmdmthsymelm{ppos}[\possym_{\PlrSym}]
+\cmdmthset{OPos}[\posset_{\OppSym}]
+\cmdmthsymelm{opos}[\possym_{\OppSym}]
+
+\newcommand{\sttsym}{s}
+\newcommand{\sttset}{St}
+\cmdmthsetext{Stt}[\sttset][\sttsym]
+\cmdmthset{IStt}[\sttset_{I}]
+\cmdmthsymelm{istt}[\sttsym_{I}]
+\cmdmthset{FStt}[\sttset_{F}]
+\cmdmthsymelm{fstt}[\sttsym_{F}]
+
+\newcommand{\actsym}{c}
+\newcommand{\actset}{Ac}
+\cmdmthsetext{Act}[\actset][\actsym]
+
+\newcommand{\decsym}{d}
+\newcommand{\decset}{Dc}
+\cmdmthsetext{Dec}[\decset][\decsym]
+
+\newcommand{\movsym}{\tau}
+\cmdmthfun{mov}[\movsym]
+
+\providecommand{\hstsym}{\rho}
+\providecommand{\hstset}{Hst}
+\cmdmthsetext{Hst}[\hstset][\hstsym]
+\cmdmthset{PHst}[\hstset_{\PlrSym}]
+\cmdmthsymelm{phst}[\hstsym_{\PlrSym}]
+\cmdmthset{OHst}[\hstset_{\OppSym}]
+\cmdmthsymelm{ohst}[\hstsym_{\OppSym}]
+\cmdmthfun{hst}
+
+\providecommand{\playsym}{\pi}
+\providecommand{\playset}{Play}
+\cmdmthsetext{Play}[\playset][\playsym]
+\cmdmthfun{play}
+
+\providecommand{\strsym}{\sigma}
+\providecommand{\strset}{Str}
+\cmdmthsetext{Str}[\strset][\strsym]
+\cmdmthset{PStr}[\strset_{\PlrSym}]
+\cmdmthsymelm{pstr}[\strsym_{\PlrSym}]
+\cmdmthset{OStr}[\strset_{\OppSym}]
+\cmdmthsymelm{ostr}[\strsym_{\OppSym}]
+
+\providecommand{\prfsym}{\xi}
+\providecommand{\prfset}{Prf}
+\cmdmthsetext{Prf}[\prfset][\prfsym]
+
+%%** Strategic Logics II *****************************************************%%
+
+\cmdtxtoparname{SL}
+
+\DeclareRobustCommand{\ESL}
+  {\ensuremath{\exists}\SL}
+\DeclareRobustCommand{\USL}
+  {\ensuremath{\forall}\SL}
+
+\DeclareRobustCommand{\FSL}
+  {{\txtname{F}}\SL}
+
+\DeclareRobustCommand{\EFSL}
+  {\ensuremath{\exists}\FSL}
+\DeclareRobustCommand{\UFSL}
+  {\ensuremath{\forall}\FSL}
+
+\DeclareRobustCommandx{\OGSL}[3][1=, 2=, 3=]
+  {\SL[#1][#2][1g\arglef{,}{#3}]}
+
+\DeclareRobustCommand{\EOGSL}
+  {\ensuremath{\exists}\OGSL}
+\DeclareRobustCommand{\UOGSL}
+  {\ensuremath{\forall}\OGSL}
+
+\DeclareRobustCommand{\FOGSL}
+  {{\txtname{F}}\OGSL}
+
+\DeclareRobustCommand{\EFOGSL}
+  {\ensuremath{\exists}\FOGSL}
+\DeclareRobustCommand{\UFOGSL}
+  {\ensuremath{\forall}\FOGSL}
+
+\DeclareRobustCommandx{\CGSL}[3][1=, 2=, 3=]
+  {\SL[#1][#2][cg\arglef{,}{#3}]}
+
+\DeclareRobustCommand{\ECGSL}
+  {\ensuremath{\exists}\CGSL}
+\DeclareRobustCommand{\UCGSL}
+  {\ensuremath{\forall}\CGSL}
+
+\DeclareRobustCommand{\FCGSL}
+  {{\txtname{F}}\xGSL}
+
+\DeclareRobustCommand{\EFCGSL}
+  {\ensuremath{\exists}\FCGSL}
+\DeclareRobustCommand{\UFCGSL}
+  {\ensuremath{\forall}\FCGSL}
+
+\DeclareRobustCommandx{\DGSL}[3][1=, 2=, 3=]
+  {\SL[#1][#2][dg\arglef{,}{#3}]}
+
+\DeclareRobustCommand{\EDGSL}
+  {\ensuremath{\exists}\DGSL}
+\DeclareRobustCommand{\UDGSL}
+  {\ensuremath{\forall}\DGSL}
+
+\DeclareRobustCommand{\FDGSL}
+  {{\txtname{F}}\xGSL}
+
+\DeclareRobustCommand{\EFDGSL}
+  {\ensuremath{\exists}\FDGSL}
+\DeclareRobustCommand{\UFDGSL}
+  {\ensuremath{\forall}\FDGSL}
+
+\DeclareRobustCommandx{\AGSL}[3][1=, 2=, 3=]
+  {\SL[#1][#2][ag\arglef{,}{#3}]}
+
+\DeclareRobustCommand{\EAGSL}
+  {\ensuremath{\exists}\AGSL}
+\DeclareRobustCommand{\UAGSL}
+  {\ensuremath{\forall}\AGSL}
+
+\DeclareRobustCommand{\FAGSL}
+  {{\txtname{F}}\xGSL}
+
+\DeclareRobustCommand{\EFAGSL}
+  {\ensuremath{\exists}\FAGSL}
+\DeclareRobustCommand{\UFAGSL}
+  {\ensuremath{\forall}\FAGSL}
+
+\DeclareRobustCommandx{\EGSL}[3][1=, 2=, 3=]
+  {\SL[#1][#2][eg\arglef{,}{#3}]}
+
+\DeclareRobustCommand{\EEGSL}
+  {\ensuremath{\exists}\EGSL}
+\DeclareRobustCommand{\UEGSL}
+  {\ensuremath{\forall}\EGSL}
+
+\DeclareRobustCommand{\FEGSL}
+  {{\txtname{F}}\xGSL}
+
+\DeclareRobustCommand{\EFEGSL}
+  {\ensuremath{\exists}\FEGSL}
+\DeclareRobustCommand{\UFEGSL}
+  {\ensuremath{\forall}\FEGSL}
+
+\DeclareRobustCommandx{\BGSL}[3][1=, 2=, 3=]
+  {\SL[#1][#2][bg\arglef{,}{#3}]}
+
+\DeclareRobustCommand{\EBGSL}
+  {\ensuremath{\exists}\BGSL}
+\DeclareRobustCommand{\UBGSL}
+  {\ensuremath{\forall}\BGSL}
+
+\DeclareRobustCommand{\FBGSL}
+  {{\txtname{F}}\xGSL}
+
+\DeclareRobustCommand{\EFBGSL}
+  {\ensuremath{\exists}\FBGSL}
+\DeclareRobustCommand{\UFBGSL}
+  {\ensuremath{\forall}\FBGSL}
+
+\DeclareRobustCommandx{\NGSL}[3][1=, 2=, 3=]
+  {\SL[#1][#2][ng\arglef{,}{#3}]}
+
+\DeclareRobustCommand{\ENGSL}
+  {\ensuremath{\exists}\NGSL}
+\DeclareRobustCommand{\UNGSL}
+  {\ensuremath{\forall}\NGSL}
+
+\DeclareRobustCommand{\FNGSL}
+  {{\txtname{F}}\xGSL}
+
+\DeclareRobustCommand{\EFNGSL}
+  {\ensuremath{\exists}\FNGSL}
+\DeclareRobustCommand{\UFNGSL}
+  {\ensuremath{\forall}\FNGSL}
+
+\DeclareRobustCommandx{\XGSL}[3][1=, 2=, 3=]
+  {\SL[#1][#2][xg\arglef{,}{#3}]}
+
+\DeclareRobustCommand{\EXGSL}
+  {\ensuremath{\exists}\XGSL}
+\DeclareRobustCommand{\UXGSL}
+  {\ensuremath{\forall}\XGSL}
+
+\DeclareRobustCommand{\FXGSL}
+  {{\txtname{F}}\xGSL}
+
+\DeclareRobustCommand{\EFXGSL}
+  {\ensuremath{\exists}\FXGSL}
+\DeclareRobustCommand{\UFXGSL}
+  {\ensuremath{\forall}\FXGSL}
+
+%%** Syntax ******************************************************************%%
+
+\newcommand{\bndsym}{\flat}
+\newcommand{\bndset}{Bn}
+\cmdmthsetext{Bnd}[\bndset][\bndsym]
+\usrmth{bnd}{}{argfun}
+
+\usrmth{psn}{}{argfun}
+
+%%** Semantics ***************************************************************%%
+
+\cmdmthfun{nxt}
+
+\fi
+%%****************************************************************************%%
+
+%%****************************************************************************%%
+%%** Macros for Automata *****************************************************%%
+%%****************************************************************************%%
+\ifaut@
+
+%%** Finite Word Automata ****************************************************%%
+
+\cmdtxtoparname{DWA}\cmdtxtoparname{NWA}\cmdtxtoparname{UWA}\cmdtxtoparname{AWA}
+
+\cmdtxtoparname{DFW}\cmdtxtoparname{NFW}\cmdtxtoparname{UFW}\cmdtxtoparname{AFW}
+\cmdtxtoparname{DBW}\cmdtxtoparname{NBW}\cmdtxtoparname{UBW}\cmdtxtoparname{ABW}
+\cmdtxtoparname{DCW}\cmdtxtoparname{NCW}\cmdtxtoparname{UCW}\cmdtxtoparname{ACW}
+\cmdtxtoparname{DPW}\cmdtxtoparname{NPW}\cmdtxtoparname{UPW}\cmdtxtoparname{APW}
+\cmdtxtoparname{DRW}\cmdtxtoparname{NRW}\cmdtxtoparname{URW}\cmdtxtoparname{ARW}
+\cmdtxtoparname{DSW}\cmdtxtoparname{NSW}\cmdtxtoparname{USW}\cmdtxtoparname{ASW}
+\cmdtxtoparname{DMW}\cmdtxtoparname{NMW}\cmdtxtoparname{UMW}\cmdtxtoparname{AMW}
+
+\cmdtxtoparname{GFG}
+
+\cmdtxtoparname{PD}
+
+%% ...
+
+%%** Syntax ******************************************************************%%
+
+\newcommand{\autname}{A}
+\usrmthlatupp{Aut}{Name}{name}[\autname]
+\newcommand{\autset}{Aut}
+\cmdmthset{Aut}[\autset]
+
+\newcommand{\wautset}{WAut}
+\cmdmthset{WAut}[\wautset]
+
+\def\sttsym{q}
+\def\sttset{Q}
+\cmdmthsetext{Stt}[\sttset][\sttsym]
+\cmdmthset{IStt}[\sttset_{I}]
+\cmdmthsymelm{istt}[\sttsym_{I}]
+\cmdmthset{FStt}[\sttset_{F}]
+\cmdmthsymelm{fstt}[\sttsym_{F}]
+
+\newcommand{\symsym}{\sigma}
+\newcommand{\symset}{\Sigma}
+\cmdmthsetext{Sym}[\symset][\symsym]
+
+\newcommand{\trnsym}{\delta}
+\cmdmthfun{trn}[\trnsym]
+
+%%** Semantics ***************************************************************%%
+
+\cmdmthfun{Lang}[L]
+
+\newcommand{\wrdsym}{w}
+\newcommand{\wrdset}{Wr}
+\cmdmthsetext{Wrd}[\wrdset][\wrdsym]
+
+%%** Finite Tree Automata ****************************************************%%
+
+\cmdtxtoparname{DTA}\cmdtxtoparname{NTA}\cmdtxtoparname{UTA}\cmdtxtoparname{ATA}
+
+\cmdtxtoparname{DFT}\cmdtxtoparname{NFT}\cmdtxtoparname{UFT}\cmdtxtoparname{AFT}
+\cmdtxtoparname{DBT}\cmdtxtoparname{NBT}\cmdtxtoparname{UBT}\cmdtxtoparname{ABT}
+\cmdtxtoparname{DCT}\cmdtxtoparname{NCT}\cmdtxtoparname{UCT}\cmdtxtoparname{ACT}
+\cmdtxtoparname{DPT}\cmdtxtoparname{NPT}\cmdtxtoparname{UPT}\cmdtxtoparname{APT}
+\cmdtxtoparname{DRT}\cmdtxtoparname{NRT}\cmdtxtoparname{URT}\cmdtxtoparname{ART}
+\cmdtxtoparname{DST}\cmdtxtoparname{NST}\cmdtxtoparname{UST}\cmdtxtoparname{AST}
+\cmdtxtoparname{DMT}\cmdtxtoparname{NMT}\cmdtxtoparname{UMT}\cmdtxtoparname{AMT}
+
+%%** Syntax ******************************************************************%%
+
+\newcommand{\tautset}{TAut}
+\cmdmthset{TAut}[\tautset]
+
+\newcommand{\dirsym}{d}
+\newcommand{\dirset}{\Lambda}
+\cmdmthsetext{Dir}[\dirset][\dirsym]
+
+%%** Semantics ***************************************************************%%
+
+\newcommand{\treesym}{T}
+\newcommand{\treeset}{Tr}
+\cmdmthsetext{Tree}[\treeset][\treesym]
+
+\cmdmthfun{wot}
+
+\fi
+%%****************************************************************************%%
+
+%%****************************************************************************%%
+%%** Format Tricks ***********************************************************%%
+%%****************************************************************************%%
+\iffrm@
+
+%%...
+
+\fi
+%%****************************************************************************%%
+
+%%****************************************************************************%%
+%%** Figure Tricks ***********************************************************%%
+%%****************************************************************************%%
+\iffig@
+
+%%...
+
+\fi
+%%****************************************************************************%%
+
+%%****************************************************************************%%
+%%** Table Tricks ************************************************************%%
+%%****************************************************************************%%
+\iftab@
+
+%%...
+
+\fi
+%%****************************************************************************%%
+
+%%****************************************************************************%%
+%%** Algorithm Tricks ********************************************************%%
+%%****************************************************************************%%
+\ifalg@
+
+\RequirePackage[ruled,vlined]{algorithm2e}
+
+%%...
+
+\fi
+%%****************************************************************************%%
+
+%%****************************************************************************%%
+%%** Auxiliary Tricks ********************************************************%%
+%%****************************************************************************%%
+\ifaux@
+
+%%...
+
+  \ifcrv@
+
+    %%...
+
+  \else
+
+    %%...
+
+  \fi
+
+\fi
+%%****************************************************************************%%
+
+%% 
+%% Copyright (C) 2020 by Fabio Mogavero <fm@fabiomogavero.com>
+%% 
+%% This work may be distributed and/or modified under the conditions of the
+%% LaTeX Project Public License (LPPL), either version 1.3c of this license or
+%% (at your option) any later version. The latest version of this license can be
+%% retrieved at the address <http://www.latex-project.org/lppl.txt>.
+%% 
+%% This work is "maintained" (as per LPPL maintenance status) by Fabio Mogavero.
+%% It consists of the file <fmocdmac.dtx> and a <Makefile>. Running "make"
+%% generates the derived files <readme>, <fmocdmac.pdf>, and <fmocdmac.sty>.
+%% Running "make inst" installs the files in the user's TeX tree. Running "make
+%% install" installs the files in the local TeX tree.
+%% 
+%%
+%% End of file `fmocdmac.sty'.
