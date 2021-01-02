@@ -16,7 +16,7 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesPackage{fmocdmac}
-  [2020/12/31 v0.0 FM's OCD LaTeX Macro]
+  [2021/01/02 v0.1 FM's OCD LaTeX Macro]
 
 \RequirePackage{etoolbox}
 
@@ -2061,8 +2061,25 @@
 \ifalg@
 
 \RequirePackage[ruled,vlined]{algorithm2e}
+\DontPrintSemicolon
 
-%%...
+\SetKw{Signature}{signature}
+
+\SetKwFor{Macro}{macro}{}{}
+\SetKwFor{Function}{function}{}{}
+\SetKwFor{Procedure}{procedure}{}{}
+
+\SetKwFor{Let}{let}{in}{}
+
+\SetKw{GoTo}{goto}
+\SetKw{Break}{break}
+\SetKw{Continue}{continue}
+
+\SetKwIF{MIf}{MElseIf}{MElse}{\#if}{\#then}{\#else \#if}{\#else}{\#endif}
+
+\DeclareRobustCommand{\nlr}[1]
+  {\addtocounter{AlgoLine}{1}%
+  \nlset{\arabic{AlgoLine}-\addtocounter{AlgoLine}{#1}\arabic{AlgoLine}}}
 
 \fi
 %%****************************************************************************%%

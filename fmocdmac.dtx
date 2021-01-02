@@ -80,7 +80,7 @@ install" installs the files in the local TeX tree.
 %<package>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
 %<package>\ProvidesPackage{fmocdmac}
 %<*package>
-  [2020/12/31 v0.0 FM's OCD LaTeX Macro]
+  [2021/01/02 v0.1 FM's OCD LaTeX Macro]
 %</package>
 %<*driver>
 \documentclass{ltxdoc}
@@ -109,6 +109,8 @@ install" installs the files in the local TeX tree.
 % \maketitle
 %
 % \changes{v0.0}{2020/12/31}{First public release}
+%
+% \changes{v0.1}{2021/01/02}{Algorithm tricks}
 %
 % \begin{abstract}
 % This package contains almost all the latex macros I heavily use in my tcs
@@ -6887,12 +6889,54 @@ install" installs the files in the local TeX tree.
 
 %    \begin{macrocode}
 \RequirePackage[ruled,vlined]{algorithm2e}
+\DontPrintSemicolon
 %    \end{macrocode}
 
-% \begin{macro}{...}
+% \begin{macro}{\Signature}
 %   ...
 %    \begin{macrocode}
-%%...
+\SetKw{Signature}{signature}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\Macro, ...}
+%   ...
+%    \begin{macrocode}
+\SetKwFor{Macro}{macro}{}{}
+\SetKwFor{Function}{function}{}{}
+\SetKwFor{Procedure}{procedure}{}{}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\Let}
+%   ...
+%    \begin{macrocode}
+\SetKwFor{Let}{let}{in}{}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\GoTo, ...}
+%   ...
+%    \begin{macrocode}
+\SetKw{GoTo}{goto}
+\SetKw{Break}{break}
+\SetKw{Continue}{continue}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\MIf, ...}
+%   ...
+%    \begin{macrocode}
+\SetKwIF{MIf}{MElseIf}{MElse}{\#if}{\#then}{\#else \#if}{\#else}{\#endif}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\nlr}
+%   ...
+%    \begin{macrocode}
+\DeclareRobustCommand{\nlr}[1]
+  {\addtocounter{AlgoLine}{1}%
+  \nlset{\arabic{AlgoLine}-\addtocounter{AlgoLine}{#1}\arabic{AlgoLine}}}
 %    \end{macrocode}
 % \end{macro}
 
