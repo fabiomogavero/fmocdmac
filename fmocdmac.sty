@@ -16,15 +16,13 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesPackage{fmocdmac}
-  [2021/01/02 v0.1 FM's OCD LaTeX Macro]
+  [2021/02/03 v0.2 FM's OCD LaTeX Macro]
 
 \RequirePackage{etoolbox}
 
 \RequirePackage{xargs}
 \RequirePackage{xspace}
 \RequirePackage{stringstrings}
-
-\RequirePackage{loops}
 
 \RequirePackage{amsmath}
 \RequirePackage{amssymb}
@@ -98,9 +96,33 @@
 \DeclareOption{aux}{\aux@true}
 \DeclareOption{noaux}{\aux@false}
 
+%% ...
+
+%% Enumeration tools
+\newif\ifenmtls@ \enmtls@true
+\DeclareOption{noenmtls}{\enmtls@false}
+
+%% Theorem tools
+\newif\ifthmtls@ \thmtls@true
+\DeclareOption{nothmtls}{\thmtls@false}
+
+%% Hyper reference
+\newif\ifhypref@ \hypref@true
+\DeclareOption{nohypref}{\hypref@false}
+
+%% ...
+
 %% Camera-ready version
 \newif\ifcrv@ \crv@false
 \DeclareOption{crv}{\crv@true}
+
+%% Change bars
+\newif\ifchgbar@ \chgbar@false
+\DeclareOption{chgbar}{\chgbar@true}
+
+%% Line numbers
+\newif\iflinnum@ \linnum@false
+\DeclareOption{linnum}{\linnum@true}
 
 
 \DeclareOption*{\PackageWarning{fmocdmac}{Unknown~‘\CurrentOption’}}%
@@ -109,10 +131,14 @@
 
 \ProcessOptions\relax%
 
+\ifcsdef{if@twocolumn}{}{\newif\if@twocolumn}
+
 
 %%****************************************************************************%%
 %%** Auxiliary Font Declarations *********************************************%%
 %%****************************************************************************%%
+
+\ifdef{\mathbbo}{}{\DeclareMathAlphabet{\mathbbo}{U}{bbold}{m}{n}}
 
 \ifdef{\matheus}{}{\DeclareMathAlphabet{\matheus}{U}{eus}{m}{n}}
 
@@ -173,12 +199,12 @@
 %%****************************************************************************%%
 
 \newcommand{\seqoftag}[3]
-  {\newforeach \itr in {#1}%
+  {\@for\itr:={#1}\do%
     {\expandafter\csedef{\itr#2}%
       {\noexpand\csname #3\endcsname{\itr}}}}
 
 \newcommand{\seqofcmd}[3]
-  {\newforeach \itr in {#1}%
+  {\@for\itr:={#1}\do%
     {\expandafter\csedef{\itr#2}%
       {\noexpand\csname #3\endcsname{\csname \itr\endcsname}}}}
 
@@ -316,7 +342,7 @@
   {\newmth[\defval{#2}{#1}]}
 
 \newcommandx{\newmtharg}[7][1=, 3=, 4=, 5=, 7=]
-  {\newmth[#1]{#2}[#3][#4][#5\argmid{\!\left(}{#6}{\right)\!}#7]}
+  {\newmth[#1]{#2}[#3][#4][#5\argmid{\!\left(}{#6}{\right)\arglef{\!}{#7}}]}
 
 \newcommandx{\newmthargsty}[2][2=]
   {\newmtharg[\defval{#2}{#1}]}
@@ -328,7 +354,7 @@
   {\newmthoarg[\defval{#2}{#1}]}
 
 \newcommandx{\newmthpar}[7][1=, 3=, 4=, 5=, 7=]
-  {\newmth[#1]{#2}[#3][#4][#5\argmid{\!\left[}{#6}{\right]\!}#7]}
+  {\newmth[#1]{#2}[#3][#4][#5\argmid{\!\left[}{#6}{\right]\arglef{\!}{#7}}]}
 
 \newcommandx{\newmthparsty}[2][2=]
   {\newmthpar[\defval{#2}{#1}]}
@@ -832,6 +858,8 @@
 
 \cmdtxtabr{apriori}[a priori]
 
+\cmdtxtabr{aposteriori}[a posteriori]
+
 \cmdtxtabr{cf}[cf.]
 
 \cmdtxtabr{dedicto}[de dicto]
@@ -860,6 +888,8 @@
 
 \cmdtxtabr{percontra}[per contra]
 
+\cmdtxtabr{primafacie}[prima facie]
+
 \cmdtxtabr{viceversa}[vice versa]
 
 \cmdtxtabr{vs}[vs.]
@@ -883,6 +913,8 @@
 \cmdtxtabr{Erratum}
 
 \cmdtxtabr{Percontra}[Per contra]
+
+\cmdtxtabr{Primafacie}[Prima facie]
 
 \cmdtxtabr{Viceversa}[Vice versa]
 
@@ -934,13 +966,6 @@
 
 %%** General Notation ********************************************************%%
 
-\DeclareRobustCommand{\implies}
-  {\ensuremath{\Rightarrow}}
-\DeclareRobustCommand{\coimplies}
-  {\ensuremath{\Leftrightarrow}}
-
-%%****************************************************************************%%
-
 \DeclareMathOperator{\defeq}
   {\ensuremath{\triangleq}}
 \DeclareMathOperator{\seteq}
@@ -948,10 +973,27 @@
 
 %%****************************************************************************%%
 
+\DeclareRobustCommand{\implies}
+  {\ensuremath{\Rightarrow}}
+\DeclareRobustCommand{\coimplies}
+  {\ensuremath{\Leftrightarrow}}
+
+%%****************************************************************************%%
+
 \DeclareRobustCommand{\cmodels}
   {\mth{\,\models}}
 \DeclareRobustCommand{\notcmodels}
   {\mth{\,\not\models}}
+
+\DeclareRobustCommand{\cimplies}
+  {\mth{\,\implies}}
+\DeclareRobustCommand{\notcimplies}
+  {\mth{\,\not\implies}}
+
+\DeclareRobustCommand{\ccoimplies}
+  {\mth{\,\coimplies}}
+\DeclareRobustCommand{\notcimplies}
+  {\mth{\,\not\coimplies}}
 
 \DeclareRobustCommand{\cequiv}
   {\mth{\,\equiv}}
@@ -1296,13 +1338,23 @@
 \newcommand{\prfset}{Prf}
 \cmdmthsetext{Prf}[\prfset][\prfsym]
 
-\cmdmthfun{prd}
-\cmdmthfun{suc}
+\newcommand{\prefun}{pre}
+\cmdmthoargfun{pre}[\prefun]
+\newcommand{\sucfun}{suc}
+\cmdmthoargfun{suc}[\sucfun]
 
-\cmdmthfun{atr}
-\cmdmthfun{rch}
+\newcommand{\escfun}{esc}
+\cmdmthoargfun{esc}[\escfun]
+\newcommand{\intfun}{int}
+\cmdmthoargfun{int}[\intfun]
 
-\cmdmthfun{sol}
+\newcommand{\atrfun}{atr}
+\cmdmthoargfun{atr}[\atrfun]
+\newcommand{\rchfun}{rch}
+\cmdmthoargfun{rch}[\rchfun]
+
+\newcommand{\solfun}{sol}
+\cmdmthoargfun{sol}[\solfun]
 
 %%** Qualitative Games on Graph **********************************************%%
 
@@ -1391,11 +1443,13 @@
 \cmdmthsetext{AP}[\apset][\apsym]
 \cmdmthfun{ap}\usrmth{ap}{}{argfun}
 
-\usrmth{Cnt}{}{sym}[Cn]
-
 \usrmth{sub}{}{argfun}
 
-\usrmth{Qnt}{}{sym}[Qn]
+\usrmth{Cnt}{}{sym}[C]
+\usrmth{Qnt}{}{sym}[Q]
+
+\usrmth{QAE}{}{sym}[\forall\exists]
+\usrmth{QEA}{}{sym}[\exists\forall]
 
 \newcommand{\qntsym}{\wp}
 \newcommand{\qntset}{Qn}
@@ -1405,6 +1459,9 @@
 
 \usrmth{dep}{}{argfun}
 \usrmth{alt}{}{argfun}
+
+\cmdtxtabr{pnf}
+\cmdtxtabr{nnf}
 
 %%** Semantics ***************************************************************%%
 
@@ -1483,6 +1540,8 @@
 
 %%** First-Order Logics II ***************************************************%%
 
+\cmdtxtoparname{IF}
+
 %% ...
 
 %%** Syntax ******************************************************************%%
@@ -1547,7 +1606,7 @@
 
 %%** Syntax ******************************************************************%%
 
-\usrmth{Opr}{}{sym}[Op]
+\usrmth{Opr}{}{sym}[O]
 
 \usrmth{DMod}{}{sym}[\Diamond]
 \usrmth{BMod}{}{sym}[\Box]
@@ -1637,6 +1696,9 @@
 %% ...
 
 %%** Temporal Logics II ******************************************************%%
+
+
+\cmdtxtoparname{PDL}
 
 \cmdtxtoparname{CTL}
 
@@ -1932,7 +1994,8 @@
 
 %%** Semantics ***************************************************************%%
 
-\cmdmthfun{nxt}
+\newcommand{\nxtfun}{nxt}
+\cmdmthfun{nxt}[\nxtfun]
 
 \fi
 %%****************************************************************************%%
@@ -1987,7 +2050,8 @@
 
 %%** Semantics ***************************************************************%%
 
-\cmdmthfun{Lang}[L]
+\newcommand{\langfun}{L}
+\cmdmthfun{Lang}[\langfun]
 
 \newcommand{\wrdsym}{w}
 \newcommand{\wrdset}{Wr}
@@ -2020,7 +2084,8 @@
 \newcommand{\treeset}{Tr}
 \cmdmthsetext{Tree}[\treeset][\treesym]
 
-\cmdmthfun{wot}
+\newcommand{\wotfun}{wot}
+\cmdmthfun{wot}[\wotfun]
 
 \fi
 %%****************************************************************************%%
@@ -2061,6 +2126,7 @@
 \ifalg@
 
 \RequirePackage[ruled,vlined]{algorithm2e}
+\setlength{\algomargin}{1.25em}
 \DontPrintSemicolon
 
 \SetKw{Signature}{signature}
@@ -2070,6 +2136,9 @@
 \SetKwFor{Procedure}{procedure}{}{}
 
 \SetKwFor{Let}{let}{in}{}
+
+\SetKw{True}{true}
+\SetKw{False}{false}
 
 \SetKw{GoTo}{goto}
 \SetKw{Break}{break}
@@ -2089,17 +2158,52 @@
 %%****************************************************************************%%
 \ifaux@
 
-%%...
+\RequirePackage[final]{microtype}
 
-  \ifcrv@
 
-    %%...
+\ifenmtls@
+  % Enumeration Tools
+  \RequirePackage{paralist}
+\fi
 
-  \else
+\ifthmtls@
+  % Theorem Tools
+  \RequirePackage{thmtools, thm-restate}
+\fi
 
-    %%...
+\ifhypref@
+  % Hyper References
+  \RequirePackage{hyperref}
+\fi
 
+\ifcrv@
+  % Camera-Ready Version
+
+  %%...
+
+\else
+  % Draft Version
+
+  %%...
+
+  \ifchgbar@
+    % Change Bars
+    \RequirePackage{changebar}
   \fi
+
+  \iflinnum@
+    % Line Numbers
+    \if@twocolumn
+      \RequirePackage[switch, columnwise, mathlines]{lineno}
+    \else
+      \RequirePackage[columnwise, mathlines]{lineno}
+    \if
+    \linenumbers
+  \fi
+
+  %%...
+
+\fi
 
 \fi
 %%****************************************************************************%%
