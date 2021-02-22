@@ -80,7 +80,7 @@ install" installs the files in the local TeX tree.
 %<package>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
 %<package>\ProvidesPackage{fmocdmac}
 %<*package>
-  [2021/02/03 v0.2 FM's OCD LaTeX Macro]
+  [2021/02/03 v0.3 FM's OCD LaTeX Macro]
 %</package>
 %<*driver>
 \documentclass{ltxdoc}
@@ -113,6 +113,8 @@ install" installs the files in the local TeX tree.
 % \changes{v0.1}{2021/01/02}{Algorithm tricks}
 %
 % \changes{v0.2}{2021/02/03}{Changes in auxiliary tricks}
+%
+% \changes{v0.3}{2021/02/22}{Few problems solved}
 %
 % \begin{abstract}
 % This package contains almost all the latex macros I heavily use in my tcs
@@ -217,11 +219,17 @@ install" installs the files in the local TeX tree.
 \DeclareOption{aux}{\aux@true}
 \DeclareOption{noaux}{\aux@false}
 
-%% ...
+%% Font tools
+\newif\iffnttls@ \fnttls@true
+\DeclareOption{nofnttls}{\fnttls@false}
 
 %% Enumeration tools
 \newif\ifenmtls@ \enmtls@true
 \DeclareOption{noenmtls}{\enmtls@false}
+
+%% AMS Theorem tools
+\newif\ifamsthm@ \amsthm@true
+\DeclareOption{noamsthm}{\amsthm@false}
 
 %% Theorem tools
 \newif\ifthmtls@ \thmtls@true
@@ -2917,7 +2925,7 @@ install" installs the files in the local TeX tree.
 %   \lRel, \mRel, \nRel, \oRel, \pRel, \qRel, \rRel, \sRel, \tRel, \uRel, \vRel,
 %   \wRel, \xRel, \yRel, \zRel \\
 %   \ARel, \BRel, \CRel, \DRel, \ERel, \FRel, \GRel, \HRel, \IRel, \JRel, \KRel,
-%   \LRel, \MRel, \NRel, \ORel, \PRel, \QRel, \RRel, \SRel, \TRel, \URel, \VRel,
+%   \LRel, \MRel, \NRel, \ORel, \PRel, \QRel, \RRel, \LRel, \TRel, \URel, \VRel,
 %   \WRel, \XRel, \YRel, \ZRel \\
 %   \alphaRel, \betaRel, \gammaRel, \deltaRel, \epsilonRel, \varepsilonRel,
 %   \zetaRel, \etaRel, \thetaRel, \varthetaRel, \iotaRel, \kappaRel,
@@ -3557,6 +3565,71 @@ install" installs the files in the local TeX tree.
 \newcommandx{\cmdmthoparsymelm}[2][2=]
   {\cmdmthoparsym{#1}[#2]%
   \cmdmthoparelm{#1}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+%%****************************************************************************%%
+%    \end{macrocode}
+
+% \begin{macro}{\mthlopr, ...}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\mthlopr{\oplus}[sub][sup][Ext]= = \mthlopr{\oplus}[sub][sup][Ext]
+%   \end{itemize}
+%    \begin{macrocode}
+%% Style for Sentences
+\cmdmth{lopr}\newcommand{\mthstylopr}[1]{\textstyle\mathop{#1}}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdmthlopr}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdmthlopr{cmdName}=;\cmdmthlopr{cmdName} \\
+%       \verb=\cmdNameOpr[sub][sub][ext]= = \cmdNameOpr[sub][sub][ext]
+%     \item
+%       \verb=\cmdmthlopr{cmdName}[\oplus]=;\cmdmthlopr{cmdName}[\oplus] \\
+%       \verb=\cmdNameOpr[sub][sub][ext]= = \cmdNameOpr[sub][sub][ext]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdmthlopr}[2][2=]
+  {\usrmth{#1}{Opr}{lopr}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\mthlrel, ...}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\mthlrel{\preceq}[sub][sup][Ext]= =
+%       \mthlrel{\preceq}[sub][sup][Ext]
+%   \end{itemize}
+%    \begin{macrocode}
+%% Style for Sentences
+\cmdmth{lrel}\newcommand{\mthstylrel}{\mathrel}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdmthlrel}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdmthlrel{cmdName}=;\cmdmthlrel{cmdName} \\
+%       \verb=\cmdNameRel[sub][sub][ext]= = \cmdNameRel[sub][sub][ext]
+%     \item
+%       \verb=\cmdmthlrel{cmdName}[\preceq]=;\cmdmthlrel{cmdName}[\preceq] \\
+%       \verb=\cmdNameRel[sub][sub][ext]= = \cmdNameRel[sub][sub][ext]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdmthlrel}[2][2=]
+  {\usrmth{#1}{Rel}{lrel}[#2]}
 %    \end{macrocode}
 % \end{macro}
 
@@ -4652,10 +4725,10 @@ install" installs the files in the local TeX tree.
 % \begin{macro}{\defeq, \seteq}
 %   ...
 %    \begin{macrocode}
-\DeclareMathOperator{\defeq}
-  {\ensuremath{\triangleq}}
-\DeclareMathOperator{\seteq}
-  {\ensuremath{:\!=\,}}
+\DeclareRobustCommand{\defeq}
+  {\mthlopr{\triangleq}}
+\DeclareRobustCommand{\seteq}
+  {\mthlopr{:=}}
 %    \end{macrocode}
 % \end{macro}
 
@@ -4667,9 +4740,19 @@ install" installs the files in the local TeX tree.
 %   ...
 %    \begin{macrocode}
 \DeclareRobustCommand{\implies}
-  {\ensuremath{\Rightarrow}}
+  {\mthlrel{\Rightarrow}}
+\DeclareRobustCommand{\notimplies}
+  {\mthlrel{\not\Rightarrow}}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\coimplies, ...}
+%   ...
+%    \begin{macrocode}
 \DeclareRobustCommand{\coimplies}
-  {\ensuremath{\Leftrightarrow}}
+  {\mthlrel{\Leftrightarrow}}
+\DeclareRobustCommand{\notcoimplies}
+  {\mthlrel{\not\!\Leftrightarrow}}
 %    \end{macrocode}
 % \end{macro}
 
@@ -4681,29 +4764,9 @@ install" installs the files in the local TeX tree.
 %   ...
 %    \begin{macrocode}
 \DeclareRobustCommand{\cmodels}
-  {\mth{\,\models}}
+  {\mthlrel{\models}}
 \DeclareRobustCommand{\notcmodels}
-  {\mth{\,\not\models}}
-%    \end{macrocode}
-% \end{macro}
-
-% \begin{macro}{\cimplies, ...}
-%   ...
-%    \begin{macrocode}
-\DeclareRobustCommand{\cimplies}
-  {\mth{\,\implies}}
-\DeclareRobustCommand{\notcimplies}
-  {\mth{\,\not\implies}}
-%    \end{macrocode}
-% \end{macro}
-
-% \begin{macro}{\ccoimplies, ...}
-%   ...
-%    \begin{macrocode}
-\DeclareRobustCommand{\ccoimplies}
-  {\mth{\,\coimplies}}
-\DeclareRobustCommand{\notcimplies}
-  {\mth{\,\not\coimplies}}
+  {\mthlrel{\not\models}}
 %    \end{macrocode}
 % \end{macro}
 
@@ -4711,9 +4774,9 @@ install" installs the files in the local TeX tree.
 %   ...
 %    \begin{macrocode}
 \DeclareRobustCommand{\cequiv}
-  {\mth{\,\equiv}}
+  {\mthlrel{\equiv}}
 \DeclareRobustCommand{\notcequiv}
-  {\mth{\,\not\equiv}}
+  {\mthlrel{\not\equiv}}
 %    \end{macrocode}
 % \end{macro}
 
@@ -4780,7 +4843,7 @@ install" installs the files in the local TeX tree.
 %   ...
 %    \begin{macrocode}
 \DeclareRobustCommand{\set}[2]
-  {\mth{\argmid{\{\,}{\argsep{#1}{\allowbreak\mid\allowbreak}{#2}}{\,\}}}}
+  {\mth{\argmid{\{}{\argsep{#1}{\allowbreak\mid\allowbreak}{#2}}{\}}}}
 %    \end{macrocode}
 % \end{macro}
 
@@ -4804,7 +4867,7 @@ install" installs the files in the local TeX tree.
 %   ...
 %    \begin{macrocode}
 \DeclareRobustCommand{\pow}[1]
-  {\ensuremath{2^{\defval{#1}{\cdot}}}}
+  {\mth{2^{\defval{#1}{\cdot}}}}
 %    \end{macrocode}
 % \end{macro}
 
@@ -4853,16 +4916,16 @@ install" installs the files in the local TeX tree.
 % \begin{macro}{\rst}
 %   ...
 %    \begin{macrocode}
-\DeclareMathOperator{\rst}
-  {\ensuremath{\upharpoonright}}
+\DeclareRobustCommand{\rst}
+  {\mthlopr{\upharpoonright}}
 %    \end{macrocode}
 % \end{macro}
 
 % \begin{macro}{\cmp}
 %   ...
 %    \begin{macrocode}
-\DeclareMathOperator{\cmp}
-  {\ensuremath{\circ}}
+\DeclareRobustCommand{\cmp}
+  {\mthlopr{\circ}}
 %    \end{macrocode}
 % \end{macro}
 
@@ -5403,6 +5466,64 @@ install" installs the files in the local TeX tree.
 %    \end{macrocode}
 % \end{macro}
 
+% \begin{macro}{\QPTime, ...}
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\QPTime[sub][sup][ext]= = \QPTime[sub][sup][ext] \\
+%       \verb=\QPTimeE[sub][sup][ext]= = \QPTimeE[sub][sup][ext] \\
+%       \verb=\QPTimeH[sub][sup][ext]= = \QPTimeH[sub][sup][ext] \\
+%       \verb=\QPTimeC[sub][sup][ext]= = \QPTimeC[sub][sup][ext]
+%     \item
+%       \verb=\NQPTime[sub][sup][ext]= = \NQPTime[sub][sup][ext] \\
+%       \verb=\NQPTimeE[sub][sup][ext]= = \NQPTimeE[sub][sup][ext] \\
+%       \verb=\NQPTimeH[sub][sup][ext]= = \NQPTimeH[sub][sup][ext] \\
+%       \verb=\NQPTimeC[sub][sup][ext]= = \NQPTimeC[sub][sup][ext]
+%     \item
+%       \verb=\UQPTime[sub][sup][ext]= = \UQPTime[sub][sup][ext] \\
+%       \verb=\UQPTimeE[sub][sup][ext]= = \UQPTimeE[sub][sup][ext] \\
+%       \verb=\UQPTimeH[sub][sup][ext]= = \UQPTimeH[sub][sup][ext] \\
+%       \verb=\UQPTimeC[sub][sup][ext]= = \UQPTimeC[sub][sup][ext]
+%     \item
+%       \verb=\AQPTime[sub][sup][ext]= = \AQPTime[sub][sup][ext] \\
+%       \verb=\AQPTimeE[sub][sup][ext]= = \AQPTimeE[sub][sup][ext] \\
+%       \verb=\AQPTimeH[sub][sup][ext]= = \AQPTimeH[sub][sup][ext] \\
+%       \verb=\AQPTimeC[sub][sup][ext]= = \AQPTimeC[sub][sup][ext]
+%   \end{itemize}
+%    \begin{macrocode}
+\defcomcls{QPTime}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\QPSpace, ...}
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\QPSpace[sub][sup][ext]= = \QPSpace[sub][sup][ext] \\
+%       \verb=\QPSpaceE[sub][sup][ext]= = \QPSpaceE[sub][sup][ext] \\
+%       \verb=\QPSpaceH[sub][sup][ext]= = \QPSpaceH[sub][sup][ext] \\
+%       \verb=\QPSpaceC[sub][sup][ext]= = \QPSpaceC[sub][sup][ext]
+%     \item
+%       \verb=\NQPSpace[sub][sup][ext]= = \NQPSpace[sub][sup][ext] \\
+%       \verb=\NQPSpaceE[sub][sup][ext]= = \NQPSpaceE[sub][sup][ext] \\
+%       \verb=\NQPSpaceH[sub][sup][ext]= = \NQPSpaceH[sub][sup][ext] \\
+%       \verb=\NQPSpaceC[sub][sup][ext]= = \NQPSpaceC[sub][sup][ext]
+%     \item
+%       \verb=\UQPSpace[sub][sup][ext]= = \UQPSpace[sub][sup][ext] \\
+%       \verb=\UQPSpaceE[sub][sup][ext]= = \UQPSpaceE[sub][sup][ext] \\
+%       \verb=\UQPSpaceH[sub][sup][ext]= = \UQPSpaceH[sub][sup][ext] \\
+%       \verb=\UQPSpaceC[sub][sup][ext]= = \UQPSpaceC[sub][sup][ext]
+%     \item
+%       \verb=\AQPSpace[sub][sup][ext]= = \AQPSpace[sub][sup][ext] \\
+%       \verb=\AQPSpaceE[sub][sup][ext]= = \AQPSpaceE[sub][sup][ext] \\
+%       \verb=\AQPSpaceH[sub][sup][ext]= = \AQPSpaceH[sub][sup][ext] \\
+%       \verb=\AQPSpaceC[sub][sup][ext]= = \AQPSpaceC[sub][sup][ext]
+%   \end{itemize}
+%    \begin{macrocode}
+\defcomcls{QPSpace}
+%    \end{macrocode}
+% \end{macro}
+
 % \begin{macro}{\ExpTime, ...}
 %   \small
 %   \begin{itemize}
@@ -5646,13 +5767,23 @@ install" installs the files in the local TeX tree.
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\escFun, \intFun}
+% \begin{macro}{\entFun, \escFun}
 %   ...
 %    \begin{macrocode}
+\newcommand{\entfun}{ent}
+\cmdmthoargfun{ent}[\entfun]
 \newcommand{\escfun}{esc}
 \cmdmthoargfun{esc}[\escfun]
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\intFun, \outFun}
+%   ...
+%    \begin{macrocode}
 \newcommand{\intfun}{int}
 \cmdmthoargfun{int}[\intfun]
+\newcommand{\outfun}{out}
+\cmdmthoargfun{out}[\outfun]
 %    \end{macrocode}
 % \end{macro}
 
@@ -7091,13 +7222,19 @@ install" installs the files in the local TeX tree.
 %%****************************************************************************%%
 \ifaux@
 
-\RequirePackage[final]{microtype}
-
-%...
+\iffnttls@
+  % Font Tools
+  \RequirePackage[final]{microtype}
+\fi
 
 \ifenmtls@
   % Enumeration Tools
   \RequirePackage{paralist}
+\fi
+
+\ifamsthm@
+  % AMS Theorem Tools
+  \RequirePackage{amsthm}
 \fi
 
 \ifthmtls@
@@ -7128,11 +7265,10 @@ install" installs the files in the local TeX tree.
   \iflinnum@
     % Line Numbers
     \if@twocolumn
-      \RequirePackage[switch, columnwise, mathlines]{lineno}
+      \RequirePackage[switch, columnwise, mathlines]{lineno}\linenumbers
     \else
-      \RequirePackage[columnwise, mathlines]{lineno}
-    \if
-    \linenumbers
+      \RequirePackage[columnwise, mathlines]{lineno}\linenumbers
+    \fi
   \fi
 
   %%...

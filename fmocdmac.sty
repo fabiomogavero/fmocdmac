@@ -16,7 +16,7 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesPackage{fmocdmac}
-  [2021/02/03 v0.2 FM's OCD LaTeX Macro]
+  [2021/02/03 v0.3 FM's OCD LaTeX Macro]
 
 \RequirePackage{etoolbox}
 
@@ -96,11 +96,17 @@
 \DeclareOption{aux}{\aux@true}
 \DeclareOption{noaux}{\aux@false}
 
-%% ...
+%% Font tools
+\newif\iffnttls@ \fnttls@true
+\DeclareOption{nofnttls}{\fnttls@false}
 
 %% Enumeration tools
 \newif\ifenmtls@ \enmtls@true
 \DeclareOption{noenmtls}{\enmtls@false}
+
+%% AMS Theorem tools
+\newif\ifamsthm@ \amsthm@true
+\DeclareOption{noamsthm}{\amsthm@false}
 
 %% Theorem tools
 \newif\ifthmtls@ \thmtls@true
@@ -761,6 +767,20 @@
 %%****************************************************************************%%
 
 %% Style for Sentences
+\cmdmth{lopr}\newcommand{\mthstylopr}[1]{\textstyle\mathop{#1}}
+
+\newcommandx{\cmdmthlopr}[2][2=]
+  {\usrmth{#1}{Opr}{lopr}[#2]}
+
+%% Style for Sentences
+\cmdmth{lrel}\newcommand{\mthstylrel}{\mathrel}
+
+\newcommandx{\cmdmthlrel}[2][2=]
+  {\usrmth{#1}{Rel}{lrel}[#2]}
+
+%%****************************************************************************%%
+
+%% Style for Sentences
 \cmdmthall{snt}\newcommand{\mthstysnt}{\mathsf}
 
 \seqoflet{Snt}{mthsnt}
@@ -966,39 +986,34 @@
 
 %%** General Notation ********************************************************%%
 
-\DeclareMathOperator{\defeq}
-  {\ensuremath{\triangleq}}
-\DeclareMathOperator{\seteq}
-  {\ensuremath{:\!=\,}}
+\DeclareRobustCommand{\defeq}
+  {\mthlopr{\triangleq}}
+\DeclareRobustCommand{\seteq}
+  {\mthlopr{:=}}
 
 %%****************************************************************************%%
 
 \DeclareRobustCommand{\implies}
-  {\ensuremath{\Rightarrow}}
+  {\mthlrel{\Rightarrow}}
+\DeclareRobustCommand{\notimplies}
+  {\mthlrel{\not\Rightarrow}}
+
 \DeclareRobustCommand{\coimplies}
-  {\ensuremath{\Leftrightarrow}}
+  {\mthlrel{\Leftrightarrow}}
+\DeclareRobustCommand{\notcoimplies}
+  {\mthlrel{\not\!\Leftrightarrow}}
 
 %%****************************************************************************%%
 
 \DeclareRobustCommand{\cmodels}
-  {\mth{\,\models}}
+  {\mthlrel{\models}}
 \DeclareRobustCommand{\notcmodels}
-  {\mth{\,\not\models}}
-
-\DeclareRobustCommand{\cimplies}
-  {\mth{\,\implies}}
-\DeclareRobustCommand{\notcimplies}
-  {\mth{\,\not\implies}}
-
-\DeclareRobustCommand{\ccoimplies}
-  {\mth{\,\coimplies}}
-\DeclareRobustCommand{\notcimplies}
-  {\mth{\,\not\coimplies}}
+  {\mthlrel{\not\models}}
 
 \DeclareRobustCommand{\cequiv}
-  {\mth{\,\equiv}}
+  {\mthlrel{\equiv}}
 \DeclareRobustCommand{\notcequiv}
-  {\mth{\,\not\equiv}}
+  {\mthlrel{\not\equiv}}
 
 %%****************************************************************************%%
 
@@ -1029,7 +1044,7 @@
 %%** Sets ********************************************************************%%
 
 \DeclareRobustCommand{\set}[2]
-  {\mth{\argmid{\{\,}{\argsep{#1}{\allowbreak\mid\allowbreak}{#2}}{\,\}}}}
+  {\mth{\argmid{\{}{\argsep{#1}{\allowbreak\mid\allowbreak}{#2}}{\}}}}
 
 \DeclareRobustCommand{\card}[1]
   {\mth{\argmid{\lvert}{#1}{\rvert}}}
@@ -1038,7 +1053,7 @@
   {\mth{\argmid{\lVert}{#1}{\rVert}}}
 
 \DeclareRobustCommand{\pow}[1]
-  {\ensuremath{2^{\defval{#1}{\cdot}}}}
+  {\mth{2^{\defval{#1}{\cdot}}}}
 
 %%** Relations ***************************************************************%%
 
@@ -1061,11 +1076,11 @@
 \DeclareRobustCommand{\prj}
   {\mthargfun{prj}}
 
-\DeclareMathOperator{\rst}
-  {\ensuremath{\upharpoonright}}
+\DeclareRobustCommand{\rst}
+  {\mthlopr{\upharpoonright}}
 
-\DeclareMathOperator{\cmp}
-  {\ensuremath{\circ}}
+\DeclareRobustCommand{\cmp}
+  {\mthlopr{\circ}}
 
 %%** Functions ***************************************************************%%
 
@@ -1236,6 +1251,10 @@
 
 \defcomcls{PSpace}
 
+\defcomcls{QPTime}
+
+\defcomcls{QPSpace}
+
 \defcomcls{ExpTime}
 
 \defcomcls{ExpSpace}
@@ -1343,10 +1362,15 @@
 \newcommand{\sucfun}{suc}
 \cmdmthoargfun{suc}[\sucfun]
 
+\newcommand{\entfun}{ent}
+\cmdmthoargfun{ent}[\entfun]
 \newcommand{\escfun}{esc}
 \cmdmthoargfun{esc}[\escfun]
+
 \newcommand{\intfun}{int}
 \cmdmthoargfun{int}[\intfun]
+\newcommand{\outfun}{out}
+\cmdmthoargfun{out}[\outfun]
 
 \newcommand{\atrfun}{atr}
 \cmdmthoargfun{atr}[\atrfun]
@@ -2158,12 +2182,19 @@
 %%****************************************************************************%%
 \ifaux@
 
-\RequirePackage[final]{microtype}
-
+\iffnttls@
+  % Font Tools
+  \RequirePackage[final]{microtype}
+\fi
 
 \ifenmtls@
   % Enumeration Tools
   \RequirePackage{paralist}
+\fi
+
+\ifamsthm@
+  % AMS Theorem Tools
+  \RequirePackage{amsthm}
 \fi
 
 \ifthmtls@
@@ -2194,11 +2225,10 @@
   \iflinnum@
     % Line Numbers
     \if@twocolumn
-      \RequirePackage[switch, columnwise, mathlines]{lineno}
+      \RequirePackage[switch, columnwise, mathlines]{lineno}\linenumbers
     \else
-      \RequirePackage[columnwise, mathlines]{lineno}
-    \if
-    \linenumbers
+      \RequirePackage[columnwise, mathlines]{lineno}\linenumbers
+    \fi
   \fi
 
   %%...
