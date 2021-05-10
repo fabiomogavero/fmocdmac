@@ -16,7 +16,7 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesPackage{fmocdmac}
-  [2021/02/03 v0.3 FM's OCD LaTeX Macro]
+  [2021/05/10 v0.4 FM's OCD LaTeX Macro]
 
 \RequirePackage{etoolbox}
 
@@ -24,10 +24,47 @@
 \RequirePackage{xspace}
 \RequirePackage{stringstrings}
 
-\RequirePackage{amsmath}
-\RequirePackage{amssymb}
-\interdisplaylinepenalty=2500
 
+%% Auxiliary packages
+\newif\ifaux@ \aux@false
+\DeclareOption{aux}{\aux@true}
+\DeclareOption{noaux}{\aux@false}
+
+%% AMS defaults
+\newif\ifamsdef@ \amsdef@true
+\DeclareOption{noamsdef}{\amsdef@false}
+
+%% AMS theorem tools
+\newif\ifamsthm@ \amsthm@true
+\DeclareOption{noamsthm}{\amsthm@false}
+
+%% Theorem tools
+\newif\ifthmtls@ \thmtls@true
+\DeclareOption{nothmtls}{\thmtls@false}
+
+%% Enumeration tools
+\newif\ifenmtls@ \enmtls@true
+\DeclareOption{noenmtls}{\enmtls@false}
+
+%% Hyper reference
+\newif\ifhypref@ \hypref@true
+\DeclareOption{nohypref}{\hypref@false}
+
+%% Font tools
+\newif\iffnttls@ \fnttls@true
+\DeclareOption{nofnttls}{\fnttls@false}
+
+%% Camera-ready version
+\newif\ifcrv@ \crv@false
+\DeclareOption{crv}{\crv@true}
+
+%% Change bars
+\newif\ifchgbar@ \chgbar@false
+\DeclareOption{chgbar}{\chgbar@true}
+
+%% Line numbers
+\newif\iflinnum@ \linnum@false
+\DeclareOption{linnum}{\linnum@true}
 
 %% Text macro generation
 \newif\iftxtgen@ \txtgen@false
@@ -91,54 +128,83 @@
 \DeclareOption{alg}{\alg@true}
 \DeclareOption{noalg}{\alg@false}
 
-%% Auxiliary tricks
-\newif\ifaux@ \aux@false
-\DeclareOption{aux}{\aux@true}
-\DeclareOption{noaux}{\aux@false}
-
-%% Font tools
-\newif\iffnttls@ \fnttls@true
-\DeclareOption{nofnttls}{\fnttls@false}
-
-%% Enumeration tools
-\newif\ifenmtls@ \enmtls@true
-\DeclareOption{noenmtls}{\enmtls@false}
-
-%% AMS Theorem tools
-\newif\ifamsthm@ \amsthm@true
-\DeclareOption{noamsthm}{\amsthm@false}
-
-%% Theorem tools
-\newif\ifthmtls@ \thmtls@true
-\DeclareOption{nothmtls}{\thmtls@false}
-
-%% Hyper reference
-\newif\ifhypref@ \hypref@true
-\DeclareOption{nohypref}{\hypref@false}
-
-%% ...
-
-%% Camera-ready version
-\newif\ifcrv@ \crv@false
-\DeclareOption{crv}{\crv@true}
-
-%% Change bars
-\newif\ifchgbar@ \chgbar@false
-\DeclareOption{chgbar}{\chgbar@true}
-
-%% Line numbers
-\newif\iflinnum@ \linnum@false
-\DeclareOption{linnum}{\linnum@true}
-
 
 \DeclareOption*{\PackageWarning{fmocdmac}{Unknown~‘\CurrentOption’}}%
 
-\ExecuteOptions{txtgen,mthgen,text,math,com,gam,log,aut,aux}%
+\ExecuteOptions{aux,txtgen,mthgen,text,math,com,gam,log,aut}%
 
 \ProcessOptions\relax%
 
 \ifcsdef{if@twocolumn}{}{\newif\if@twocolumn}
 
+
+%%****************************************************************************%%
+%%** Auxiliary Tricks ********************************************************%%
+%%****************************************************************************%%
+\ifaux@
+
+\ifamsdef@
+  % AMS Packages
+  \RequirePackage{amsmath}
+  \RequirePackage{amssymb}
+  \interdisplaylinepenalty=2500
+\fi
+
+\ifamsthm@
+  % AMS Theorem Tools
+  \RequirePackage{amsthm}
+\fi
+
+\ifthmtls@
+  % Theorem Tools
+  \RequirePackage{thmtools, thm-restate}
+\fi
+
+\ifenmtls@
+  % Enumeration Tools
+  \RequirePackage{paralist}
+\fi
+
+\ifhypref@
+  % Hyper References
+  \RequirePackage{hyperref}
+\fi
+
+\iffnttls@
+  % Font Tools
+  \RequirePackage[final]{microtype}
+\fi
+
+\ifcrv@
+  % Camera-Ready Version
+
+  %%...
+
+\else
+  % Draft Version
+
+  %%...
+
+  \ifchgbar@
+    % Change Bars
+    \RequirePackage{changebar}
+  \fi
+
+  \iflinnum@
+    % Line Numbers
+    \if@twocolumn
+      \RequirePackage[switch, columnwise, mathlines]{lineno}\linenumbers
+    \else
+      \RequirePackage[columnwise, mathlines]{lineno}\linenumbers
+    \fi
+  \fi
+
+  %%...
+
+\fi
+
+\fi
+%%****************************************************************************%%
 
 %%****************************************************************************%%
 %%** Auxiliary Font Declarations *********************************************%%
@@ -659,8 +725,10 @@
 
 \newcommandx{\cmdmthsetext}[3][2=, 3=]
   {\cmdmthset{#1}[#2]\caselower[q]{#1}%
-  \usrmthlet{\thestring}{Sym}{sym}[\defval{#3}{\lowercase{#2}}]%
-  \usrmthlet{\thestring}{Elm}{elm}[\defval{#3}{\lowercase{#2}}]}
+  \usrmthlet{\thestring}{Sym}{sym}
+    [\defval{#3}{\defval{\empchk{#2}{\lowercase{#2}}}{\thestring}}]%
+  \usrmthlet{\thestring}{Elm}{elm}
+    [\defval{#3}{\defval{\empchk{#2}{\lowercase{#2}}}{\thestring}}]}
 
 %% Style for Relations
 \cmdmthall{rel}\newcommand{\mthstyrel}{\mathit}
@@ -1026,9 +1094,8 @@
 \DeclareRobustCommand{\trn}[1]
   {\mth{\widetilde{#1}}}
 
-\let\oldvec\vec
 \DeclareRobustCommand{\vec}[1]
-  {\mth{\oldvec{#1}}}
+  {\mth{\mathaccent"017E{#1}}}
 
 %%****************************************************************************%%
 
@@ -1036,24 +1103,32 @@
 \varcmd{enumerationx}{\mth}{}{;}{}{}
 
 \varcmd{sequence}{\mth}{\left[}{,}{\right]}{}
+\varcmd{sequencel}{\mth}{\left[}{,}{\right.}{}
+\varcmd{sequencer}{\mth}{\left.}{,}{\right]}{}
 \varcmd{sequencex}{\mth}{\left[}{;}{\right]}{}
+\varcmd{sequencexl}{\mth}{\left[}{;}{\right.}{}
+\varcmd{sequencexr}{\mth}{\left.}{;}{\right]}{}
 
 \varcmd{tuple}{\mth}{\left\langle}{,}{\right\rangle}{}
+\varcmd{tuplel}{\mth}{\left\langle}{,}{\right.}{}
+\varcmd{tupler}{\mth}{\left.}{,}{\right\rangle}{}
 \varcmd{tuplex}{\mth}{\left\langle}{;}{\right\rangle}{}
+\varcmd{tuplexl}{\mth}{\left\langle}{;}{\right.}{}
+\varcmd{tuplexr}{\mth}{\left.}{;}{\right\rangle}{}
 
 %%** Sets ********************************************************************%%
 
 \DeclareRobustCommand{\set}[2]
-  {\mth{\argmid{\{}{\argsep{#1}{\allowbreak\mid\allowbreak}{#2}}{\}}}}
+  {\argmid{\{}{\argsep{#1}{\mid}{#2}}{\}}}
 
 \DeclareRobustCommand{\card}[1]
   {\mth{\argmid{\lvert}{#1}{\rvert}}}
 
-\DeclareRobustCommand{\denot}[1]
-  {\mth{\argmid{\lVert}{#1}{\rVert}}}
-
 \DeclareRobustCommand{\pow}[1]
   {\mth{2^{\defval{#1}{\cdot}}}}
+
+\DeclareRobustCommand{\denot}[1]
+  {\mth{\argmid{\lVert}{#1}{\rVert}}}
 
 %%** Relations ***************************************************************%%
 
@@ -1207,6 +1282,9 @@
   {\mthfun{sup}}
 
 %%** Sequences ***************************************************************%%
+
+\DeclareRobustCommand{\emptyseq}
+  {\mth{\varepsilon}}
 
 \DeclareRobustCommand{\fst}
   {\mthargfun{fst}}
@@ -1469,8 +1547,8 @@
 
 \usrmth{sub}{}{argfun}
 
-\usrmth{Cnt}{}{sym}[C]
-\usrmth{Qnt}{}{sym}[Q]
+\usrmth{Cnt}{}{sym}[Cn]
+\usrmth{Qnt}{}{sym}[Qn]
 
 \usrmth{QAE}{}{sym}[\forall\exists]
 \usrmth{QEA}{}{sym}[\exists\forall]
@@ -1630,7 +1708,7 @@
 
 %%** Syntax ******************************************************************%%
 
-\usrmth{Opr}{}{sym}[O]
+\usrmth{Opr}{}{sym}[Op]
 
 \usrmth{DMod}{}{sym}[\Diamond]
 \usrmth{BMod}{}{sym}[\Box]
@@ -1703,17 +1781,17 @@
 
 %%** Syntax ******************************************************************%%
 
-\usrmth{X}{}{sym}
-\usrmth{F}{}{sym}
-\usrmth{G}{}{sym}
-\usrmth{U}{}{sym}
-\usrmth{R}{}{sym}
+\usrmth{X}{}{sym}[X\,]
+\usrmth{F}{}{sym}[F\,]
+\usrmth{G}{}{sym}[G\,]
+\usrmth{U}{}{sym}[\,U\,]
+\usrmth{R}{}{sym}[\,R\,]
 
-\usrmth{Y}{}{sym}
-\usrmth{P}{}{sym}\let\SavePilcrow\P
-\usrmth{H}{}{sym}\let\SaveDoubleAcute\H
-\usrmth{S}{}{sym}\let\SaveSectionSymbol\S
-\usrmth{B}{}{sym}
+\usrmth{Y}{}{sym}[G\,]
+\usrmth{P}{}{sym}[P\,]\let\SavePilcrow\P
+\usrmth{H}{}{sym}[H\,]\let\SaveDoubleAcute\H
+\usrmth{S}{}{sym}[\,S\,]\let\SaveSectionSymbol\S
+\usrmth{B}{}{sym}[\,B\,]
 
 %%** Semantics ***************************************************************%%
 
@@ -2152,6 +2230,7 @@
 \RequirePackage[ruled,vlined]{algorithm2e}
 \setlength{\algomargin}{1.25em}
 \DontPrintSemicolon
+\SetInd{0.25em}{0.5em}
 
 \SetKw{Signature}{signature}
 
@@ -2173,67 +2252,6 @@
 \DeclareRobustCommand{\nlr}[1]
   {\addtocounter{AlgoLine}{1}%
   \nlset{\arabic{AlgoLine}-\addtocounter{AlgoLine}{#1}\arabic{AlgoLine}}}
-
-\fi
-%%****************************************************************************%%
-
-%%****************************************************************************%%
-%%** Auxiliary Tricks ********************************************************%%
-%%****************************************************************************%%
-\ifaux@
-
-\iffnttls@
-  % Font Tools
-  \RequirePackage[final]{microtype}
-\fi
-
-\ifenmtls@
-  % Enumeration Tools
-  \RequirePackage{paralist}
-\fi
-
-\ifamsthm@
-  % AMS Theorem Tools
-  \RequirePackage{amsthm}
-\fi
-
-\ifthmtls@
-  % Theorem Tools
-  \RequirePackage{thmtools, thm-restate}
-\fi
-
-\ifhypref@
-  % Hyper References
-  \RequirePackage{hyperref}
-\fi
-
-\ifcrv@
-  % Camera-Ready Version
-
-  %%...
-
-\else
-  % Draft Version
-
-  %%...
-
-  \ifchgbar@
-    % Change Bars
-    \RequirePackage{changebar}
-  \fi
-
-  \iflinnum@
-    % Line Numbers
-    \if@twocolumn
-      \RequirePackage[switch, columnwise, mathlines]{lineno}\linenumbers
-    \else
-      \RequirePackage[columnwise, mathlines]{lineno}\linenumbers
-    \fi
-  \fi
-
-  %%...
-
-\fi
 
 \fi
 %%****************************************************************************%%
