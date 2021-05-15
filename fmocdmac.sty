@@ -16,7 +16,7 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesPackage{fmocdmac}
-  [2021/05/10 v0.4 FM's OCD LaTeX Macro]
+  [2021/05/15 v0.5 FM's OCD LaTeX Macro]
 
 \RequirePackage{etoolbox}
 
@@ -117,6 +117,10 @@
 \newif\iffig@ \fig@false
 \DeclareOption{fig}{\fig@true}
 \DeclareOption{nofig}{\fig@false}
+
+%% Wrapfig package
+\newif\ifwrpfig@ \wrpfig@true
+\DeclareOption{nowrpfig}{\wrpfig@false}
 
 %% Table-related tricks
 \newif\iftab@ \tab@false
@@ -2207,7 +2211,25 @@
 %%****************************************************************************%%
 \iffig@
 
-%%...
+\RequirePackage{tikz}
+\usetikzlibrary{arrows,shapes}
+
+\tikzstyle{every node} =
+  [draw = none, fill = none, black, thin]
+\tikzstyle{every edge} +=
+  [black, thick]
+
+\tikzstyle{noall} =
+  [draw = none, fill = none]
+\tikzstyle{nodraw} =
+  [draw = none, fill = white]
+\tikzstyle{nofill} =
+  [draw = black, fill = none]
+
+\ifwrpfig@
+  % Wrapfig Package
+  \RequirePackage{wrapfig}
+\fi
 
 \fi
 %%****************************************************************************%%

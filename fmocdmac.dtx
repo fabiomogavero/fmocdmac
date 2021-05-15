@@ -80,7 +80,7 @@ install" installs the files in the local TeX tree.
 %<package>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
 %<package>\ProvidesPackage{fmocdmac}
 %<*package>
-  [2021/05/10 v0.4 FM's OCD LaTeX Macro]
+  [2021/05/15 v0.5 FM's OCD LaTeX Macro]
 %</package>
 %<*driver>
 \documentclass{ltxdoc}
@@ -117,6 +117,8 @@ install" installs the files in the local TeX tree.
 % \changes{v0.3}{2021/02/22}{Few problems solved}
 %
 % \changes{v0.4}{2021/05/10}{Refactoring, corrections, and extensions}
+%
+% \changes{v0.5}{2021/05/15}{Figure tricks}
 %
 % \begin{abstract}
 % This package contains almost all the latex macros I heavily use in my tcs
@@ -155,7 +157,6 @@ install" installs the files in the local TeX tree.
 \DeclareOption{aux}{\aux@true}
 \DeclareOption{noaux}{\aux@false}
 
-
 %% AMS defaults
 \newif\ifamsdef@ \amsdef@true
 \DeclareOption{noamsdef}{\amsdef@false}
@@ -179,7 +180,6 @@ install" installs the files in the local TeX tree.
 %% Font tools
 \newif\iffnttls@ \fnttls@true
 \DeclareOption{nofnttls}{\fnttls@false}
-
 
 %% Camera-ready version
 \newif\ifcrv@ \crv@false
@@ -245,15 +245,22 @@ install" installs the files in the local TeX tree.
 \DeclareOption{frm}{\frm@true}
 \DeclareOption{nofrm}{\frm@false}
 
+
 %% Figure-related tricks
 \newif\iffig@ \fig@false
 \DeclareOption{fig}{\fig@true}
 \DeclareOption{nofig}{\fig@false}
 
+%% Wrapfig package
+\newif\ifwrpfig@ \wrpfig@true
+\DeclareOption{nowrpfig}{\wrpfig@false}
+
+
 %% Table-related tricks
 \newif\iftab@ \tab@false
 \DeclareOption{tab}{\tab@true}
 \DeclareOption{notab}{\tab@false}
+
 
 %% Algorithm-related tricks
 \newif\ifalg@ \alg@false
@@ -7205,12 +7212,33 @@ install" installs the files in the local TeX tree.
 \iffig@
 %    \end{macrocode}
 
-% \begin{macro}{...}
-%   ...
 %    \begin{macrocode}
-%%...
+\RequirePackage{tikz}
+\usetikzlibrary{arrows,shapes}
 %    \end{macrocode}
-% \end{macro}
+
+%    \begin{macrocode}
+\tikzstyle{every node} =
+  [draw = none, fill = none, black, thin]
+\tikzstyle{every edge} +=
+  [black, thick]
+%    \end{macrocode}
+
+%    \begin{macrocode}
+\tikzstyle{noall} =
+  [draw = none, fill = none]
+\tikzstyle{nodraw} =
+  [draw = none, fill = white]
+\tikzstyle{nofill} =
+  [draw = black, fill = none]
+%    \end{macrocode}
+
+%    \begin{macrocode}
+\ifwrpfig@
+  % Wrapfig Package
+  \RequirePackage{wrapfig}
+\fi
+%    \end{macrocode}
 
 %    \begin{macrocode}
 \fi
