@@ -80,7 +80,7 @@ install" installs the files in the local TeX tree.
 %<package>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
 %<package>\ProvidesPackage{fmocdmac}
 %<*package>
-  [2021/05/15 v0.5 FM's OCD LaTeX Macro]
+  [2021/07/14 v0.6 FM's OCD LaTeX Macro]
 %</package>
 %<*driver>
 \documentclass{ltxdoc}
@@ -119,6 +119,8 @@ install" installs the files in the local TeX tree.
 % \changes{v0.4}{2021/05/10}{Refactoring, corrections, and extensions}
 %
 % \changes{v0.5}{2021/05/15}{Figure tricks}
+%
+% \changes{v0.6}{2021/07/14}{Small refinements}
 %
 % \begin{abstract}
 % This package contains almost all the latex macros I heavily use in my tcs
@@ -165,7 +167,7 @@ install" installs the files in the local TeX tree.
 \newif\ifamsthm@ \amsthm@true
 \DeclareOption{noamsthm}{\amsthm@false}
 
-%% Theorem tools
+%% Extended Theorem tools
 \newif\ifthmtls@ \thmtls@true
 \DeclareOption{nothmtls}{\thmtls@false}
 
@@ -302,7 +304,7 @@ install" installs the files in the local TeX tree.
 \fi
 
 \ifthmtls@
-  % Theorem Tools
+  % Extended Theorem Tools
   \RequirePackage{thmtools, thm-restate}
 \fi
 
@@ -314,6 +316,17 @@ install" installs the files in the local TeX tree.
 \ifhypref@
   % Hyper References
   \RequirePackage{hyperref}
+
+  \hypersetup
+    {
+    pdfsubject    = {},
+    pdfkeywords   = {},
+    pdfproducer   = {},
+    pdfcreator    = {},
+    pdfpagemode   = {UseNone},
+    pdfstartview  = {FitH},
+    colorlinks
+    }
 \fi
 
 \iffnttls@
@@ -1757,7 +1770,7 @@ install" installs the files in the local TeX tree.
 %   \end{itemize}
 %    \begin{macrocode}
 %% Style for Definitions
-\cmdtxtall{def}\newcommand{\txtstydef}{\bfseries\em}
+\cmdtxtall{def}\newcommand{\txtstydef}{\normalfont\bfseries\em}
 %    \end{macrocode}
 % \end{macro}
 
@@ -1985,7 +1998,7 @@ install" installs the files in the local TeX tree.
 %   \end{itemize}
 %    \begin{macrocode}
 %% Style for Names
-\cmdtxtall{name}\newcommand{\txtstyname}{\mdseries\scshape\sffamily}
+\cmdtxtall{name}\newcommand{\txtstyname}{\normalfont\mdseries\scshape\sffamily}
 %    \end{macrocode}
 % \end{macro}
 
@@ -2097,7 +2110,7 @@ install" installs the files in the local TeX tree.
 %   \end{itemize}
 %    \begin{macrocode}
 %% Style for Complexities
-\cmdtxtall{com}\newcommand{\txtstycom}{\mdseries\scshape\rmfamily}
+\cmdtxtall{com}\newcommand{\txtstycom}{\normalfont\mdseries\scshape\rmfamily}
 %    \end{macrocode}
 % \end{macro}
 
@@ -4533,6 +4546,39 @@ install" installs the files in the local TeX tree.
 %%****************************************************************************%%
 %    \end{macrocode}
 
+% \begin{macro}{\Afortiori}
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\Afortiori= = \Afortiori
+%   \end{itemize}
+%    \begin{macrocode}
+\cmdtxtabr{Afortiori}[A fortiori]
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\Apriori}
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\Apriori= = \Apriori
+%   \end{itemize}
+%    \begin{macrocode}
+\cmdtxtabr{Apriori}[A priori]
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\Aposteriori}
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\Aposteriori= = \Aposteriori
+%   \end{itemize}
+%    \begin{macrocode}
+\cmdtxtabr{Aposteriori}[A posteriori]
+%    \end{macrocode}
+% \end{macro}
+
 % \begin{macro}{\Dedicto}
 %   \small
 %   \begin{itemize}
@@ -4610,6 +4656,17 @@ install" installs the files in the local TeX tree.
 %    \end{macrocode}
 % \end{macro}
 
+% \begin{macro}{\Mutatismutandis}
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\Mutatismutandis= = \Mutatismutandis
+%   \end{itemize}
+%    \begin{macrocode}
+\cmdtxtabr{Mutatismutandis}[Mutatis mutandis]
+%    \end{macrocode}
+% \end{macro}
+
 % \begin{macro}{\Percontra}
 %   \small
 %   \begin{itemize}
@@ -4658,6 +4715,28 @@ install" installs the files in the local TeX tree.
 %    \begin{macrocode}
 %%** French Abbreviations ****************************************************%%
 %    \end{macrocode}
+
+% \begin{macro}{\naif}
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\naif= = \naif
+%   \end{itemize}
+%    \begin{macrocode}
+\cmdtxtabr{naif}[na\"{i}f]
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\naive}
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\naive= = \naive
+%   \end{itemize}
+%    \begin{macrocode}
+\cmdtxtabr{naive}[na\"{i}ve]
+%    \end{macrocode}
+% \end{macro}
 
 % \begin{macro}{\role}
 %   \small
@@ -4936,7 +5015,7 @@ install" installs the files in the local TeX tree.
 %   ...
 %    \begin{macrocode}
 \DeclareRobustCommand{\set}[2]
-  {\argmid{\{}{\argsep{#1}{\mid}{#2}}{\}}}
+  {\argmid{\left\lbrace}{\argsep{#1}{\,\middle\vert\,}{#2}}{\right\rbrace}}
 %    \end{macrocode}
 % \end{macro}
 
@@ -5052,6 +5131,20 @@ install" installs the files in the local TeX tree.
 %    \begin{macrocode}
 %%****************************************************************************%%
 %    \end{macrocode}
+
+% \begin{macro}{\fix, \ifp, ...}
+%   ...
+%    \begin{macrocode}
+\DeclareRobustCommand{\fix}
+  {\mthfun{fix}}
+\DeclareRobustCommand{\ifp}
+  {\mthfun{ifp}}
+\DeclareRobustCommand{\lfp}
+  {\mthfun{lfp}}
+\DeclareRobustCommand{\gfp}
+  {\mthfun{gfp}}
+%    \end{macrocode}
+% \end{macro}
 
 % \begin{macro}{\Aomega, \AOmega}
 %   ...
@@ -5386,6 +5479,18 @@ install" installs the files in the local TeX tree.
   \defcomclscmd{#1C}{#2}[#3][-complete]}%
 \newcommandx{\defcomclscmd}[4][3=, 4=]
   {\csdef{#1}{\txtcom{#3#2#4}}}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+%%****************************************************************************%%
+%    \end{macrocode}
+
+% \begin{macro}{\Easy, \Hard, ...}
+%    \begin{macrocode}
+\cmdtxtcom{Easy}
+\cmdtxtcom{Hard}
+\cmdtxtcom{Complete}
 %    \end{macrocode}
 % \end{macro}
 
@@ -5898,6 +6003,14 @@ install" installs the files in the local TeX tree.
 %    \end{macrocode}
 % \end{macro}
 
+% \begin{macro}{\liftFun}
+%   ...
+%    \begin{macrocode}
+\newcommand{\liftfun}{lift}
+\cmdmthoargfun{lift}[\liftfun]
+%    \end{macrocode}
+% \end{macro}
+
 % \begin{macro}{\solFun}
 %   ...
 %    \begin{macrocode}
@@ -5937,6 +6050,16 @@ install" installs the files in the local TeX tree.
 %%** Syntax ******************************************************************%%
 %    \end{macrocode}
 
+% \begin{macro}{\EvnSym, \OddSym}
+%   ...
+%    \begin{macrocode}
+\newcommand{\evnsym}{0}
+\cmdmthsym{Evn}[\evnsym]
+\newcommand{\oddsym}{1}
+\cmdmthsym{Odd}[\oddsym]
+%    \end{macrocode}
+% \end{macro}
+
 % \begin{macro}{\PrtSet, \prtFun}
 %   ...
 %    \begin{macrocode}
@@ -5974,6 +6097,16 @@ install" installs the files in the local TeX tree.
 %    \begin{macrocode}
 %%** Syntax ******************************************************************%%
 %    \end{macrocode}
+
+% \begin{macro}{\MaxSym, \MinSym}
+%   ...
+%    \begin{macrocode}
+\newcommand{\maxsym}{\oplus}
+\cmdmthsym{Max}[\maxsym]
+\newcommand{\minsym}{\boxminus}
+\cmdmthsym{Min}[\minsym]
+%    \end{macrocode}
+% \end{macro}
 
 % \begin{macro}{\WghSet, \wghFun}
 %   ...

@@ -16,7 +16,7 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesPackage{fmocdmac}
-  [2021/05/15 v0.5 FM's OCD LaTeX Macro]
+  [2021/07/14 v0.6 FM's OCD LaTeX Macro]
 
 \RequirePackage{etoolbox}
 
@@ -38,7 +38,7 @@
 \newif\ifamsthm@ \amsthm@true
 \DeclareOption{noamsthm}{\amsthm@false}
 
-%% Theorem tools
+%% Extended Theorem tools
 \newif\ifthmtls@ \thmtls@true
 \DeclareOption{nothmtls}{\thmtls@false}
 
@@ -160,7 +160,7 @@
 \fi
 
 \ifthmtls@
-  % Theorem Tools
+  % Extended Theorem Tools
   \RequirePackage{thmtools, thm-restate}
 \fi
 
@@ -172,6 +172,17 @@
 \ifhypref@
   % Hyper References
   \RequirePackage{hyperref}
+
+  \hypersetup
+    {
+    pdfsubject    = {},
+    pdfkeywords   = {},
+    pdfproducer   = {},
+    pdfcreator    = {},
+    pdfpagemode   = {UseNone},
+    pdfstartview  = {FitH},
+    colorlinks
+    }
 \fi
 
 \iffnttls@
@@ -526,7 +537,7 @@
 \iftxtgen@
 
 %% Style for Definitions
-\cmdtxtall{def}\newcommand{\txtstydef}{\bfseries\em}
+\cmdtxtall{def}\newcommand{\txtstydef}{\normalfont\bfseries\em}
 
 \newcommandx{\cmdtxtdef}[2][2=]
   {\usrtxt{#1}{}{def}[#2]}
@@ -564,7 +575,7 @@
 %%****************************************************************************%%
 
 %% Style for Names
-\cmdtxtall{name}\newcommand{\txtstyname}{\mdseries\scshape\sffamily}
+\cmdtxtall{name}\newcommand{\txtstyname}{\normalfont\mdseries\scshape\sffamily}
 
 \newcommandx{\cmdtxtname}[2][2=]
   {\usrtxt{#1}{}{name}[#2]}
@@ -582,7 +593,7 @@
   {\usrtxt{#1}{}{oparname}[#2]}
 
 %% Style for Complexities
-\cmdtxtall{com}\newcommand{\txtstycom}{\mdseries\scshape\rmfamily}
+\cmdtxtall{com}\newcommand{\txtstycom}{\normalfont\mdseries\scshape\rmfamily}
 
 \newcommandx{\cmdtxtcom}[2][2=]
   {\usrtxt{#1}{}{com}[#2]}
@@ -990,6 +1001,12 @@
 
 %%****************************************************************************%%
 
+\cmdtxtabr{Afortiori}[A fortiori]
+
+\cmdtxtabr{Apriori}[A priori]
+
+\cmdtxtabr{Aposteriori}[A posteriori]
+
 \cmdtxtabr{Dedicto}[De dicto]
 
 \cmdtxtabr{Defacto}[De facto]
@@ -1003,6 +1020,8 @@
 \cmdtxtabr{Errata}
 
 \cmdtxtabr{Erratum}
+
+\cmdtxtabr{Mutatismutandis}[Mutatis mutandis]
 
 \cmdtxtabr{Percontra}[Per contra]
 
@@ -1019,6 +1038,10 @@
 %% ...
 
 %%** French Abbreviations ****************************************************%%
+
+\cmdtxtabr{naif}[na\"{i}f]
+
+\cmdtxtabr{naive}[na\"{i}ve]
 
 \cmdtxtabr{role}[r\^{o}le]
 
@@ -1123,7 +1146,7 @@
 %%** Sets ********************************************************************%%
 
 \DeclareRobustCommand{\set}[2]
-  {\argmid{\{}{\argsep{#1}{\mid}{#2}}{\}}}
+  {\argmid{\left\lbrace}{\argsep{#1}{\,\middle\vert\,}{#2}}{\right\rbrace}}
 
 \DeclareRobustCommand{\card}[1]
   {\mth{\argmid{\lvert}{#1}{\rvert}}}
@@ -1175,6 +1198,15 @@
     \kern-1.5ex\rightharpoonup}}}
 
 %%****************************************************************************%%
+
+\DeclareRobustCommand{\fix}
+  {\mthfun{fix}}
+\DeclareRobustCommand{\ifp}
+  {\mthfun{ifp}}
+\DeclareRobustCommand{\lfp}
+  {\mthfun{lfp}}
+\DeclareRobustCommand{\gfp}
+  {\mthfun{gfp}}
 
 \DeclareRobustCommand{\Aomega}
   {\mthargset{\omega}}
@@ -1321,6 +1353,12 @@
 
 %%****************************************************************************%%
 
+\cmdtxtcom{Easy}
+\cmdtxtcom{Hard}
+\cmdtxtcom{Complete}
+
+%%****************************************************************************%%
+
 \defcomcls{Time}
 
 \defcomcls{Space}
@@ -1459,6 +1497,9 @@
 \newcommand{\rchfun}{rch}
 \cmdmthoargfun{rch}[\rchfun]
 
+\newcommand{\liftfun}{lift}
+\cmdmthoargfun{lift}[\liftfun]
+
 \newcommand{\solfun}{sol}
 \cmdmthoargfun{sol}[\solfun]
 
@@ -1484,6 +1525,11 @@
 
 %%** Syntax ******************************************************************%%
 
+\newcommand{\evnsym}{0}
+\cmdmthsym{Evn}[\evnsym]
+\newcommand{\oddsym}{1}
+\cmdmthsym{Odd}[\oddsym]
+
 \newcommand{\prtsym}{p}
 \newcommand{\prtset}{Pr}
 \cmdmthsetext{Prt}[\prtset][\prtsym]
@@ -1505,6 +1551,11 @@
 \cmdtxtoparname{DPG}
 
 %%** Syntax ******************************************************************%%
+
+\newcommand{\maxsym}{\oplus}
+\cmdmthsym{Max}[\maxsym]
+\newcommand{\minsym}{\boxminus}
+\cmdmthsym{Min}[\minsym]
 
 \newcommand{\wghsym}{w}
 \newcommand{\wghset}{Wg}
