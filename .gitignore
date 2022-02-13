@@ -1,5 +1,9 @@
-## Core latex/pdflatex auxiliary files:
+
+## Core latex/pdflatex Files ###################################################
+
+# Core
 *.aux
+*.bit
 *.lof
 *.log
 *.lot
@@ -8,23 +12,20 @@
 *.toc
 *.fmt
 *.fot
-*.cb
-*.cb2
+*.cb*
 .*.lb
 
-## Intermediate documents:
+# Documents
 *.dvi
 *.xdv
 *-converted-to.*
-# these rules might exclude image files for figures etc.
-# *.ps
-# *.eps
-# *.pdf
 
-## Generated if empty string is given at "Please type another file name for output:"
+# Generated
+.ps
+.eps
 .pdf
 
-## Bibliography auxiliary files (bibtex/biblatex/biber):
+# Bibliography
 *.bbl
 *.bcf
 *.blg
@@ -32,7 +33,7 @@
 *-blx.bib
 *.run.xml
 
-## Build tool auxiliary files:
+# Auxiliary
 *.fdb_latexmk
 *.synctex
 *.synctex(busy)
@@ -40,11 +41,13 @@
 *.synctex.gz(busy)
 *.pdfsync
 
-## Build tool directories for auxiliary files
+## Build Tool Files ############################################################
+
 # latexrun
 latex.out/
 
-## Auxiliary and intermediate files from other packages:
+## Package Files ###############################################################
+
 # algorithms
 *.alg
 *.loa
@@ -70,8 +73,15 @@ acs-*.bib
 # cprotect
 *.cpt
 
-# elsarticle (documentclass of Elsevier journals)
+# easy-todo
+*.lod
+
+# elsarticle
 *.spl
+
+# endfloat
+*.ttt
+*.fff
 
 # endnotes
 *.ent
@@ -109,11 +119,12 @@ acs-*.bib
 *.glo
 *.gls
 *.glsdefs
+*.glx
+*.gxg
+*.gxs
 *.lzo
 *.lzs
-
-# uncomment this for glossaries-extra (will ignore makeindex's style files!)
-# *.ist
+*.ist
 
 # gnuplottex
 *-gnuplottex-*
@@ -135,9 +146,9 @@ acs-*.bib
 
 # knitr
 *-concordance.tex
-# TODO Comment the next line if you want to keep your tikz graphics files
-*.tikz
-*-tikzDictionary
+
+# lipics
+*.vtc
 
 # listings
 *.lol
@@ -149,6 +160,7 @@ acs-*.bib
 *.idx
 *.ilg
 *.ind
+*.lpz
 
 # minitoc
 *.maf
@@ -174,8 +186,16 @@ _minted*
 # pax
 *.pax
 
+# pdfcomment
+*.upa
+*.upb
+
 # pdfpcnotes
 *.pdfpc
+
+# pythontex
+*.pytxcode
+pythontex-files-*/
 
 # sagetex
 *.sagetex.sage
@@ -185,18 +205,13 @@ _minted*
 # scrwfile
 *.wrt
 
+# standalone
+*.sta
+
 # sympy
 *.sout
 *.sympy
 sympy-plots-for-*.tex/
-
-# pdfcomment
-*.upa
-*.upb
-
-# pythontex
-*.pytxcode
-pythontex-files-*/
 
 # tcolorbox
 *.listing
@@ -208,16 +223,18 @@ pythontex-files-*/
 *.dpth
 *.md5
 *.auxlock
+*.tikz
+*-tikzDictionary
 
 # todonotes
 *.tdo
 
+# url
+*.url
+
 # vhistory
 *.hst
 *.ver
-
-# easy-todo
-*.lod
 
 # xcolor
 *.xcp
@@ -228,30 +245,18 @@ pythontex-files-*/
 # xindy
 *.xdy
 
-# xypic precompiled matrices and outlines
-*.xyc
-*.xyd
+# xypic
+*.xyc*
+*.xyd*
 
-# endfloat
-*.ttt
-*.fff
+## Editor Files ################################################################
 
-# Latexian
-TSWLatexianTemp*
+# emacs
+./auto/*
+*.el
 
-## Editors:
-# WinEdt
-*.bak
-*.sav
-
-# Texpad
-.texpadtmp
-
-# LyX
-*.lyx~
-
-# Kile
-*.backup
+# expex
+*-tags.tex
 
 # gummi
 .*.swp
@@ -259,18 +264,25 @@ TSWLatexianTemp*
 # KBibTeX
 *~[0-9]*
 
+# Kile
+*.backup
+
+# Latexian
+TSWLatexianTemp*
+
+# LyX
+*.lyx~
+
 # TeXnicCenter
 *.tps
 
-# auto folder when using emacs and auctex
-./auto/*
-*.el
+# Texpad
+.texpadtmp
 
-# expex forward references with \gathertags
-*-tags.tex
+# WinEdt
+*.bak
+*.sav
 
-# standalone packages
-*.sta
+## Other Files #################################################################
 
-# Makeindex log files
-*.lpz
+lfmocdmac.sty

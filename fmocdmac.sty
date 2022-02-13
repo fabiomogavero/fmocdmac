@@ -16,7 +16,7 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesPackage{fmocdmac}
-  [2021/07/14 v0.6 FM's OCD LaTeX Macro]
+  [2022/02/06 v0.7 FM's OCD LaTeX Macro]
 
 \RequirePackage{etoolbox}
 
@@ -181,6 +181,7 @@
     pdfcreator    = {},
     pdfpagemode   = {UseNone},
     pdfstartview  = {FitH},
+    urlcolor      = {blue},
     colorlinks
     }
 \fi
@@ -453,7 +454,7 @@
   {\newmthopar[\defval{#2}{#1}]}
 
 \newcommand{\mthsubsup}[2]
-  {\empchk{#1}{_{#1}}\empchk{#2}{^{#2}}}
+  {\empchk{#1}{_{#1}}\empchk{#2}{^{#2}\!}}
 
 %%****************************************************************************%%
 
@@ -849,13 +850,13 @@
 
 %%****************************************************************************%%
 
-%% Style for Sentences
+%% Style for \LaTex Operators
 \cmdmth{lopr}\newcommand{\mthstylopr}[1]{\textstyle\mathop{#1}}
 
 \newcommandx{\cmdmthlopr}[2][2=]
   {\usrmth{#1}{Opr}{lopr}[#2]}
 
-%% Style for Sentences
+%% Style for \LaTex Relations
 \cmdmth{lrel}\newcommand{\mthstylrel}{\mathrel}
 
 \newcommandx{\cmdmthlrel}[2][2=]
@@ -1093,6 +1094,11 @@
 \DeclareRobustCommand{\notimplies}
   {\mthlrel{\not\Rightarrow}}
 
+\DeclareRobustCommand{\implied}
+  {\mthlrel{\Leftarrow}}
+\DeclareRobustCommand{\notimplied}
+  {\mthlrel{\not\Leftarrow}}
+
 \DeclareRobustCommand{\coimplies}
   {\mthlrel{\Leftrightarrow}}
 \DeclareRobustCommand{\notcoimplies}
@@ -1147,6 +1153,10 @@
 
 \DeclareRobustCommand{\set}[2]
   {\argmid{\left\lbrace}{\argsep{#1}{\,\middle\vert\,}{#2}}{\right\rbrace}}
+\DeclareRobustCommand{\setl}[1]
+  {\argmid{\left\lbrace}{#1}{\,\right\vert\!}}
+\DeclareRobustCommand{\setr}[1]
+  {\argmid{\left.}{#1}{\right\rbrace}}
 
 \DeclareRobustCommand{\card}[1]
   {\mth{\argmid{\lvert}{#1}{\rvert}}}
@@ -1155,7 +1165,7 @@
   {\mth{2^{\defval{#1}{\cdot}}}}
 
 \DeclareRobustCommand{\denot}[1]
-  {\mth{\argmid{\lVert}{#1}{\rVert}}}
+  {\mth{\argmid{\llbracket}{#1}{\rrbracket}}}
 
 %%** Relations ***************************************************************%%
 
@@ -1351,6 +1361,9 @@
 \newcommandx{\defcomclscmd}[4][3=, 4=]
   {\csdef{#1}{\txtcom{#3#2#4}}}
 
+\newcommandx{\defcomhrc}[2][2=]
+  {\csdef{#1}{\txtcom{\defval{#2}{#1}}}}
+
 %%****************************************************************************%%
 
 \cmdtxtcom{Easy}
@@ -1380,6 +1393,8 @@
 \defcomcls{ExpSpace}
 
 %%****************************************************************************%%
+
+\defcomhrc{PH}
 
 %% ...
 
@@ -1595,6 +1610,16 @@
 \newcommand{\ffsym}{\bot}
 \usrmth{Ff}{}{sym}[\ffsym]
 
+\newcommand{\lconsym}{\land}
+\usrmth{LCon}{}{lopr}[\lconsym]
+\newcommand{\ldissym}{\lor}
+\usrmth{LDis}{}{lopr}[\ldissym]
+
+\newcommand{\lexssym}{\exists}
+\usrmth{LExs}{}{lopr}[\lexssym]
+\newcommand{\lallsym}{\forall}
+\usrmth{LAll}{}{lopr}[\lallsym]
+
 \newcommand{\apsym}{p}
 \newcommand{\apset}{AP}
 \cmdmthsetext{AP}[\apset][\apsym]
@@ -1602,8 +1627,9 @@
 
 \usrmth{sub}{}{argfun}
 
-\usrmth{Cnt}{}{sym}[Cn]
-\usrmth{Qnt}{}{sym}[Qn]
+\usrmth{Cnt}{}{sym}[C]
+\usrmth{Qnt}{}{sym}[Q]
+\usrmth{Sym}{}{sym}[\odot]
 
 \usrmth{QAE}{}{sym}[\forall\exists]
 \usrmth{QEA}{}{sym}[\exists\forall]
@@ -1617,6 +1643,8 @@
 \usrmth{dep}{}{argfun}
 \usrmth{alt}{}{argfun}
 
+\cmdtxtabr{cnf}
+\cmdtxtabr{dnf}
 \cmdtxtabr{pnf}
 \cmdtxtabr{nnf}
 
@@ -1697,13 +1725,28 @@
 
 %%** First-Order Logics II ***************************************************%%
 
+\cmdtxtoparname{DF}
+
 \cmdtxtoparname{IF}
+
+\cmdtxtoparname{DIF}
+
+\cmdtxtoparname{TL}
+
+\cmdtxtoparname{ADF}
+
+\cmdtxtoparname{AIF}
+
+\cmdtxtoparname{ADIF}
 
 %% ...
 
 %%** Syntax ******************************************************************%%
 
-%% ...
+\newcommand{\leexssym}{\Sigma}
+\usrmth{LEExs}{}{lopr}[\leexssym]
+\newcommand{\laallsym}{\Pi}
+\usrmth{LAAll}{}{lopr}[\laallsym]
 
 %%** Semantics ***************************************************************%%
 
@@ -2263,7 +2306,7 @@
 \iffig@
 
 \RequirePackage{tikz}
-\usetikzlibrary{arrows,shapes}
+\usetikzlibrary{arrows,shapes,patterns}
 
 \tikzstyle{every node} =
   [draw = none, fill = none, black, thin]

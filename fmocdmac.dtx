@@ -80,7 +80,7 @@ install" installs the files in the local TeX tree.
 %<package>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
 %<package>\ProvidesPackage{fmocdmac}
 %<*package>
-  [2021/07/14 v0.6 FM's OCD LaTeX Macro]
+  [2022/02/06 v0.7 FM's OCD LaTeX Macro]
 %</package>
 %<*driver>
 \documentclass{ltxdoc}
@@ -121,6 +121,8 @@ install" installs the files in the local TeX tree.
 % \changes{v0.5}{2021/05/15}{Figure tricks}
 %
 % \changes{v0.6}{2021/07/14}{Small refinements}
+%
+% \changes{v0.7}{2022/02/06}{Refinements, corrections, and extensions}
 %
 % \begin{abstract}
 % This package contains almost all the latex macros I heavily use in my tcs
@@ -325,6 +327,7 @@ install" installs the files in the local TeX tree.
     pdfcreator    = {},
     pdfpagemode   = {UseNone},
     pdfstartview  = {FitH},
+    urlcolor      = {blue},
     colorlinks
     }
 \fi
@@ -1409,7 +1412,7 @@ install" installs the files in the local TeX tree.
 %   ... to do!
 %    \begin{macrocode}
 \newcommand{\mthsubsup}[2]
-  {\empchk{#1}{_{#1}}\empchk{#2}{^{#2}}}
+  {\empchk{#1}{_{#1}}\empchk{#2}{^{#2}\!}}
 %    \end{macrocode}
 % \end{macro}
 
@@ -3679,7 +3682,7 @@ install" installs the files in the local TeX tree.
 %       \verb=\mthlopr{\oplus}[sub][sup][Ext]= = \mthlopr{\oplus}[sub][sup][Ext]
 %   \end{itemize}
 %    \begin{macrocode}
-%% Style for Sentences
+%% Style for \LaTex Operators
 \cmdmth{lopr}\newcommand{\mthstylopr}[1]{\textstyle\mathop{#1}}
 %    \end{macrocode}
 % \end{macro}
@@ -3710,7 +3713,7 @@ install" installs the files in the local TeX tree.
 %       \mthlrel{\preceq}[sub][sup][Ext]
 %   \end{itemize}
 %    \begin{macrocode}
-%% Style for Sentences
+%% Style for \LaTex Relations
 \cmdmth{lrel}\newcommand{\mthstylrel}{\mathrel}
 %    \end{macrocode}
 % \end{macro}
@@ -4911,6 +4914,16 @@ install" installs the files in the local TeX tree.
 %    \end{macrocode}
 % \end{macro}
 
+% \begin{macro}{\implied, ...}
+%   ...
+%    \begin{macrocode}
+\DeclareRobustCommand{\implied}
+  {\mthlrel{\Leftarrow}}
+\DeclareRobustCommand{\notimplied}
+  {\mthlrel{\not\Leftarrow}}
+%    \end{macrocode}
+% \end{macro}
+
 % \begin{macro}{\coimplies, ...}
 %   ...
 %    \begin{macrocode}
@@ -5011,11 +5024,15 @@ install" installs the files in the local TeX tree.
 %%** Sets ********************************************************************%%
 %    \end{macrocode}
 
-% \begin{macro}{\set}
+% \begin{macro}{\set, ...}
 %   ...
 %    \begin{macrocode}
 \DeclareRobustCommand{\set}[2]
   {\argmid{\left\lbrace}{\argsep{#1}{\,\middle\vert\,}{#2}}{\right\rbrace}}
+\DeclareRobustCommand{\setl}[1]
+  {\argmid{\left\lbrace}{#1}{\,\right\vert\!}}
+\DeclareRobustCommand{\setr}[1]
+  {\argmid{\left.}{#1}{\right\rbrace}}
 %    \end{macrocode}
 % \end{macro}
 
@@ -5039,7 +5056,7 @@ install" installs the files in the local TeX tree.
 %   ...
 %    \begin{macrocode}
 \DeclareRobustCommand{\denot}[1]
-  {\mth{\argmid{\lVert}{#1}{\rVert}}}
+  {\mth{\argmid{\llbracket}{#1}{\rrbracket}}}
 %    \end{macrocode}
 % \end{macro}
 
@@ -5389,78 +5406,78 @@ install" installs the files in the local TeX tree.
 %     \item
 %       \verb=\defcomcls{CompClass}=; \defcomcls{CompClass}
 %       \vspace{1em}\newline
-%       \verb=\CompClass[sub][sup][ext]= = \CompClass[sub][sup][ext]; \\
+%       \verb=\CompClass[sub][sup][ext]= = \CompClass[sub][sup][ext] \\
 %       \verb=\CoCompClass[sub][sup][ext]= = \CoCompClass[sub][sup][ext] \\
-%       \verb=\CompClassE[sub][sup][ext]= = \CompClassE[sub][sup][ext]; \\
+%       \verb=\CompClassE[sub][sup][ext]= = \CompClassE[sub][sup][ext] \\
 %       \verb=\CoCompClassE[sub][sup][ext]= = \CoCompClassE[sub][sup][ext] \\
-%       \verb=\CompClassH[sub][sup][ext]= = \CompClassH[sub][sup][ext]; \\
+%       \verb=\CompClassH[sub][sup][ext]= = \CompClassH[sub][sup][ext] \\
 %       \verb=\CoCompClassH[sub][sup][ext]= = \CoCompClassH[sub][sup][ext] \\
-%       \verb=\CompClassC[sub][sup][ext]= = \CompClassC[sub][sup][ext]; \\
+%       \verb=\CompClassC[sub][sup][ext]= = \CompClassC[sub][sup][ext] \\
 %       \verb=\CoCompClassC[sub][sup][ext]= = \CoCompClassC[sub][sup][ext]
 %       \vspace{1em}\newline
-%       \verb=\NCompClass[sub][sup][ext]= = \NCompClass[sub][sup][ext]; \\
+%       \verb=\NCompClass[sub][sup][ext]= = \NCompClass[sub][sup][ext] \\
 %       \verb=\CoNCompClass[sub][sup][ext]= = \CoNCompClass[sub][sup][ext] \\
-%       \verb=\NCompClassE[sub][sup][ext]= = \NCompClassE[sub][sup][ext]; \\
+%       \verb=\NCompClassE[sub][sup][ext]= = \NCompClassE[sub][sup][ext] \\
 %       \verb=\CoNCompClassE[sub][sup][ext]= = \CoNCompClassE[sub][sup][ext] \\
-%       \verb=\NCompClassH[sub][sup][ext]= = \NCompClassH[sub][sup][ext]; \\
+%       \verb=\NCompClassH[sub][sup][ext]= = \NCompClassH[sub][sup][ext] \\
 %       \verb=\CoNCompClassH[sub][sup][ext]= = \CoNCompClassH[sub][sup][ext] \\
-%       \verb=\NCompClassC[sub][sup][ext]= = \NCompClassC[sub][sup][ext]; \\
+%       \verb=\NCompClassC[sub][sup][ext]= = \NCompClassC[sub][sup][ext] \\
 %       \verb=\CoNCompClassC[sub][sup][ext]= = \CoNCompClassC[sub][sup][ext]
 %       \vspace{1em}\newline
-%       \verb=\UCompClass[sub][sup][ext]= = \UCompClass[sub][sup][ext]; \\
+%       \verb=\UCompClass[sub][sup][ext]= = \UCompClass[sub][sup][ext] \\
 %       \verb=\CoUCompClass[sub][sup][ext]= = \CoUCompClass[sub][sup][ext] \\
-%       \verb=\UCompClassE[sub][sup][ext]= = \UCompClassE[sub][sup][ext]; \\
+%       \verb=\UCompClassE[sub][sup][ext]= = \UCompClassE[sub][sup][ext] \\
 %       \verb=\CoUCompClassE[sub][sup][ext]= = \CoUCompClassE[sub][sup][ext] \\
-%       \verb=\UCompClassH[sub][sup][ext]= = \UCompClassH[sub][sup][ext]; \\
+%       \verb=\UCompClassH[sub][sup][ext]= = \UCompClassH[sub][sup][ext] \\
 %       \verb=\CoUCompClassH[sub][sup][ext]= = \CoUCompClassH[sub][sup][ext] \\
-%       \verb=\UCompClassC[sub][sup][ext]= = \UCompClassC[sub][sup][ext]; \\
+%       \verb=\UCompClassC[sub][sup][ext]= = \UCompClassC[sub][sup][ext] \\
 %       \verb=\CoUCompClassC[sub][sup][ext]= = \CoUCompClassC[sub][sup][ext]
 %       \vspace{1em}\newline
-%       \verb=\ACompClass[sub][sup][ext]= = \ACompClass[sub][sup][ext]; \\
+%       \verb=\ACompClass[sub][sup][ext]= = \ACompClass[sub][sup][ext] \\
 %       \verb=\CoACompClass[sub][sup][ext]= = \CoACompClass[sub][sup][ext] \\
-%       \verb=\ACompClassE[sub][sup][ext]= = \ACompClassE[sub][sup][ext]; \\
+%       \verb=\ACompClassE[sub][sup][ext]= = \ACompClassE[sub][sup][ext] \\
 %       \verb=\CoACompClassE[sub][sup][ext]= = \CoACompClassE[sub][sup][ext] \\
-%       \verb=\ACompClassH[sub][sup][ext]= = \ACompClassH[sub][sup][ext]; \\
+%       \verb=\ACompClassH[sub][sup][ext]= = \ACompClassH[sub][sup][ext] \\
 %       \verb=\CoACompClassH[sub][sup][ext]= = \CoACompClassH[sub][sup][ext] \\
-%       \verb=\ACompClassC[sub][sup][ext]= = \ACompClassC[sub][sup][ext]; \\
+%       \verb=\ACompClassC[sub][sup][ext]= = \ACompClassC[sub][sup][ext] \\
 %       \verb=\CoACompClassC[sub][sup][ext]= = \CoACompClassC[sub][sup][ext]
 %     \item
 %       \verb=\defcomcls{CompClass}[NewClass]=; \defcomcls{CompClass}[NewClass]
 %       \vspace{1em}\newline
-%       \verb=\CompClass[sub][sup][ext]= = \CompClass[sub][sup][ext]; \\
+%       \verb=\CompClass[sub][sup][ext]= = \CompClass[sub][sup][ext] \\
 %       \verb=\CoCompClass[sub][sup][ext]= = \CoCompClass[sub][sup][ext] \\
-%       \verb=\CompClassE[sub][sup][ext]= = \CompClassE[sub][sup][ext]; \\
+%       \verb=\CompClassE[sub][sup][ext]= = \CompClassE[sub][sup][ext] \\
 %       \verb=\CoCompClassE[sub][sup][ext]= = \CoCompClassE[sub][sup][ext] \\
-%       \verb=\CompClassH[sub][sup][ext]= = \CompClassH[sub][sup][ext]; \\
+%       \verb=\CompClassH[sub][sup][ext]= = \CompClassH[sub][sup][ext] \\
 %       \verb=\CoCompClassH[sub][sup][ext]= = \CoCompClassH[sub][sup][ext] \\
-%       \verb=\CompClassC[sub][sup][ext]= = \CompClassC[sub][sup][ext]; \\
+%       \verb=\CompClassC[sub][sup][ext]= = \CompClassC[sub][sup][ext] \\
 %       \verb=\CoCompClassC[sub][sup][ext]= = \CoCompClassC[sub][sup][ext]
 %       \vspace{1em}\newline
-%       \verb=\NCompClass[sub][sup][ext]= = \NCompClass[sub][sup][ext]; \\
+%       \verb=\NCompClass[sub][sup][ext]= = \NCompClass[sub][sup][ext] \\
 %       \verb=\CoNCompClass[sub][sup][ext]= = \CoNCompClass[sub][sup][ext] \\
-%       \verb=\NCompClassE[sub][sup][ext]= = \NCompClassE[sub][sup][ext]; \\
+%       \verb=\NCompClassE[sub][sup][ext]= = \NCompClassE[sub][sup][ext] \\
 %       \verb=\CoNCompClassE[sub][sup][ext]= = \CoNCompClassE[sub][sup][ext] \\
-%       \verb=\NCompClassH[sub][sup][ext]= = \NCompClassH[sub][sup][ext]; \\
+%       \verb=\NCompClassH[sub][sup][ext]= = \NCompClassH[sub][sup][ext] \\
 %       \verb=\CoNCompClassH[sub][sup][ext]= = \CoNCompClassH[sub][sup][ext] \\
-%       \verb=\NCompClassC[sub][sup][ext]= = \NCompClassC[sub][sup][ext]; \\
+%       \verb=\NCompClassC[sub][sup][ext]= = \NCompClassC[sub][sup][ext] \\
 %       \verb=\CoNCompClassC[sub][sup][ext]= = \CoNCompClassC[sub][sup][ext]
 %       \vspace{1em}\newline
-%       \verb=\UCompClass[sub][sup][ext]= = \UCompClass[sub][sup][ext]; \\
+%       \verb=\UCompClass[sub][sup][ext]= = \UCompClass[sub][sup][ext] \\
 %       \verb=\CoUCompClass[sub][sup][ext]= = \CoUCompClass[sub][sup][ext] \\
-%       \verb=\UCompClassE[sub][sup][ext]= = \UCompClassE[sub][sup][ext]; \\
+%       \verb=\UCompClassE[sub][sup][ext]= = \UCompClassE[sub][sup][ext] \\
 %       \verb=\CoUCompClassE[sub][sup][ext]= = \CoUCompClassE[sub][sup][ext] \\
-%       \verb=\UCompClassH[sub][sup][ext]= = \UCompClassH[sub][sup][ext]; \\
+%       \verb=\UCompClassH[sub][sup][ext]= = \UCompClassH[sub][sup][ext] \\
 %       \verb=\CoUCompClassH[sub][sup][ext]= = \CoUCompClassH[sub][sup][ext] \\
-%       \verb=\UCompClassC[sub][sup][ext]= = \UCompClassC[sub][sup][ext]; \\
+%       \verb=\UCompClassC[sub][sup][ext]= = \UCompClassC[sub][sup][ext] \\
 %       \verb=\CoUCompClassC[sub][sup][ext]= = \CoUCompClassC[sub][sup][ext]
 %       \vspace{1em}\newline
-%       \verb=\ACompClass[sub][sup][ext]= = \ACompClass[sub][sup][ext]; \\
+%       \verb=\ACompClass[sub][sup][ext]= = \ACompClass[sub][sup][ext] \\
 %       \verb=\CoACompClass[sub][sup][ext]= = \CoACompClass[sub][sup][ext] \\
-%       \verb=\ACompClassE[sub][sup][ext]= = \ACompClassE[sub][sup][ext]; \\
+%       \verb=\ACompClassE[sub][sup][ext]= = \ACompClassE[sub][sup][ext] \\
 %       \verb=\CoACompClassE[sub][sup][ext]= = \CoACompClassE[sub][sup][ext] \\
-%       \verb=\ACompClassH[sub][sup][ext]= = \ACompClassH[sub][sup][ext]; \\
+%       \verb=\ACompClassH[sub][sup][ext]= = \ACompClassH[sub][sup][ext] \\
 %       \verb=\CoACompClassH[sub][sup][ext]= = \CoACompClassH[sub][sup][ext] \\
-%       \verb=\ACompClassC[sub][sup][ext]= = \ACompClassC[sub][sup][ext]; \\
+%       \verb=\ACompClassC[sub][sup][ext]= = \ACompClassC[sub][sup][ext] \\
 %       \verb=\CoACompClassC[sub][sup][ext]= = \CoACompClassC[sub][sup][ext]
 %   \end{itemize}
 %    \begin{macrocode}
@@ -5479,6 +5496,26 @@ install" installs the files in the local TeX tree.
   \defcomclscmd{#1C}{#2}[#3][-complete]}%
 \newcommandx{\defcomclscmd}[4][3=, 4=]
   {\csdef{#1}{\txtcom{#3#2#4}}}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\defcomhrc}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\defcomhrc{CompHierarchy}=; \defcomhrc{CompHierarchy}
+%       \vspace{1em}\newline
+%       \verb=CompHierarchy[sub][sup][ext]= = \CompHierarchy[sub][sup][ext] \\
+%     \item
+%       \verb=\defcomhrc{CompHierarchy}[NewHierarchy]=;
+%       \defcomhrc{CompHierarchy}[NewHierarchy]
+%       \vspace{1em}\newline
+%       \verb=CompHierarchy[sub][sup][ext]= = \CompHierarchy[sub][sup][ext] \\
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\defcomhrc}[2][2=]
+  {\csdef{#1}{\txtcom{\defval{#2}{#1}}}}
 %    \end{macrocode}
 % \end{macro}
 
@@ -5791,6 +5828,17 @@ install" installs the files in the local TeX tree.
 %    \begin{macrocode}
 %%****************************************************************************%%
 %    \end{macrocode}
+
+% \begin{macro}{\PH}
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\PH[sub][sup][ext]= = \PH[sub][sup][ext]
+%   \end{itemize}
+%    \begin{macrocode}
+\defcomhrc{PH}
+%    \end{macrocode}
+% \end{macro}
 
 %% ...
 
@@ -6178,6 +6226,26 @@ install" installs the files in the local TeX tree.
 %    \end{macrocode}
 % \end{macro}
 
+% \begin{macro}{\LCon, \LDis}
+%   ...
+%    \begin{macrocode}
+\newcommand{\lconsym}{\land}
+\usrmth{LCon}{}{lopr}[\lconsym]
+\newcommand{\ldissym}{\lor}
+\usrmth{LDis}{}{lopr}[\ldissym]
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\LExs, \LAll}
+%   ...
+%    \begin{macrocode}
+\newcommand{\lexssym}{\exists}
+\usrmth{LExs}{}{lopr}[\lexssym]
+\newcommand{\lallsym}{\forall}
+\usrmth{LAll}{}{lopr}[\lallsym]
+%    \end{macrocode}
+% \end{macro}
+
 % \begin{macro}{\APSet, ...}
 %   ...
 %    \begin{macrocode}
@@ -6195,11 +6263,12 @@ install" installs the files in the local TeX tree.
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\Cnt, \Qnt}
+% \begin{macro}{\Cnt, \Qnt, \Sym}
 %   ...
 %    \begin{macrocode}
-\usrmth{Cnt}{}{sym}[Cn]
-\usrmth{Qnt}{}{sym}[Qn]
+\usrmth{Cnt}{}{sym}[C]
+\usrmth{Qnt}{}{sym}[Q]
+\usrmth{Sym}{}{sym}[\odot]
 %    \end{macrocode}
 % \end{macro}
 
@@ -6235,9 +6304,11 @@ install" installs the files in the local TeX tree.
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\pnf, \nnf}
+% \begin{macro}{\cnf, \dnf, ...}
 %   ...
 %    \begin{macrocode}
+\cmdtxtabr{cnf}
+\cmdtxtabr{dnf}
 \cmdtxtabr{pnf}
 \cmdtxtabr{nnf}
 %    \end{macrocode}
@@ -6402,11 +6473,29 @@ install" installs the files in the local TeX tree.
 %%** First-Order Logics II ***************************************************%%
 %    \end{macrocode}
 
-% \begin{macro}{\IF, ...}
+% \begin{macro}{\DF, \IF, ...}
 %   ...
 %    \begin{macrocode}
+% Dependence-Friendly Logic
+\cmdtxtoparname{DF}
+
 % Independence-Friendly Logic
 \cmdtxtoparname{IF}
+
+% Dependence/Independence-Friendly Logic
+\cmdtxtoparname{DIF}
+
+% Team Logic
+\cmdtxtoparname{TL}
+
+% Alternating Dependence-Friendly Logic
+\cmdtxtoparname{ADF}
+
+% Alternating Independence-Friendly Logic
+\cmdtxtoparname{AIF}
+
+% Alternating Dependence/Independence-Friendly Logic
+\cmdtxtoparname{ADIF}
 %    \end{macrocode}
 % \end{macro}
 
@@ -6416,7 +6505,15 @@ install" installs the files in the local TeX tree.
 %%** Syntax ******************************************************************%%
 %    \end{macrocode}
 
-%% ...
+% \begin{macro}{\LEExs, \LAAll}
+%   ...
+%    \begin{macrocode}
+\newcommand{\leexssym}{\Sigma}
+\usrmth{LEExs}{}{lopr}[\leexssym]
+\newcommand{\laallsym}{\Pi}
+\usrmth{LAAll}{}{lopr}[\laallsym]
+%    \end{macrocode}
+% \end{macro}
 
 %    \begin{macrocode}
 %%** Semantics ***************************************************************%%
@@ -7347,7 +7444,7 @@ install" installs the files in the local TeX tree.
 
 %    \begin{macrocode}
 \RequirePackage{tikz}
-\usetikzlibrary{arrows,shapes}
+\usetikzlibrary{arrows,shapes,patterns}
 %    \end{macrocode}
 
 %    \begin{macrocode}
