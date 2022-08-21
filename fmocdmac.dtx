@@ -41,7 +41,7 @@ fmocdmac:| FM's OCD LaTeX Macros
 \endpreamble
 \postamble
 
-Copyright (C) 2020 by Fabio Mogavero <fm@fabiomogavero.com>
+Copyright (C) 2020-2022 by Fabio Mogavero <fm@fabiomogavero.com>
 
 This work may be distributed and/or modified under the conditions of the
 LaTeX Project Public License (LPPL), either version 1.3c of this license or
@@ -80,7 +80,7 @@ install" installs the files in the local TeX tree.
 %<package>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
 %<package>\ProvidesPackage{fmocdmac}
 %<*package>
-  [2022/02/06 v0.7 FM's OCD LaTeX Macro]
+  [2022/08/21 v0.8 FM's OCD LaTeX Macro]
 %</package>
 %<*driver>
 \documentclass{ltxdoc}
@@ -123,6 +123,8 @@ install" installs the files in the local TeX tree.
 % \changes{v0.6}{2021/07/14}{Small refinements}
 %
 % \changes{v0.7}{2022/02/06}{Refinements, corrections, and extensions}
+%
+% \changes{v0.8}{2022/08/21}{Few refinements and corrections}
 %
 % \begin{abstract}
 % This package contains almost all the latex macros I heavily use in my tcs
@@ -297,6 +299,7 @@ install" installs the files in the local TeX tree.
   % AMS Packages
   \RequirePackage{amsmath}
   \RequirePackage{amssymb}
+  \RequirePackage{stmaryrd}
   \interdisplaylinepenalty=2500
 \fi
 
@@ -3674,37 +3677,48 @@ install" installs the files in the local TeX tree.
 %%****************************************************************************%%
 %    \end{macrocode}
 
-% \begin{macro}{\mthlopr, ...}
+% \begin{macro}{\mthluop, ...}
 %   ... to do!
 %   \small
 %   \begin{itemize}
 %     \item
-%       \verb=\mthlopr{\oplus}[sub][sup][Ext]= = \mthlopr{\oplus}[sub][sup][Ext]
+%       \verb=\mthluop{\oplus}[sub][sup][Ext]= = \mthluop{\oplus}[sub][sup][Ext]
+%     \item
+%       \verb=\mthlbop{\oplus}[sub][sup][Ext]= = \mthlbop{\oplus}[sub][sup][Ext]
 %   \end{itemize}
 %    \begin{macrocode}
 %% Style for \LaTex Operators
-\cmdmth{lopr}\newcommand{\mthstylopr}[1]{\textstyle\mathop{#1}}
+\cmdmth{luop}\newcommand{\mthstyluop}[1]{\textstyle\mathop{#1}}
+\cmdmth{lbop}\newcommand{\mthstylbop}[1]{\textstyle\mathbin{#1}}
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\cmdmthlopr}
+% \begin{macro}{\cmdmthluop, ...}
 %   ... to do!
 %   \small
 %   \begin{itemize}
 %     \item
-%       \verb=\cmdmthlopr{cmdName}=;\cmdmthlopr{cmdName} \\
-%       \verb=\cmdNameOpr[sub][sub][ext]= = \cmdNameOpr[sub][sub][ext]
+%       \verb=\cmdmthluop{cmdName}=;\cmdmthluop{cmdName} \\
+%       \verb=\cmdNameUOp[sub][sub][ext]= = \cmdNameUOp[sub][sub][ext]
 %     \item
-%       \verb=\cmdmthlopr{cmdName}[\oplus]=;\cmdmthlopr{cmdName}[\oplus] \\
-%       \verb=\cmdNameOpr[sub][sub][ext]= = \cmdNameOpr[sub][sub][ext]
+%       \verb=\cmdmthluop{cmdName}[\oplus]=;\cmdmthluop{cmdName}[\oplus] \\
+%       \verb=\cmdNameUOp[sub][sub][ext]= = \cmdNameUOp[sub][sub][ext]
+%     \item
+%       \verb=\cmdmthlbop{cmdName}=;\cmdmthlbop{cmdName} \\
+%       \verb=\cmdNameBOp[sub][sub][ext]= = \cmdNameBOp[sub][sub][ext]
+%     \item
+%       \verb=\cmdmthlbop{cmdName}[\oplus]=;\cmdmthlbop{cmdName}[\oplus] \\
+%       \verb=\cmdNameBOp[sub][sub][ext]= = \cmdNameBOp[sub][sub][ext]
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\cmdmthlopr}[2][2=]
-  {\usrmth{#1}{Opr}{lopr}[#2]}
+\newcommandx{\cmdmthluop}[2][2=]
+  {\usrmth{#1}{UOp}{luop}[#2]}
+\newcommandx{\cmdmthlbop}[2][2=]
+  {\usrmth{#1}{BOp}{lbop}[#2]}
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\mthlrel, ...}
+% \begin{macro}{\mthlrel}
 %   ... to do!
 %   \small
 %   \begin{itemize}
@@ -4894,9 +4908,9 @@ install" installs the files in the local TeX tree.
 %   ...
 %    \begin{macrocode}
 \DeclareRobustCommand{\defeq}
-  {\mthlopr{\triangleq}}
+  {\mthlbop{\triangleq}}
 \DeclareRobustCommand{\seteq}
-  {\mthlopr{:=}}
+  {\mthlbop{:=}}
 %    \end{macrocode}
 % \end{macro}
 
@@ -5106,7 +5120,7 @@ install" installs the files in the local TeX tree.
 %   ...
 %    \begin{macrocode}
 \DeclareRobustCommand{\rst}
-  {\mthlopr{\upharpoonright}}
+  {\mthlbop{\upharpoonright}}
 %    \end{macrocode}
 % \end{macro}
 
@@ -5114,7 +5128,7 @@ install" installs the files in the local TeX tree.
 %   ...
 %    \begin{macrocode}
 \DeclareRobustCommand{\cmp}
-  {\mthlopr{\circ}}
+  {\mthlbop{\circ}}
 %    \end{macrocode}
 % \end{macro}
 
@@ -5162,6 +5176,10 @@ install" installs the files in the local TeX tree.
   {\mthfun{gfp}}
 %    \end{macrocode}
 % \end{macro}
+
+%    \begin{macrocode}
+%%****************************************************************************%%
+%    \end{macrocode}
 
 % \begin{macro}{\Aomega, \AOmega}
 %   ...
@@ -5918,6 +5936,14 @@ install" installs the files in the local TeX tree.
 %    \end{macrocode}
 % \end{macro}
 
+% \begin{macro}{\PlrFun}
+%   ...
+%    \begin{macrocode}
+\newcommand{\plrfun}{pl}
+\cmdmthfun{plr}[\plrfun]
+%    \end{macrocode}
+% \end{macro}
+
 % \begin{macro}{\MovRel}
 %   ...
 %    \begin{macrocode}
@@ -6226,13 +6252,33 @@ install" installs the files in the local TeX tree.
 %    \end{macrocode}
 % \end{macro}
 
+% \begin{macro}{\LNeg, \LNot}
+%   ...
+%    \begin{macrocode}
+\newcommand{\lnegsym}{\neg}
+\usrmth{LNeg}{}{luop}[\lnegsym]
+\newcommand{\lnotsym}{\sim}
+\usrmth{LNot}{}{luop}[\lnotsym]
+%    \end{macrocode}
+% \end{macro}
+
 % \begin{macro}{\LCon, \LDis}
 %   ...
 %    \begin{macrocode}
 \newcommand{\lconsym}{\land}
-\usrmth{LCon}{}{lopr}[\lconsym]
+\usrmth{LCon}{}{lbop}[\lconsym]
 \newcommand{\ldissym}{\lor}
-\usrmth{LDis}{}{lopr}[\ldissym]
+\usrmth{LDis}{}{lbop}[\ldissym]
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\LImp, \LCoi}
+%   ...
+%    \begin{macrocode}
+\newcommand{\limpsym}{\leftrightarrow}
+\usrmth{LImp}{}{lbop}[\limpsym]
+\newcommand{\lcoisym}{\rightarrow}
+\usrmth{LCoi}{}{lbop}[\lcoisym]
 %    \end{macrocode}
 % \end{macro}
 
@@ -6240,9 +6286,9 @@ install" installs the files in the local TeX tree.
 %   ...
 %    \begin{macrocode}
 \newcommand{\lexssym}{\exists}
-\usrmth{LExs}{}{lopr}[\lexssym]
+\usrmth{LExs}{}{luop}[\lexssym]
 \newcommand{\lallsym}{\forall}
-\usrmth{LAll}{}{lopr}[\lallsym]
+\usrmth{LAll}{}{luop}[\lallsym]
 %    \end{macrocode}
 % \end{macro}
 
@@ -6289,10 +6335,11 @@ install" installs the files in the local TeX tree.
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\free}
+% \begin{macro}{\free, \bound}
 %   ...
 %    \begin{macrocode}
 \usrmth{free}{}{argfun}
+\usrmth{bound}{}{argfun}
 %    \end{macrocode}
 % \end{macro}
 
@@ -6485,6 +6532,9 @@ install" installs the files in the local TeX tree.
 % Dependence/Independence-Friendly Logic
 \cmdtxtoparname{DIF}
 
+% Dependence Logic
+\cmdtxtoparname{DL}
+
 % Team Logic
 \cmdtxtoparname{TL}
 
@@ -6509,9 +6559,9 @@ install" installs the files in the local TeX tree.
 %   ...
 %    \begin{macrocode}
 \newcommand{\leexssym}{\Sigma}
-\usrmth{LEExs}{}{lopr}[\leexssym]
+\usrmth{LEExs}{}{luop}[\leexssym]
 \newcommand{\laallsym}{\Pi}
-\usrmth{LAAll}{}{lopr}[\laallsym]
+\usrmth{LAAll}{}{luop}[\laallsym]
 %    \end{macrocode}
 % \end{macro}
 
