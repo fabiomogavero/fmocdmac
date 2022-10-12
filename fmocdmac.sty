@@ -16,7 +16,7 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesPackage{fmocdmac}
-  [2022/10/03 v0.9 FM's OCD LaTeX Macro]
+  [2022/10/12 v0.10 FM's OCD LaTeX Macro]
 
 \RequirePackage{etoolbox}
 
@@ -455,7 +455,7 @@
   {\newmthopar[\defval{#2}{#1}]}
 
 \newcommand{\mthsubsup}[2]
-  {\empchk{#1}{_{#1}}\empchk{#2}{^{#2}\!}}
+  {\empchk{#1}{_{#1}}\empchk{#2}{^{#2}}}
 
 %%****************************************************************************%%
 
@@ -2328,7 +2328,7 @@
 \iffig@
 
 \RequirePackage{tikz}
-\usetikzlibrary{arrows,shapes,patterns}
+\usetikzlibrary{arrows,graphs,matrix,patterns,shapes}
 
 \tikzstyle{every node} =
   [draw = none, fill = none, black, thin]
