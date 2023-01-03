@@ -41,7 +41,7 @@ fmocdmac:| FM's OCD LaTeX Macros
 \endpreamble
 \postamble
 
-Copyright (C) 2020-2022 by Fabio Mogavero <fm@fabiomogavero.com>
+Copyright (C) 2020-2023 by Fabio Mogavero <fm@fabiomogavero.com>
 
 This work may be distributed and/or modified under the conditions of the
 LaTeX Project Public License (LPPL), either version 1.3c of this license or
@@ -80,7 +80,7 @@ install" installs the files in the local TeX tree.
 %<package>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
 %<package>\ProvidesPackage{fmocdmac}
 %<*package>
-  [2022/10/12 v0.10 FM's OCD LaTeX Macro]
+  [2023/01/03 v0.11 FM's OCD LaTeX Macro]
 %</package>
 %<*driver>
 \documentclass{ltxdoc}
@@ -129,6 +129,8 @@ install" installs the files in the local TeX tree.
 % \changes{v0.9}{2022/10/03}{Small addition to `Algorithm tricks'}
 %
 % \changes{v0.10}{2022/10/12}{Small refinements}
+%
+% \changes{v0.11}{2023/01/03}{Few additions}
 %
 % \begin{abstract}
 % This package contains almost all the latex macros I heavily use in my tcs
@@ -6404,10 +6406,13 @@ install" installs the files in the local TeX tree.
 %    \begin{macrocode}
 % First-Order Logic
 \cmdtxtoparname{FOL}[Fol]
+\cmdtxtoparname{FO}[FO]
 
 % Monadic First-Order Logic
 \DeclareRobustCommand{\MFOL}
   {{\txtname{M}}\FOL}
+\DeclareRobustCommand{\MFO}
+  {{\txtname{M}}\FO}
 %    \end{macrocode}
 % \end{macro}
 
@@ -6584,10 +6589,37 @@ install" installs the files in the local TeX tree.
 %    \begin{macrocode}
 % Second-Order Logic
 \cmdtxtoparname{SOL}[Sol]
+\cmdtxtoparname{SO}
+
+% Weak Second-Order Logic
+\DeclareRobustCommand{\WSOL}
+  {{\txtname{W}}\SOL}
+\DeclareRobustCommand{\WSO}
+  {{\txtname{W}}\SO}
+
+% coWeak Second-Order Logic
+\DeclareRobustCommand{\coWSOL}
+  {{\txtname{coW}}\SOL}
+\DeclareRobustCommand{\coWSO}
+  {{\txtname{coW}}\SO}
 
 % Monadic Second-Order Logic
 \DeclareRobustCommand{\MSOL}
   {{\txtname{M}}\SOL}
+\DeclareRobustCommand{\MSO}
+  {{\txtname{M}}\SO}
+
+% Weak Monadic Second-Order Logic
+\DeclareRobustCommand{\WMSOL}
+  {{\txtname{W}}\MSOL}
+\DeclareRobustCommand{\WMSO}
+  {{\txtname{W}}\MSO}
+
+% coWeak Monadic Second-Order Logic
+\DeclareRobustCommand{\coWMSOL}
+  {{\txtname{coW}}\MSOL}
+\DeclareRobustCommand{\coWMSO}
+  {{\txtname{coW}}\MSO}
 %    \end{macrocode}
 % \end{macro}
 
@@ -6629,16 +6661,48 @@ install" installs the files in the local TeX tree.
 % Tree Logic
 \cmdtxtoparname{TL}
 
+% Weak Tree Logic
+\DeclareRobustCommand{\WTL}
+  {{\txtname{W}}\TL}
+
+% coWeak Tree Logic
+\DeclareRobustCommand{\coWTL}
+  {{\txtname{coW}}\TL}
+
 % Monadic Tree Logic
 \DeclareRobustCommand{\MTL}
   {{\txtname{M}}\TL}
 
+% Weak Monadic Tree Logic
+\DeclareRobustCommand{\WMTL}
+  {{\txtname{W}}\MTL}
+
+% coWeak Monadic Tree Logic
+\DeclareRobustCommand{\coWMTL}
+  {{\txtname{coW}}\MTL}
+
 % Path Logic
 \cmdtxtoparname{PL}
+
+% Weak Path Logic
+\DeclareRobustCommand{\WPL}
+  {{\txtname{W}}\PL}
+
+% coWeak Path Logic
+\DeclareRobustCommand{\coWPL}
+  {{\txtname{coW}}\PL}
 
 % Monadic Path Logic
 \DeclareRobustCommand{\MPL}
   {{\txtname{M}}\PL}
+
+% Weak Monadic Path Logic
+\DeclareRobustCommand{\WMPL}
+  {{\txtname{W}}\MPL}
+
+% coWeak Monadic Path Logic
+\DeclareRobustCommand{\coWMPL}
+  {{\txtname{coW}}\MPL}
 %    \end{macrocode}
 % \end{macro}
 
@@ -6861,6 +6925,10 @@ install" installs the files in the local TeX tree.
 % Computation Tree Logic
 \cmdtxtoparname{CTL}
 
+% Weak Computation Tree Logic
+\DeclareRobustCommand{\WCTL}
+  {{\txtname{W}}\CTL}
+
 % Quantified Computation Tree Logic
 \DeclareRobustCommand{\QCTL}
   {{\txtname{Q}}\CTL}
@@ -6872,6 +6940,10 @@ install" installs the files in the local TeX tree.
 % Improved Computation Tree Logic
 \cmdtxtoparname{CTLP}[CTL$^{+}$]
 
+% Weak Improved Computation Tree Logic
+\DeclareRobustCommand{\WCTLP}
+  {{\txtname{W}}\CTLP}
+
 % Quantified Improved Computation Tree Logic
 \DeclareRobustCommand{\QCTLP}
   {{\txtname{Q}}\CTLP}
@@ -6882,6 +6954,10 @@ install" installs the files in the local TeX tree.
 
 % Full Computation Tree Logic
 \cmdtxtoparname{CTLS}[CTL*]
+
+% Weak Full Computation Tree Logic
+\DeclareRobustCommand{\WCTLS}
+  {{\txtname{W}}\CTLS}
 
 % Quantified Full Computation Tree Logic
 \DeclareRobustCommand{\QCTLS}
@@ -6921,6 +6997,10 @@ install" installs the files in the local TeX tree.
 % Alternating Temporal Logic
 \cmdtxtoparname{ATL}
 
+% Weak Alternating Tree Logic
+\DeclareRobustCommand{\WATL}
+  {{\txtname{W}}\ATL}
+
 % Quantified Alternating Temporal Logic
 \DeclareRobustCommand{\QATL}
   {{\txtname{Q}}\ATL}
@@ -6932,6 +7012,10 @@ install" installs the files in the local TeX tree.
 % Improved Alternating Temporal Logic
 \cmdtxtoparname{ATLP}[ATL$^{+}$]
 
+% Weak Improved Alternating Tree Logic
+\DeclareRobustCommand{\WATLP}
+  {{\txtname{W}}\ATLP}
+
 % Quantified Improved Alternating Temporal Logic
 \DeclareRobustCommand{\QATLP}
   {{\txtname{Q}}\ATLP}
@@ -6942,6 +7026,10 @@ install" installs the files in the local TeX tree.
 
 % Full Alternating Temporal Logic
 \cmdtxtoparname{ATLS}[ATL*]
+
+% Weak Full Alternating Tree Logic
+\DeclareRobustCommand{\WATLS}
+  {{\txtname{W}}\ATLS}
 
 % Quantified Full Alternating Temporal Logic
 \DeclareRobustCommand{\QATLS}

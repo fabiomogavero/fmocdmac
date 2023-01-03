@@ -16,7 +16,7 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesPackage{fmocdmac}
-  [2022/10/12 v0.10 FM's OCD LaTeX Macro]
+  [2023/01/03 v0.11 FM's OCD LaTeX Macro]
 
 \RequirePackage{etoolbox}
 
@@ -1684,9 +1684,12 @@
 %%** First-Order Logics I ****************************************************%%
 
 \cmdtxtoparname{FOL}[Fol]
+\cmdtxtoparname{FO}[FO]
 
 \DeclareRobustCommand{\MFOL}
   {{\txtname{M}}\FOL}
+\DeclareRobustCommand{\MFO}
+  {{\txtname{M}}\FO}
 
 %%** Syntax ******************************************************************%%
 
@@ -1777,9 +1780,32 @@
 %%** Second-Order Logics I ***************************************************%%
 
 \cmdtxtoparname{SOL}[Sol]
+\cmdtxtoparname{SO}
+
+\DeclareRobustCommand{\WSOL}
+  {{\txtname{W}}\SOL}
+\DeclareRobustCommand{\WSO}
+  {{\txtname{W}}\SO}
+
+\DeclareRobustCommand{\coWSOL}
+  {{\txtname{coW}}\SOL}
+\DeclareRobustCommand{\coWSO}
+  {{\txtname{coW}}\SO}
 
 \DeclareRobustCommand{\MSOL}
   {{\txtname{M}}\SOL}
+\DeclareRobustCommand{\MSO}
+  {{\txtname{M}}\SO}
+
+\DeclareRobustCommand{\WMSOL}
+  {{\txtname{W}}\MSOL}
+\DeclareRobustCommand{\WMSO}
+  {{\txtname{W}}\MSO}
+
+\DeclareRobustCommand{\coWMSOL}
+  {{\txtname{coW}}\MSOL}
+\DeclareRobustCommand{\coWMSO}
+  {{\txtname{coW}}\MSO}
 
 %%** Syntax ******************************************************************%%
 
@@ -1799,13 +1825,37 @@
 
 \cmdtxtoparname{TL}
 
+\DeclareRobustCommand{\WTL}
+  {{\txtname{W}}\TL}
+
+\DeclareRobustCommand{\coWTL}
+  {{\txtname{coW}}\TL}
+
 \DeclareRobustCommand{\MTL}
   {{\txtname{M}}\TL}
 
+\DeclareRobustCommand{\WMTL}
+  {{\txtname{W}}\MTL}
+
+\DeclareRobustCommand{\coWMTL}
+  {{\txtname{coW}}\MTL}
+
 \cmdtxtoparname{PL}
+
+\DeclareRobustCommand{\WPL}
+  {{\txtname{W}}\PL}
+
+\DeclareRobustCommand{\coWPL}
+  {{\txtname{coW}}\PL}
 
 \DeclareRobustCommand{\MPL}
   {{\txtname{M}}\PL}
+
+\DeclareRobustCommand{\WMPL}
+  {{\txtname{W}}\MPL}
+
+\DeclareRobustCommand{\coWMPL}
+  {{\txtname{coW}}\MPL}
 
 %%** Syntax ******************************************************************%%
 
@@ -1924,6 +1974,9 @@
 
 \cmdtxtoparname{CTL}
 
+\DeclareRobustCommand{\WCTL}
+  {{\txtname{W}}\CTL}
+
 \DeclareRobustCommand{\QCTL}
   {{\txtname{Q}}\CTL}
 \DeclareRobustCommand{\ECTL}
@@ -1933,6 +1986,9 @@
 
 \cmdtxtoparname{CTLP}[CTL$^{+}$]
 
+\DeclareRobustCommand{\WCTLP}
+  {{\txtname{W}}\CTLP}
+
 \DeclareRobustCommand{\QCTLP}
   {{\txtname{Q}}\CTLP}
 \DeclareRobustCommand{\ECTLP}
@@ -1941,6 +1997,9 @@
   {\ensuremath{\forall}\CTLP}
 
 \cmdtxtoparname{CTLS}[CTL*]
+
+\DeclareRobustCommand{\WCTLS}
+  {{\txtname{W}}\CTLS}
 
 \DeclareRobustCommand{\QCTLS}
   {{\txtname{Q}}\CTLS}
@@ -1962,6 +2021,9 @@
 
 \cmdtxtoparname{ATL}
 
+\DeclareRobustCommand{\WATL}
+  {{\txtname{W}}\ATL}
+
 \DeclareRobustCommand{\QATL}
   {{\txtname{Q}}\ATL}
 \DeclareRobustCommand{\EATL}
@@ -1971,6 +2033,9 @@
 
 \cmdtxtoparname{ATLP}[ATL$^{+}$]
 
+\DeclareRobustCommand{\WATLP}
+  {{\txtname{W}}\ATLP}
+
 \DeclareRobustCommand{\QATLP}
   {{\txtname{Q}}\ATLP}
 \DeclareRobustCommand{\EATLP}
@@ -1979,6 +2044,9 @@
   {\ensuremath{\forall}\ATLP}
 
 \cmdtxtoparname{ATLS}[ATL*]
+
+\DeclareRobustCommand{\WATLS}
+  {{\txtname{W}}\ATLS}
 
 \DeclareRobustCommand{\QATLS}
   {{\txtname{Q}}\ATLS}
@@ -2399,7 +2467,7 @@
 %%****************************************************************************%%
 
 %% 
-%% Copyright (C) 2020-2022 by Fabio Mogavero <fm@fabiomogavero.com>
+%% Copyright (C) 2020-2023 by Fabio Mogavero <fm@fabiomogavero.com>
 %% 
 %% This work may be distributed and/or modified under the conditions of the
 %% LaTeX Project Public License (LPPL), either version 1.3c of this license or
