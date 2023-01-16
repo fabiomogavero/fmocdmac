@@ -16,7 +16,7 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesPackage{fmocdmac}
-  [2023/01/03 v0.11 FM's OCD LaTeX Macro]
+  [2023/01/16 v0.11 FM's OCD LaTeX Macro]
 
 \RequirePackage{etoolbox}
 
@@ -1869,6 +1869,9 @@
 
 \cmdtxtoparname{ML}
 
+\DeclareRobustCommand{\GML}
+  {{\txtname{G}}\ML}
+
 \DeclareRobustCommand{\QML}
   {{\txtname{Q}}\ML}
 \DeclareRobustCommand{\EML}
@@ -1914,12 +1917,29 @@
 
 \cmdtxtoparname{MC}[\ensuremath{\mu}-Calculus]
 
+\DeclareRobustCommand{\GMC}
+  {{\txtname{G}}\MC}
+
 \DeclareRobustCommand{\QMC}
   {{\txtname{Q}}\MC}
 \DeclareRobustCommand{\EMC}
   {\ensuremath{\exists}\MC}
 \DeclareRobustCommand{\UMC}
   {\ensuremath{\forall}\MC}
+
+\DeclareRobustCommand{\AFMC}
+  {{\txtname{AF}}\MC}
+
+\DeclareRobustCommand{\AFGMC}
+  {{\txtname{AF}}\GMC}
+
+\DeclareRobustCommand{\QAFMC}
+  {{\txtname{Q}}\AFMC}
+\DeclareRobustCommand{\EAFMC}
+  {\ensuremath{\exists}\AFMC}
+\DeclareRobustCommand{\UAFMC}
+  {\ensuremath{\forall}\AFMC}
+
 
 %%** Syntax ******************************************************************%%
 
