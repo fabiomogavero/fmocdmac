@@ -80,7 +80,7 @@ install" installs the files in the local TeX tree.
 %<package>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
 %<package>\ProvidesPackage{fmocdmac}
 %<*package>
-  [2023/01/16 v0.11 FM's OCD LaTeX Macro]
+  [2023/01/23 v0.12 FM's OCD LaTeX Macro]
 %</package>
 %<*driver>
 \documentclass{ltxdoc}
@@ -131,6 +131,8 @@ install" installs the files in the local TeX tree.
 % \changes{v0.10}{2022/10/12}{Small refinements}
 %
 % \changes{v0.11}{2023/01/16}{Few additions and corrections}
+%
+% \changes{v0.12}{2023/01/23}{New starred variants}
 %
 % \begin{abstract}
 % This package contains almost all the latex macros I heavily use in my tcs
@@ -327,9 +329,7 @@ install" installs the files in the local TeX tree.
 \ifhypref@
   % Hyper References
   \RequirePackage{hyperref}
-
-  \hypersetup
-    {
+  \hypersetup {
     pdfsubject    = {},
     pdfkeywords   = {},
     pdfproducer   = {},
@@ -338,7 +338,7 @@ install" installs the files in the local TeX tree.
     pdfstartview  = {FitH},
     urlcolor      = {blue},
     colorlinks
-    }
+  }
 \fi
 
 \iffnttls@
@@ -4914,9 +4914,11 @@ install" installs the files in the local TeX tree.
 %   ...
 %    \begin{macrocode}
 \DeclareRobustCommand{\defeq}
-  {\mthlbop{\triangleq}}
+  {\@ifstar%
+    {\mthlbop{\stackrel{\text{\textup{def}}}{=}}}%
+    {\mthlbop{\triangleq}}}
 \DeclareRobustCommand{\seteq}
-  {\mthlbop{:=}}
+  {\@ifstar{\mthlbop{::=}}{\mthlbop{:=}}}
 %    \end{macrocode}
 % \end{macro}
 
@@ -4999,8 +5001,12 @@ install" installs the files in the local TeX tree.
 % \begin{macro}{\vec}
 %   ...
 %    \begin{macrocode}
-\DeclareRobustCommand{\vec}[1]
+\DeclareRobustCommand{\vec}
+  {\@ifstar{\@svec}{\@vec}}
+\DeclareRobustCommand{\@vec}[1]
   {\mth{\mathaccent"017E{#1}}}
+\DeclareRobustCommand{\@svec}[1]
+  {\mth{\overline{#1}}}
 %    \end{macrocode}
 % \end{macro}
 
@@ -5047,20 +5053,28 @@ install" installs the files in the local TeX tree.
 % \begin{macro}{\set, ...}
 %   ...
 %    \begin{macrocode}
-\DeclareRobustCommand{\set}[2]
-  {\argmid{\left\lbrace}{\argsep{#1}{\,\middle\vert\,}{#2}}{\right\rbrace}}
-\DeclareRobustCommand{\setl}[1]
-  {\argmid{\left\lbrace}{#1}{\,\right\vert\!}}
-\DeclareRobustCommand{\setr}[1]
-  {\argmid{\left.}{#1}{\right\rbrace}}
+\DeclareRobustCommand{\set}
+  {\@ifstar{\@set}{\@set[\left][\middle][\right]}}
+\DeclareRobustCommandx{\@set}[5][1=, 2=, 3=]
+  {\mth{\argmid{#1\lbrace}{\argsep{#4}{\,#2\vert\,}{#5}}{#3\rbrace}}}
+\DeclareRobustCommand{\setl}
+  {\@ifstar{\@setl}{\@setl[\left][\right]}}
+\DeclareRobustCommandx{\@setl}[3][1=, 2=]
+  {\mth{\argmid{#1\lbrace}{#3}{\,#2\vert\!}}}
+\DeclareRobustCommand{\setr}
+  {\@ifstar{\@setr}{\@setr[\left.][\right]}}
+\DeclareRobustCommandx{\@setr}[3][1=, 2=]
+  {\mth{\argmid{#1}{#3}{#2\rbrace}}}
 %    \end{macrocode}
 % \end{macro}
 
 % \begin{macro}{\card}
 %   ...
 %    \begin{macrocode}
-\DeclareRobustCommand{\card}[1]
-  {\mth{\argmid{\lvert}{#1}{\rvert}}}
+\DeclareRobustCommand{\card}
+  {\@ifstar{\@card}{\@card[\left][\right]}}
+\DeclareRobustCommandx{\@card}[3][1=, 2=]
+  {\mth{\argmid{#1\lvert}{#3}{#2\rvert}}}
 %    \end{macrocode}
 % \end{macro}
 
@@ -5075,8 +5089,10 @@ install" installs the files in the local TeX tree.
 % \begin{macro}{\denot}
 %   ...
 %    \begin{macrocode}
-\DeclareRobustCommand{\denot}[1]
-  {\mth{\argmid{\llbracket}{#1}{\rrbracket}}}
+\DeclareRobustCommand{\denot}
+  {\@ifstar{\@denot}{\@denot[\left][\right]}}
+\DeclareRobustCommandx{\@denot}[3][1=, 2=]
+  {\mth{\argmid{#1\llbracket}{#3}{#2\rrbracket}}}
 %    \end{macrocode}
 % \end{macro}
 
@@ -5326,10 +5342,14 @@ install" installs the files in the local TeX tree.
 % \begin{macro}{\floor, \ceil}
 %   ...
 %    \begin{macrocode}
-\DeclareRobustCommand{\floor}[1]
-  {\mth{\argmid{\left\lfloor}{#1}{\right\rfloor}}}
-\DeclareRobustCommand{\ceil}[1]
-  {\mth{\argmid{\left\lceil}{#1}{\right\rceil}}}
+\DeclareRobustCommand{\floor}
+  {\@ifstar{\@floor}{\@floor[\left][\right]}}
+\DeclareRobustCommandx{\@floor}[3][1=, 2=]
+  {\mth{\argmid{#1\lfloor}{#3}{#2\rfloor}}}
+\DeclareRobustCommand{\ceil}
+  {\@ifstar{\@ceil}{\@ceil[\left][\right]}}
+\DeclareRobustCommandx{\@ceil}[3][1=, 2=]
+  {\mth{\argmid{#1\lceil}{#3}{#2\rceil}}}
 %    \end{macrocode}
 % \end{macro}
 
@@ -7418,9 +7438,11 @@ install" installs the files in the local TeX tree.
 %%** Finite Word Automata ****************************************************%%
 %    \end{macrocode}
 
-% \begin{macro}{\DWA, ...}
+% \begin{macro}{\DFA, ...}
 %   ...
 %    \begin{macrocode}
+\cmdtxtoparname{DFA}\cmdtxtoparname{NFA}\cmdtxtoparname{UFA}\cmdtxtoparname{AFA}
+
 \cmdtxtoparname{DWA}\cmdtxtoparname{NWA}\cmdtxtoparname{UWA}\cmdtxtoparname{AWA}
 
 \cmdtxtoparname{DFW}\cmdtxtoparname{NFW}\cmdtxtoparname{UFW}\cmdtxtoparname{AFW}
