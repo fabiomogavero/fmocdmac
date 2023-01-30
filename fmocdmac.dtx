@@ -557,7 +557,7 @@ install" installs the files in the local TeX tree.
 %   \end{itemize}
 %    \begin{macrocode}
 \newcommand{\argsep}[3]
-  {\if&#1&#3\else#1\allowbreak\arglef{#2}{#3}\fi}
+  {\if&#1&#3\else#1\arglef{\allowbreak#2}{#3}\fi}
 %    \end{macrocode}
 % \end{macro}
 
