@@ -4984,6 +4984,20 @@ install" installs the files in the local TeX tree.
 %%****************************************************************************%%
 %    \end{macrocode}
 
+% \begin{macro}{\denot}
+%   ...
+%    \begin{macrocode}
+\DeclareRobustCommand{\denot}
+  {\@ifstar{\@denot}{\@denot[\left][\right]}}
+\DeclareRobustCommandx{\@denot}[3][1=, 2=]
+  {\mth{\argmid{#1\llbracket}{#3}{#2\rrbracket}}}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+%%****************************************************************************%%
+%    \end{macrocode}
+
 % \begin{macro}{\dual, \adj, ...}
 %   ...
 %    \begin{macrocode}
@@ -5083,16 +5097,6 @@ install" installs the files in the local TeX tree.
 %    \begin{macrocode}
 \DeclareRobustCommand{\pow}[1]
   {\mth{2^{\defval{#1}{\cdot}}}}
-%    \end{macrocode}
-% \end{macro}
-
-% \begin{macro}{\denot}
-%   ...
-%    \begin{macrocode}
-\DeclareRobustCommand{\denot}
-  {\@ifstar{\@denot}{\@denot[\left][\right]}}
-\DeclareRobustCommandx{\@denot}[3][1=, 2=]
-  {\mth{\argmid{#1\llbracket}{#3}{#2\rrbracket}}}
 %    \end{macrocode}
 % \end{macro}
 
@@ -5338,6 +5342,16 @@ install" installs the files in the local TeX tree.
 %    \begin{macrocode}
 %%****************************************************************************%%
 %    \end{macrocode}
+
+% \begin{macro}{\abs}
+%   ...
+%    \begin{macrocode}
+\DeclareRobustCommand{\abs}
+  {\@ifstar{\@abs}{\@abs[\left][\right]}}
+\DeclareRobustCommandx{\@abs}[3][1=, 2=]
+  {\mth{\argmid{#1\lvert}{#3}{#2\rvert}}}
+%    \end{macrocode}
+% \end{macro}
 
 % \begin{macro}{\floor, \ceil}
 %   ...

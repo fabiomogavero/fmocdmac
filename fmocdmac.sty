@@ -1122,6 +1122,13 @@
 
 %%****************************************************************************%%
 
+\DeclareRobustCommand{\denot}
+  {\@ifstar{\@denot}{\@denot[\left][\right]}}
+\DeclareRobustCommandx{\@denot}[3][1=, 2=]
+  {\mth{\argmid{#1\llbracket}{#3}{#2\rrbracket}}}
+
+%%****************************************************************************%%
+
 \DeclareRobustCommand{\dual}[1]
   {\mth{\overline{#1}}}
 \DeclareRobustCommand{\adj}[1]
@@ -1179,11 +1186,6 @@
 
 \DeclareRobustCommand{\pow}[1]
   {\mth{2^{\defval{#1}{\cdot}}}}
-
-\DeclareRobustCommand{\denot}
-  {\@ifstar{\@denot}{\@denot[\left][\right]}}
-\DeclareRobustCommandx{\@denot}[3][1=, 2=]
-  {\mth{\argmid{#1\llbracket}{#3}{#2\rrbracket}}}
 
 %%** Relations ***************************************************************%%
 
@@ -1312,6 +1314,11 @@
   {\mth{(\argsep{#1}{,}{#2})}}
 
 %%****************************************************************************%%
+
+\DeclareRobustCommand{\abs}
+  {\@ifstar{\@abs}{\@abs[\left][\right]}}
+\DeclareRobustCommandx{\@abs}[3][1=, 2=]
+  {\mth{\argmid{#1\lvert}{#3}{#2\rvert}}}
 
 \DeclareRobustCommand{\floor}
   {\@ifstar{\@floor}{\@floor[\left][\right]}}
