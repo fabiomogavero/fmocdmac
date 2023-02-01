@@ -16,7 +16,7 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesPackage{fmocdmac}
-  [2023/01/23 v0.12 FM's OCD LaTeX Macro]
+  [2023/02/01 v0.13 FM's OCD LaTeX Macro]
 
 \RequirePackage{etoolbox}
 
@@ -261,16 +261,16 @@
 %%****************************************************************************%%
 
 \newcommand{\arglef}[2]
-  {\empchk{#2}{#1\allowbreak#2}}
+  {\empchk{#2}{#1#2}}
 
 \newcommand{\argrig}[2]
-  {\empchk{#1}{#1\allowbreak#2}}
+  {\empchk{#1}{#1#2}}
 
 \newcommand{\argmid}[3]
-  {\empchk{#2}{#1\allowbreak#2\allowbreak#3}}
+  {\empchk{#2}{#1#2#3}}
 
 \newcommand{\argsep}[3]
-  {\if&#1&#3\else#1\arglef{\allowbreak#2}{#3}\fi}
+  {\if&#1&#3\else#1\arglef{#2}{#3}\fi}
 
 %%****************************************************************************%%
 
@@ -345,7 +345,7 @@
   {\newtxt[\defval{#2}{#1}]}
 
 \newcommandx{\newtxtarg}[7][1=, 3=, 4=, 5=, 7=]
-  {\newtxt[#1]{#2}[#3][#4][#5\argmid{(}{#6}{)}#7]}
+  {\newtxt[#1]{#2}[#3][#4][\argmid{#5(}{#6}{)#7}]}
 
 \newcommandx{\newtxtargsty}[2][2=]
   {\newtxtarg[\defval{#2}{#1}]}
@@ -357,7 +357,7 @@
   {\newtxtoarg[\defval{#2}{#1}]}
 
 \newcommandx{\newtxtpar}[7][1=, 3=, 4=, 5=, 7=]
-  {\newtxt[#1]{#2}[#3][#4][#5\argmid{[}{#6}{]}#7]}
+  {\newtxt[#1]{#2}[#3][#4][\argmid{#5[}{#6}{]#7}]}
 
 \newcommandx{\newtxtparsty}[2][2=]
   {\newtxtpar[\defval{#2}{#1}]}
@@ -428,29 +428,61 @@
 \newcommandx{\newmthsty}[2][2=]
   {\newmth[\defval{#2}{#1}]}
 
-\newcommandx{\newmtharg}[7][1=, 3=, 4=, 5=, 7=]
-  {\newmth[#1]{#2}[#3][#4][#5\argmid{\!\left(}{#6}{\right)\arglef{\!}{#7}}]}
+\newcommand{\newmtharg}
+  {\@ifstar{\@snewmtharg}{\@newmtharg}}
+\newcommandx{\@newmtharg}[7][1=, 3=, 4=, 5=, 7=]
+  {\newmth[#1]{#2}[#3][#4][\argmid{#5\!\left(}{#6}{\right)\arglef{\!}{#7}}]}
+\newcommandx{\@snewmtharg}[7][1=, 3=, 4=, 5=, 7=]
+  {\newmth[#1]{#2}[#3][#4][\argmid{#5(}{#6}{)#7}]}
 
-\newcommandx{\newmthargsty}[2][2=]
+\newcommand{\newmthargsty}
+  {\@ifstar{\@snewmthargsty}{\@newmthargsty}}
+\newcommandx{\@newmthargsty}[2][2=]
   {\newmtharg[\defval{#2}{#1}]}
+\newcommandx{\@snewmthargsty}[2][2=]
+  {\newmtharg*[\defval{#2}{#1}]}
 
-\newcommandx{\newmthoarg}[5][1=, 3=, 4=, 5=]
+\newcommand{\newmthoarg}
+  {\@ifstar{\@snewmthoarg}{\@newmthoarg}}
+\newcommandx{\@newmthoarg}[5][1=, 3=, 4=, 5=]
   {\newmtharg[#1]{#2}[#3][#4][]{#5}[]}
+\newcommandx{\@snewmthoarg}[5][1=, 3=, 4=, 5=]
+  {\newmtharg*[#1]{#2}[#3][#4][]{#5}[]}
 
-\newcommandx{\newmthoargsty}[2][2=]
+\newcommand{\newmthoargsty}
+  {\@ifstar{\@snewmthoargsty}{\@newmthoargsty}}
+\newcommandx{\@newmthoargsty}[2][2=]
   {\newmthoarg[\defval{#2}{#1}]}
+\newcommandx{\@snewmthoargsty}[2][2=]
+  {\newmthoarg*[\defval{#2}{#1}]}
 
-\newcommandx{\newmthpar}[7][1=, 3=, 4=, 5=, 7=]
-  {\newmth[#1]{#2}[#3][#4][#5\argmid{\!\left[}{#6}{\right]\arglef{\!}{#7}}]}
+\newcommand{\newmthpar}
+  {\@ifstar{\@snewmthpar}{\@newmthpar}}
+\newcommandx{\@newmthpar}[7][1=, 3=, 4=, 5=, 7=]
+  {\newmth[#1]{#2}[#3][#4][\argmid{#5\!\left[}{#6}{\right]\arglef{\!}{#7}}]}
+\newcommandx{\@snewmthpar}[7][1=, 3=, 4=, 5=, 7=]
+  {\newmth[#1]{#2}[#3][#4][\argmid{#5[}{#6}{]#7}]}
 
-\newcommandx{\newmthparsty}[2][2=]
+\newcommand{\newmthparsty}
+  {\@ifstar{\@snewmthparsty}{\@newmthparsty}}
+\newcommandx{\@newmthparsty}[2][2=]
   {\newmthpar[\defval{#2}{#1}]}
+\newcommandx{\@snewmthparsty}[2][2=]
+  {\newmthpar*[\defval{#2}{#1}]}
 
-\newcommandx{\newmthopar}[5][1=, 3=, 4=, 5=]
+\newcommand{\newmthopar}
+  {\@ifstar{\@snewmthopar}{\@newmthopar}}
+\newcommandx{\@newmthopar}[5][1=, 3=, 4=, 5=]
   {\newmthpar[#1]{#2}[#3][#4][]{#5}[]}
+\newcommandx{\@snewmthopar}[5][1=, 3=, 4=, 5=]
+  {\newmthpar*[#1]{#2}[#3][#4][]{#5}[]}
 
-\newcommandx{\newmthoparsty}[2][2=]
+\newcommand{\newmthoparsty}
+  {\@ifstar{\@snewmthoparsty}{\@newmthoparsty}}
+\newcommandx{\@newmthoparsty}[2][2=]
   {\newmthopar[\defval{#2}{#1}]}
+\newcommandx{\@snewmthoparsty}[2][2=]
+  {\newmthopar*[\defval{#2}{#1}]}
 
 \newcommand{\mthsubsup}[2]
   {\empchk{#1}{_{#1}}\empchk{#2}{^{#2}}}
@@ -461,16 +493,16 @@
   {\newmthsty{\mthsty}}
 
 \newcommand{\mtharg}
-  {\newmthargsty{\mthsty}}
+  {\@ifstar{\newmthargsty*{\mthsty}}{\newmthargsty{\mthsty}}}
 
 \newcommand{\mthoarg}
-  {\newmthoargsty{\mthsty}}
+  {\@ifstar{\newmthoargsty*{\mthsty}}{\newmthoargsty{\mthsty}}}
 
 \newcommand{\mthpar}
-  {\newmthparsty{\mthsty}}
+  {\@ifstar{\newmthparsty*{\mthsty}}{\newmthparsty{\mthsty}}}
 
 \newcommand{\mthopar}
-  {\newmthoparsty{\mthsty}}
+  {\@ifstar{\newmthoparsty*{\mthsty}}{\newmthoparsty{\mthsty}}}
 
 \newcommand{\mthsty}
   {}
@@ -481,16 +513,20 @@
   {\csdef{mth#1}{\newmthsty{mthsty#1}}}
 
 \newcommand{\cmdmtharg}[1]
-  {\csdef{mtharg#1}{\newmthargsty{mthsty#1}}}
+  {\csdef{mtharg#1}%
+    {\@ifstar{\newmthargsty*{mthsty#1}}{\newmthargsty{mthsty#1}}}}
 
 \newcommand{\cmdmthoarg}[1]
-  {\csdef{mthoarg#1}{\newmthoargsty{mthsty#1}}}
+  {\csdef{mthoarg#1}%
+    {\@ifstar{\newmthoargsty*{mthsty#1}}{\newmthoargsty{mthsty#1}}}}
 
 \newcommand{\cmdmthpar}[1]
-  {\csdef{mthpar#1}{\newmthparsty{mthsty#1}}}
+  {\csdef{mthpar#1}%
+    {\@ifstar{\newmthparsty*{mthsty#1}}{\newmthparsty{mthsty#1}}}}
 
 \newcommand{\cmdmthopar}[1]
-  {\csdef{mthopar#1}{\newmthoparsty{mthsty#1}}}
+  {\csdef{mthopar#1}%
+    {\@ifstar{\newmthoparsty*{mthsty#1}}{\newmthoparsty{mthsty#1}}}}
 
 \newcommand{\cmdmthall}[1]
   {\cmdmth{#1}\cmdmtharg{#1}\cmdmthoarg{#1}\cmdmthpar{#1}\cmdmthopar{#1}}
@@ -498,7 +534,7 @@
 %%****************************************************************************%%
 
 \newcommandx{\usrmth}[4][4=]
-  {\csdef{#1#2}{\csname mth#3\endcsname{\defval{#4}{#1}}}}
+  {\csdef{#1#2}{\csname\expandafter mth#3\endcsname{\defval{#4}{#1}}}}
 
 %%****************************************************************************%%
 

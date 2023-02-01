@@ -80,7 +80,7 @@ install" installs the files in the local TeX tree.
 %<package>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
 %<package>\ProvidesPackage{fmocdmac}
 %<*package>
-  [2023/01/23 v0.12 FM's OCD LaTeX Macro]
+  [2023/02/01 v0.13 FM's OCD LaTeX Macro]
 %</package>
 %<*driver>
 \documentclass{ltxdoc}
@@ -133,6 +133,8 @@ install" installs the files in the local TeX tree.
 % \changes{v0.11}{2023/01/16}{Few additions and corrections}
 %
 % \changes{v0.12}{2023/01/23}{New starred variants}
+%
+% \changes{v0.13}{2023/02/01}{Further starred variants}
 %
 % \begin{abstract}
 % This package contains almost all the latex macros I heavily use in my tcs
@@ -502,7 +504,7 @@ install" installs the files in the local TeX tree.
 %   \end{itemize}
 %    \begin{macrocode}
 \newcommand{\arglef}[2]
-  {\empchk{#2}{#1\allowbreak#2}}
+  {\empchk{#2}{#1#2}}
 %    \end{macrocode}
 % \end{macro}
 
@@ -519,7 +521,7 @@ install" installs the files in the local TeX tree.
 %   \end{itemize}
 %    \begin{macrocode}
 \newcommand{\argrig}[2]
-  {\empchk{#1}{#1\allowbreak#2}}
+  {\empchk{#1}{#1#2}}
 %    \end{macrocode}
 % \end{macro}
 
@@ -536,7 +538,7 @@ install" installs the files in the local TeX tree.
 %   \end{itemize}
 %    \begin{macrocode}
 \newcommand{\argmid}[3]
-  {\empchk{#2}{#1\allowbreak#2\allowbreak#3}}
+  {\empchk{#2}{#1#2#3}}
 %    \end{macrocode}
 % \end{macro}
 
@@ -557,7 +559,7 @@ install" installs the files in the local TeX tree.
 %   \end{itemize}
 %    \begin{macrocode}
 \newcommand{\argsep}[3]
-  {\if&#1&#3\else#1\arglef{\allowbreak#2}{#3}\fi}
+  {\if&#1&#3\else#1\arglef{#2}{#3}\fi}
 %    \end{macrocode}
 % \end{macro}
 
@@ -781,7 +783,7 @@ install" installs the files in the local TeX tree.
 %   \end{itemize}
 %    \begin{macrocode}
 \newcommandx{\newtxtarg}[7][1=, 3=, 4=, 5=, 7=]
-  {\newtxt[#1]{#2}[#3][#4][#5\argmid{(}{#6}{)}#7]}
+  {\newtxt[#1]{#2}[#3][#4][\argmid{#5(}{#6}{)#7}]}
 %    \end{macrocode}
 % \end{macro}
 
@@ -863,7 +865,7 @@ install" installs the files in the local TeX tree.
 %   \end{itemize}
 %    \begin{macrocode}
 \newcommandx{\newtxtpar}[7][1=, 3=, 4=, 5=, 7=]
-  {\newtxt[#1]{#2}[#3][#4][#5\argmid{[}{#6}{]}#7]}
+  {\newtxt[#1]{#2}[#3][#4][\argmid{#5[}{#6}{]#7}]}
 %    \end{macrocode}
 % \end{macro}
 
@@ -957,7 +959,8 @@ install" installs the files in the local TeX tree.
 %   \small
 %   \begin{itemize}
 %     \item
-%       \verb=\txt{Name}[sub][sup][Ext]= = ``\txt{Name}[sub][sup][Ext]''
+%       \verb=\txt{Name}[sub][sup][Ext]= =
+%       ``\txt{Name}[sub][sup][Ext]''
 %     \item
 %       \verb=\txt[\scshape]{Name}[sub][sup][Ext]= =
 %       ``\txt[\scshape]{Name}[sub][sup][Ext]''
@@ -1071,7 +1074,8 @@ install" installs the files in the local TeX tree.
 %       \verb=\cmdtxt{NewCmd}=;\cmdtxt{NewCmd}
 %       \verb=\newcommand{txtstyNewCmd}{\scshape\ttfamily}=;
 %       \newcommand{\txtstyNewCmd}{\scshape\ttfamily} \\
-%       \verb=\txtNewCmd{Name}[sub][sup][Ext]= = \txtNewCmd{Name}[sub][sup][Ext]
+%       \verb=\txtNewCmd{Name}[sub][sup][Ext]= =
+%       \txtNewCmd{Name}[sub][sup][Ext]
 %   \end{itemize}
 %    \begin{macrocode}
 \newcommand{\cmdtxt}[1]
@@ -1258,18 +1262,31 @@ install" installs the files in the local TeX tree.
 %   \small
 %   \begin{itemize}
 %     \item
-%       \verb=\newmtharg[mathrm]{Name}[sub][sup][Ext1]{Arg}[Ext2]= =
-%       ``\newmtharg[mathrm]{Name}[sub][sup][Ext1]{Arg}[Ext2]''
+%       \verb=\newmtharg[mathrm]{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       ``\newmtharg[mathrm]{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]''
 %     \item
-%       \verb=\newmtharg[mathsf]{Name}[sub][sup][Ext1]{Arg}[Ext2]= =
-%       ``\newmtharg[mathsf]{Name}[sub][sup][Ext1]{Arg}[Ext2]''
+%       \verb=\newmtharg[mathsf]{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       ``\newmtharg[mathsf]{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]''
 %     \item
-%       \verb=\newmtharg[mathtt]{Name}[sub][sup][Ext1]{Arg}[Ext2]= =
-%       ``\newmtharg[mathtt]{Name}[sub][sup][Ext1]{Arg}[Ext2]''
+%       \verb=\newmtharg[mathtt]{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       ``\newmtharg[mathtt]{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]''
+%     \item
+%       \verb=\newmtharg*[mathrm]{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]=
+%       = ``\newmtharg*[mathrm]{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]''
+%     \item
+%       \verb=\newmtharg*[mathsf]{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]=
+%       = ``\newmtharg*[mathsf]{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]''
+%     \item
+%       \verb=\newmtharg*[mathtt]{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]=
+%       = ``\newmtharg*[mathtt]{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]''
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\newmtharg}[7][1=, 3=, 4=, 5=, 7=]
-  {\newmth[#1]{#2}[#3][#4][#5\argmid{\!\left(}{#6}{\right)\arglef{\!}{#7}}]}
+\newcommand{\newmtharg}
+  {\@ifstar{\@snewmtharg}{\@newmtharg}}
+\newcommandx{\@newmtharg}[7][1=, 3=, 4=, 5=, 7=]
+  {\newmth[#1]{#2}[#3][#4][\argmid{#5\!\left(}{#6}{\right)\arglef{\!}{#7}}]}
+\newcommandx{\@snewmtharg}[7][1=, 3=, 4=, 5=, 7=]
+  {\newmth[#1]{#2}[#3][#4][\argmid{#5(}{#6}{)#7}]}
 %    \end{macrocode}
 % \end{macro}
 
@@ -1278,20 +1295,41 @@ install" installs the files in the local TeX tree.
 %   \small
 %   \begin{itemize}
 %     \item
-%       \verb=\newmthargsty{mathrm}{Name}[sub][sup][Ext1]{Arg}[Ext2]= =
-%       ``\newmthargsty{mathrm}{Name}[sub][sup][Ext1]{Arg}[Ext2]''
+%       \verb=\newmthargsty{mathrm}{Name}[sub][sup]=\!
+%         \verb=[Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       ``\newmthargsty{mathrm}{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]''
 %     \item
 %       \verb=\newmthargsty{mathrm}[mathsf]{Name}[sub][sup]=\!
-%         \verb=[Ext1]{Arg}[Ext2]= =
-%       ``\newmthargsty{mathrm}[mathsf]{Name}[sub][sup][Ext1]{Arg}[Ext2]''
+%         \verb=[Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       ``\newmthargsty{mathrm}[mathsf]{Name}[sub][sup]%
+%         [Ext1]{Arg^{Ex^{Ex}}}[Ext2]''
 %     \item
 %       \verb=\newmthargsty{mathrm}[mathtt]{Name}[sub][sup]=\!
-%         \verb=[Ext1]{Arg}[Ext2]= =
-%       ``\newmthargsty{mathrm}[mathtt]{Name}[sub][sup][Ext1]{Arg}[Ext2]''
+%         \verb=[Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       ``\newmthargsty{mathrm}[mathtt]{Name}[sub][sup]%
+%         [Ext1]{Arg^{Ex^{Ex}}}[Ext2]''
+%     \item
+%       \verb=\newmthargsty*{mathrm}{Name}[sub][sup]=\!
+%         \verb=[Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       ``\newmthargsty*{mathrm}{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]''
+%     \item
+%       \verb=\newmthargsty*{mathrm}[mathsf]{Name}[sub][sup]=\!
+%         \verb=[Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       ``\newmthargsty*{mathrm}[mathsf]{Name}[sub][sup]%
+%         [Ext1]{Arg^{Ex^{Ex}}}[Ext2]''
+%     \item
+%       \verb=\newmthargsty*{mathrm}[mathtt]{Name}[sub][sup]=\!
+%         \verb=[Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       ``\newmthargsty*{mathrm}[mathtt]{Name}[sub][sup]%
+%         [Ext1]{Arg^{Ex^{Ex}}}[Ext2]''
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\newmthargsty}[2][2=]
+\newcommand{\newmthargsty}
+  {\@ifstar{\@snewmthargsty}{\@newmthargsty}}
+\newcommandx{\@newmthargsty}[2][2=]
   {\newmtharg[\defval{#2}{#1}]}
+\newcommandx{\@snewmthargsty}[2][2=]
+  {\newmtharg*[\defval{#2}{#1}]}
 %    \end{macrocode}
 % \end{macro}
 
@@ -1300,18 +1338,31 @@ install" installs the files in the local TeX tree.
 %   \small
 %   \begin{itemize}
 %     \item
-%       \verb=\newmthoarg[mathrm]{Name}[sub][sup][Arg]= =
-%       ``\newmthoarg[mathrm]{Name}[sub][sup][Arg]''
+%       \verb=\newmthoarg[mathrm]{Name}[sub][sup][Arg^{Ex^{Ex}}]= =
+%       ``\newmthoarg[mathrm]{Name}[sub][sup][Arg^{Ex^{Ex}}]''
 %     \item
-%       \verb=\newmthoarg[mathsf]{Name}[sub][sup][Arg]= =
-%       ``\newmthoarg[mathsf]{Name}[sub][sup][Arg]''
+%       \verb=\newmthoarg[mathsf]{Name}[sub][sup][Arg^{Ex^{Ex}}]= =
+%       ``\newmthoarg[mathsf]{Name}[sub][sup][Arg^{Ex^{Ex}}]''
 %     \item
-%       \verb=\newmthoarg[mathtt]{Name}[sub][sup][Arg]= =
-%       ``\newmthoarg[mathtt]{Name}[sub][sup][Arg]''
+%       \verb=\newmthoarg[mathtt]{Name}[sub][sup][Arg^{Ex^{Ex}}]= =
+%       ``\newmthoarg[mathtt]{Name}[sub][sup][Arg^{Ex^{Ex}}]''
+%     \item
+%       \verb=\newmthoarg*[mathrm]{Name}[sub][sup][Arg^{Ex^{Ex}}]= =
+%       ``\newmthoarg*[mathrm]{Name}[sub][sup][Arg^{Ex^{Ex}}]''
+%     \item
+%       \verb=\newmthoarg*[mathsf]{Name}[sub][sup][Arg^{Ex^{Ex}}]= =
+%       ``\newmthoarg*[mathsf]{Name}[sub][sup][Arg^{Ex^{Ex}}]''
+%     \item
+%       \verb=\newmthoarg*[mathtt]{Name}[sub][sup][Arg^{Ex^{Ex}}]= =
+%       ``\newmthoarg*[mathtt]{Name}[sub][sup][Arg^{Ex^{Ex}}]''
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\newmthoarg}[5][1=, 3=, 4=, 5=]
+\newcommand{\newmthoarg}
+  {\@ifstar{\@snewmthoarg}{\@newmthoarg}}
+\newcommandx{\@newmthoarg}[5][1=, 3=, 4=, 5=]
   {\newmtharg[#1]{#2}[#3][#4][]{#5}[]}
+\newcommandx{\@snewmthoarg}[5][1=, 3=, 4=, 5=]
+  {\newmtharg*[#1]{#2}[#3][#4][]{#5}[]}
 %    \end{macrocode}
 % \end{macro}
 
@@ -1320,18 +1371,31 @@ install" installs the files in the local TeX tree.
 %   \small
 %   \begin{itemize}
 %     \item
-%       \verb=\newmthoargsty{mathrm}{Name}[sub][sup][Arg]= =
-%       ``\newmthoargsty{mathrm}{Name}[sub][sup][Arg]''
+%       \verb=\newmthoargsty{mathrm}{Name}[sub][sup][Arg^{Ex^{Ex}}]= =
+%       ``\newmthoargsty{mathrm}{Name}[sub][sup][Arg^{Ex^{Ex}}]''
 %     \item
-%       \verb=\newmthoargsty{mathrm}[mathsf]{Name}[sub][sup][Arg]= =
-%        ``\newmthoargsty{mathrm}[mathsf]{Name}[sub][sup][Arg]''
+%       \verb=\newmthoargsty{mathrm}[mathsf]{Name}[sub][sup][Arg^{Ex^{Ex}}]= =
+%        ``\newmthoargsty{mathrm}[mathsf]{Name}[sub][sup][Arg^{Ex^{Ex}}]''
 %     \item
-%       \verb=\newmthoargsty{mathrm}[mathtt]{Name}[sub][sup][Arg]= =
-%       ``\newmthoargsty{mathrm}[mathtt]{Name}[sub][sup][Arg]''
+%       \verb=\newmthoargsty{mathrm}[mathtt]{Name}[sub][sup][Arg^{Ex^{Ex}}]= =
+%       ``\newmthoargsty{mathrm}[mathtt]{Name}[sub][sup][Arg^{Ex^{Ex}}]''
+%     \item
+%       \verb=\newmthoargsty*{mathrm}{Name}[sub][sup][Arg^{Ex^{Ex}}]= =
+%       ``\newmthoargsty*{mathrm}{Name}[sub][sup][Arg^{Ex^{Ex}}]''
+%     \item
+%       \verb=\newmthoargsty*{mathrm}[mathsf]{Name}[sub][sup][Arg^{Ex^{Ex}}]= =
+%        ``\newmthoargsty*{mathrm}[mathsf]{Name}[sub][sup][Arg^{Ex^{Ex}}]''
+%     \item
+%       \verb=\newmthoargsty*{mathrm}[mathtt]{Name}[sub][sup][Arg^{Ex^{Ex}}]= =
+%       ``\newmthoargsty*{mathrm}[mathtt]{Name}[sub][sup][Arg^{Ex^{Ex}}]''
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\newmthoargsty}[2][2=]
+\newcommand{\newmthoargsty}
+  {\@ifstar{\@snewmthoargsty}{\@newmthoargsty}}
+\newcommandx{\@newmthoargsty}[2][2=]
   {\newmthoarg[\defval{#2}{#1}]}
+\newcommandx{\@snewmthoargsty}[2][2=]
+  {\newmthoarg*[\defval{#2}{#1}]}
 %    \end{macrocode}
 % \end{macro}
 
@@ -1340,18 +1404,31 @@ install" installs the files in the local TeX tree.
 %   \small
 %   \begin{itemize}
 %     \item
-%       \verb=\newmthpar[mathrm]{Name}[sub][sup][Ext1]{Par}[Ext2]= =
-%       ``\newmthpar[mathrm]{Name}[sub][sup][Ext1]{Par}[Ext2]''
+%       \verb=\newmthpar[mathrm]{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       ``\newmthpar[mathrm]{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]''
 %     \item
-%       \verb=\newmthpar[mathsf]{Name}[sub][sup][Ext1]{Par}[Ext2]= =
-%       ``\newmthpar[mathsf]{Name}[sub][sup][Ext1]{Par}[Ext2]''
+%       \verb=\newmthpar[mathsf]{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       ``\newmthpar[mathsf]{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]''
 %     \item
-%       \verb=\newmthpar[mathtt]{Name}[sub][sup][Ext1]{Par}[Ext2]= =
-%       ``\newmthpar[mathtt]{Name}[sub][sup][Ext1]{Par}[Ext2]''
+%       \verb=\newmthpar[mathtt]{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       ``\newmthpar[mathtt]{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]''
+%     \item
+%       \verb=\newmthpar*[mathrm]{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       ``\newmthpar*[mathrm]{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]''
+%     \item
+%       \verb=\newmthpar*[mathsf]{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       ``\newmthpar*[mathsf]{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]''
+%     \item
+%       \verb=\newmthpar*[mathtt]{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       ``\newmthpar*[mathtt]{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]''
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\newmthpar}[7][1=, 3=, 4=, 5=, 7=]
-  {\newmth[#1]{#2}[#3][#4][#5\argmid{\!\left[}{#6}{\right]\arglef{\!}{#7}}]}
+\newcommand{\newmthpar}
+  {\@ifstar{\@snewmthpar}{\@newmthpar}}
+\newcommandx{\@newmthpar}[7][1=, 3=, 4=, 5=, 7=]
+  {\newmth[#1]{#2}[#3][#4][\argmid{#5\!\left[}{#6}{\right]\arglef{\!}{#7}}]}
+\newcommandx{\@snewmthpar}[7][1=, 3=, 4=, 5=, 7=]
+  {\newmth[#1]{#2}[#3][#4][\argmid{#5[}{#6}{]#7}]}
 %    \end{macrocode}
 % \end{macro}
 
@@ -1360,20 +1437,41 @@ install" installs the files in the local TeX tree.
 %   \small
 %   \begin{itemize}
 %     \item
-%       \verb=\newmthparsty{mathrm}{Name}[sub][sup][Ext1]{Par}[Ext2]= =
-%       ``\newmthparsty{mathrm}{Name}[sub][sup][Ext1]{Par}[Ext2]''
+%       \verb=\newmthparsty{mathrm}{Name}[sub][sup]=
+%         \verb=[Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       ``\newmthparsty{mathrm}{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]''
 %     \item
 %       \verb=\newmthparsty{mathrm}[mathsf]{Name}[sub][sup]=\!
-%         \verb=[Ext1]{Par}[Ext2]= =
-%       ``\newmthparsty{mathrm}[mathsf]{Name}[sub][sup][Ext1]{Par}[Ext2]''
+%         \verb=[Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       ``\newmthparsty{mathrm}[mathsf]{Name}[sub][sup]%
+%         [Ext1]{Par^{Ex^{Ex}}}[Ext2]''
 %     \item
 %       \verb=\newmthparsty{mathrm}[mathtt]{Name}[sub][sup]=\!
-%         \verb=[Ext1]{Par}[Ext2]= =
-%       ``\newmthparsty{mathrm}[mathtt]{Name}[sub][sup][Ext1]{Par}[Ext2]''
+%         \verb=[Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       ``\newmthparsty{mathrm}[mathtt]{Name}[sub][sup]%
+%         [Ext1]{Par^{Ex^{Ex}}}[Ext2]''
+%     \item
+%       \verb=\newmthparsty*{mathrm}{Name}[sub][sup]=
+%         \verb=[Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       ``\newmthparsty*{mathrm}{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]''
+%     \item
+%       \verb=\newmthparsty*{mathrm}[mathsf]{Name}[sub][sup]=\!
+%         \verb=[Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       ``\newmthparsty*{mathrm}[mathsf]{Name}[sub][sup]%
+%         [Ext1]{Par^{Ex^{Ex}}}[Ext2]''
+%     \item
+%       \verb=\newmthparsty*{mathrm}[mathtt]{Name}[sub][sup]=\!
+%         \verb=[Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       ``\newmthparsty*{mathrm}[mathtt]{Name}[sub][sup]%
+%         [Ext1]{Par^{Ex^{Ex}}}[Ext2]''
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\newmthparsty}[2][2=]
+\newcommand{\newmthparsty}
+  {\@ifstar{\@snewmthparsty}{\@newmthparsty}}
+\newcommandx{\@newmthparsty}[2][2=]
   {\newmthpar[\defval{#2}{#1}]}
+\newcommandx{\@snewmthparsty}[2][2=]
+  {\newmthpar*[\defval{#2}{#1}]}
 %    \end{macrocode}
 % \end{macro}
 
@@ -1382,18 +1480,31 @@ install" installs the files in the local TeX tree.
 %   \small
 %   \begin{itemize}
 %     \item
-%       \verb=\newmthopar[mathrm]{Name}[sub][sup][Par]= =
-%       ``\newmthopar[mathrm]{Name}[sub][sup][Par]''
+%       \verb=\newmthopar[mathrm]{Name}[sub][sup][Par^{Ex^{Ex}}]= =
+%       ``\newmthopar[mathrm]{Name}[sub][sup][Par^{Ex^{Ex}}]''
 %     \item
-%       \verb=\newmthopar[mathsf]{Name}[sub][sup][Par]= =
-%       ``\newmthopar[mathsf]{Name}[sub][sup][Par]''
+%       \verb=\newmthopar[mathsf]{Name}[sub][sup][Par^{Ex^{Ex}}]= =
+%       ``\newmthopar[mathsf]{Name}[sub][sup][Par^{Ex^{Ex}}]''
 %     \item
-%       \verb=\newmthopar[mathtt]{Name}[sub][sup][Par]= =
-%       ``\newmthopar[mathtt]{Name}[sub][sup][Par]''
+%       \verb=\newmthopar[mathtt]{Name}[sub][sup][Par^{Ex^{Ex}}]= =
+%       ``\newmthopar[mathtt]{Name}[sub][sup][Par^{Ex^{Ex}}]''
+%     \item
+%       \verb=\newmthopar*[mathrm]{Name}[sub][sup][Par^{Ex^{Ex}}]= =
+%       ``\newmthopar*[mathrm]{Name}[sub][sup][Par^{Ex^{Ex}}]''
+%     \item
+%       \verb=\newmthopar*[mathsf]{Name}[sub][sup][Par^{Ex^{Ex}}]= =
+%       ``\newmthopar*[mathsf]{Name}[sub][sup][Par^{Ex^{Ex}}]''
+%     \item
+%       \verb=\newmthopar*[mathtt]{Name}[sub][sup][Par^{Ex^{Ex}}]= =
+%       ``\newmthopar*[mathtt]{Name}[sub][sup][Par^{Ex^{Ex}}]''
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\newmthopar}[5][1=, 3=, 4=, 5=]
+\newcommand{\newmthopar}
+  {\@ifstar{\@snewmthopar}{\@newmthopar}}
+\newcommandx{\@newmthopar}[5][1=, 3=, 4=, 5=]
   {\newmthpar[#1]{#2}[#3][#4][]{#5}[]}
+\newcommandx{\@snewmthopar}[5][1=, 3=, 4=, 5=]
+  {\newmthpar*[#1]{#2}[#3][#4][]{#5}[]}
 %    \end{macrocode}
 % \end{macro}
 
@@ -1402,18 +1513,31 @@ install" installs the files in the local TeX tree.
 %   \small
 %   \begin{itemize}
 %     \item
-%       \verb=\newmthoparsty{mathrm}{Name}[sub][sup][Par]= =
-%       ``\newmthoparsty{mathrm}{Name}[sub][sup][Par]''
+%       \verb=\newmthoparsty{mathrm}{Name}[sub][sup][Par^{Ex^{Ex}}]= =
+%       ``\newmthoparsty{mathrm}{Name}[sub][sup][Par^{Ex^{Ex}}]''
 %     \item
-%       \verb=\newmthoparsty{mathrm}[mathsf]{Name}[sub][sup][Par]= =
-%        ``\newmthoparsty{mathrm}[mathsf]{Name}[sub][sup][Par]''
+%       \verb=\newmthoparsty{mathrm}[mathsf]{Name}[sub][sup][Par^{Ex^{Ex}}]= =
+%        ``\newmthoparsty{mathrm}[mathsf]{Name}[sub][sup][Par^{Ex^{Ex}}]''
 %     \item
-%       \verb=\newmthoparsty{mathrm}[mathtt]{Name}[sub][sup][Par]= =
-%       ``\newmthoparsty{mathrm}[mathtt]{Name}[sub][sup][Par]''
+%       \verb=\newmthoparsty{mathrm}[mathtt]{Name}[sub][sup][Par^{Ex^{Ex}}]= =
+%       ``\newmthoparsty{mathrm}[mathtt]{Name}[sub][sup][Par^{Ex^{Ex}}]''
+%     \item
+%       \verb=\newmthoparsty*{mathrm}{Name}[sub][sup][Par^{Ex^{Ex}}]= =
+%       ``\newmthoparsty*{mathrm}{Name}[sub][sup][Par^{Ex^{Ex}}]''
+%     \item
+%       \verb=\newmthoparsty*{mathrm}[mathsf]{Name}[sub][sup][Par^{Ex^{Ex}}]= =
+%        ``\newmthoparsty*{mathrm}[mathsf]{Name}[sub][sup][Par^{Ex^{Ex}}]''
+%     \item
+%       \verb=\newmthoparsty*{mathrm}[mathtt]{Name}[sub][sup][Par^{Ex^{Ex}}]= =
+%       ``\newmthoparsty*{mathrm}[mathtt]{Name}[sub][sup][Par^{Ex^{Ex}}]''
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\newmthoparsty}[2][2=]
+\newcommand{\newmthoparsty}
+  {\@ifstar{\@snewmthoparsty}{\@newmthoparsty}}
+\newcommandx{\@newmthoparsty}[2][2=]
   {\newmthopar[\defval{#2}{#1}]}
+\newcommandx{\@snewmthoparsty}[2][2=]
+  {\newmthopar*[\defval{#2}{#1}]}
 %    \end{macrocode}
 % \end{macro}
 
@@ -1434,7 +1558,8 @@ install" installs the files in the local TeX tree.
 %   \small
 %   \begin{itemize}
 %     \item
-%       \verb=\mth{Name}[sub][sup][Ext]= = ``\mth{Name}[sub][sup][Ext]''
+%       \verb=\mth{Name}[sub][sup][Ext]= =
+%       ``\mth{Name}[sub][sup][Ext]''
 %     \item
 %       \verb=\mth[mathbf]{Name}[sub][sup][Ext]= =
 %       ``\mth[mathbf]{Name}[sub][sup][Ext]''
@@ -1453,18 +1578,27 @@ install" installs the files in the local TeX tree.
 %   \small
 %   \begin{itemize}
 %     \item
-%       \verb=\mtharg{Name}[sub][sup][Ext1]{Arg}[Ext2]= =
-%       ``\mtharg{Name}[sub][sup][Ext1]{Arg}[Ext2]''
+%       \verb=\mtharg{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       ``\mtharg{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]''
 %     \item
-%       \verb=\mtharg[mathbf]{Name}[sub][sup][Ext1]{Arg}[Ext2]= =
-%       ``\mtharg[mathbf]{Name}[sub][sup][Ext1]{Arg}[Ext2]''
+%       \verb=\mtharg[mathbf]{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       ``\mtharg[mathbf]{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]''
 %     \item
-%       \verb=\mtharg[mathtt]{Name}[sub][sup][Ext1]{Arg}[Ext2]= =
-%       ``\mtharg[mathtt]{Name}[sub][sup][Ext1]{Arg}[Ext2]''
+%       \verb=\mtharg[mathtt]{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       ``\mtharg[mathtt]{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]''
+%     \item
+%       \verb=\mtharg*{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       ``\mtharg*{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]''
+%     \item
+%       \verb=\mtharg*[mathbf]{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       ``\mtharg*[mathbf]{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]''
+%     \item
+%       \verb=\mtharg*[mathtt]{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       ``\mtharg*[mathtt]{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]''
 %   \end{itemize}
 %    \begin{macrocode}
 \newcommand{\mtharg}
-  {\newmthargsty{\mthsty}}
+  {\@ifstar{\newmthargsty*{\mthsty}}{\newmthargsty{\mthsty}}}
 %    \end{macrocode}
 % \end{macro}
 
@@ -1473,18 +1607,27 @@ install" installs the files in the local TeX tree.
 %   \small
 %   \begin{itemize}
 %     \item
-%       \verb=\mthoarg{Name}[sub][sup][Arg]= =
-%       ``\mthoarg{Name}[sub][sup][Arg]''
+%       \verb=\mthoarg{Name}[sub][sup][Arg^{Ex^{Ex}}]= =
+%       ``\mthoarg{Name}[sub][sup][Arg^{Ex^{Ex}}]''
 %     \item
-%       \verb=\mthoarg[mathbf]{Name}[sub][sup][Arg]= =
-%       ``\mthoarg[mathbf]{Name}[sub][sup][Arg]''
+%       \verb=\mthoarg[mathbf]{Name}[sub][sup][Arg^{Ex^{Ex}}]= =
+%       ``\mthoarg[mathbf]{Name}[sub][sup][Arg^{Ex^{Ex}}]''
 %     \item
-%       \verb=\mthoarg[mathtt]{Name}[sub][sup][Arg]= =
-%       ``\mthoarg[mathtt]{Name}[sub][sup][Arg]''
+%       \verb=\mthoarg[mathtt]{Name}[sub][sup][Arg^{Ex^{Ex}}]= =
+%       ``\mthoarg[mathtt]{Name}[sub][sup][Arg^{Ex^{Ex}}]''
+%     \item
+%       \verb=\mthoarg*{Name}[sub][sup][Arg^{Ex^{Ex}}]= =
+%       ``\mthoarg*{Name}[sub][sup][Arg^{Ex^{Ex}}]''
+%     \item
+%       \verb=\mthoarg*[mathbf]{Name}[sub][sup][Arg^{Ex^{Ex}}]= =
+%       ``\mthoarg*[mathbf]{Name}[sub][sup][Arg^{Ex^{Ex}}]''
+%     \item
+%       \verb=\mthoarg*[mathtt]{Name}[sub][sup][Arg^{Ex^{Ex}}]= =
+%       ``\mthoarg*[mathtt]{Name}[sub][sup][Arg^{Ex^{Ex}}]''
 %   \end{itemize}
 %    \begin{macrocode}
 \newcommand{\mthoarg}
-  {\newmthoargsty{\mthsty}}
+  {\@ifstar{\newmthoargsty*{\mthsty}}{\newmthoargsty{\mthsty}}}
 %    \end{macrocode}
 % \end{macro}
 
@@ -1493,18 +1636,27 @@ install" installs the files in the local TeX tree.
 %   \small
 %   \begin{itemize}
 %     \item
-%       \verb=\mthpar{Name}[sub][sup][Ext1]{Par}[Ext2]= =
-%       ``\mthpar{Name}[sub][sup][Ext1]{Par}[Ext2]''
+%       \verb=\mthpar{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       ``\mthpar{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]''
 %     \item
-%       \verb=\mthpar[mathbf]{Name}[sub][sup][Ext1]{Par}[Ext2]= =
-%       ``\mthpar[mathbf]{Name}[sub][sup][Ext1]{Par}[Ext2]''
+%       \verb=\mthpar[mathbf]{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       ``\mthpar[mathbf]{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]''
 %     \item
-%       \verb=\mthpar[mathtt]{Name}[sub][sup][Ext1]{Par}[Ext2]= =
-%       ``\mthpar[mathtt]{Name}[sub][sup][Ext1]{Par}[Ext2]''
+%       \verb=\mthpar[mathtt]{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       ``\mthpar[mathtt]{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]''
+%     \item
+%       \verb=\mthpar*{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       ``\mthpar*{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]''
+%     \item
+%       \verb=\mthpar*[mathbf]{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       ``\mthpar*[mathbf]{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]''
+%     \item
+%       \verb=\mthpar*[mathtt]{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       ``\mthpar*[mathtt]{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]''
 %   \end{itemize}
 %    \begin{macrocode}
 \newcommand{\mthpar}
-  {\newmthparsty{\mthsty}}
+  {\@ifstar{\newmthparsty*{\mthsty}}{\newmthparsty{\mthsty}}}
 %    \end{macrocode}
 % \end{macro}
 
@@ -1513,18 +1665,27 @@ install" installs the files in the local TeX tree.
 %   \small
 %   \begin{itemize}
 %     \item
-%       \verb=\mthopar{Name}[sub][sup][Par]= =
-%       ``\mthopar{Name}[sub][sup][Par]''
+%       \verb=\mthopar{Name}[sub][sup][Par^{Ex^{Ex}}]= =
+%       ``\mthopar{Name}[sub][sup][Par^{Ex^{Ex}}]''
 %     \item
-%       \verb=\mthopar[mathbf]{Name}[sub][sup][Par]= =
-%       ``\mthopar[mathbf]{Name}[sub][sup][Par]''
+%       \verb=\mthopar[mathbf]{Name}[sub][sup][Par^{Ex^{Ex}}]= =
+%       ``\mthopar[mathbf]{Name}[sub][sup][Par^{Ex^{Ex}}]''
 %     \item
-%       \verb=\mthopar[mathtt]{Name}[sub][sup][Par]= =
-%       ``\mthopar[mathtt]{Name}[sub][sup][Par]''
+%       \verb=\mthopar[mathtt]{Name}[sub][sup][Par^{Ex^{Ex}}]= =
+%       ``\mthopar[mathtt]{Name}[sub][sup][Par^{Ex^{Ex}}]''
+%     \item
+%       \verb=\mthopar*{Name}[sub][sup][Par^{Ex^{Ex}}]= =
+%       ``\mthopar*{Name}[sub][sup][Par^{Ex^{Ex}}]''
+%     \item
+%       \verb=\mthopar*[mathbf]{Name}[sub][sup][Par^{Ex^{Ex}}]= =
+%       ``\mthopar*[mathbf]{Name}[sub][sup][Par^{Ex^{Ex}}]''
+%     \item
+%       \verb=\mthopar*[mathtt]{Name}[sub][sup][Par^{Ex^{Ex}}]= =
+%       ``\mthopar*[mathtt]{Name}[sub][sup][Par^{Ex^{Ex}}]''
 %   \end{itemize}
 %    \begin{macrocode}
 \newcommand{\mthopar}
-  {\newmthoparsty{\mthsty}}
+  {\@ifstar{\newmthoparsty*{\mthsty}}{\newmthoparsty{\mthsty}}}
 %    \end{macrocode}
 % \end{macro}
 
@@ -1564,12 +1725,15 @@ install" installs the files in the local TeX tree.
 %       \verb=\cmdmtharg{NewCmd}=;\cmdmtharg{NewCmd}
 %       \verb=\newcommand{mthstyNewCmd}{\mathtt}=;
 %       \newcommand{\mthstyNewCmd}{\mathtt} \\
-%       \verb=\mthargNewCmd{Name}[sub][sup][Ext1]{Arg}[Ext2]= =
-%       \mthargNewCmd{Name}[sub][sup][Ext1]{Arg}[Ext2]
+%       \verb=\mthargNewCmd{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       \mthargNewCmd{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2] \\
+%       \verb=\mthargNewCmd*{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       \mthargNewCmd*{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]
 %   \end{itemize}
 %    \begin{macrocode}
 \newcommand{\cmdmtharg}[1]
-  {\csdef{mtharg#1}{\newmthargsty{mthsty#1}}}
+  {\csdef{mtharg#1}%
+    {\@ifstar{\newmthargsty*{mthsty#1}}{\newmthargsty{mthsty#1}}}}
 %    \end{macrocode}
 % \end{macro}
 
@@ -1581,12 +1745,15 @@ install" installs the files in the local TeX tree.
 %       \verb=\cmdmthoarg{NewCmd}=;\cmdmthoarg{NewCmd}
 %       \verb=\newcommand{mthstyNewCmd}{\mathtt}=;
 %       \newcommand{\mthstyNewCmd}{\mathtt} \\
-%       \verb=\mthoargNewCmd{Name}[sub][sup][Arg]= =
-%       \mthoargNewCmd{Name}[sub][sup][Arg]
+%       \verb=\mthoargNewCmd{Name}[sub][sup][Arg^{Ex^{Ex}}]= =
+%       \mthoargNewCmd{Name}[sub][sup][Arg^{Ex^{Ex}}] \\
+%       \verb=\mthoargNewCmd*{Name}[sub][sup][Arg^{Ex^{Ex}}]= =
+%       \mthoargNewCmd*{Name}[sub][sup][Arg^{Ex^{Ex}}]
 %   \end{itemize}
 %    \begin{macrocode}
 \newcommand{\cmdmthoarg}[1]
-  {\csdef{mthoarg#1}{\newmthoargsty{mthsty#1}}}
+  {\csdef{mthoarg#1}%
+    {\@ifstar{\newmthoargsty*{mthsty#1}}{\newmthoargsty{mthsty#1}}}}
 %    \end{macrocode}
 % \end{macro}
 
@@ -1598,12 +1765,15 @@ install" installs the files in the local TeX tree.
 %       \verb=\cmdmthpar{NewCmd}=;\cmdmthpar{NewCmd}
 %       \verb=\newcommand{mthstyNewCmd}{\mathtt}=;
 %       \newcommand{\mthstyNewCmd}{\mathtt} \\
-%       \verb=\mthparNewCmd{Name}[sub][sup][Ext1]{Par}[Ext2]= =
-%       \mthparNewCmd{Name}[sub][sup][Ext1]{Par}[Ext2]
+%       \verb=\mthparNewCmd{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       \mthparNewCmd{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2] \\
+%       \verb=\mthparNewCmd*{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       \mthparNewCmd*{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]
 %   \end{itemize}
 %    \begin{macrocode}
 \newcommand{\cmdmthpar}[1]
-  {\csdef{mthpar#1}{\newmthparsty{mthsty#1}}}
+  {\csdef{mthpar#1}%
+    {\@ifstar{\newmthparsty*{mthsty#1}}{\newmthparsty{mthsty#1}}}}
 %    \end{macrocode}
 % \end{macro}
 
@@ -1615,12 +1785,15 @@ install" installs the files in the local TeX tree.
 %       \verb=\cmdmthopar{NewCmd}=;\cmdmthopar{NewCmd}
 %       \verb=\newcommand{mthstyNewCmd}{\mathtt}=;
 %       \newcommand{\mthstyNewCmd}{\mathtt} \\
-%       \verb=\mthoparNewCmd{Name}[sub][sup][Par]= =
-%       \mthoparNewCmd{Name}[sub][sup][Par]
+%       \verb=\mthoparNewCmd{Name}[sub][sup][Par^{Ex^{Ex}}]= =
+%       \mthoparNewCmd{Name}[sub][sup][Par^{Ex^{Ex}}] \\
+%       \verb=\mthoparNewCmd*{Name}[sub][sup][Par^{Ex^{Ex}}]= =
+%       \mthoparNewCmd*{Name}[sub][sup][Par^{Ex^{Ex}}]
 %   \end{itemize}
 %    \begin{macrocode}
 \newcommand{\cmdmthopar}[1]
-  {\csdef{mthopar#1}{\newmthoparsty{mthsty#1}}}
+  {\csdef{mthopar#1}%
+    {\@ifstar{\newmthoparsty*{mthsty#1}}{\newmthoparsty{mthsty#1}}}}
 %    \end{macrocode}
 % \end{macro}
 
@@ -1634,14 +1807,22 @@ install" installs the files in the local TeX tree.
 %       \newcommand{\mthstyNewCmd}{\mathtt} \\
 %       \verb=\mthNewCmd{Name}[sub][sup][Ext]= =
 %       \mthNewCmd{Name}[sub][sup][Ext] \\
-%       \verb=\mthargNewCmd{Name}[sub][sup][Ext1]{Arg}[Ext2]= =
-%       \mthargNewCmd{Name}[sub][sup][Ext1]{Arg}[Ext2] \\
-%       \verb=\mthoargNewCmd{Name}[sub][sup][Arg]= =
-%       \mthoargNewCmd{Name}[sub][sup][Arg] \\
-%       \verb=\mthparNewCmd{Name}[sub][sup][Ext1]{Par}[Ext2]= =
-%       \mthparNewCmd{Name}[sub][sup][Ext1]{Par}[Ext2] \\
-%       \verb=\mthoparNewCmd{Name}[sub][sup][Par]= =
-%       \mthoparNewCmd{Name}[sub][sup][Par]
+%       \verb=\mthargNewCmd{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       \mthargNewCmd{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2] \\
+%       \verb=\mthargNewCmd*{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       \mthargNewCmd*{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2] \\
+%       \verb=\mthoargNewCmd{Name}[sub][sup][Arg^{Ex^{Ex}}]= =
+%       \mthoargNewCmd{Name}[sub][sup][Arg^{Ex^{Ex}}] \\
+%       \verb=\mthoargNewCmd*{Name}[sub][sup][Arg^{Ex^{Ex}}]= =
+%       \mthoargNewCmd*{Name}[sub][sup][Arg^{Ex^{Ex}}] \\
+%       \verb=\mthparNewCmd{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       \mthparNewCmd{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2] \\
+%       \verb=\mthparNewCmd*{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       \mthparNewCmd*{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2] \\
+%       \verb=\mthoparNewCmd{Name}[sub][sup][Par^{Ex^{Ex}}]= =
+%       \mthoparNewCmd{Name}[sub][sup][Par^{Ex^{Ex}}] \\
+%       \verb=\mthoparNewCmd*{Name}[sub][sup][Par^{Ex^{Ex}}]= =
+%       \mthoparNewCmd*{Name}[sub][sup][Par^{Ex^{Ex}}]
 %   \end{itemize}
 %    \begin{macrocode}
 \newcommand{\cmdmthall}[1]
@@ -1661,22 +1842,22 @@ install" installs the files in the local TeX tree.
 %       \verb=\usrmth{cmdName}{Suf}{}=;\usrmth{cmdName}{Suf}{}
 %       \verb=\cmdNameSuf= = \cmdNameSuf \\
 %       \verb=\usrmth{cmdName}{Suf}{arg}=;\usrmth{cmdName}{Suf}{arg}
-%       \verb=\cmdNameSuf{Arg}= = \cmdNameSuf{Arg} \\
+%       \verb=\cmdNameSuf{Arg^{Ex^{Ex}}}= = \cmdNameSuf{Arg^{Ex^{Ex}}} \\
 %       \verb=\usrmth{cmdName}{Suf}{par}=;\usrmth{cmdName}{Suf}{par}
-%       \verb=\cmdNameSuf{Par}= = \cmdNameSuf{Par}
+%       \verb=\cmdNameSuf{Par^{Ex^{Ex}}}= = \cmdNameSuf{Par^{Ex^{Ex}}}
 %     \item
 %       \verb=\usrmth{cmdName}{Suf}{}[newName]=;\usrmth{cmdName}{Suf}{}[newName]
 %       \verb=\cmdNameSuf= = \cmdNameSuf \\
 %       \verb=\usrmth{cmdName}{Suf}{arg}[newName]=;\!\!
 %       \usrmth{cmdName}{Suf}{arg}[newName]
-%       \verb=\cmdNameSuf{Arg}= = \cmdNameSuf{Arg} \\
+%       \verb=\cmdNameSuf{Arg^{Ex^{Ex}}}= = \cmdNameSuf{Arg^{Ex^{Ex}}} \\
 %       \verb=\usrmth{cmdName}{Suf}{par}[newName]=;\!\!
 %       \usrmth{cmdName}{Suf}{par}[newName]
-%       \verb=\cmdNameSuf{Par}= = \cmdNameSuf{Par}
+%       \verb=\cmdNameSuf{Par^{Ex^{Ex}}}= = \cmdNameSuf{Par^{Ex^{Ex}}}
 %   \end{itemize}
 %    \begin{macrocode}
 \newcommandx{\usrmth}[4][4=]
-  {\csdef{#1#2}{\csname mth#3\endcsname{\defval{#4}{#1}}}}
+  {\csdef{#1#2}{\csname\expandafter mth#3\endcsname{\defval{#4}{#1}}}}
 %    \end{macrocode}
 % \end{macro}
 
@@ -2238,11 +2419,17 @@ install" installs the files in the local TeX tree.
 %     \item
 %       \verb=\mthname{NAME}[sub][sup][Ext]= = \mthname{NAME}[sub][sup][Ext]
 %     \item
-%       \verb=\mthargname{NAME}[sub][sup][Ext1]{Arg}[Ext2]= =
-%       \mthargname{NAME}[sub][sup][Ext1]{Arg}[Ext2]
+%       \verb=\mthargname{NAME}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       \mthargname{NAME}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]
 %     \item
-%       \verb=\mthparname{NAME}[sub][sup][Ext1]{Par}[Ext2]= =
-%       \mthparname{NAME}[sub][sup][Ext1]{Par}[Ext2]
+%       \verb=\mthargname*{NAME}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       \mthargname*{NAME}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]
+%     \item
+%       \verb=\mthparname{NAME}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       \mthparname{NAME}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]
+%     \item
+%       \verb=\mthparname*{NAME}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       \mthparname*{NAME}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]
 %   \end{itemize}
 %    \begin{macrocode}
 %% Style for Names
@@ -2361,11 +2548,17 @@ install" installs the files in the local TeX tree.
 %     \item
 %       \verb=\mthfam{NAME}[sub][sup][Ext]= = \mthfam{NAME}[sub][sup][Ext]
 %     \item
-%       \verb=\mthargfam{NAME}[sub][sup][Ext1]{Arg}[Ext2]= =
-%       \mthargfam{NAME}[sub][sup][Ext1]{Arg}[Ext2]
+%       \verb=\mthargfam{NAME}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       \mthargfam{NAME}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]
 %     \item
-%       \verb=\mthparfam{NAME}[sub][sup][Ext1]{Par}[Ext2]= =
-%       \mthparfam{NAME}[sub][sup][Ext1]{Par}[Ext2]
+%       \verb=\mthargfam*{NAME}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       \mthargfam*{NAME}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]
+%     \item
+%       \verb=\mthparfam{NAME}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       \mthparfam{NAME}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]
+%     \item
+%       \verb=\mthparfam*{NAME}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       \mthparfam*{NAME}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]
 %   \end{itemize}
 %    \begin{macrocode}
 %% Style for Families
@@ -2484,11 +2677,17 @@ install" installs the files in the local TeX tree.
 %     \item
 %       \verb=\mthcls{NAME}[sub][sup][Ext]= = \mthcls{NAME}[sub][sup][Ext]
 %     \item
-%       \verb=\mthargcls{NAME}[sub][sup][Ext1]{Arg}[Ext2]= =
-%       \mthargcls{NAME}[sub][sup][Ext1]{Arg}[Ext2]
+%       \verb=\mthargcls{NAME}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       \mthargcls{NAME}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]
 %     \item
-%       \verb=\mthparcls{NAME}[sub][sup][Ext1]{Par}[Ext2]= =
-%       \mthparcls{NAME}[sub][sup][Ext1]{Par}[Ext2]
+%       \verb=\mthargcls*{NAME}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       \mthargcls*{NAME}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]
+%     \item
+%       \verb=\mthparcls{NAME}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       \mthparcls{NAME}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]
+%     \item
+%       \verb=\mthparcls*{NAME}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       \mthparcls*{NAME}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]
 %   \end{itemize}
 %    \begin{macrocode}
 %% Style for Classes
@@ -2607,11 +2806,17 @@ install" installs the files in the local TeX tree.
 %     \item
 %       \verb=\mthsig{Name}[sub][sup][Ext]= = \mthsig{Name}[sub][sup][Ext]
 %     \item
-%       \verb=\mthargsig{Name}[sub][sup][Ext1]{Arg}[Ext2]= =
-%       \mthargsig{Name}[sub][sup][Ext1]{Arg}[Ext2]
+%       \verb=\mthargsig{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       \mthargsig{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]
 %     \item
-%       \verb=\mthparsig{Name}[sub][sup][Ext1]{Par}[Ext2]= =
-%       \mthparsig{Name}[sub][sup][Ext1]{Par}[Ext2]
+%       \verb=\mthargsig*{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       \mthargsig*{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]
+%     \item
+%       \verb=\mthparsig{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       \mthparsig{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]
+%     \item
+%       \verb=\mthparsig*{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       \mthparsig*{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]
 %   \end{itemize}
 %    \begin{macrocode}
 %% Style for Signatures
@@ -2738,11 +2943,17 @@ install" installs the files in the local TeX tree.
 %     \item
 %       \verb=\mthstr{Name}[sub][sup][Ext]= = \mthstr{Name}[sub][sup][Ext]
 %     \item
-%       \verb=\mthargstr{Name}[sub][sup][Ext1]{Arg}[Ext2]= =
-%       \mthargstr{Name}[sub][sup][Ext1]{Arg}[Ext2]
+%       \verb=\mthargstr{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       \mthargstr{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]
 %     \item
-%       \verb=\mthparstr{Name}[sub][sup][Ext1]{Par}[Ext2]= =
-%       \mthparstr{Name}[sub][sup][Ext1]{Par}[Ext2]
+%       \verb=\mthargstr*{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       \mthargstr*{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]
+%     \item
+%       \verb=\mthparstr{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       \mthparstr{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]
+%     \item
+%       \verb=\mthparstr*{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       \mthparstr*{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]
 %   \end{itemize}
 %    \begin{macrocode}
 %% Style for Structures
@@ -2869,11 +3080,17 @@ install" installs the files in the local TeX tree.
 %     \item
 %       \verb=\mthset{Name}[sub][sup][Ext]= = \mthset{Name}[sub][sup][Ext]
 %     \item
-%       \verb=\mthargset{Name}[sub][sup][Ext1]{Arg}[Ext2]= =
-%       \mthargset{Name}[sub][sup][Ext1]{Arg}[Ext2]
+%       \verb=\mthargset{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       \mthargset{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]
 %     \item
-%       \verb=\mthparset{Name}[sub][sup][Ext1]{Par}[Ext2]= =
-%       \mthparset{Name}[sub][sup][Ext1]{Par}[Ext2]
+%       \verb=\mthargset*{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       \mthargset*{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]
+%     \item
+%       \verb=\mthparset{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       \mthparset{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]
+%     \item
+%       \verb=\mthparset*{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       \mthparset*{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]
 %   \end{itemize}
 %    \begin{macrocode}
 %% Style for Sets
@@ -3017,11 +3234,17 @@ install" installs the files in the local TeX tree.
 %     \item
 %       \verb=\mthrel{Name}[sub][sup][Ext]= = \mthrel{Name}[sub][sup][Ext]
 %     \item
-%       \verb=\mthargrel{Name}[sub][sup][Ext1]{Arg}[Ext2]= =
-%       \mthargrel{Name}[sub][sup][Ext1]{Arg}[Ext2]
+%       \verb=\mthargrel{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       \mthargrel{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]
 %     \item
-%       \verb=\mthparrel{Name}[sub][sup][Ext1]{Par}[Ext2]= =
-%       \mthparrel{Name}[sub][sup][Ext1]{Par}[Ext2]
+%       \verb=\mthargrel*{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       \mthargrel*{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]
+%     \item
+%       \verb=\mthparrel{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       \mthparrel{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]
+%     \item
+%       \verb=\mthparrel*{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       \mthparrel*{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]
 %   \end{itemize}
 %    \begin{macrocode}
 %% Style for Relations
@@ -3153,11 +3376,17 @@ install" installs the files in the local TeX tree.
 %     \item
 %       \verb=\mthfun{Name}[sub][sup][Ext]= = \mthfun{Name}[sub][sup][Ext]
 %     \item
-%       \verb=\mthargfun{Name}[sub][sup][Ext1]{Arg}[Ext2]= =
-%       \mthargfun{Name}[sub][sup][Ext1]{Arg}[Ext2]
+%       \verb=\mthargfun{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       \mthargfun{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]
 %     \item
-%       \verb=\mthparfun{Name}[sub][sup][Ext1]{Par}[Ext2]= =
-%       \mthparfun{Name}[sub][sup][Ext1]{Par}[Ext2]
+%       \verb=\mthargfun*{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       \mthargfun*{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]
+%     \item
+%       \verb=\mthparfun{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       \mthparfun{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]
+%     \item
+%       \verb=\mthparfun*{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       \mthparfun*{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]
 %   \end{itemize}
 %    \begin{macrocode}
 %% Style for Functions
@@ -3289,11 +3518,17 @@ install" installs the files in the local TeX tree.
 %     \item
 %       \verb=\mthsym{Name}[sub][sup][Ext]= = \mthsym{Name}[sub][sup][Ext]
 %     \item
-%       \verb=\mthargsym{Name}[sub][sup][Ext1]{Arg}[Ext2]= =
-%       \mthargsym{Name}[sub][sup][Ext1]{Arg}[Ext2]
+%       \verb=\mthargsym{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       \mthargsym{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]
 %     \item
-%       \verb=\mthparsym{Name}[sub][sup][Ext1]{Par}[Ext2]= =
-%       \mthparsym{Name}[sub][sup][Ext1]{Par}[Ext2]
+%       \verb=\mthargsym*{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       \mthargsym*{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]
+%     \item
+%       \verb=\mthparsym{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       \mthparsym{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]
+%     \item
+%       \verb=\mthparsym*{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       \mthparsym*{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]
 %   \end{itemize}
 %    \begin{macrocode}
 %% Style for Symbols
@@ -3425,11 +3660,17 @@ install" installs the files in the local TeX tree.
 %     \item
 %       \verb=\mthelm{Name}[sub][sup][Ext]= = \mthelm{Name}[sub][sup][Ext]
 %     \item
-%       \verb=\mthargelm{Name}[sub][sup][Ext1]{Arg}[Ext2]= =
-%       \mthargelm{Name}[sub][sup][Ext1]{Arg}[Ext2]
+%       \verb=\mthargelm{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       \mthargelm{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]
 %     \item
-%       \verb=\mthparelm{Name}[sub][sup][Ext1]{Par}[Ext2]= =
-%       \mthparelm{Name}[sub][sup][Ext1]{Par}[Ext2]
+%       \verb=\mthargelm*{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       \mthargelm*{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]
+%     \item
+%       \verb=\mthparelm{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       \mthparelm{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]
+%     \item
+%       \verb=\mthparelm*{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       \mthparelm*{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]
 %   \end{itemize}
 %    \begin{macrocode}
 %% Style for Elements
@@ -3766,11 +4007,17 @@ install" installs the files in the local TeX tree.
 %     \item
 %       \verb=\mthsnt{Name}[sub][sup][Ext]= = \mthsnt{Name}[sub][sup][Ext]
 %     \item
-%       \verb=\mthargsnt{Name}[sub][sup][Ext1]{Arg}[Ext2]= =
-%       \mthargsnt{Name}[sub][sup][Ext1]{Arg}[Ext2]
+%       \verb=\mthargsnt{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       \mthargsnt{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]
 %     \item
-%       \verb=\mthparsnt{Name}[sub][sup][Ext1]{Par}[Ext2]= =
-%       \mthparsnt{Name}[sub][sup][Ext1]{Par}[Ext2]
+%       \verb=\mthargsnt*{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       \mthargsnt*{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]
+%     \item
+%       \verb=\mthparsnt{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       \mthparsnt{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]
+%     \item
+%       \verb=\mthparsnt*{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       \mthparsnt*{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]
 %   \end{itemize}
 %    \begin{macrocode}
 %% Style for Sentences
@@ -3902,11 +4149,17 @@ install" installs the files in the local TeX tree.
 %     \item
 %       \verb=\mthfrm{Name}[sub][sup][Ext]= = \mthfrm{Name}[sub][sup][Ext]
 %     \item
-%       \verb=\mthargfrm{Name}[sub][sup][Ext1]{Arg}[Ext2]= =
-%       \mthargfrm{Name}[sub][sup][Ext1]{Arg}[Ext2]
+%       \verb=\mthargfrm{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       \mthargfrm{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]
 %     \item
-%       \verb=\mthparfrm{Name}[sub][sup][Ext1]{Par}[Ext2]= =
-%       \mthparfrm{Name}[sub][sup][Ext1]{Par}[Ext2]
+%       \verb=\mthargfrm*{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       \mthargfrm*{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]
+%     \item
+%       \verb=\mthparfrm{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       \mthparfrm{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]
+%     \item
+%       \verb=\mthparfrm*{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       \mthparfrm*{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]
 %   \end{itemize}
 %    \begin{macrocode}
 %% Style for Formulae
@@ -4042,11 +4295,17 @@ install" installs the files in the local TeX tree.
 %     \item
 %       \verb=\mthmat{Name}[sub][sup][Ext]= = \mthmat{Name}[sub][sup][Ext]
 %     \item
-%       \verb=\mthargmat{Name}[sub][sup][Ext1]{Arg}[Ext2]= =
-%       \mthargmat{Name}[sub][sup][Ext1]{Arg}[Ext2]
+%       \verb=\mthargmat{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       \mthargmat{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]
 %     \item
-%       \verb=\mthparmat{Name}[sub][sup][Ext1]{Par}[Ext2]= =
-%       \mthparmat{Name}[sub][sup][Ext1]{Par}[Ext2]
+%       \verb=\mthargmat*{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       \mthargmat*{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]
+%     \item
+%       \verb=\mthparmat{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       \mthparmat{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]
+%     \item
+%       \verb=\mthparmat*{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       \mthparmat*{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]
 %   \end{itemize}
 %    \begin{macrocode}
 %% Style for Matrices
@@ -4178,11 +4437,17 @@ install" installs the files in the local TeX tree.
 %     \item
 %       \verb=\mthvec{Name}[sub][sup][Ext]= = \mthvec{Name}[sub][sup][Ext]
 %     \item
-%       \verb=\mthargvec{Name}[sub][sup][Ext1]{Arg}[Ext2]= =
-%       \mthargvec{Name}[sub][sup][Ext1]{Arg}[Ext2]
+%       \verb=\mthargvec{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       \mthargvec{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]
 %     \item
-%       \verb=\mthparvec{Name}[sub][sup][Ext1]{Par}[Ext2]= =
-%       \mthparvec{Name}[sub][sup][Ext1]{Par}[Ext2]
+%       \verb=\mthargvec*{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       \mthargvec*{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]
+%     \item
+%       \verb=\mthparvec{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       \mthparvec{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]
+%     \item
+%       \verb=\mthparvec*{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       \mthparvec*{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]
 %   \end{itemize}
 %    \begin{macrocode}
 %% Style for Vectors
