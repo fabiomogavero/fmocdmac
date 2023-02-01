@@ -534,7 +534,11 @@
 %%****************************************************************************%%
 
 \newcommandx{\usrmth}[4][4=]
-  {\csdef{#1#2}{\csname\expandafter mth#3\endcsname{\defval{#4}{#1}}}}
+  {\csdef{#1#2}{%
+    \@ifstar%
+      {\csname mth#3\endcsname*{\defval{#4}{#1}}}%
+      {\csname mth#3\endcsname{\defval{#4}{#1}}}%
+  }}
 
 %%****************************************************************************%%
 
@@ -1230,14 +1234,10 @@
 
 %%****************************************************************************%%
 
-\DeclareRobustCommand{\dom}
-  {\mthargfun{dom}}
-\DeclareRobustCommand{\cod}
-  {\mthargfun{cod}}
-\DeclareRobustCommand{\rng}
-  {\mthargfun{rng}}
-\DeclareRobustCommand{\img}
-  {\mthargfun{img}}
+\usrmth{dom}{}{argfun}
+\usrmth{cod}{}{argfun}
+\usrmth{rng}{}{argfun}
+\usrmth{img}{}{argfun}
 
 %%****************************************************************************%%
 
@@ -1265,31 +1265,21 @@
 
 %%****************************************************************************%%
 
-\DeclareRobustCommand{\fix}
-  {\mthfun{fix}}
-\DeclareRobustCommand{\ifp}
-  {\mthfun{ifp}}
-\DeclareRobustCommand{\lfp}
-  {\mthfun{lfp}}
-\DeclareRobustCommand{\gfp}
-  {\mthfun{gfp}}
+\usrmth{fix}{}{fun}
+\usrmth{ifp}{}{fun}
+\usrmth{lfp}{}{fun}
+\usrmth{gfp}{}{fun}
 
 %%****************************************************************************%%
 
-\DeclareRobustCommand{\Aomega}
-  {\mthargset{\omega}}
-\DeclareRobustCommand{\AOmega}
-  {\mthargset{\Omega}}
+\usrmth{Aomega}{}{argset}[\omega]
+\usrmth{AOmega}{}{argset}[\Omega]
 
-\DeclareRobustCommand{\Atheta}
-  {\mthargset{\theta}}
-\DeclareRobustCommand{\ATheta}
-  {\mthargset{\Theta}}
+\usrmth{Atheta}{}{argset}[\theta]
+\usrmth{ATheta}{}{argset}[\Theta]
 
-\DeclareRobustCommand{\Aomicron}
-  {\mthargset{\omicron}}
-\DeclareRobustCommand{\AOmicron}
-  {\mthargset{\Omicron}}
+\usrmth{Aomicron}{}{argset}[\omicron]
+\usrmth{AOmicron}{}{argset}[\Omicron]
 
 %%** Numbers *****************************************************************%%
 
@@ -1367,42 +1357,34 @@
 
 %%****************************************************************************%%
 
-\DeclareRobustCommand{\arg}
-  {\mthfun{arg}}
+\usrmth{arg}{}{fun}
 
-\DeclareRobustCommand{\evn}
-  {\mthfun{evn}}
-\DeclareRobustCommand{\odd}
-  {\mthfun{odd}}
+\usrmth{evn}{}{fun}
+\usrmth{odd}{}{fun}
 
-\DeclareRobustCommand{\bst}
-  {\mthfun{bst}}
-\DeclareRobustCommand{\argbst}
-  {\mthfun{arg bst}}
+\usrmth{bst}{}{fun}
+\usrmth{argbst}{}{fun}[arg\,bst]
 
-\DeclareRobustCommand{\min}
-  {\mthfun{min}}
-\DeclareRobustCommand{\max}
-  {\mthfun{max}}
-\DeclareRobustCommand{\argmin}
-  {\mthfun{arg min}}
-\DeclareRobustCommand{\argmax}
-  {\mthfun{arg max}}
+\usrmth{min}{}{fun}
+\usrmth{max}{}{fun}
+\usrmth{argmin}{}{fun}[arg\,min]
+\usrmth{argmax}{}{fun}[arg\,max]
 
-\DeclareRobustCommand{\inf}
-  {\mthfun{inf}}
-\DeclareRobustCommand{\sup}
-  {\mthfun{sup}}
+\usrmth{inf}{}{fun}
+\usrmth{sup}{}{fun}
 
 %%** Sequences ***************************************************************%%
 
 \DeclareRobustCommand{\emptyseq}
   {\mth{\varepsilon}}
 
-\DeclareRobustCommand{\fst}
-  {\mthargfun{fst}}
-\DeclareRobustCommand{\lst}
-  {\mthargfun{lst}}
+\DeclareRobustCommand{\len}
+  {\@ifstar{\@len}{\@len[\left][\right]}}
+\DeclareRobustCommandx{\@len}[3][1=, 2=]
+  {\mth{\argmid{#1\lvert}{#3}{#2\rvert}}}
+
+\usrmth{fst}{}{argfun}
+\usrmth{lst}{}{argfun}
 
 \fi
 %%****************************************************************************%%

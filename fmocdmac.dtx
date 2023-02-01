@@ -1841,23 +1841,31 @@ install" installs the files in the local TeX tree.
 %     \item
 %       \verb=\usrmth{cmdName}{Suf}{}=;\usrmth{cmdName}{Suf}{}
 %       \verb=\cmdNameSuf= = \cmdNameSuf \\
-%       \verb=\usrmth{cmdName}{Suf}{arg}=;\usrmth{cmdName}{Suf}{arg}
+%       \verb=\usrmth{cmdName}{Suf}{arg}=;\usrmth{cmdName}{Suf}{arg} \\
 %       \verb=\cmdNameSuf{Arg^{Ex^{Ex}}}= = \cmdNameSuf{Arg^{Ex^{Ex}}} \\
-%       \verb=\usrmth{cmdName}{Suf}{par}=;\usrmth{cmdName}{Suf}{par}
-%       \verb=\cmdNameSuf{Par^{Ex^{Ex}}}= = \cmdNameSuf{Par^{Ex^{Ex}}}
+%       \verb=\cmdNameSuf*{Arg^{Ex^{Ex}}}= = \cmdNameSuf*{Arg^{Ex^{Ex}}} \\
+%       \verb=\usrmth{cmdName}{Suf}{par}=;\usrmth{cmdName}{Suf}{par} \\
+%       \verb=\cmdNameSuf{Par^{Ex^{Ex}}}= = \cmdNameSuf{Par^{Ex^{Ex}}} \\
+%       \verb=\cmdNameSuf*{Par^{Ex^{Ex}}}= = \cmdNameSuf*{Par^{Ex^{Ex}}}
 %     \item
 %       \verb=\usrmth{cmdName}{Suf}{}[newName]=;\usrmth{cmdName}{Suf}{}[newName]
 %       \verb=\cmdNameSuf= = \cmdNameSuf \\
-%       \verb=\usrmth{cmdName}{Suf}{arg}[newName]=;\!\!
-%       \usrmth{cmdName}{Suf}{arg}[newName]
+%       \verb=\usrmth{cmdName}{Suf}{arg}[newName]=;
+%       \usrmth{cmdName}{Suf}{arg}[newName] \\
 %       \verb=\cmdNameSuf{Arg^{Ex^{Ex}}}= = \cmdNameSuf{Arg^{Ex^{Ex}}} \\
-%       \verb=\usrmth{cmdName}{Suf}{par}[newName]=;\!\!
-%       \usrmth{cmdName}{Suf}{par}[newName]
-%       \verb=\cmdNameSuf{Par^{Ex^{Ex}}}= = \cmdNameSuf{Par^{Ex^{Ex}}}
+%       \verb=\cmdNameSuf*{Arg^{Ex^{Ex}}}= = \cmdNameSuf*{Arg^{Ex^{Ex}}} \\
+%       \verb=\usrmth{cmdName}{Suf}{par}[newName]=;
+%       \usrmth{cmdName}{Suf}{par}[newName] \\
+%       \verb=\cmdNameSuf{Par^{Ex^{Ex}}}= = \cmdNameSuf{Par^{Ex^{Ex}}} \\
+%       \verb=\cmdNameSuf*{Par^{Ex^{Ex}}}= = \cmdNameSuf*{Par^{Ex^{Ex}}}
 %   \end{itemize}
 %    \begin{macrocode}
 \newcommandx{\usrmth}[4][4=]
-  {\csdef{#1#2}{\csname\expandafter mth#3\endcsname{\defval{#4}{#1}}}}
+  {\csdef{#1#2}{%
+    \@ifstar%
+      {\csname mth#3\endcsname*{\defval{#4}{#1}}}%
+      {\csname mth#3\endcsname{\defval{#4}{#1}}}%
+  }}
 %    \end{macrocode}
 % \end{macro}
 
@@ -5384,14 +5392,10 @@ install" installs the files in the local TeX tree.
 % \begin{macro}{\dom, \cod, ...}
 %   ...
 %    \begin{macrocode}
-\DeclareRobustCommand{\dom}
-  {\mthargfun{dom}}
-\DeclareRobustCommand{\cod}
-  {\mthargfun{cod}}
-\DeclareRobustCommand{\rng}
-  {\mthargfun{rng}}
-\DeclareRobustCommand{\img}
-  {\mthargfun{img}}
+\usrmth{dom}{}{argfun}
+\usrmth{cod}{}{argfun}
+\usrmth{rng}{}{argfun}
+\usrmth{img}{}{argfun}
 %    \end{macrocode}
 % \end{macro}
 
@@ -5457,14 +5461,10 @@ install" installs the files in the local TeX tree.
 % \begin{macro}{\fix, \ifp, ...}
 %   ...
 %    \begin{macrocode}
-\DeclareRobustCommand{\fix}
-  {\mthfun{fix}}
-\DeclareRobustCommand{\ifp}
-  {\mthfun{ifp}}
-\DeclareRobustCommand{\lfp}
-  {\mthfun{lfp}}
-\DeclareRobustCommand{\gfp}
-  {\mthfun{gfp}}
+\usrmth{fix}{}{fun}
+\usrmth{ifp}{}{fun}
+\usrmth{lfp}{}{fun}
+\usrmth{gfp}{}{fun}
 %    \end{macrocode}
 % \end{macro}
 
@@ -5475,30 +5475,24 @@ install" installs the files in the local TeX tree.
 % \begin{macro}{\Aomega, \AOmega}
 %   ...
 %    \begin{macrocode}
-\DeclareRobustCommand{\Aomega}
-  {\mthargset{\omega}}
-\DeclareRobustCommand{\AOmega}
-  {\mthargset{\Omega}}
+\usrmth{Aomega}{}{argset}[\omega]
+\usrmth{AOmega}{}{argset}[\Omega]
 %    \end{macrocode}
 % \end{macro}
 
 % \begin{macro}{\Atheta, \ATheta}
 %   ...
 %    \begin{macrocode}
-\DeclareRobustCommand{\Atheta}
-  {\mthargset{\theta}}
-\DeclareRobustCommand{\ATheta}
-  {\mthargset{\Theta}}
+\usrmth{Atheta}{}{argset}[\theta]
+\usrmth{ATheta}{}{argset}[\Theta]
 %    \end{macrocode}
 % \end{macro}
 
 % \begin{macro}{\Aomicron, ...}
 %   ...
 %    \begin{macrocode}
-\DeclareRobustCommand{\Aomicron}
-  {\mthargset{\omicron}}
-\DeclareRobustCommand{\AOmicron}
-  {\mthargset{\Omicron}}
+\usrmth{Aomicron}{}{argset}[\omicron]
+\usrmth{AOmicron}{}{argset}[\Omicron]
 %    \end{macrocode}
 % \end{macro}
 
@@ -5639,52 +5633,41 @@ install" installs the files in the local TeX tree.
 % \begin{macro}{\arg}
 %   ...
 %    \begin{macrocode}
-\DeclareRobustCommand{\arg}
-  {\mthfun{arg}}
+\usrmth{arg}{}{fun}
 %    \end{macrocode}
 % \end{macro}
 
 % \begin{macro}{\evn, \odd}
 %   ...
 %    \begin{macrocode}
-\DeclareRobustCommand{\evn}
-  {\mthfun{evn}}
-\DeclareRobustCommand{\odd}
-  {\mthfun{odd}}
+\usrmth{evn}{}{fun}
+\usrmth{odd}{}{fun}
 %    \end{macrocode}
 % \end{macro}
 
 % \begin{macro}{\bst, ...}
 %   ...
 %    \begin{macrocode}
-\DeclareRobustCommand{\bst}
-  {\mthfun{bst}}
-\DeclareRobustCommand{\argbst}
-  {\mthfun{arg bst}}
+\usrmth{bst}{}{fun}
+\usrmth{argbst}{}{fun}[arg\,bst]
 %    \end{macrocode}
 % \end{macro}
 
 % \begin{macro}{\min, \max, ...}
 %   ...
 %    \begin{macrocode}
-\DeclareRobustCommand{\min}
-  {\mthfun{min}}
-\DeclareRobustCommand{\max}
-  {\mthfun{max}}
-\DeclareRobustCommand{\argmin}
-  {\mthfun{arg min}}
-\DeclareRobustCommand{\argmax}
-  {\mthfun{arg max}}
+\usrmth{min}{}{fun}
+\usrmth{max}{}{fun}
+\usrmth{argmin}{}{fun}[arg\,min]
+\usrmth{argmax}{}{fun}[arg\,max]
 %    \end{macrocode}
 % \end{macro}
 
 % \begin{macro}{\inf, \sup}
 %   ...
 %    \begin{macrocode}
-\DeclareRobustCommand{\inf}
-  {\mthfun{inf}}
-\DeclareRobustCommand{\sup}
-  {\mthfun{sup}}
+\usrmth{inf}{}{fun}
+\usrmth{sup}{}{fun}
 %    \end{macrocode}
 % \end{macro}
 
@@ -5700,13 +5683,21 @@ install" installs the files in the local TeX tree.
 %    \end{macrocode}
 % \end{macro}
 
+% \begin{macro}{\len}
+%   ...
+%    \begin{macrocode}
+\DeclareRobustCommand{\len}
+  {\@ifstar{\@len}{\@len[\left][\right]}}
+\DeclareRobustCommandx{\@len}[3][1=, 2=]
+  {\mth{\argmid{#1\lvert}{#3}{#2\rvert}}}
+%    \end{macrocode}
+% \end{macro}
+
 % \begin{macro}{\fst, \lst}
 %   ...
 %    \begin{macrocode}
-\DeclareRobustCommand{\fst}
-  {\mthargfun{fst}}
-\DeclareRobustCommand{\lst}
-  {\mthargfun{lst}}
+\usrmth{fst}{}{argfun}
+\usrmth{lst}{}{argfun}
 %    \end{macrocode}
 % \end{macro}
 
