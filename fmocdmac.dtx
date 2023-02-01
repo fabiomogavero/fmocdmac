@@ -574,7 +574,7 @@ install" installs the files in the local TeX tree.
 %    \begin{macrocode}
 \newcommand{\varcmd}[6]
   {\expandafter\newcommand\csname gobble#1arg\endcsname[2]
-    {\csname check#1arg\endcsname{\argsep{##1}{#4}{##2}}}%
+    {\csname check#1arg\endcsname{\argsep{##1}{#4}{\empchk{##2}{{##2}}}}}%
   \expandafter\newcommand\csname check#1arg\endcsname[1]
     {\csname @ifnextchar\endcsname%
       \bgroup{\csname gobble#1arg\endcsname{##1}}{#2{##1#5}#6}}%
@@ -7445,7 +7445,7 @@ install" installs the files in the local TeX tree.
 % \end{macro}
 
 % \begin{macro}{\movFun}
-%   ...
+%   ...\movFun
 %    \begin{macrocode}
 \newcommand{\movsym}{\tau}
 \cmdmthfun{mov}[\movsym]
