@@ -80,7 +80,7 @@ install" installs the files in the local TeX tree.
 %<package>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
 %<package>\ProvidesPackage{fmocdmac}
 %<*package>
-  [2023/02/01 v0.13 FM's OCD LaTeX Macro]
+  [2023/02/05 v0.14 FM's OCD LaTeX Macro]
 %</package>
 %<*driver>
 \documentclass{ltxdoc}
@@ -135,6 +135,8 @@ install" installs the files in the local TeX tree.
 % \changes{v0.12}{2023/01/23}{New starred variants}
 %
 % \changes{v0.13}{2023/02/01}{Further starred variants}
+%
+% \changes{v0.14}{2023/02/05}{Few additions and corrections}
 %
 % \begin{abstract}
 % This package contains almost all the latex macros I heavily use in my tcs
@@ -5097,6 +5099,17 @@ install" installs the files in the local TeX tree.
 %    \end{macrocode}
 % \end{macro}
 
+% \begin{macro}{\iht}
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\iht= = \iht
+%   \end{itemize}
+%    \begin{macrocode}
+\cmdtxtabr{iht}[i.h.t.]
+%    \end{macrocode}
+% \end{macro}
+
 % \begin{macro}{\stx}
 %   \small
 %   \begin{itemize}
@@ -5720,96 +5733,118 @@ install" installs the files in the local TeX tree.
 %     \item
 %       \verb=\defcomcls{CompClass}=; \defcomcls{CompClass}
 %       \vspace{1em}\newline
-%       \verb=\CompClass[sub][sup][ext]= = \CompClass[sub][sup][ext] \\
-%       \verb=\CoCompClass[sub][sup][ext]= = \CoCompClass[sub][sup][ext] \\
-%       \verb=\CompClassE[sub][sup][ext]= = \CompClassE[sub][sup][ext] \\
-%       \verb=\CoCompClassE[sub][sup][ext]= = \CoCompClassE[sub][sup][ext] \\
-%       \verb=\CompClassH[sub][sup][ext]= = \CompClassH[sub][sup][ext] \\
-%       \verb=\CoCompClassH[sub][sup][ext]= = \CoCompClassH[sub][sup][ext] \\
-%       \verb=\CompClassC[sub][sup][ext]= = \CompClassC[sub][sup][ext] \\
-%       \verb=\CoCompClassC[sub][sup][ext]= = \CoCompClassC[sub][sup][ext]
-%       \vspace{1em}\newline
-%       \verb=\NCompClass[sub][sup][ext]= = \NCompClass[sub][sup][ext] \\
-%       \verb=\CoNCompClass[sub][sup][ext]= = \CoNCompClass[sub][sup][ext] \\
-%       \verb=\NCompClassE[sub][sup][ext]= = \NCompClassE[sub][sup][ext] \\
-%       \verb=\CoNCompClassE[sub][sup][ext]= = \CoNCompClassE[sub][sup][ext] \\
-%       \verb=\NCompClassH[sub][sup][ext]= = \NCompClassH[sub][sup][ext] \\
-%       \verb=\CoNCompClassH[sub][sup][ext]= = \CoNCompClassH[sub][sup][ext] \\
-%       \verb=\NCompClassC[sub][sup][ext]= = \NCompClassC[sub][sup][ext] \\
-%       \verb=\CoNCompClassC[sub][sup][ext]= = \CoNCompClassC[sub][sup][ext]
-%       \vspace{1em}\newline
-%       \verb=\UCompClass[sub][sup][ext]= = \UCompClass[sub][sup][ext] \\
-%       \verb=\CoUCompClass[sub][sup][ext]= = \CoUCompClass[sub][sup][ext] \\
-%       \verb=\UCompClassE[sub][sup][ext]= = \UCompClassE[sub][sup][ext] \\
-%       \verb=\CoUCompClassE[sub][sup][ext]= = \CoUCompClassE[sub][sup][ext] \\
-%       \verb=\UCompClassH[sub][sup][ext]= = \UCompClassH[sub][sup][ext] \\
-%       \verb=\CoUCompClassH[sub][sup][ext]= = \CoUCompClassH[sub][sup][ext] \\
-%       \verb=\UCompClassC[sub][sup][ext]= = \UCompClassC[sub][sup][ext] \\
-%       \verb=\CoUCompClassC[sub][sup][ext]= = \CoUCompClassC[sub][sup][ext]
-%       \vspace{1em}\newline
-%       \verb=\ACompClass[sub][sup][ext]= = \ACompClass[sub][sup][ext] \\
-%       \verb=\CoACompClass[sub][sup][ext]= = \CoACompClass[sub][sup][ext] \\
-%       \verb=\ACompClassE[sub][sup][ext]= = \ACompClassE[sub][sup][ext] \\
-%       \verb=\CoACompClassE[sub][sup][ext]= = \CoACompClassE[sub][sup][ext] \\
-%       \verb=\ACompClassH[sub][sup][ext]= = \ACompClassH[sub][sup][ext] \\
-%       \verb=\CoACompClassH[sub][sup][ext]= = \CoACompClassH[sub][sup][ext] \\
-%       \verb=\ACompClassC[sub][sup][ext]= = \ACompClassC[sub][sup][ext] \\
-%       \verb=\CoACompClassC[sub][sup][ext]= = \CoACompClassC[sub][sup][ext]
+%       \verb=\CompClass[sub][sup][arg]= = \CompClass[sub][sup][arg] \\
 %     \item
-%       \verb=\defcomcls{CompClass}[NewClass]=; \defcomcls{CompClass}[NewClass]
+%       \verb=\defcomcls{CompClass}[NewClass]=;
+%       \defcomcls{CompClass}[NewClass]
 %       \vspace{1em}\newline
-%       \verb=\CompClass[sub][sup][ext]= = \CompClass[sub][sup][ext] \\
-%       \verb=\CoCompClass[sub][sup][ext]= = \CoCompClass[sub][sup][ext] \\
-%       \verb=\CompClassE[sub][sup][ext]= = \CompClassE[sub][sup][ext] \\
-%       \verb=\CoCompClassE[sub][sup][ext]= = \CoCompClassE[sub][sup][ext] \\
-%       \verb=\CompClassH[sub][sup][ext]= = \CompClassH[sub][sup][ext] \\
-%       \verb=\CoCompClassH[sub][sup][ext]= = \CoCompClassH[sub][sup][ext] \\
-%       \verb=\CompClassC[sub][sup][ext]= = \CompClassC[sub][sup][ext] \\
-%       \verb=\CoCompClassC[sub][sup][ext]= = \CoCompClassC[sub][sup][ext]
-%       \vspace{1em}\newline
-%       \verb=\NCompClass[sub][sup][ext]= = \NCompClass[sub][sup][ext] \\
-%       \verb=\CoNCompClass[sub][sup][ext]= = \CoNCompClass[sub][sup][ext] \\
-%       \verb=\NCompClassE[sub][sup][ext]= = \NCompClassE[sub][sup][ext] \\
-%       \verb=\CoNCompClassE[sub][sup][ext]= = \CoNCompClassE[sub][sup][ext] \\
-%       \verb=\NCompClassH[sub][sup][ext]= = \NCompClassH[sub][sup][ext] \\
-%       \verb=\CoNCompClassH[sub][sup][ext]= = \CoNCompClassH[sub][sup][ext] \\
-%       \verb=\NCompClassC[sub][sup][ext]= = \NCompClassC[sub][sup][ext] \\
-%       \verb=\CoNCompClassC[sub][sup][ext]= = \CoNCompClassC[sub][sup][ext]
-%       \vspace{1em}\newline
-%       \verb=\UCompClass[sub][sup][ext]= = \UCompClass[sub][sup][ext] \\
-%       \verb=\CoUCompClass[sub][sup][ext]= = \CoUCompClass[sub][sup][ext] \\
-%       \verb=\UCompClassE[sub][sup][ext]= = \UCompClassE[sub][sup][ext] \\
-%       \verb=\CoUCompClassE[sub][sup][ext]= = \CoUCompClassE[sub][sup][ext] \\
-%       \verb=\UCompClassH[sub][sup][ext]= = \UCompClassH[sub][sup][ext] \\
-%       \verb=\CoUCompClassH[sub][sup][ext]= = \CoUCompClassH[sub][sup][ext] \\
-%       \verb=\UCompClassC[sub][sup][ext]= = \UCompClassC[sub][sup][ext] \\
-%       \verb=\CoUCompClassC[sub][sup][ext]= = \CoUCompClassC[sub][sup][ext]
-%       \vspace{1em}\newline
-%       \verb=\ACompClass[sub][sup][ext]= = \ACompClass[sub][sup][ext] \\
-%       \verb=\CoACompClass[sub][sup][ext]= = \CoACompClass[sub][sup][ext] \\
-%       \verb=\ACompClassE[sub][sup][ext]= = \ACompClassE[sub][sup][ext] \\
-%       \verb=\CoACompClassE[sub][sup][ext]= = \CoACompClassE[sub][sup][ext] \\
-%       \verb=\ACompClassH[sub][sup][ext]= = \ACompClassH[sub][sup][ext] \\
-%       \verb=\CoACompClassH[sub][sup][ext]= = \CoACompClassH[sub][sup][ext] \\
-%       \verb=\ACompClassC[sub][sup][ext]= = \ACompClassC[sub][sup][ext] \\
-%       \verb=\CoACompClassC[sub][sup][ext]= = \CoACompClassC[sub][sup][ext]
+%       \verb=\CompClass[sub][sup][arg]= = \CompClass[sub][sup][arg] \\
 %   \end{itemize}
 %    \begin{macrocode}
 \newcommandx{\defcomcls}[2][2=]
-  {\defcomclssem{#1}{\defval{#2}{#1}}%
-  \defcomclssem{#1}{\defval{#2}{#1}}[Co]}
-\newcommandx{\defcomclssem}[3][3=]
-  {\defcomclsred{#3#1}{#2}[#3]%
-  \defcomclsred{#3N#1}{#2}[#3N]%
-  \defcomclsred{#3U#1}{#2}[#3U]%
-  \defcomclsred{#3A#1}{#2}[#3A]}
-\newcommandx{\defcomclsred}[3][3=]
-  {\defcomclscmd{#1}{#2}[#3]%
-  \defcomclscmd{#1E}{#2}[#3][-easy]%
-  \defcomclscmd{#1H}{#2}[#3][-hard]%
-  \defcomclscmd{#1C}{#2}[#3][-complete]}%
-\newcommandx{\defcomclscmd}[4][3=, 4=]
-  {\csdef{#1}{\txtcom{#3#2#4}}}
+  {\csdef{#1}{\txtoargcom{\defval{#2}{#1}}}}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\defcomclsgrp}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\defcomclsgrp{CompClass}=;
+%       \defcomclsgrp{CompClass}
+%       \vspace{1em}\newline
+%       \verb=\CompClass[sub][sup][arg]= = \CompClass[sub][sup][arg] \\
+%       \verb=\CoCompClass[sub][sup][arg]= = \CoCompClass[sub][sup][arg] \\
+%       \verb=\CompClassE[sub][sup][arg]= = \CompClassE[sub][sup][arg] \\
+%       \verb=\CoCompClassE[sub][sup][arg]= = \CoCompClassE[sub][sup][arg] \\
+%       \verb=\CompClassH[sub][sup][arg]= = \CompClassH[sub][sup][arg] \\
+%       \verb=\CoCompClassH[sub][sup][arg]= = \CoCompClassH[sub][sup][arg] \\
+%       \verb=\CompClassC[sub][sup][arg]= = \CompClassC[sub][sup][arg] \\
+%       \verb=\CoCompClassC[sub][sup][arg]= = \CoCompClassC[sub][sup][arg]
+%       \vspace{1em}\newline
+%       \verb=\NCompClass[sub][sup][arg]= = \NCompClass[sub][sup][arg] \\
+%       \verb=\CoNCompClass[sub][sup][arg]= = \CoNCompClass[sub][sup][arg] \\
+%       \verb=\NCompClassE[sub][sup][arg]= = \NCompClassE[sub][sup][arg] \\
+%       \verb=\CoNCompClassE[sub][sup][arg]= = \CoNCompClassE[sub][sup][arg] \\
+%       \verb=\NCompClassH[sub][sup][arg]= = \NCompClassH[sub][sup][arg] \\
+%       \verb=\CoNCompClassH[sub][sup][arg]= = \CoNCompClassH[sub][sup][arg] \\
+%       \verb=\NCompClassC[sub][sup][arg]= = \NCompClassC[sub][sup][arg] \\
+%       \verb=\CoNCompClassC[sub][sup][arg]= = \CoNCompClassC[sub][sup][arg]
+%       \vspace{1em}\newline
+%       \verb=\UCompClass[sub][sup][arg]= = \UCompClass[sub][sup][arg] \\
+%       \verb=\CoUCompClass[sub][sup][arg]= = \CoUCompClass[sub][sup][arg] \\
+%       \verb=\UCompClassE[sub][sup][arg]= = \UCompClassE[sub][sup][arg] \\
+%       \verb=\CoUCompClassE[sub][sup][arg]= = \CoUCompClassE[sub][sup][arg] \\
+%       \verb=\UCompClassH[sub][sup][arg]= = \UCompClassH[sub][sup][arg] \\
+%       \verb=\CoUCompClassH[sub][sup][arg]= = \CoUCompClassH[sub][sup][arg] \\
+%       \verb=\UCompClassC[sub][sup][arg]= = \UCompClassC[sub][sup][arg] \\
+%       \verb=\CoUCompClassC[sub][sup][arg]= = \CoUCompClassC[sub][sup][arg]
+%       \vspace{1em}\newline
+%       \verb=\ACompClass[sub][sup][arg]= = \ACompClass[sub][sup][arg] \\
+%       \verb=\CoACompClass[sub][sup][arg]= = \CoACompClass[sub][sup][arg] \\
+%       \verb=\ACompClassE[sub][sup][arg]= = \ACompClassE[sub][sup][arg] \\
+%       \verb=\CoACompClassE[sub][sup][arg]= = \CoACompClassE[sub][sup][arg] \\
+%       \verb=\ACompClassH[sub][sup][arg]= = \ACompClassH[sub][sup][arg] \\
+%       \verb=\CoACompClassH[sub][sup][arg]= = \CoACompClassH[sub][sup][arg] \\
+%       \verb=\ACompClassC[sub][sup][arg]= = \ACompClassC[sub][sup][arg] \\
+%       \verb=\CoACompClassC[sub][sup][arg]= = \CoACompClassC[sub][sup][arg]
+%     \item
+%       \verb=\defcomclsgrp{CompClass}[NewClass]=;
+%       \defcomclsgrp{CompClass}[NewClass]
+%       \vspace{1em}\newline
+%       \verb=\CompClass[sub][sup][arg]= = \CompClass[sub][sup][arg] \\
+%       \verb=\CoCompClass[sub][sup][arg]= = \CoCompClass[sub][sup][arg] \\
+%       \verb=\CompClassE[sub][sup][arg]= = \CompClassE[sub][sup][arg] \\
+%       \verb=\CoCompClassE[sub][sup][arg]= = \CoCompClassE[sub][sup][arg] \\
+%       \verb=\CompClassH[sub][sup][arg]= = \CompClassH[sub][sup][arg] \\
+%       \verb=\CoCompClassH[sub][sup][arg]= = \CoCompClassH[sub][sup][arg] \\
+%       \verb=\CompClassC[sub][sup][arg]= = \CompClassC[sub][sup][arg] \\
+%       \verb=\CoCompClassC[sub][sup][arg]= = \CoCompClassC[sub][sup][arg]
+%       \vspace{1em}\newline
+%       \verb=\NCompClass[sub][sup][arg]= = \NCompClass[sub][sup][arg] \\
+%       \verb=\CoNCompClass[sub][sup][arg]= = \CoNCompClass[sub][sup][arg] \\
+%       \verb=\NCompClassE[sub][sup][arg]= = \NCompClassE[sub][sup][arg] \\
+%       \verb=\CoNCompClassE[sub][sup][arg]= = \CoNCompClassE[sub][sup][arg] \\
+%       \verb=\NCompClassH[sub][sup][arg]= = \NCompClassH[sub][sup][arg] \\
+%       \verb=\CoNCompClassH[sub][sup][arg]= = \CoNCompClassH[sub][sup][arg] \\
+%       \verb=\NCompClassC[sub][sup][arg]= = \NCompClassC[sub][sup][arg] \\
+%       \verb=\CoNCompClassC[sub][sup][arg]= = \CoNCompClassC[sub][sup][arg]
+%       \vspace{1em}\newline
+%       \verb=\UCompClass[sub][sup][arg]= = \UCompClass[sub][sup][arg] \\
+%       \verb=\CoUCompClass[sub][sup][arg]= = \CoUCompClass[sub][sup][arg] \\
+%       \verb=\UCompClassE[sub][sup][arg]= = \UCompClassE[sub][sup][arg] \\
+%       \verb=\CoUCompClassE[sub][sup][arg]= = \CoUCompClassE[sub][sup][arg] \\
+%       \verb=\UCompClassH[sub][sup][arg]= = \UCompClassH[sub][sup][arg] \\
+%       \verb=\CoUCompClassH[sub][sup][arg]= = \CoUCompClassH[sub][sup][arg] \\
+%       \verb=\UCompClassC[sub][sup][arg]= = \UCompClassC[sub][sup][arg] \\
+%       \verb=\CoUCompClassC[sub][sup][arg]= = \CoUCompClassC[sub][sup][arg]
+%       \vspace{1em}\newline
+%       \verb=\ACompClass[sub][sup][arg]= = \ACompClass[sub][sup][arg] \\
+%       \verb=\CoACompClass[sub][sup][arg]= = \CoACompClass[sub][sup][arg] \\
+%       \verb=\ACompClassE[sub][sup][arg]= = \ACompClassE[sub][sup][arg] \\
+%       \verb=\CoACompClassE[sub][sup][arg]= = \CoACompClassE[sub][sup][arg] \\
+%       \verb=\ACompClassH[sub][sup][arg]= = \ACompClassH[sub][sup][arg] \\
+%       \verb=\CoACompClassH[sub][sup][arg]= = \CoACompClassH[sub][sup][arg] \\
+%       \verb=\ACompClassC[sub][sup][arg]= = \ACompClassC[sub][sup][arg] \\
+%       \verb=\CoACompClassC[sub][sup][arg]= = \CoACompClassC[sub][sup][arg]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\defcomclsgrp}[2][2=]
+  {\defcomclsgrpsem{#1}{\defval{#2}{#1}}%
+  \defcomclsgrpsem{#1}{\defval{#2}{#1}}[Co]}
+\newcommandx{\defcomclsgrpsem}[3][3=]
+  {\defcomclsgrpred{#3#1}{#2}[#3]%
+  \defcomclsgrpred{#3N#1}{#2}[#3N]%
+  \defcomclsgrpred{#3U#1}{#2}[#3U]%
+  \defcomclsgrpred{#3A#1}{#2}[#3A]}
+\newcommandx{\defcomclsgrpred}[3][3=]
+  {\defcomclsgrpcmd{#1}{#2}[#3]%
+  \defcomclsgrpcmd{#1E}{#2}[#3][-easy]%
+  \defcomclsgrpcmd{#1H}{#2}[#3][-hard]%
+  \defcomclsgrpcmd{#1C}{#2}[#3][-complete]}%
+\newcommandx{\defcomclsgrpcmd}[4][3=, 4=]
+  {\csdef{#1}{\txtoargcom{#3#2#4}}}
 %    \end{macrocode}
 % \end{macro}
 
@@ -5820,16 +5855,16 @@ install" installs the files in the local TeX tree.
 %     \item
 %       \verb=\defcomhrc{CompHierarchy}=; \defcomhrc{CompHierarchy}
 %       \vspace{1em}\newline
-%       \verb=CompHierarchy[sub][sup][ext]= = \CompHierarchy[sub][sup][ext] \\
+%       \verb=CompHierarchy[sub][sup][par]= = \CompHierarchy[sub][sup][par] \\
 %     \item
 %       \verb=\defcomhrc{CompHierarchy}[NewHierarchy]=;
 %       \defcomhrc{CompHierarchy}[NewHierarchy]
 %       \vspace{1em}\newline
-%       \verb=CompHierarchy[sub][sup][ext]= = \CompHierarchy[sub][sup][ext] \\
+%       \verb=CompHierarchy[sub][sup][par]= = \CompHierarchy[sub][sup][par] \\
 %   \end{itemize}
 %    \begin{macrocode}
 \newcommandx{\defcomhrc}[2][2=]
-  {\csdef{#1}{\txtcom{\defval{#2}{#1}}}}
+  {\csdef{#1}{\txtoparcom{\defval{#2}{#1}}}}
 %    \end{macrocode}
 % \end{macro}
 
@@ -5849,32 +5884,47 @@ install" installs the files in the local TeX tree.
 %%****************************************************************************%%
 %    \end{macrocode}
 
+% \begin{macro}{\FPT}
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\FPT[sub][sup][arg]= = \FPT[sub][sup][arg]
+%   \end{itemize}
+%    \begin{macrocode}
+\defcomcls{FPT}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+%%****************************************************************************%%
+%    \end{macrocode}
+
 % \begin{macro}{\Time, ...}
 %   \small
 %   \begin{itemize}
 %     \item
-%       \verb=\Time[sub][sup][ext]= = \Time[sub][sup][ext] \\
-%       \verb=\TimeE[sub][sup][ext]= = \TimeE[sub][sup][ext] \\
-%       \verb=\TimeH[sub][sup][ext]= = \TimeH[sub][sup][ext] \\
-%       \verb=\TimeC[sub][sup][ext]= = \TimeC[sub][sup][ext]
+%       \verb=\Time[sub][sup][arg]= = \Time[sub][sup][arg] \\
+%       \verb=\TimeE[sub][sup][arg]= = \TimeE[sub][sup][arg] \\
+%       \verb=\TimeH[sub][sup][arg]= = \TimeH[sub][sup][arg] \\
+%       \verb=\TimeC[sub][sup][arg]= = \TimeC[sub][sup][arg]
 %     \item
-%       \verb=\NTime[sub][sup][ext]= = \NTime[sub][sup][ext] \\
-%       \verb=\NTimeE[sub][sup][ext]= = \NTimeE[sub][sup][ext] \\
-%       \verb=\NTimeH[sub][sup][ext]= = \NTimeH[sub][sup][ext] \\
-%       \verb=\NTimeC[sub][sup][ext]= = \NTimeC[sub][sup][ext]
+%       \verb=\NTime[sub][sup][arg]= = \NTime[sub][sup][arg] \\
+%       \verb=\NTimeE[sub][sup][arg]= = \NTimeE[sub][sup][arg] \\
+%       \verb=\NTimeH[sub][sup][arg]= = \NTimeH[sub][sup][arg] \\
+%       \verb=\NTimeC[sub][sup][arg]= = \NTimeC[sub][sup][arg]
 %     \item
-%       \verb=\UTime[sub][sup][ext]= = \UTime[sub][sup][ext] \\
-%       \verb=\UTimeE[sub][sup][ext]= = \UTimeE[sub][sup][ext] \\
-%       \verb=\UTimeH[sub][sup][ext]= = \UTimeH[sub][sup][ext] \\
-%       \verb=\UTimeC[sub][sup][ext]= = \UTimeC[sub][sup][ext]
+%       \verb=\UTime[sub][sup][arg]= = \UTime[sub][sup][arg] \\
+%       \verb=\UTimeE[sub][sup][arg]= = \UTimeE[sub][sup][arg] \\
+%       \verb=\UTimeH[sub][sup][arg]= = \UTimeH[sub][sup][arg] \\
+%       \verb=\UTimeC[sub][sup][arg]= = \UTimeC[sub][sup][arg]
 %     \item
-%       \verb=\ATime[sub][sup][ext]= = \ATime[sub][sup][ext] \\
-%       \verb=\ATimeE[sub][sup][ext]= = \ATimeE[sub][sup][ext] \\
-%       \verb=\ATimeH[sub][sup][ext]= = \ATimeH[sub][sup][ext] \\
-%       \verb=\ATimeC[sub][sup][ext]= = \ATimeC[sub][sup][ext]
+%       \verb=\ATime[sub][sup][arg]= = \ATime[sub][sup][arg] \\
+%       \verb=\ATimeE[sub][sup][arg]= = \ATimeE[sub][sup][arg] \\
+%       \verb=\ATimeH[sub][sup][arg]= = \ATimeH[sub][sup][arg] \\
+%       \verb=\ATimeC[sub][sup][arg]= = \ATimeC[sub][sup][arg]
 %   \end{itemize}
 %    \begin{macrocode}
-\defcomcls{Time}
+\defcomclsgrp{Time}
 %    \end{macrocode}
 % \end{macro}
 
@@ -5882,28 +5932,28 @@ install" installs the files in the local TeX tree.
 %   \small
 %   \begin{itemize}
 %     \item
-%       \verb=\Space[sub][sup][ext]= = \Space[sub][sup][ext] \\
-%       \verb=\SpaceE[sub][sup][ext]= = \SpaceE[sub][sup][ext] \\
-%       \verb=\SpaceH[sub][sup][ext]= = \SpaceH[sub][sup][ext] \\
-%       \verb=\SpaceC[sub][sup][ext]= = \SpaceC[sub][sup][ext]
+%       \verb=\Space[sub][sup][arg]= = \Space[sub][sup][arg] \\
+%       \verb=\SpaceE[sub][sup][arg]= = \SpaceE[sub][sup][arg] \\
+%       \verb=\SpaceH[sub][sup][arg]= = \SpaceH[sub][sup][arg] \\
+%       \verb=\SpaceC[sub][sup][arg]= = \SpaceC[sub][sup][arg]
 %     \item
-%       \verb=\NSpace[sub][sup][ext]= = \NSpace[sub][sup][ext] \\
-%       \verb=\NSpaceE[sub][sup][ext]= = \NSpaceE[sub][sup][ext] \\
-%       \verb=\NSpaceH[sub][sup][ext]= = \NSpaceH[sub][sup][ext] \\
-%       \verb=\NSpaceC[sub][sup][ext]= = \NSpaceC[sub][sup][ext]
+%       \verb=\NSpace[sub][sup][arg]= = \NSpace[sub][sup][arg] \\
+%       \verb=\NSpaceE[sub][sup][arg]= = \NSpaceE[sub][sup][arg] \\
+%       \verb=\NSpaceH[sub][sup][arg]= = \NSpaceH[sub][sup][arg] \\
+%       \verb=\NSpaceC[sub][sup][arg]= = \NSpaceC[sub][sup][arg]
 %     \item
-%       \verb=\USpace[sub][sup][ext]= = \USpace[sub][sup][ext] \\
-%       \verb=\USpaceE[sub][sup][ext]= = \USpaceE[sub][sup][ext] \\
-%       \verb=\USpaceH[sub][sup][ext]= = \USpaceH[sub][sup][ext] \\
-%       \verb=\USpaceC[sub][sup][ext]= = \USpaceC[sub][sup][ext]
+%       \verb=\USpace[sub][sup][arg]= = \USpace[sub][sup][arg] \\
+%       \verb=\USpaceE[sub][sup][arg]= = \USpaceE[sub][sup][arg] \\
+%       \verb=\USpaceH[sub][sup][arg]= = \USpaceH[sub][sup][arg] \\
+%       \verb=\USpaceC[sub][sup][arg]= = \USpaceC[sub][sup][arg]
 %     \item
-%       \verb=\ASpace[sub][sup][ext]= = \ASpace[sub][sup][ext] \\
-%       \verb=\ASpaceE[sub][sup][ext]= = \ASpaceE[sub][sup][ext] \\
-%       \verb=\ASpaceH[sub][sup][ext]= = \ASpaceH[sub][sup][ext] \\
-%       \verb=\ASpaceC[sub][sup][ext]= = \ASpaceC[sub][sup][ext]
+%       \verb=\ASpace[sub][sup][arg]= = \ASpace[sub][sup][arg] \\
+%       \verb=\ASpaceE[sub][sup][arg]= = \ASpaceE[sub][sup][arg] \\
+%       \verb=\ASpaceH[sub][sup][arg]= = \ASpaceH[sub][sup][arg] \\
+%       \verb=\ASpaceC[sub][sup][arg]= = \ASpaceC[sub][sup][arg]
 %   \end{itemize}
 %    \begin{macrocode}
-\defcomcls{Space}
+\defcomclsgrp{Space}
 %    \end{macrocode}
 % \end{macro}
 
@@ -5911,28 +5961,28 @@ install" installs the files in the local TeX tree.
 %   \small
 %   \begin{itemize}
 %     \item
-%       \verb=\LogTime[sub][sup][ext]= = \LogTime[sub][sup][ext] \\
-%       \verb=\LogTimeE[sub][sup][ext]= = \LogTimeE[sub][sup][ext] \\
-%       \verb=\LogTimeH[sub][sup][ext]= = \LogTimeH[sub][sup][ext] \\
-%       \verb=\LogTimeC[sub][sup][ext]= = \LogTimeC[sub][sup][ext]
+%       \verb=\LogTime[sub][sup][arg]= = \LogTime[sub][sup][arg] \\
+%       \verb=\LogTimeE[sub][sup][arg]= = \LogTimeE[sub][sup][arg] \\
+%       \verb=\LogTimeH[sub][sup][arg]= = \LogTimeH[sub][sup][arg] \\
+%       \verb=\LogTimeC[sub][sup][arg]= = \LogTimeC[sub][sup][arg]
 %     \item
-%       \verb=\NLogTime[sub][sup][ext]= = \NLogTime[sub][sup][ext] \\
-%       \verb=\NLogTimeE[sub][sup][ext]= = \NLogTimeE[sub][sup][ext] \\
-%       \verb=\NLogTimeH[sub][sup][ext]= = \NLogTimeH[sub][sup][ext] \\
-%       \verb=\NLogTimeC[sub][sup][ext]= = \NLogTimeC[sub][sup][ext]
+%       \verb=\NLogTime[sub][sup][arg]= = \NLogTime[sub][sup][arg] \\
+%       \verb=\NLogTimeE[sub][sup][arg]= = \NLogTimeE[sub][sup][arg] \\
+%       \verb=\NLogTimeH[sub][sup][arg]= = \NLogTimeH[sub][sup][arg] \\
+%       \verb=\NLogTimeC[sub][sup][arg]= = \NLogTimeC[sub][sup][arg]
 %     \item
-%       \verb=\ULogTime[sub][sup][ext]= = \ULogTime[sub][sup][ext] \\
-%       \verb=\ULogTimeE[sub][sup][ext]= = \ULogTimeE[sub][sup][ext] \\
-%       \verb=\ULogTimeH[sub][sup][ext]= = \ULogTimeH[sub][sup][ext] \\
-%       \verb=\ULogTimeC[sub][sup][ext]= = \ULogTimeC[sub][sup][ext]
+%       \verb=\ULogTime[sub][sup][arg]= = \ULogTime[sub][sup][arg] \\
+%       \verb=\ULogTimeE[sub][sup][arg]= = \ULogTimeE[sub][sup][arg] \\
+%       \verb=\ULogTimeH[sub][sup][arg]= = \ULogTimeH[sub][sup][arg] \\
+%       \verb=\ULogTimeC[sub][sup][arg]= = \ULogTimeC[sub][sup][arg]
 %     \item
-%       \verb=\ALogTime[sub][sup][ext]= = \ALogTime[sub][sup][ext] \\
-%       \verb=\ALogTimeE[sub][sup][ext]= = \ALogTimeE[sub][sup][ext] \\
-%       \verb=\ALogTimeH[sub][sup][ext]= = \ALogTimeH[sub][sup][ext] \\
-%       \verb=\ALogTimeC[sub][sup][ext]= = \ALogTimeC[sub][sup][ext]
+%       \verb=\ALogTime[sub][sup][arg]= = \ALogTime[sub][sup][arg] \\
+%       \verb=\ALogTimeE[sub][sup][arg]= = \ALogTimeE[sub][sup][arg] \\
+%       \verb=\ALogTimeH[sub][sup][arg]= = \ALogTimeH[sub][sup][arg] \\
+%       \verb=\ALogTimeC[sub][sup][arg]= = \ALogTimeC[sub][sup][arg]
 %   \end{itemize}
 %    \begin{macrocode}
-\defcomcls{LogTime}
+\defcomclsgrp{LogTime}
 %    \end{macrocode}
 % \end{macro}
 
@@ -5940,28 +5990,28 @@ install" installs the files in the local TeX tree.
 %   \small
 %   \begin{itemize}
 %     \item
-%       \verb=\LogSpace[sub][sup][ext]= = \LogSpace[sub][sup][ext] \\
-%       \verb=\LogSpaceE[sub][sup][ext]= = \LogSpaceE[sub][sup][ext] \\
-%       \verb=\LogSpaceH[sub][sup][ext]= = \LogSpaceH[sub][sup][ext] \\
-%       \verb=\LogSpaceC[sub][sup][ext]= = \LogSpaceC[sub][sup][ext]
+%       \verb=\LogSpace[sub][sup][arg]= = \LogSpace[sub][sup][arg] \\
+%       \verb=\LogSpaceE[sub][sup][arg]= = \LogSpaceE[sub][sup][arg] \\
+%       \verb=\LogSpaceH[sub][sup][arg]= = \LogSpaceH[sub][sup][arg] \\
+%       \verb=\LogSpaceC[sub][sup][arg]= = \LogSpaceC[sub][sup][arg]
 %     \item
-%       \verb=\NLogSpace[sub][sup][ext]= = \NLogSpace[sub][sup][ext] \\
-%       \verb=\NLogSpaceE[sub][sup][ext]= = \NLogSpaceE[sub][sup][ext] \\
-%       \verb=\NLogSpaceH[sub][sup][ext]= = \NLogSpaceH[sub][sup][ext] \\
-%       \verb=\NLogSpaceC[sub][sup][ext]= = \NLogSpaceC[sub][sup][ext]
+%       \verb=\NLogSpace[sub][sup][arg]= = \NLogSpace[sub][sup][arg] \\
+%       \verb=\NLogSpaceE[sub][sup][arg]= = \NLogSpaceE[sub][sup][arg] \\
+%       \verb=\NLogSpaceH[sub][sup][arg]= = \NLogSpaceH[sub][sup][arg] \\
+%       \verb=\NLogSpaceC[sub][sup][arg]= = \NLogSpaceC[sub][sup][arg]
 %     \item
-%       \verb=\ULogSpace[sub][sup][ext]= = \ULogSpace[sub][sup][ext] \\
-%       \verb=\ULogSpaceE[sub][sup][ext]= = \ULogSpaceE[sub][sup][ext] \\
-%       \verb=\ULogSpaceH[sub][sup][ext]= = \ULogSpaceH[sub][sup][ext] \\
-%       \verb=\ULogSpaceC[sub][sup][ext]= = \ULogSpaceC[sub][sup][ext]
+%       \verb=\ULogSpace[sub][sup][arg]= = \ULogSpace[sub][sup][arg] \\
+%       \verb=\ULogSpaceE[sub][sup][arg]= = \ULogSpaceE[sub][sup][arg] \\
+%       \verb=\ULogSpaceH[sub][sup][arg]= = \ULogSpaceH[sub][sup][arg] \\
+%       \verb=\ULogSpaceC[sub][sup][arg]= = \ULogSpaceC[sub][sup][arg]
 %     \item
-%       \verb=\ALogSpace[sub][sup][ext]= = \ALogSpace[sub][sup][ext] \\
-%       \verb=\ALogSpaceE[sub][sup][ext]= = \ALogSpaceE[sub][sup][ext] \\
-%       \verb=\ALogSpaceH[sub][sup][ext]= = \ALogSpaceH[sub][sup][ext] \\
-%       \verb=\ALogSpaceC[sub][sup][ext]= = \ALogSpaceC[sub][sup][ext]
+%       \verb=\ALogSpace[sub][sup][arg]= = \ALogSpace[sub][sup][arg] \\
+%       \verb=\ALogSpaceE[sub][sup][arg]= = \ALogSpaceE[sub][sup][arg] \\
+%       \verb=\ALogSpaceH[sub][sup][arg]= = \ALogSpaceH[sub][sup][arg] \\
+%       \verb=\ALogSpaceC[sub][sup][arg]= = \ALogSpaceC[sub][sup][arg]
 %   \end{itemize}
 %    \begin{macrocode}
-\defcomcls{LogSpace}
+\defcomclsgrp{LogSpace}
 %    \end{macrocode}
 % \end{macro}
 
@@ -5969,28 +6019,28 @@ install" installs the files in the local TeX tree.
 %   \small
 %   \begin{itemize}
 %     \item
-%       \verb=\PTime[sub][sup][ext]= = \PTime[sub][sup][ext] \\
-%       \verb=\PTimeE[sub][sup][ext]= = \PTimeE[sub][sup][ext] \\
-%       \verb=\PTimeH[sub][sup][ext]= = \PTimeH[sub][sup][ext] \\
-%       \verb=\PTimeC[sub][sup][ext]= = \PTimeC[sub][sup][ext]
+%       \verb=\PTime[sub][sup][arg]= = \PTime[sub][sup][arg] \\
+%       \verb=\PTimeE[sub][sup][arg]= = \PTimeE[sub][sup][arg] \\
+%       \verb=\PTimeH[sub][sup][arg]= = \PTimeH[sub][sup][arg] \\
+%       \verb=\PTimeC[sub][sup][arg]= = \PTimeC[sub][sup][arg]
 %     \item
-%       \verb=\NPTime[sub][sup][ext]= = \NPTime[sub][sup][ext] \\
-%       \verb=\NPTimeE[sub][sup][ext]= = \NPTimeE[sub][sup][ext] \\
-%       \verb=\NPTimeH[sub][sup][ext]= = \NPTimeH[sub][sup][ext] \\
-%       \verb=\NPTimeC[sub][sup][ext]= = \NPTimeC[sub][sup][ext]
+%       \verb=\NPTime[sub][sup][arg]= = \NPTime[sub][sup][arg] \\
+%       \verb=\NPTimeE[sub][sup][arg]= = \NPTimeE[sub][sup][arg] \\
+%       \verb=\NPTimeH[sub][sup][arg]= = \NPTimeH[sub][sup][arg] \\
+%       \verb=\NPTimeC[sub][sup][arg]= = \NPTimeC[sub][sup][arg]
 %     \item
-%       \verb=\UPTime[sub][sup][ext]= = \UPTime[sub][sup][ext] \\
-%       \verb=\UPTimeE[sub][sup][ext]= = \UPTimeE[sub][sup][ext] \\
-%       \verb=\UPTimeH[sub][sup][ext]= = \UPTimeH[sub][sup][ext] \\
-%       \verb=\UPTimeC[sub][sup][ext]= = \UPTimeC[sub][sup][ext]
+%       \verb=\UPTime[sub][sup][arg]= = \UPTime[sub][sup][arg] \\
+%       \verb=\UPTimeE[sub][sup][arg]= = \UPTimeE[sub][sup][arg] \\
+%       \verb=\UPTimeH[sub][sup][arg]= = \UPTimeH[sub][sup][arg] \\
+%       \verb=\UPTimeC[sub][sup][arg]= = \UPTimeC[sub][sup][arg]
 %     \item
-%       \verb=\APTime[sub][sup][ext]= = \APTime[sub][sup][ext] \\
-%       \verb=\APTimeE[sub][sup][ext]= = \APTimeE[sub][sup][ext] \\
-%       \verb=\APTimeH[sub][sup][ext]= = \APTimeH[sub][sup][ext] \\
-%       \verb=\APTimeC[sub][sup][ext]= = \APTimeC[sub][sup][ext]
+%       \verb=\APTime[sub][sup][arg]= = \APTime[sub][sup][arg] \\
+%       \verb=\APTimeE[sub][sup][arg]= = \APTimeE[sub][sup][arg] \\
+%       \verb=\APTimeH[sub][sup][arg]= = \APTimeH[sub][sup][arg] \\
+%       \verb=\APTimeC[sub][sup][arg]= = \APTimeC[sub][sup][arg]
 %   \end{itemize}
 %    \begin{macrocode}
-\defcomcls{PTime}
+\defcomclsgrp{PTime}
 %    \end{macrocode}
 % \end{macro}
 
@@ -5998,28 +6048,28 @@ install" installs the files in the local TeX tree.
 %   \small
 %   \begin{itemize}
 %     \item
-%       \verb=\PSpace[sub][sup][ext]= = \PSpace[sub][sup][ext] \\
-%       \verb=\PSpaceE[sub][sup][ext]= = \PSpaceE[sub][sup][ext] \\
-%       \verb=\PSpaceH[sub][sup][ext]= = \PSpaceH[sub][sup][ext] \\
-%       \verb=\PSpaceC[sub][sup][ext]= = \PSpaceC[sub][sup][ext]
+%       \verb=\PSpace[sub][sup][arg]= = \PSpace[sub][sup][arg] \\
+%       \verb=\PSpaceE[sub][sup][arg]= = \PSpaceE[sub][sup][arg] \\
+%       \verb=\PSpaceH[sub][sup][arg]= = \PSpaceH[sub][sup][arg] \\
+%       \verb=\PSpaceC[sub][sup][arg]= = \PSpaceC[sub][sup][arg]
 %     \item
-%       \verb=\NPSpace[sub][sup][ext]= = \NPSpace[sub][sup][ext] \\
-%       \verb=\NPSpaceE[sub][sup][ext]= = \NPSpaceE[sub][sup][ext] \\
-%       \verb=\NPSpaceH[sub][sup][ext]= = \NPSpaceH[sub][sup][ext] \\
-%       \verb=\NPSpaceC[sub][sup][ext]= = \NPSpaceC[sub][sup][ext]
+%       \verb=\NPSpace[sub][sup][arg]= = \NPSpace[sub][sup][arg] \\
+%       \verb=\NPSpaceE[sub][sup][arg]= = \NPSpaceE[sub][sup][arg] \\
+%       \verb=\NPSpaceH[sub][sup][arg]= = \NPSpaceH[sub][sup][arg] \\
+%       \verb=\NPSpaceC[sub][sup][arg]= = \NPSpaceC[sub][sup][arg]
 %     \item
-%       \verb=\UPSpace[sub][sup][ext]= = \UPSpace[sub][sup][ext] \\
-%       \verb=\UPSpaceE[sub][sup][ext]= = \UPSpaceE[sub][sup][ext] \\
-%       \verb=\UPSpaceH[sub][sup][ext]= = \UPSpaceH[sub][sup][ext] \\
-%       \verb=\UPSpaceC[sub][sup][ext]= = \UPSpaceC[sub][sup][ext]
+%       \verb=\UPSpace[sub][sup][arg]= = \UPSpace[sub][sup][arg] \\
+%       \verb=\UPSpaceE[sub][sup][arg]= = \UPSpaceE[sub][sup][arg] \\
+%       \verb=\UPSpaceH[sub][sup][arg]= = \UPSpaceH[sub][sup][arg] \\
+%       \verb=\UPSpaceC[sub][sup][arg]= = \UPSpaceC[sub][sup][arg]
 %     \item
-%       \verb=\APSpace[sub][sup][ext]= = \APSpace[sub][sup][ext] \\
-%       \verb=\APSpaceE[sub][sup][ext]= = \APSpaceE[sub][sup][ext] \\
-%       \verb=\APSpaceH[sub][sup][ext]= = \APSpaceH[sub][sup][ext] \\
-%       \verb=\APSpaceC[sub][sup][ext]= = \APSpaceC[sub][sup][ext]
+%       \verb=\APSpace[sub][sup][arg]= = \APSpace[sub][sup][arg] \\
+%       \verb=\APSpaceE[sub][sup][arg]= = \APSpaceE[sub][sup][arg] \\
+%       \verb=\APSpaceH[sub][sup][arg]= = \APSpaceH[sub][sup][arg] \\
+%       \verb=\APSpaceC[sub][sup][arg]= = \APSpaceC[sub][sup][arg]
 %   \end{itemize}
 %    \begin{macrocode}
-\defcomcls{PSpace}
+\defcomclsgrp{PSpace}
 %    \end{macrocode}
 % \end{macro}
 
@@ -6027,28 +6077,28 @@ install" installs the files in the local TeX tree.
 %   \small
 %   \begin{itemize}
 %     \item
-%       \verb=\QPTime[sub][sup][ext]= = \QPTime[sub][sup][ext] \\
-%       \verb=\QPTimeE[sub][sup][ext]= = \QPTimeE[sub][sup][ext] \\
-%       \verb=\QPTimeH[sub][sup][ext]= = \QPTimeH[sub][sup][ext] \\
-%       \verb=\QPTimeC[sub][sup][ext]= = \QPTimeC[sub][sup][ext]
+%       \verb=\QPTime[sub][sup][arg]= = \QPTime[sub][sup][arg] \\
+%       \verb=\QPTimeE[sub][sup][arg]= = \QPTimeE[sub][sup][arg] \\
+%       \verb=\QPTimeH[sub][sup][arg]= = \QPTimeH[sub][sup][arg] \\
+%       \verb=\QPTimeC[sub][sup][arg]= = \QPTimeC[sub][sup][arg]
 %     \item
-%       \verb=\NQPTime[sub][sup][ext]= = \NQPTime[sub][sup][ext] \\
-%       \verb=\NQPTimeE[sub][sup][ext]= = \NQPTimeE[sub][sup][ext] \\
-%       \verb=\NQPTimeH[sub][sup][ext]= = \NQPTimeH[sub][sup][ext] \\
-%       \verb=\NQPTimeC[sub][sup][ext]= = \NQPTimeC[sub][sup][ext]
+%       \verb=\NQPTime[sub][sup][arg]= = \NQPTime[sub][sup][arg] \\
+%       \verb=\NQPTimeE[sub][sup][arg]= = \NQPTimeE[sub][sup][arg] \\
+%       \verb=\NQPTimeH[sub][sup][arg]= = \NQPTimeH[sub][sup][arg] \\
+%       \verb=\NQPTimeC[sub][sup][arg]= = \NQPTimeC[sub][sup][arg]
 %     \item
-%       \verb=\UQPTime[sub][sup][ext]= = \UQPTime[sub][sup][ext] \\
-%       \verb=\UQPTimeE[sub][sup][ext]= = \UQPTimeE[sub][sup][ext] \\
-%       \verb=\UQPTimeH[sub][sup][ext]= = \UQPTimeH[sub][sup][ext] \\
-%       \verb=\UQPTimeC[sub][sup][ext]= = \UQPTimeC[sub][sup][ext]
+%       \verb=\UQPTime[sub][sup][arg]= = \UQPTime[sub][sup][arg] \\
+%       \verb=\UQPTimeE[sub][sup][arg]= = \UQPTimeE[sub][sup][arg] \\
+%       \verb=\UQPTimeH[sub][sup][arg]= = \UQPTimeH[sub][sup][arg] \\
+%       \verb=\UQPTimeC[sub][sup][arg]= = \UQPTimeC[sub][sup][arg]
 %     \item
-%       \verb=\AQPTime[sub][sup][ext]= = \AQPTime[sub][sup][ext] \\
-%       \verb=\AQPTimeE[sub][sup][ext]= = \AQPTimeE[sub][sup][ext] \\
-%       \verb=\AQPTimeH[sub][sup][ext]= = \AQPTimeH[sub][sup][ext] \\
-%       \verb=\AQPTimeC[sub][sup][ext]= = \AQPTimeC[sub][sup][ext]
+%       \verb=\AQPTime[sub][sup][arg]= = \AQPTime[sub][sup][arg] \\
+%       \verb=\AQPTimeE[sub][sup][arg]= = \AQPTimeE[sub][sup][arg] \\
+%       \verb=\AQPTimeH[sub][sup][arg]= = \AQPTimeH[sub][sup][arg] \\
+%       \verb=\AQPTimeC[sub][sup][arg]= = \AQPTimeC[sub][sup][arg]
 %   \end{itemize}
 %    \begin{macrocode}
-\defcomcls{QPTime}
+\defcomclsgrp{QPTime}
 %    \end{macrocode}
 % \end{macro}
 
@@ -6056,28 +6106,28 @@ install" installs the files in the local TeX tree.
 %   \small
 %   \begin{itemize}
 %     \item
-%       \verb=\QPSpace[sub][sup][ext]= = \QPSpace[sub][sup][ext] \\
-%       \verb=\QPSpaceE[sub][sup][ext]= = \QPSpaceE[sub][sup][ext] \\
-%       \verb=\QPSpaceH[sub][sup][ext]= = \QPSpaceH[sub][sup][ext] \\
-%       \verb=\QPSpaceC[sub][sup][ext]= = \QPSpaceC[sub][sup][ext]
+%       \verb=\QPSpace[sub][sup][arg]= = \QPSpace[sub][sup][arg] \\
+%       \verb=\QPSpaceE[sub][sup][arg]= = \QPSpaceE[sub][sup][arg] \\
+%       \verb=\QPSpaceH[sub][sup][arg]= = \QPSpaceH[sub][sup][arg] \\
+%       \verb=\QPSpaceC[sub][sup][arg]= = \QPSpaceC[sub][sup][arg]
 %     \item
-%       \verb=\NQPSpace[sub][sup][ext]= = \NQPSpace[sub][sup][ext] \\
-%       \verb=\NQPSpaceE[sub][sup][ext]= = \NQPSpaceE[sub][sup][ext] \\
-%       \verb=\NQPSpaceH[sub][sup][ext]= = \NQPSpaceH[sub][sup][ext] \\
-%       \verb=\NQPSpaceC[sub][sup][ext]= = \NQPSpaceC[sub][sup][ext]
+%       \verb=\NQPSpace[sub][sup][arg]= = \NQPSpace[sub][sup][arg] \\
+%       \verb=\NQPSpaceE[sub][sup][arg]= = \NQPSpaceE[sub][sup][arg] \\
+%       \verb=\NQPSpaceH[sub][sup][arg]= = \NQPSpaceH[sub][sup][arg] \\
+%       \verb=\NQPSpaceC[sub][sup][arg]= = \NQPSpaceC[sub][sup][arg]
 %     \item
-%       \verb=\UQPSpace[sub][sup][ext]= = \UQPSpace[sub][sup][ext] \\
-%       \verb=\UQPSpaceE[sub][sup][ext]= = \UQPSpaceE[sub][sup][ext] \\
-%       \verb=\UQPSpaceH[sub][sup][ext]= = \UQPSpaceH[sub][sup][ext] \\
-%       \verb=\UQPSpaceC[sub][sup][ext]= = \UQPSpaceC[sub][sup][ext]
+%       \verb=\UQPSpace[sub][sup][arg]= = \UQPSpace[sub][sup][arg] \\
+%       \verb=\UQPSpaceE[sub][sup][arg]= = \UQPSpaceE[sub][sup][arg] \\
+%       \verb=\UQPSpaceH[sub][sup][arg]= = \UQPSpaceH[sub][sup][arg] \\
+%       \verb=\UQPSpaceC[sub][sup][arg]= = \UQPSpaceC[sub][sup][arg]
 %     \item
-%       \verb=\AQPSpace[sub][sup][ext]= = \AQPSpace[sub][sup][ext] \\
-%       \verb=\AQPSpaceE[sub][sup][ext]= = \AQPSpaceE[sub][sup][ext] \\
-%       \verb=\AQPSpaceH[sub][sup][ext]= = \AQPSpaceH[sub][sup][ext] \\
-%       \verb=\AQPSpaceC[sub][sup][ext]= = \AQPSpaceC[sub][sup][ext]
+%       \verb=\AQPSpace[sub][sup][arg]= = \AQPSpace[sub][sup][arg] \\
+%       \verb=\AQPSpaceE[sub][sup][arg]= = \AQPSpaceE[sub][sup][arg] \\
+%       \verb=\AQPSpaceH[sub][sup][arg]= = \AQPSpaceH[sub][sup][arg] \\
+%       \verb=\AQPSpaceC[sub][sup][arg]= = \AQPSpaceC[sub][sup][arg]
 %   \end{itemize}
 %    \begin{macrocode}
-\defcomcls{QPSpace}
+\defcomclsgrp{QPSpace}
 %    \end{macrocode}
 % \end{macro}
 
@@ -6085,28 +6135,28 @@ install" installs the files in the local TeX tree.
 %   \small
 %   \begin{itemize}
 %     \item
-%       \verb=\ExpTime[sub][sup][ext]= = \ExpTime[sub][sup][ext] \\
-%       \verb=\ExpTimeE[sub][sup][ext]= = \ExpTimeE[sub][sup][ext] \\
-%       \verb=\ExpTimeH[sub][sup][ext]= = \ExpTimeH[sub][sup][ext] \\
-%       \verb=\ExpTimeC[sub][sup][ext]= = \ExpTimeC[sub][sup][ext]
+%       \verb=\ExpTime[sub][sup][arg]= = \ExpTime[sub][sup][arg] \\
+%       \verb=\ExpTimeE[sub][sup][arg]= = \ExpTimeE[sub][sup][arg] \\
+%       \verb=\ExpTimeH[sub][sup][arg]= = \ExpTimeH[sub][sup][arg] \\
+%       \verb=\ExpTimeC[sub][sup][arg]= = \ExpTimeC[sub][sup][arg]
 %     \item
-%       \verb=\NExpTime[sub][sup][ext]= = \NExpTime[sub][sup][ext] \\
-%       \verb=\NExpTimeE[sub][sup][ext]= = \NExpTimeE[sub][sup][ext] \\
-%       \verb=\NExpTimeH[sub][sup][ext]= = \NExpTimeH[sub][sup][ext] \\
-%       \verb=\NExpTimeC[sub][sup][ext]= = \NExpTimeC[sub][sup][ext]
+%       \verb=\NExpTime[sub][sup][arg]= = \NExpTime[sub][sup][arg] \\
+%       \verb=\NExpTimeE[sub][sup][arg]= = \NExpTimeE[sub][sup][arg] \\
+%       \verb=\NExpTimeH[sub][sup][arg]= = \NExpTimeH[sub][sup][arg] \\
+%       \verb=\NExpTimeC[sub][sup][arg]= = \NExpTimeC[sub][sup][arg]
 %     \item
-%       \verb=\UExpTime[sub][sup][ext]= = \UExpTime[sub][sup][ext] \\
-%       \verb=\UExpTimeE[sub][sup][ext]= = \UExpTimeE[sub][sup][ext] \\
-%       \verb=\UExpTimeH[sub][sup][ext]= = \UExpTimeH[sub][sup][ext] \\
-%       \verb=\UExpTimeC[sub][sup][ext]= = \UExpTimeC[sub][sup][ext]
+%       \verb=\UExpTime[sub][sup][arg]= = \UExpTime[sub][sup][arg] \\
+%       \verb=\UExpTimeE[sub][sup][arg]= = \UExpTimeE[sub][sup][arg] \\
+%       \verb=\UExpTimeH[sub][sup][arg]= = \UExpTimeH[sub][sup][arg] \\
+%       \verb=\UExpTimeC[sub][sup][arg]= = \UExpTimeC[sub][sup][arg]
 %     \item
-%       \verb=\AExpTime[sub][sup][ext]= = \AExpTime[sub][sup][ext] \\
-%       \verb=\AExpTimeE[sub][sup][ext]= = \AExpTimeE[sub][sup][ext] \\
-%       \verb=\AExpTimeH[sub][sup][ext]= = \AExpTimeH[sub][sup][ext] \\
-%       \verb=\AExpTimeC[sub][sup][ext]= = \AExpTimeC[sub][sup][ext]
+%       \verb=\AExpTime[sub][sup][arg]= = \AExpTime[sub][sup][arg] \\
+%       \verb=\AExpTimeE[sub][sup][arg]= = \AExpTimeE[sub][sup][arg] \\
+%       \verb=\AExpTimeH[sub][sup][arg]= = \AExpTimeH[sub][sup][arg] \\
+%       \verb=\AExpTimeC[sub][sup][arg]= = \AExpTimeC[sub][sup][arg]
 %   \end{itemize}
 %    \begin{macrocode}
-\defcomcls{ExpTime}
+\defcomclsgrp{ExpTime}
 %    \end{macrocode}
 % \end{macro}
 
@@ -6114,28 +6164,28 @@ install" installs the files in the local TeX tree.
 %   \small
 %   \begin{itemize}
 %     \item
-%       \verb=\ExpSpace[sub][sup][ext]= = \ExpSpace[sub][sup][ext] \\
-%       \verb=\ExpSpaceE[sub][sup][ext]= = \ExpSpaceE[sub][sup][ext] \\
-%       \verb=\ExpSpaceH[sub][sup][ext]= = \ExpSpaceH[sub][sup][ext] \\
-%       \verb=\ExpSpaceC[sub][sup][ext]= = \ExpSpaceC[sub][sup][ext]
+%       \verb=\ExpSpace[sub][sup][arg]= = \ExpSpace[sub][sup][arg] \\
+%       \verb=\ExpSpaceE[sub][sup][arg]= = \ExpSpaceE[sub][sup][arg] \\
+%       \verb=\ExpSpaceH[sub][sup][arg]= = \ExpSpaceH[sub][sup][arg] \\
+%       \verb=\ExpSpaceC[sub][sup][arg]= = \ExpSpaceC[sub][sup][arg]
 %     \item
-%       \verb=\NExpSpace[sub][sup][ext]= = \NExpSpace[sub][sup][ext] \\
-%       \verb=\NExpSpaceE[sub][sup][ext]= = \NExpSpaceE[sub][sup][ext] \\
-%       \verb=\NExpSpaceH[sub][sup][ext]= = \NExpSpaceH[sub][sup][ext] \\
-%       \verb=\NExpSpaceC[sub][sup][ext]= = \NExpSpaceC[sub][sup][ext]
+%       \verb=\NExpSpace[sub][sup][arg]= = \NExpSpace[sub][sup][arg] \\
+%       \verb=\NExpSpaceE[sub][sup][arg]= = \NExpSpaceE[sub][sup][arg] \\
+%       \verb=\NExpSpaceH[sub][sup][arg]= = \NExpSpaceH[sub][sup][arg] \\
+%       \verb=\NExpSpaceC[sub][sup][arg]= = \NExpSpaceC[sub][sup][arg]
 %     \item
-%       \verb=\UExpSpace[sub][sup][ext]= = \UExpSpace[sub][sup][ext] \\
-%       \verb=\UExpSpaceE[sub][sup][ext]= = \UExpSpaceE[sub][sup][ext] \\
-%       \verb=\UExpSpaceH[sub][sup][ext]= = \UExpSpaceH[sub][sup][ext] \\
-%       \verb=\UExpSpaceC[sub][sup][ext]= = \UExpSpaceC[sub][sup][ext]
+%       \verb=\UExpSpace[sub][sup][arg]= = \UExpSpace[sub][sup][arg] \\
+%       \verb=\UExpSpaceE[sub][sup][arg]= = \UExpSpaceE[sub][sup][arg] \\
+%       \verb=\UExpSpaceH[sub][sup][arg]= = \UExpSpaceH[sub][sup][arg] \\
+%       \verb=\UExpSpaceC[sub][sup][arg]= = \UExpSpaceC[sub][sup][arg]
 %     \item
-%       \verb=\AExpSpace[sub][sup][ext]= = \AExpSpace[sub][sup][ext] \\
-%       \verb=\AExpSpaceE[sub][sup][ext]= = \AExpSpaceE[sub][sup][ext] \\
-%       \verb=\AExpSpaceH[sub][sup][ext]= = \AExpSpaceH[sub][sup][ext] \\
-%       \verb=\AExpSpaceC[sub][sup][ext]= = \AExpSpaceC[sub][sup][ext]
+%       \verb=\AExpSpace[sub][sup][arg]= = \AExpSpace[sub][sup][arg] \\
+%       \verb=\AExpSpaceE[sub][sup][arg]= = \AExpSpaceE[sub][sup][arg] \\
+%       \verb=\AExpSpaceH[sub][sup][arg]= = \AExpSpaceH[sub][sup][arg] \\
+%       \verb=\AExpSpaceC[sub][sup][arg]= = \AExpSpaceC[sub][sup][arg]
 %   \end{itemize}
 %    \begin{macrocode}
-\defcomcls{ExpSpace}
+\defcomclsgrp{ExpSpace}
 %    \end{macrocode}
 % \end{macro}
 
@@ -6147,14 +6197,76 @@ install" installs the files in the local TeX tree.
 %   \small
 %   \begin{itemize}
 %     \item
-%       \verb=\PH[sub][sup][ext]= = \PH[sub][sup][ext]
+%       \verb=\PH[sub][sup][par]= = \PH[sub][sup][par]
 %   \end{itemize}
 %    \begin{macrocode}
 \defcomhrc{PH}
 %    \end{macrocode}
 % \end{macro}
 
-%% ...
+% \begin{macro}{\WH}
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\WH[sub][sup][par]= = \WH[sub][sup][par]
+%   \end{itemize}
+%    \begin{macrocode}
+\defcomhrc{WH}[W]
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\AH}
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\AH[sub][sup][par]= = \AH[sub][sup][par]
+%   \end{itemize}
+%    \begin{macrocode}
+\defcomhrc{AH}[A]
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\DLH, \DBH}
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\DLH[sub][sup][par]= = \DLH[sub][sup][par]
+%     \item
+%       \verb=\DBH[sub][sup][par]= = \DBH[sub][sup][par]
+%   \end{itemize}
+%    \begin{macrocode}
+\defcomhrc{DLH}[{\mth{\Delta}}]
+\defcomhrc{DBH}[{\mth[mathbf]{\Delta}}]
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\ELH, \EBH}
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\ELH[sub][sup][par]= = \ELH[sub][sup][par]
+%     \item
+%       \verb=\EBH[sub][sup][par]= = \EBH[sub][sup][par]
+%   \end{itemize}
+%    \begin{macrocode}
+\defcomhrc{ELH}[{\mth{\Sigma}}]
+\defcomhrc{EBH}[{\mth[mathbf]{\Sigma}}]
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\ULH, \UBH}
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\ULH[sub][sup][par]= = \ULH[sub][sup][par]
+%     \item
+%       \verb=\UBH[sub][sup][par]= = \UBH[sub][sup][par]
+%   \end{itemize}
+%    \begin{macrocode}
+\defcomhrc{ULH}[{\mth{\Pi}}]
+\defcomhrc{UBH}[{\mth[mathbf]{\Pi}}]
+%    \end{macrocode}
+% \end{macro}
 
 %    \begin{macrocode}
 \fi

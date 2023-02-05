@@ -16,7 +16,7 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesPackage{fmocdmac}
-  [2023/02/01 v0.13 FM's OCD LaTeX Macro]
+  [2023/02/05 v0.14 FM's OCD LaTeX Macro]
 
 \RequirePackage{etoolbox}
 
@@ -1100,6 +1100,8 @@
 
 \cmdtxtabr{iff}
 
+\cmdtxtabr{iht}[i.h.t.]
+
 \cmdtxtabr{stx}[s.t.]
 
 \cmdtxtabr{resp}[resp.]
@@ -1395,23 +1397,26 @@
 \ifcom@
 
 \newcommandx{\defcomcls}[2][2=]
-  {\defcomclssem{#1}{\defval{#2}{#1}}%
-  \defcomclssem{#1}{\defval{#2}{#1}}[Co]}
-\newcommandx{\defcomclssem}[3][3=]
-  {\defcomclsred{#3#1}{#2}[#3]%
-  \defcomclsred{#3N#1}{#2}[#3N]%
-  \defcomclsred{#3U#1}{#2}[#3U]%
-  \defcomclsred{#3A#1}{#2}[#3A]}
-\newcommandx{\defcomclsred}[3][3=]
-  {\defcomclscmd{#1}{#2}[#3]%
-  \defcomclscmd{#1E}{#2}[#3][-easy]%
-  \defcomclscmd{#1H}{#2}[#3][-hard]%
-  \defcomclscmd{#1C}{#2}[#3][-complete]}%
-\newcommandx{\defcomclscmd}[4][3=, 4=]
-  {\csdef{#1}{\txtcom{#3#2#4}}}
+  {\csdef{#1}{\txtoargcom{\defval{#2}{#1}}}}
+
+\newcommandx{\defcomclsgrp}[2][2=]
+  {\defcomclsgrpsem{#1}{\defval{#2}{#1}}%
+  \defcomclsgrpsem{#1}{\defval{#2}{#1}}[Co]}
+\newcommandx{\defcomclsgrpsem}[3][3=]
+  {\defcomclsgrpred{#3#1}{#2}[#3]%
+  \defcomclsgrpred{#3N#1}{#2}[#3N]%
+  \defcomclsgrpred{#3U#1}{#2}[#3U]%
+  \defcomclsgrpred{#3A#1}{#2}[#3A]}
+\newcommandx{\defcomclsgrpred}[3][3=]
+  {\defcomclsgrpcmd{#1}{#2}[#3]%
+  \defcomclsgrpcmd{#1E}{#2}[#3][-easy]%
+  \defcomclsgrpcmd{#1H}{#2}[#3][-hard]%
+  \defcomclsgrpcmd{#1C}{#2}[#3][-complete]}%
+\newcommandx{\defcomclsgrpcmd}[4][3=, 4=]
+  {\csdef{#1}{\txtoargcom{#3#2#4}}}
 
 \newcommandx{\defcomhrc}[2][2=]
-  {\csdef{#1}{\txtcom{\defval{#2}{#1}}}}
+  {\csdef{#1}{\txtoparcom{\defval{#2}{#1}}}}
 
 %%****************************************************************************%%
 
@@ -1421,31 +1426,46 @@
 
 %%****************************************************************************%%
 
-\defcomcls{Time}
+\defcomcls{FPT}
 
-\defcomcls{Space}
+%%****************************************************************************%%
 
-\defcomcls{LogTime}
+\defcomclsgrp{Time}
 
-\defcomcls{LogSpace}
+\defcomclsgrp{Space}
 
-\defcomcls{PTime}
+\defcomclsgrp{LogTime}
 
-\defcomcls{PSpace}
+\defcomclsgrp{LogSpace}
 
-\defcomcls{QPTime}
+\defcomclsgrp{PTime}
 
-\defcomcls{QPSpace}
+\defcomclsgrp{PSpace}
 
-\defcomcls{ExpTime}
+\defcomclsgrp{QPTime}
 
-\defcomcls{ExpSpace}
+\defcomclsgrp{QPSpace}
+
+\defcomclsgrp{ExpTime}
+
+\defcomclsgrp{ExpSpace}
 
 %%****************************************************************************%%
 
 \defcomhrc{PH}
 
-%% ...
+\defcomhrc{WH}[W]
+
+\defcomhrc{AH}[A]
+
+\defcomhrc{DLH}[{\mth{\Delta}}]
+\defcomhrc{DBH}[{\mth[mathbf]{\Delta}}]
+
+\defcomhrc{ELH}[{\mth{\Sigma}}]
+\defcomhrc{EBH}[{\mth[mathbf]{\Sigma}}]
+
+\defcomhrc{ULH}[{\mth{\Pi}}]
+\defcomhrc{UBH}[{\mth[mathbf]{\Pi}}]
 
 \fi
 %%****************************************************************************%%
