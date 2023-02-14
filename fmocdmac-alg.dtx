@@ -1,0 +1,91 @@
+
+%    \begin{macrocode}
+%%****************************************************************************%%
+%%** Algorithm Tricks ********************************************************%%
+%%****************************************************************************%%
+\ifalg@
+%    \end{macrocode}
+
+%    \begin{macrocode}
+\RequirePackage[ruled,vlined]{algorithm2e}
+\DontPrintSemicolon
+\SetInd{0.25em}{0.5em}
+\setlength{\algomargin}{1.25em}
+%    \end{macrocode}
+
+% \begin{macro}{\Signature}
+%   ...
+%    \begin{macrocode}
+\SetKw{Signature}{signature}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\Macro, ...}
+%   ...
+%    \begin{macrocode}
+\SetKwFor{Macro}{macro}{}{}
+\SetKwFor{Function}{function}{}{}
+\SetKwFor{Procedure}{procedure}{}{}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\Let}
+%   ...
+%    \begin{macrocode}
+\SetKwFor{Let}{let}{in}{}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\True, \False}
+%   ...
+%    \begin{macrocode}
+\SetKw{True}{true}
+\SetKw{False}{false}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\From, ...}
+%   ...
+%    \begin{macrocode}
+\SetKw{From}{from}
+\SetKw{To}{to}
+\SetKw{DownTo}{downto}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\GoTo, ...}
+%   ...
+%    \begin{macrocode}
+\SetKw{GoTo}{goto}
+\SetKw{Break}{break}
+\SetKw{Continue}{continue}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\MIf, ...}
+%   ...
+%    \begin{macrocode}
+\SetKwIF{MIf}{MElseIf}{MElse}{\#if}{\#then}{\#else \#if}{\#else}{\#endif}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\nlr}
+%   ...
+%    \begin{macrocode}
+\DeclareRobustCommand{\nlr}[1]
+  {\addtocounter{AlgoLine}{1}%
+  \nlset{\arabic{AlgoLine}-\addtocounter{AlgoLine}{#1}\arabic{AlgoLine}}}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+\fi
+%%****************************************************************************%%
+%    \end{macrocode}
+
+%    \begin{macrocode}
+\endinput
+%</package>
+%    \end{macrocode}
+%
+\Finale

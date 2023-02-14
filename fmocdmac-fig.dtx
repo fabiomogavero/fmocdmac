@@ -1,0 +1,42 @@
+
+%    \begin{macrocode}
+%%****************************************************************************%%
+%%** Figure Tricks ***********************************************************%%
+%%****************************************************************************%%
+\iffig@
+%    \end{macrocode}
+
+%    \begin{macrocode}
+\RequirePackage{tikz}
+\usetikzlibrary{arrows,graphs,matrix,patterns,shapes}
+%    \end{macrocode}
+
+%    \begin{macrocode}
+\tikzstyle{every node} =
+  [draw = none, fill = none, black, thin]
+\tikzstyle{every edge} +=
+  [black, thick]
+%    \end{macrocode}
+
+%    \begin{macrocode}
+\tikzstyle{noall} =
+  [draw = none, fill = none]
+\tikzstyle{nodraw} =
+  [draw = none, fill = white]
+\tikzstyle{nofill} =
+  [draw = black, fill = none]
+%    \end{macrocode}
+
+%    \begin{macrocode}
+\ifwrpfig@
+  % Wrapfig Package
+  \RequirePackage{wrapfig}
+\fi
+%    \end{macrocode}
+
+%    \begin{macrocode}
+\fi
+%%****************************************************************************%%
+%    \end{macrocode}
+
+\endinput

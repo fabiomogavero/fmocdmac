@@ -1,0 +1,3376 @@
+
+%    \begin{macrocode}
+%%****************************************************************************%%
+%%** Math Meta Commands ******************************************************%%
+%%****************************************************************************%%
+%    \end{macrocode}
+
+% \begin{macro}{\newmth}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\newmth[mathrm]{Name}[sub][sup][Ext]= =
+%       ``\newmth[mathrm]{Name}[sub][sup][Ext]''
+%     \item
+%       \verb=\newmth[mathsf]{Name}[sub][sup][Ext]= =
+%       ``\newmth[mathsf]{Name}[sub][sup][Ext]''
+%     \item
+%       \verb=\newmth[mathtt]{Name}[sub][sup][Ext]= =
+%       ``\newmth[mathtt]{Name}[sub][sup][Ext]''
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\newmth}[5][1=, 3=, 4=, 5=]
+  {\ensuremath{\csname#1\endcsname{#2}\mthsubsup{#3}{#4}#5}}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\newmthsty}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\newmthsty{mathrm}{Name}[sub][sup][Ext]= =
+%       ``\newmthsty{mathrm}{Name}[sub][sup][Ext]''
+%     \item
+%       \verb=\newmthsty{mathrm}[mathsf]{Name}[sub][sup][Ext]= =
+%       ``\newmthsty{mathrm}[mathsf]{Name}[sub][sup][Ext]''
+%     \item
+%       \verb=\newmthsty{mathrm}[mathtt]{Name}[sub][sup][Ext]= =
+%       ``\newmthsty{mathrm}[mathtt]{Name}[sub][sup][Ext]''
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\newmthsty}[2][2=]
+  {\newmth[\defval{#2}{#1}]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\newmtharg}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\newmtharg[mathrm]{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       ``\newmtharg[mathrm]{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]''
+%     \item
+%       \verb=\newmtharg[mathsf]{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       ``\newmtharg[mathsf]{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]''
+%     \item
+%       \verb=\newmtharg[mathtt]{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       ``\newmtharg[mathtt]{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]''
+%     \item
+%       \verb=\newmtharg*[mathrm]{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]=
+%       = ``\newmtharg*[mathrm]{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]''
+%     \item
+%       \verb=\newmtharg*[mathsf]{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]=
+%       = ``\newmtharg*[mathsf]{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]''
+%     \item
+%       \verb=\newmtharg*[mathtt]{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]=
+%       = ``\newmtharg*[mathtt]{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]''
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommand{\newmtharg}
+  {\@ifstar{\@snewmtharg}{\@newmtharg}}
+\newcommandx{\@newmtharg}[7][1=, 3=, 4=, 5=, 7=]
+  {\newmth[#1]{#2}[#3][#4][\argmid{#5\!\left(}{#6}{\right)\arglef{\!}{#7}}]}
+\newcommandx{\@snewmtharg}[7][1=, 3=, 4=, 5=, 7=]
+  {\newmth[#1]{#2}[#3][#4][\argmid{#5(}{#6}{)#7}]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\newmthargsty}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\newmthargsty{mathrm}{Name}[sub][sup]=\!
+%         \verb=[Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       ``\newmthargsty{mathrm}{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]''
+%     \item
+%       \verb=\newmthargsty{mathrm}[mathsf]{Name}[sub][sup]=\!
+%         \verb=[Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       ``\newmthargsty{mathrm}[mathsf]{Name}[sub][sup]%
+%         [Ext1]{Arg^{Ex^{Ex}}}[Ext2]''
+%     \item
+%       \verb=\newmthargsty{mathrm}[mathtt]{Name}[sub][sup]=\!
+%         \verb=[Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       ``\newmthargsty{mathrm}[mathtt]{Name}[sub][sup]%
+%         [Ext1]{Arg^{Ex^{Ex}}}[Ext2]''
+%     \item
+%       \verb=\newmthargsty*{mathrm}{Name}[sub][sup]=\!
+%         \verb=[Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       ``\newmthargsty*{mathrm}{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]''
+%     \item
+%       \verb=\newmthargsty*{mathrm}[mathsf]{Name}[sub][sup]=\!
+%         \verb=[Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       ``\newmthargsty*{mathrm}[mathsf]{Name}[sub][sup]%
+%         [Ext1]{Arg^{Ex^{Ex}}}[Ext2]''
+%     \item
+%       \verb=\newmthargsty*{mathrm}[mathtt]{Name}[sub][sup]=\!
+%         \verb=[Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       ``\newmthargsty*{mathrm}[mathtt]{Name}[sub][sup]%
+%         [Ext1]{Arg^{Ex^{Ex}}}[Ext2]''
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommand{\newmthargsty}
+  {\@ifstar{\@snewmthargsty}{\@newmthargsty}}
+\newcommandx{\@newmthargsty}[2][2=]
+  {\newmtharg[\defval{#2}{#1}]}
+\newcommandx{\@snewmthargsty}[2][2=]
+  {\newmtharg*[\defval{#2}{#1}]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\newmthoarg}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\newmthoarg[mathrm]{Name}[sub][sup][Arg^{Ex^{Ex}}]= =
+%       ``\newmthoarg[mathrm]{Name}[sub][sup][Arg^{Ex^{Ex}}]''
+%     \item
+%       \verb=\newmthoarg[mathsf]{Name}[sub][sup][Arg^{Ex^{Ex}}]= =
+%       ``\newmthoarg[mathsf]{Name}[sub][sup][Arg^{Ex^{Ex}}]''
+%     \item
+%       \verb=\newmthoarg[mathtt]{Name}[sub][sup][Arg^{Ex^{Ex}}]= =
+%       ``\newmthoarg[mathtt]{Name}[sub][sup][Arg^{Ex^{Ex}}]''
+%     \item
+%       \verb=\newmthoarg*[mathrm]{Name}[sub][sup][Arg^{Ex^{Ex}}]= =
+%       ``\newmthoarg*[mathrm]{Name}[sub][sup][Arg^{Ex^{Ex}}]''
+%     \item
+%       \verb=\newmthoarg*[mathsf]{Name}[sub][sup][Arg^{Ex^{Ex}}]= =
+%       ``\newmthoarg*[mathsf]{Name}[sub][sup][Arg^{Ex^{Ex}}]''
+%     \item
+%       \verb=\newmthoarg*[mathtt]{Name}[sub][sup][Arg^{Ex^{Ex}}]= =
+%       ``\newmthoarg*[mathtt]{Name}[sub][sup][Arg^{Ex^{Ex}}]''
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommand{\newmthoarg}
+  {\@ifstar{\@snewmthoarg}{\@newmthoarg}}
+\newcommandx{\@newmthoarg}[5][1=, 3=, 4=, 5=]
+  {\newmtharg[#1]{#2}[#3][#4][]{#5}[]}
+\newcommandx{\@snewmthoarg}[5][1=, 3=, 4=, 5=]
+  {\newmtharg*[#1]{#2}[#3][#4][]{#5}[]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\newmthoargsty}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\newmthoargsty{mathrm}{Name}[sub][sup][Arg^{Ex^{Ex}}]= =
+%       ``\newmthoargsty{mathrm}{Name}[sub][sup][Arg^{Ex^{Ex}}]''
+%     \item
+%       \verb=\newmthoargsty{mathrm}[mathsf]{Name}[sub][sup][Arg^{Ex^{Ex}}]= =
+%        ``\newmthoargsty{mathrm}[mathsf]{Name}[sub][sup][Arg^{Ex^{Ex}}]''
+%     \item
+%       \verb=\newmthoargsty{mathrm}[mathtt]{Name}[sub][sup][Arg^{Ex^{Ex}}]= =
+%       ``\newmthoargsty{mathrm}[mathtt]{Name}[sub][sup][Arg^{Ex^{Ex}}]''
+%     \item
+%       \verb=\newmthoargsty*{mathrm}{Name}[sub][sup][Arg^{Ex^{Ex}}]= =
+%       ``\newmthoargsty*{mathrm}{Name}[sub][sup][Arg^{Ex^{Ex}}]''
+%     \item
+%       \verb=\newmthoargsty*{mathrm}[mathsf]{Name}[sub][sup][Arg^{Ex^{Ex}}]= =
+%        ``\newmthoargsty*{mathrm}[mathsf]{Name}[sub][sup][Arg^{Ex^{Ex}}]''
+%     \item
+%       \verb=\newmthoargsty*{mathrm}[mathtt]{Name}[sub][sup][Arg^{Ex^{Ex}}]= =
+%       ``\newmthoargsty*{mathrm}[mathtt]{Name}[sub][sup][Arg^{Ex^{Ex}}]''
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommand{\newmthoargsty}
+  {\@ifstar{\@snewmthoargsty}{\@newmthoargsty}}
+\newcommandx{\@newmthoargsty}[2][2=]
+  {\newmthoarg[\defval{#2}{#1}]}
+\newcommandx{\@snewmthoargsty}[2][2=]
+  {\newmthoarg*[\defval{#2}{#1}]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\newmthpar}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\newmthpar[mathrm]{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       ``\newmthpar[mathrm]{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]''
+%     \item
+%       \verb=\newmthpar[mathsf]{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       ``\newmthpar[mathsf]{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]''
+%     \item
+%       \verb=\newmthpar[mathtt]{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       ``\newmthpar[mathtt]{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]''
+%     \item
+%       \verb=\newmthpar*[mathrm]{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       ``\newmthpar*[mathrm]{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]''
+%     \item
+%       \verb=\newmthpar*[mathsf]{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       ``\newmthpar*[mathsf]{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]''
+%     \item
+%       \verb=\newmthpar*[mathtt]{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       ``\newmthpar*[mathtt]{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]''
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommand{\newmthpar}
+  {\@ifstar{\@snewmthpar}{\@newmthpar}}
+\newcommandx{\@newmthpar}[7][1=, 3=, 4=, 5=, 7=]
+  {\newmth[#1]{#2}[#3][#4][\argmid{#5\!\left[}{#6}{\right]\arglef{\!}{#7}}]}
+\newcommandx{\@snewmthpar}[7][1=, 3=, 4=, 5=, 7=]
+  {\newmth[#1]{#2}[#3][#4][\argmid{#5[}{#6}{]#7}]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\newmthparsty}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\newmthparsty{mathrm}{Name}[sub][sup]=
+%         \verb=[Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       ``\newmthparsty{mathrm}{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]''
+%     \item
+%       \verb=\newmthparsty{mathrm}[mathsf]{Name}[sub][sup]=\!
+%         \verb=[Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       ``\newmthparsty{mathrm}[mathsf]{Name}[sub][sup]%
+%         [Ext1]{Par^{Ex^{Ex}}}[Ext2]''
+%     \item
+%       \verb=\newmthparsty{mathrm}[mathtt]{Name}[sub][sup]=\!
+%         \verb=[Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       ``\newmthparsty{mathrm}[mathtt]{Name}[sub][sup]%
+%         [Ext1]{Par^{Ex^{Ex}}}[Ext2]''
+%     \item
+%       \verb=\newmthparsty*{mathrm}{Name}[sub][sup]=
+%         \verb=[Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       ``\newmthparsty*{mathrm}{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]''
+%     \item
+%       \verb=\newmthparsty*{mathrm}[mathsf]{Name}[sub][sup]=\!
+%         \verb=[Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       ``\newmthparsty*{mathrm}[mathsf]{Name}[sub][sup]%
+%         [Ext1]{Par^{Ex^{Ex}}}[Ext2]''
+%     \item
+%       \verb=\newmthparsty*{mathrm}[mathtt]{Name}[sub][sup]=\!
+%         \verb=[Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       ``\newmthparsty*{mathrm}[mathtt]{Name}[sub][sup]%
+%         [Ext1]{Par^{Ex^{Ex}}}[Ext2]''
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommand{\newmthparsty}
+  {\@ifstar{\@snewmthparsty}{\@newmthparsty}}
+\newcommandx{\@newmthparsty}[2][2=]
+  {\newmthpar[\defval{#2}{#1}]}
+\newcommandx{\@snewmthparsty}[2][2=]
+  {\newmthpar*[\defval{#2}{#1}]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\newmthopar}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\newmthopar[mathrm]{Name}[sub][sup][Par^{Ex^{Ex}}]= =
+%       ``\newmthopar[mathrm]{Name}[sub][sup][Par^{Ex^{Ex}}]''
+%     \item
+%       \verb=\newmthopar[mathsf]{Name}[sub][sup][Par^{Ex^{Ex}}]= =
+%       ``\newmthopar[mathsf]{Name}[sub][sup][Par^{Ex^{Ex}}]''
+%     \item
+%       \verb=\newmthopar[mathtt]{Name}[sub][sup][Par^{Ex^{Ex}}]= =
+%       ``\newmthopar[mathtt]{Name}[sub][sup][Par^{Ex^{Ex}}]''
+%     \item
+%       \verb=\newmthopar*[mathrm]{Name}[sub][sup][Par^{Ex^{Ex}}]= =
+%       ``\newmthopar*[mathrm]{Name}[sub][sup][Par^{Ex^{Ex}}]''
+%     \item
+%       \verb=\newmthopar*[mathsf]{Name}[sub][sup][Par^{Ex^{Ex}}]= =
+%       ``\newmthopar*[mathsf]{Name}[sub][sup][Par^{Ex^{Ex}}]''
+%     \item
+%       \verb=\newmthopar*[mathtt]{Name}[sub][sup][Par^{Ex^{Ex}}]= =
+%       ``\newmthopar*[mathtt]{Name}[sub][sup][Par^{Ex^{Ex}}]''
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommand{\newmthopar}
+  {\@ifstar{\@snewmthopar}{\@newmthopar}}
+\newcommandx{\@newmthopar}[5][1=, 3=, 4=, 5=]
+  {\newmthpar[#1]{#2}[#3][#4][]{#5}[]}
+\newcommandx{\@snewmthopar}[5][1=, 3=, 4=, 5=]
+  {\newmthpar*[#1]{#2}[#3][#4][]{#5}[]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\newmthoparsty}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\newmthoparsty{mathrm}{Name}[sub][sup][Par^{Ex^{Ex}}]= =
+%       ``\newmthoparsty{mathrm}{Name}[sub][sup][Par^{Ex^{Ex}}]''
+%     \item
+%       \verb=\newmthoparsty{mathrm}[mathsf]{Name}[sub][sup][Par^{Ex^{Ex}}]= =
+%        ``\newmthoparsty{mathrm}[mathsf]{Name}[sub][sup][Par^{Ex^{Ex}}]''
+%     \item
+%       \verb=\newmthoparsty{mathrm}[mathtt]{Name}[sub][sup][Par^{Ex^{Ex}}]= =
+%       ``\newmthoparsty{mathrm}[mathtt]{Name}[sub][sup][Par^{Ex^{Ex}}]''
+%     \item
+%       \verb=\newmthoparsty*{mathrm}{Name}[sub][sup][Par^{Ex^{Ex}}]= =
+%       ``\newmthoparsty*{mathrm}{Name}[sub][sup][Par^{Ex^{Ex}}]''
+%     \item
+%       \verb=\newmthoparsty*{mathrm}[mathsf]{Name}[sub][sup][Par^{Ex^{Ex}}]= =
+%        ``\newmthoparsty*{mathrm}[mathsf]{Name}[sub][sup][Par^{Ex^{Ex}}]''
+%     \item
+%       \verb=\newmthoparsty*{mathrm}[mathtt]{Name}[sub][sup][Par^{Ex^{Ex}}]= =
+%       ``\newmthoparsty*{mathrm}[mathtt]{Name}[sub][sup][Par^{Ex^{Ex}}]''
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommand{\newmthoparsty}
+  {\@ifstar{\@snewmthoparsty}{\@newmthoparsty}}
+\newcommandx{\@newmthoparsty}[2][2=]
+  {\newmthopar[\defval{#2}{#1}]}
+\newcommandx{\@snewmthoparsty}[2][2=]
+  {\newmthopar*[\defval{#2}{#1}]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\mthsubsup}
+%   ... to do!
+%    \begin{macrocode}
+\newcommand{\mthsubsup}[2]
+  {\empchk{#1}{_{#1}}\empchk{#2}{^{#2}}}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+%%****************************************************************************%%
+%    \end{macrocode}
+
+% \begin{macro}{\mth}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\mth{Name}[sub][sup][Ext]= =
+%       ``\mth{Name}[sub][sup][Ext]''
+%     \item
+%       \verb=\mth[mathbf]{Name}[sub][sup][Ext]= =
+%       ``\mth[mathbf]{Name}[sub][sup][Ext]''
+%     \item
+%       \verb=\mth[mathtt]{Name}[sub][sup][Ext]= =
+%       ``\mth[mathtt]{Name}[sub][sup][Ext]''
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommand{\mth}
+  {\newmthsty{\mthsty}}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\mtharg}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\mtharg{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       ``\mtharg{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]''
+%     \item
+%       \verb=\mtharg[mathbf]{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       ``\mtharg[mathbf]{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]''
+%     \item
+%       \verb=\mtharg[mathtt]{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       ``\mtharg[mathtt]{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]''
+%     \item
+%       \verb=\mtharg*{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       ``\mtharg*{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]''
+%     \item
+%       \verb=\mtharg*[mathbf]{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       ``\mtharg*[mathbf]{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]''
+%     \item
+%       \verb=\mtharg*[mathtt]{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       ``\mtharg*[mathtt]{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]''
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommand{\mtharg}
+  {\@ifstar{\newmthargsty*{\mthsty}}{\newmthargsty{\mthsty}}}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\mthoarg}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\mthoarg{Name}[sub][sup][Arg^{Ex^{Ex}}]= =
+%       ``\mthoarg{Name}[sub][sup][Arg^{Ex^{Ex}}]''
+%     \item
+%       \verb=\mthoarg[mathbf]{Name}[sub][sup][Arg^{Ex^{Ex}}]= =
+%       ``\mthoarg[mathbf]{Name}[sub][sup][Arg^{Ex^{Ex}}]''
+%     \item
+%       \verb=\mthoarg[mathtt]{Name}[sub][sup][Arg^{Ex^{Ex}}]= =
+%       ``\mthoarg[mathtt]{Name}[sub][sup][Arg^{Ex^{Ex}}]''
+%     \item
+%       \verb=\mthoarg*{Name}[sub][sup][Arg^{Ex^{Ex}}]= =
+%       ``\mthoarg*{Name}[sub][sup][Arg^{Ex^{Ex}}]''
+%     \item
+%       \verb=\mthoarg*[mathbf]{Name}[sub][sup][Arg^{Ex^{Ex}}]= =
+%       ``\mthoarg*[mathbf]{Name}[sub][sup][Arg^{Ex^{Ex}}]''
+%     \item
+%       \verb=\mthoarg*[mathtt]{Name}[sub][sup][Arg^{Ex^{Ex}}]= =
+%       ``\mthoarg*[mathtt]{Name}[sub][sup][Arg^{Ex^{Ex}}]''
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommand{\mthoarg}
+  {\@ifstar{\newmthoargsty*{\mthsty}}{\newmthoargsty{\mthsty}}}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\mthpar}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\mthpar{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       ``\mthpar{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]''
+%     \item
+%       \verb=\mthpar[mathbf]{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       ``\mthpar[mathbf]{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]''
+%     \item
+%       \verb=\mthpar[mathtt]{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       ``\mthpar[mathtt]{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]''
+%     \item
+%       \verb=\mthpar*{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       ``\mthpar*{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]''
+%     \item
+%       \verb=\mthpar*[mathbf]{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       ``\mthpar*[mathbf]{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]''
+%     \item
+%       \verb=\mthpar*[mathtt]{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       ``\mthpar*[mathtt]{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]''
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommand{\mthpar}
+  {\@ifstar{\newmthparsty*{\mthsty}}{\newmthparsty{\mthsty}}}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\mthopar}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\mthopar{Name}[sub][sup][Par^{Ex^{Ex}}]= =
+%       ``\mthopar{Name}[sub][sup][Par^{Ex^{Ex}}]''
+%     \item
+%       \verb=\mthopar[mathbf]{Name}[sub][sup][Par^{Ex^{Ex}}]= =
+%       ``\mthopar[mathbf]{Name}[sub][sup][Par^{Ex^{Ex}}]''
+%     \item
+%       \verb=\mthopar[mathtt]{Name}[sub][sup][Par^{Ex^{Ex}}]= =
+%       ``\mthopar[mathtt]{Name}[sub][sup][Par^{Ex^{Ex}}]''
+%     \item
+%       \verb=\mthopar*{Name}[sub][sup][Par^{Ex^{Ex}}]= =
+%       ``\mthopar*{Name}[sub][sup][Par^{Ex^{Ex}}]''
+%     \item
+%       \verb=\mthopar*[mathbf]{Name}[sub][sup][Par^{Ex^{Ex}}]= =
+%       ``\mthopar*[mathbf]{Name}[sub][sup][Par^{Ex^{Ex}}]''
+%     \item
+%       \verb=\mthopar*[mathtt]{Name}[sub][sup][Par^{Ex^{Ex}}]= =
+%       ``\mthopar*[mathtt]{Name}[sub][sup][Par^{Ex^{Ex}}]''
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommand{\mthopar}
+  {\@ifstar{\newmthoparsty*{\mthsty}}{\newmthoparsty{\mthsty}}}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\mthsty}
+%   ... to do!
+%    \begin{macrocode}
+\newcommand{\mthsty}
+  {}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+%%****************************************************************************%%
+%    \end{macrocode}
+
+% \begin{macro}{\cmdmth}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdmth{NewCmd}=;\cmdmth{NewCmd}
+%       \verb=\newcommand{mthstyNewCmd}{\mathtt}=;
+%       \newcommand{\mthstyNewCmd}{\mathtt} \\
+%       \verb=\mthNewCmd{Name}[sub][sup][Ext]= = \mthNewCmd{Name}[sub][sup][Ext]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommand{\cmdmth}[1]
+  {\csdef{mth#1}{\newmthsty{mthsty#1}}}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdmtharg}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdmtharg{NewCmd}=;\cmdmtharg{NewCmd}
+%       \verb=\newcommand{mthstyNewCmd}{\mathtt}=;
+%       \newcommand{\mthstyNewCmd}{\mathtt} \\
+%       \verb=\mthargNewCmd{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       \mthargNewCmd{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2] \\
+%       \verb=\mthargNewCmd*{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       \mthargNewCmd*{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommand{\cmdmtharg}[1]
+  {\csdef{mtharg#1}%
+    {\@ifstar{\newmthargsty*{mthsty#1}}{\newmthargsty{mthsty#1}}}}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdmthoarg}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdmthoarg{NewCmd}=;\cmdmthoarg{NewCmd}
+%       \verb=\newcommand{mthstyNewCmd}{\mathtt}=;
+%       \newcommand{\mthstyNewCmd}{\mathtt} \\
+%       \verb=\mthoargNewCmd{Name}[sub][sup][Arg^{Ex^{Ex}}]= =
+%       \mthoargNewCmd{Name}[sub][sup][Arg^{Ex^{Ex}}] \\
+%       \verb=\mthoargNewCmd*{Name}[sub][sup][Arg^{Ex^{Ex}}]= =
+%       \mthoargNewCmd*{Name}[sub][sup][Arg^{Ex^{Ex}}]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommand{\cmdmthoarg}[1]
+  {\csdef{mthoarg#1}%
+    {\@ifstar{\newmthoargsty*{mthsty#1}}{\newmthoargsty{mthsty#1}}}}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdmthpar}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdmthpar{NewCmd}=;\cmdmthpar{NewCmd}
+%       \verb=\newcommand{mthstyNewCmd}{\mathtt}=;
+%       \newcommand{\mthstyNewCmd}{\mathtt} \\
+%       \verb=\mthparNewCmd{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       \mthparNewCmd{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2] \\
+%       \verb=\mthparNewCmd*{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       \mthparNewCmd*{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommand{\cmdmthpar}[1]
+  {\csdef{mthpar#1}%
+    {\@ifstar{\newmthparsty*{mthsty#1}}{\newmthparsty{mthsty#1}}}}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdmthopar}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdmthopar{NewCmd}=;\cmdmthopar{NewCmd}
+%       \verb=\newcommand{mthstyNewCmd}{\mathtt}=;
+%       \newcommand{\mthstyNewCmd}{\mathtt} \\
+%       \verb=\mthoparNewCmd{Name}[sub][sup][Par^{Ex^{Ex}}]= =
+%       \mthoparNewCmd{Name}[sub][sup][Par^{Ex^{Ex}}] \\
+%       \verb=\mthoparNewCmd*{Name}[sub][sup][Par^{Ex^{Ex}}]= =
+%       \mthoparNewCmd*{Name}[sub][sup][Par^{Ex^{Ex}}]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommand{\cmdmthopar}[1]
+  {\csdef{mthopar#1}%
+    {\@ifstar{\newmthoparsty*{mthsty#1}}{\newmthoparsty{mthsty#1}}}}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdmthall}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdmthall{NewCmd}=;\cmdmthall{NewCmd}
+%       \verb=\newcommand{mthstyNewCmd}{\mathtt}=;
+%       \newcommand{\mthstyNewCmd}{\mathtt} \\
+%       \verb=\mthNewCmd{Name}[sub][sup][Ext]= =
+%       \mthNewCmd{Name}[sub][sup][Ext] \\
+%       \verb=\mthargNewCmd{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       \mthargNewCmd{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2] \\
+%       \verb=\mthargNewCmd*{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       \mthargNewCmd*{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2] \\
+%       \verb=\mthoargNewCmd{Name}[sub][sup][Arg^{Ex^{Ex}}]= =
+%       \mthoargNewCmd{Name}[sub][sup][Arg^{Ex^{Ex}}] \\
+%       \verb=\mthoargNewCmd*{Name}[sub][sup][Arg^{Ex^{Ex}}]= =
+%       \mthoargNewCmd*{Name}[sub][sup][Arg^{Ex^{Ex}}] \\
+%       \verb=\mthparNewCmd{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       \mthparNewCmd{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2] \\
+%       \verb=\mthparNewCmd*{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       \mthparNewCmd*{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2] \\
+%       \verb=\mthoparNewCmd{Name}[sub][sup][Par^{Ex^{Ex}}]= =
+%       \mthoparNewCmd{Name}[sub][sup][Par^{Ex^{Ex}}] \\
+%       \verb=\mthoparNewCmd*{Name}[sub][sup][Par^{Ex^{Ex}}]= =
+%       \mthoparNewCmd*{Name}[sub][sup][Par^{Ex^{Ex}}]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommand{\cmdmthall}[1]
+  {\cmdmth{#1}\cmdmtharg{#1}\cmdmthoarg{#1}\cmdmthpar{#1}\cmdmthopar{#1}}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+%%****************************************************************************%%
+%    \end{macrocode}
+
+% \begin{macro}{\usrmth}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\usrmth{cmdName}{Suf}{}=;\usrmth{cmdName}{Suf}{}
+%       \verb=\cmdNameSuf= = \cmdNameSuf \\
+%       \verb=\usrmth{cmdName}{Suf}{arg}=;\usrmth{cmdName}{Suf}{arg} \\
+%       \verb=\cmdNameSuf{Arg^{Ex^{Ex}}}= = \cmdNameSuf{Arg^{Ex^{Ex}}} \\
+%       \verb=\cmdNameSuf*{Arg^{Ex^{Ex}}}= = \cmdNameSuf*{Arg^{Ex^{Ex}}} \\
+%       \verb=\usrmth{cmdName}{Suf}{par}=;\usrmth{cmdName}{Suf}{par} \\
+%       \verb=\cmdNameSuf{Par^{Ex^{Ex}}}= = \cmdNameSuf{Par^{Ex^{Ex}}} \\
+%       \verb=\cmdNameSuf*{Par^{Ex^{Ex}}}= = \cmdNameSuf*{Par^{Ex^{Ex}}}
+%     \item
+%       \verb=\usrmth{cmdName}{Suf}{}[newName]=;\usrmth{cmdName}{Suf}{}[newName]
+%       \verb=\cmdNameSuf= = \cmdNameSuf \\
+%       \verb=\usrmth{cmdName}{Suf}{arg}[newName]=;
+%       \usrmth{cmdName}{Suf}{arg}[newName] \\
+%       \verb=\cmdNameSuf{Arg^{Ex^{Ex}}}= = \cmdNameSuf{Arg^{Ex^{Ex}}} \\
+%       \verb=\cmdNameSuf*{Arg^{Ex^{Ex}}}= = \cmdNameSuf*{Arg^{Ex^{Ex}}} \\
+%       \verb=\usrmth{cmdName}{Suf}{par}[newName]=;
+%       \usrmth{cmdName}{Suf}{par}[newName] \\
+%       \verb=\cmdNameSuf{Par^{Ex^{Ex}}}= = \cmdNameSuf{Par^{Ex^{Ex}}} \\
+%       \verb=\cmdNameSuf*{Par^{Ex^{Ex}}}= = \cmdNameSuf*{Par^{Ex^{Ex}}}
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\usrmth}[4][4=]
+  {\csdef{#1#2}{%
+    \@ifstar%
+      {\csname mth#3\endcsname*{\defval{#4}{#1}}}%
+      {\csname mth#3\endcsname{\defval{#4}{#1}}}%
+  }}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+%%****************************************************************************%%
+%    \end{macrocode}
+
+% \begin{macro}{\usrmthlatlow}
+%   ... to do!
+%    \begin{macrocode}
+\newcommandx{\usrmthlatlow}[4][4=]
+  {\usrmth{#1}{#2}{#3}[#4]\seqoflatlow{#1#2}{mth#3}}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\usrmthlatupp}
+%   ... to do!
+%    \begin{macrocode}
+\newcommandx{\usrmthlatupp}[4][4=]
+  {\usrmth{#1}{#2}{#3}[#4]\seqoflatupp{#1#2}{mth#3}}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\usrmthlatlet}
+%   ... to do!
+%    \begin{macrocode}
+\newcommandx{\usrmthlatlet}[4][4=]
+  {\usrmth{#1}{#2}{#3}[#4]\seqoflatlet{#1#2}{mth#3}}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\usrmthgrklow}
+%   ... to do!
+%    \begin{macrocode}
+\newcommandx{\usrmthgrklow}[4][4=]
+  {\usrmth{#1}{#2}{#3}[#4]\seqofgrklow{#1#2}{mth#3}}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\usrmthgrkupp}
+%   ... to do!
+%    \begin{macrocode}
+\newcommandx{\usrmthgrkupp}[4][4=]
+  {\usrmth{#1}{#2}{#3}[#4]\seqofgrkupp{#1#2}{mth#3}}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\usrmthgrklet}
+%   ... to do!
+%    \begin{macrocode}
+\newcommandx{\usrmthgrklet}[4][4=]
+  {\usrmth{#1}{#2}{#3}[#4]\seqofgrklet{#1#2}{mth#3}}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\usrmthlow}
+%   ... to do!
+%    \begin{macrocode}
+\newcommandx{\usrmthlow}[4][4=]
+  {\usrmth{#1}{#2}{#3}[#4]\seqoflow{#1#2}{mth#3}}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\usrmthupp}
+%   ... to do!
+%    \begin{macrocode}
+\newcommandx{\usrmthupp}[4][4=]
+  {\usrmth{#1}{#2}{#3}[#4]\seqofupp{#1#2}{mth#3}}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\usrmthlet}
+%   ... to do!
+%    \begin{macrocode}
+\newcommandx{\usrmthlet}[4][4=]
+  {\usrmth{#1}{#2}{#3}[#4]\seqoflet{#1#2}{mth#3}}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+%%****************************************************************************%%
+%    \end{macrocode}
+
+%    \begin{macrocode}
+%%****************************************************************************%%
+%%** Text Macro Generators ***************************************************%%
+%%****************************************************************************%%
+\iftxtgen@
+%    \end{macrocode}
+
+% \begin{macro}{\txtdef, ...}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\txtdef{Name}[sub][sup][Ext]= = \txtdef{Name}[sub][sup][Ext]
+%     \item
+%       \verb=\txtargdef{Name}[sub][sup][Ext1]{Arg}[Ext2]= =
+%       \txtargdef{Name}[sub][sup][Ext1]{Arg}[Ext2]
+%     \item
+%       \verb=\txtpardef{Name}[sub][sup][Ext1]{Par}[Ext2]= =
+%       \txtpardef{Name}[sub][sup][Ext1]{Par}[Ext2]
+%   \end{itemize}
+%    \begin{macrocode}
+%% Style for Definitions
+\cmdtxtall{def}\newcommand{\txtstydef}{\normalfont\bfseries\em}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdtxtdef}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdtxtdef{cmdName}=;\cmdtxtdef{cmdName} \\
+%       \verb=\cmdName[sub][sub][ext]= = \cmdName[sub][sub][ext]
+%     \item
+%       \verb=\cmdtxtdef{cmdName}[newName]=;\cmdtxtdef{cmdName}[newName] \\
+%       \verb=\cmdName[sub][sub][ext]= = \cmdName[sub][sub][ext]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdtxtdef}[2][2=]
+  {\usrtxt{#1}{}{def}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdtxtargdef}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdtxtargdef{cmdName}=;\cmdtxtargdef{cmdName} \\
+%       \verb=\cmdName[sub][sub][ext1]{arg}[ext2]= =
+%       \cmdName[sub][sub][ext1]{arg}[ext2]
+%     \item
+%       \verb=\cmdtxtargdef{cmdName}[newName]=;
+%       \cmdtxtargdef{cmdName}[newName] \\
+%       \verb=\cmdName[sub][sub][ext1]{arg}[ext2]= =
+%       \cmdName[sub][sub][ext1]{arg}[ext2]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdtxtargdef}[2][2=]
+  {\usrtxt{#1}{}{argdef}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdtxtoargdef}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdtxtoargdef{cmdName}=;\cmdtxtoargdef{cmdName} \\
+%       \verb=\cmdName[sub][sub][arg]= = \cmdName[sub][sub][arg]
+%     \item
+%       \verb=\cmdtxtoargdef{cmdName}[newName]=;
+%       \cmdtxtoargdef{cmdName}[newName] \\
+%       \verb=\cmdName[sub][sub][arg]= = \cmdName[sub][sub][arg]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdtxtoargdef}[2][2=]
+  {\usrtxt{#1}{}{oargdef}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdtxtpardef}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdtxtpardef{cmdName}=;\cmdtxtpardef{cmdName} \\
+%       \verb=\cmdName[sub][sub][ext1]{par}[ext2]= =
+%       \cmdName[sub][sub][ext1]{par}[ext2]
+%     \item
+%       \verb=\cmdtxtpardef{cmdName}[newName]=;
+%       \cmdtxtpardef{cmdName}[newName] \\
+%       \verb=\cmdName[sub][sub][ext1]{par}[ext2]= =
+%       \cmdName[sub][sub][ext1]{par}[ext2]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdtxtpardef}[2][2=]
+  {\usrtxt{#1}{}{pardef}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdtxtopardef}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdtxtopardef{cmdName}=;\cmdtxtopardef{cmdName} \\
+%       \verb=\cmdName[sub][sub][par]= = \cmdName[sub][sub][par]
+%     \item
+%       \verb=\cmdtxtopardef{cmdName}[newName]=;
+%       \cmdtxtopardef{cmdName}[newName] \\
+%       \verb=\cmdName[sub][sub][par]= = \cmdName[sub][sub][par]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdtxtopardef}[2][2=]
+  {\usrtxt{#1}{}{opardef}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\txtabr, ...}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\txtabr{Name}[sub][sup][Ext]= = \txtabr{Name}[sub][sup][Ext]
+%     \item
+%       \verb=\txtargabr{Name}[sub][sup][Ext1]{Arg}[Ext2]= =
+%       \txtargabr{Name}[sub][sup][Ext1]{Arg}[Ext2]
+%     \item
+%       \verb=\txtparabr{Name}[sub][sup][Ext1]{Par}[Ext2]= =
+%       \txtparabr{Name}[sub][sup][Ext1]{Par}[Ext2]
+%   \end{itemize}
+%    \begin{macrocode}
+%% Style for Abbreviations
+\cmdtxtall{abr}\newcommand{\txtstyabr}{\em}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdtxtabr}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdtxtabr{cmdName}=;\cmdtxtabr{cmdName} \\
+%       \verb=\cmdName[sub][sub][ext]= = \cmdName[sub][sub][ext]
+%     \item
+%       \verb=\cmdtxtabr{cmdName}[newName]=;\cmdtxtabr{cmdName}[newName] \\
+%       \verb=\cmdName[sub][sub][ext]= = \cmdName[sub][sub][ext]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdtxtabr}[2][2=]
+  {\usrtxt{#1}{}{abr}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdtxtargabr}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdtxtargabr{cmdName}=;\cmdtxtargabr{cmdName} \\
+%       \verb=\cmdName[sub][sub][ext1]{arg}[ext2]= =
+%       \cmdName[sub][sub][ext1]{arg}[ext2]
+%     \item
+%       \verb=\cmdtxtargabr{cmdName}[newName]=;
+%       \cmdtxtargabr{cmdName}[newName] \\
+%       \verb=\cmdName[sub][sub][ext1]{arg}[ext2]= =
+%       \cmdName[sub][sub][ext1]{arg}[ext2]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdtxtargabr}[2][2=]
+  {\usrtxt{#1}{}{argabr}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdtxtoargabr}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdtxtoargabr{cmdName}=;\cmdtxtoargabr{cmdName} \\
+%       \verb=\cmdName[sub][sub][arg]= = \cmdName[sub][sub][arg]
+%     \item
+%       \verb=\cmdtxtoargabr{cmdName}[newName]=;
+%       \cmdtxtoargabr{cmdName}[newName] \\
+%       \verb=\cmdName[sub][sub][arg]= = \cmdName[sub][sub][arg]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdtxtoargabr}[2][2=]
+  {\usrtxt{#1}{}{oargabr}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdtxtparabr}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdtxtparabr{cmdName}=;\cmdtxtparabr{cmdName} \\
+%       \verb=\cmdName[sub][sub][ext1]{par}[ext2]= =
+%       \cmdName[sub][sub][ext1]{par}[ext2]
+%     \item
+%       \verb=\cmdtxtparabr{cmdName}[newName]=;
+%       \cmdtxtparabr{cmdName}[newName] \\
+%       \verb=\cmdName[sub][sub][ext1]{par}[ext2]= =
+%       \cmdName[sub][sub][ext1]{par}[ext2]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdtxtparabr}[2][2=]
+  {\usrtxt{#1}{}{parabr}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdtxtoparabr}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdtxtoparabr{cmdName}=;\cmdtxtoparabr{cmdName} \\
+%       \verb=\cmdName[sub][sub][par]= = \cmdName[sub][sub][par]
+%     \item
+%       \verb=\cmdtxtoparabr{cmdName}[newName]=;
+%       \cmdtxtoparabr{cmdName}[newName] \\
+%       \verb=\cmdName[sub][sub][par]= = \cmdName[sub][sub][par]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdtxtoparabr}[2][2=]
+  {\usrtxt{#1}{}{oparabr}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+%%****************************************************************************%%
+%    \end{macrocode}
+
+% \begin{macro}{\txtname, ...}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\txtname{Name}[sub][sup][Ext]= = \txtname{Name}[sub][sup][Ext]
+%     \item
+%       \verb=\txtargname{Name}[sub][sup][Ext1]{Arg}[Ext2]= =
+%       \txtargname{Name}[sub][sup][Ext1]{Arg}[Ext2]
+%     \item
+%       \verb=\txtparname{Name}[sub][sup][Ext1]{Par}[Ext2]= =
+%       \txtparname{Name}[sub][sup][Ext1]{Par}[Ext2]
+%   \end{itemize}
+%    \begin{macrocode}
+%% Style for Names
+\cmdtxtall{name}\newcommand{\txtstyname}{\normalfont\mdseries\scshape\sffamily}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdtxtname}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdtxtname{cmdName}=;\cmdtxtname{cmdName} \\
+%       \verb=\cmdName[sub][sub][ext]= = \cmdName[sub][sub][ext]
+%     \item
+%       \verb=\cmdtxtname{cmdName}[newName]=;\cmdtxtname{cmdName}[newName] \\
+%       \verb=\cmdName[sub][sub][ext]= = \cmdName[sub][sub][ext]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdtxtname}[2][2=]
+  {\usrtxt{#1}{}{name}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdtxtargname}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdtxtargname{cmdName}=;\cmdtxtargname{cmdName} \\
+%       \verb=\cmdName[sub][sub][ext1]{arg}[ext2]= =
+%       \cmdName[sub][sub][ext1]{arg}[ext2]
+%     \item
+%       \verb=\cmdtxtargname{cmdName}[newName]=;
+%       \cmdtxtargname{cmdName}[newName] \\
+%       \verb=\cmdName[sub][sub][ext1]{arg}[ext2]= =
+%       \cmdName[sub][sub][ext1]{arg}[ext2]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdtxtargname}[2][2=]
+  {\usrtxt{#1}{}{argname}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdtxtoargname}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdtxtoargname{cmdName}=;\cmdtxtoargname{cmdName} \\
+%       \verb=\cmdName[sub][sub][arg]= = \cmdName[sub][sub][arg]
+%     \item
+%       \verb=\cmdtxtoargname{cmdName}[newName]=;
+%       \cmdtxtoargname{cmdName}[newName] \\
+%       \verb=\cmdName[sub][sub][arg]= = \cmdName[sub][sub][arg]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdtxtoargname}[2][2=]
+  {\usrtxt{#1}{}{oargname}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdtxtparname}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdtxtparname{cmdName}=;\cmdtxtparname{cmdName} \\
+%       \verb=\cmdName[sub][sub][ext1]{par}[ext2]= =
+%       \cmdName[sub][sub][ext1]{par}[ext2]
+%     \item
+%       \verb=\cmdtxtparname{cmdName}[newName]=;
+%       \cmdtxtparname{cmdName}[newName] \\
+%       \verb=\cmdName[sub][sub][ext1]{par}[ext2]= =
+%       \cmdName[sub][sub][ext1]{par}[ext2]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdtxtparname}[2][2=]
+  {\usrtxt{#1}{}{parname}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdtxtoparname}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdtxtoparname{cmdName}=;\cmdtxtoparname{cmdName} \\
+%       \verb=\cmdName[sub][sub][par]= = \cmdName[sub][sub][par]
+%     \item
+%       \verb=\cmdtxtoparname{cmdName}[newName]=;
+%       \cmdtxtoparname{cmdName}[newName] \\
+%       \verb=\cmdName[sub][sub][par]= = \cmdName[sub][sub][par]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdtxtoparname}[2][2=]
+  {\usrtxt{#1}{}{oparname}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\txtcom, ...}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\txtcom{Name}[sub][sup][Ext]= = \txtcom{Name}[sub][sup][Ext]
+%     \item
+%       \verb=\txtargcom{Name}[sub][sup][Ext1]{Arg}[Ext2]= =
+%       \txtargcom{Name}[sub][sup][Ext1]{Arg}[Ext2]
+%     \item
+%       \verb=\txtparcom{Name}[sub][sup][Ext1]{Par}[Ext2]= =
+%       \txtparcom{Name}[sub][sup][Ext1]{Par}[Ext2]
+%   \end{itemize}
+%    \begin{macrocode}
+%% Style for Complexities
+\cmdtxtall{com}\newcommand{\txtstycom}{\normalfont\mdseries\scshape\rmfamily}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdtxtcom}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdtxtcom{cmdName}=;\cmdtxtcom{cmdName} \\
+%       \verb=\cmdName[sub][sub][ext]= = \cmdName[sub][sub][ext]
+%     \item
+%       \verb=\cmdtxtcom{cmdName}[newName]=;\cmdtxtcom{cmdName}[newName] \\
+%       \verb=\cmdName[sub][sub][ext]= = \cmdName[sub][sub][ext]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdtxtcom}[2][2=]
+  {\usrtxt{#1}{}{com}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdtxtargcom}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdtxtargcom{cmdName}=;\cmdtxtargcom{cmdName} \\
+%       \verb=\cmdName[sub][sub][ext1]{arg}[ext2]= =
+%       \cmdName[sub][sub][ext1]{arg}[ext2]
+%     \item
+%       \verb=\cmdtxtargcom{cmdName}[newName]=;
+%       \cmdtxtargcom{cmdName}[newName] \\
+%       \verb=\cmdName[sub][sub][ext1]{arg}[ext2]= =
+%       \cmdName[sub][sub][ext1]{arg}[ext2]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdtxtargcom}[2][2=]
+  {\usrtxt{#1}{}{argcom}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdtxtoargcom}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdtxtoargcom{cmdName}=;\cmdtxtoargcom{cmdName} \\
+%       \verb=\cmdName[sub][sub][arg]= = \cmdName[sub][sub][arg]
+%     \item
+%       \verb=\cmdtxtoargcom{cmdName}[newName]=;
+%       \cmdtxtoargcom{cmdName}[newName] \\
+%       \verb=\cmdName[sub][sub][arg]= = \cmdName[sub][sub][arg]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdtxtoargcom}[2][2=]
+  {\usrtxt{#1}{}{oargcom}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdtxtparcom}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdtxtparcom{cmdName}=;\cmdtxtparcom{cmdName} \\
+%       \verb=\cmdName[sub][sub][ext1]{par}[ext2]= =
+%       \cmdName[sub][sub][ext1]{par}[ext2]
+%     \item
+%       \verb=\cmdtxtparcom{cmdName}[newName]=;
+%       \cmdtxtparcom{cmdName}[newName] \\
+%       \verb=\cmdName[sub][sub][ext1]{par}[ext2]= =
+%       \cmdName[sub][sub][ext1]{par}[ext2]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdtxtparcom}[2][2=]
+  {\usrtxt{#1}{}{parcom}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdtxtoparcom}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdtxtoparcom{cmdName}=;\cmdtxtoparcom{cmdName} \\
+%       \verb=\cmdName[sub][sub][par]= = \cmdName[sub][sub][par]
+%     \item
+%       \verb=\cmdtxtoparcom{cmdName}[newName]=;
+%       \cmdtxtoparcom{cmdName}[newName] \\
+%       \verb=\cmdName[sub][sub][par]= = \cmdName[sub][sub][par]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdtxtoparcom}[2][2=]
+  {\usrtxt{#1}{}{oparcom}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+\fi
+%%****************************************************************************%%
+%    \end{macrocode}
+
+%    \begin{macrocode}
+%%****************************************************************************%%
+%%** Math Macro Generators ***************************************************%%
+%%****************************************************************************%%
+\ifmthgen@
+%    \end{macrocode}
+
+% \begin{macro}{\mthname, ...}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\mthname{NAME}[sub][sup][Ext]= = \mthname{NAME}[sub][sup][Ext]
+%     \item
+%       \verb=\mthargname{NAME}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       \mthargname{NAME}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]
+%     \item
+%       \verb=\mthargname*{NAME}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       \mthargname*{NAME}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]
+%     \item
+%       \verb=\mthparname{NAME}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       \mthparname{NAME}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]
+%     \item
+%       \verb=\mthparname*{NAME}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       \mthparname*{NAME}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]
+%   \end{itemize}
+%    \begin{macrocode}
+%% Style for Names
+\cmdmthall{name}\newcommand{\mthstyname}{\mathcal}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\AName, ...}
+%   ... to do! \\
+%   \small
+%   \AName, \BName, \CName, \DName, \EName, \FName, \GName, \HName, \IName,
+%   \JName, \KName, \LName, \MName, \NName, \OName, \PName, \QName, \RName,
+%   \SName, \TName, \UName, \VName, \WName, \XName, \YName, \ZName
+%    \begin{macrocode}
+\seqoflatupp{Name}{mthname}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdmthname}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdmthname{CMDNAME}=;\cmdmthname{CMDNAME} \\
+%       \verb=\CMDNAMEName[sub][sub][ext]= = \CMDNAMEName[sub][sub][ext]
+%     \item
+%       \verb=\cmdmthname{cmdName}[NEWNAME]=;\cmdmthname{cmdName}[NEWNAME] \\
+%       \verb=\cmdNameName[sub][sub][ext]= = \cmdNameName[sub][sub][ext]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdmthname}[2][2=]
+  {\usrmth{#1}{Name}{name}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdmthargname}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdmthargname{CMDNAME}=;\cmdmthargname{CMDNAME} \\
+%       \verb=\CMDNAMEName[sub][sub][ext1]{arg}[ext2]= =
+%       \CMDNAMEName[sub][sub][ext1]{arg}[ext2]
+%     \item
+%       \verb=\cmdmthargname{cmdName}[NEWNAME]=;
+%       \cmdmthargname{cmdName}[NEWNAME] \\
+%       \verb=\cmdNameName[sub][sub][ext1]{arg}[ext2]= =
+%       \cmdNameName[sub][sub][ext1]{arg}[ext2]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdmthargname}[2][2=]
+  {\usrmth{#1}{Name}{argname}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdmthoargname}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdmthoargname{CMDNAME}=;\cmdmthoargname{CMDNAME} \\
+%       \verb=\CMDNAMEName[sub][sub][arg]= = \CMDNAMEName[sub][sub][arg]
+%     \item
+%       \verb=\cmdmthoargname{cmdName}[NEWNAME]=;
+%       \cmdmthoargname{cmdName}[NEWNAME] \\
+%       \verb=\cmdNameName[sub][sub][arg]= = \cmdNameName[sub][sub][arg]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdmthoargname}[2][2=]
+  {\usrmth{#1}{Name}{oargname}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdmthparname}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdmthparname{CMDNAME}=;\cmdmthparname{CMDNAME} \\
+%       \verb=\CMDNAMEName[sub][sub][ext1]{par}[ext2]= =
+%       \CMDNAMEName[sub][sub][ext1]{par}[ext2]
+%     \item
+%       \verb=\cmdmthparname{cmdName}[NEWNAME]=;
+%       \cmdmthparname{cmdName}[NEWNAME] \\
+%       \verb=\cmdNameName[sub][sub][ext1]{par}[ext2]= =
+%       \cmdNameName[sub][sub][ext1]{par}[ext2]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdmthparname}[2][2=]
+  {\usrmth{#1}{Name}{parname}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdmthoparname}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdmthoparname{CMDNAME}=;\cmdmthoparname{CMDNAME} \\
+%       \verb=\CMDNAMEName[sub][sub][par]= = \CMDNAMEName[sub][sub][par]
+%     \item
+%       \verb=\cmdmthoparname{cmdName}[NEWNAME]=;
+%       \cmdmthoparname{cmdName}[NEWNAME] \\
+%       \verb=\cmdNameName[sub][sub][par]= = \cmdNameName[sub][sub][par]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdmthoparname}[2][2=]
+  {\usrmth{#1}{Name}{oparname}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\mthfam, ...}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\mthfam{NAME}[sub][sup][Ext]= = \mthfam{NAME}[sub][sup][Ext]
+%     \item
+%       \verb=\mthargfam{NAME}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       \mthargfam{NAME}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]
+%     \item
+%       \verb=\mthargfam*{NAME}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       \mthargfam*{NAME}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]
+%     \item
+%       \verb=\mthparfam{NAME}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       \mthparfam{NAME}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]
+%     \item
+%       \verb=\mthparfam*{NAME}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       \mthparfam*{NAME}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]
+%   \end{itemize}
+%    \begin{macrocode}
+%% Style for Families
+\cmdmthall{fam}\newcommand{\mthstyfam}{\mathscr}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\AFam, ...}
+%   ... to do! \\
+%   \small
+%   \AFam, \BFam, \CFam, \DFam, \EFam, \FFam, \GFam, \HFam, \IFam, \JFam, \KFam,
+%   \LFam, \MFam, \NFam, \OFam, \PFam, \QFam, \RFam, \SFam, \TFam, \UFam, \VFam,
+%   \WFam, \XFam, \YFam, \ZFam
+%    \begin{macrocode}
+\seqoflatupp{Fam}{mthfam}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdmthfam}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdmthfam{CMDNAME}=;\cmdmthfam{CMDNAME} \\
+%       \verb=\CMDNAMEFam[sub][sub][ext]= = \CMDNAMEFam[sub][sub][ext]
+%     \item
+%       \verb=\cmdmthfam{cmdName}[NEWNAME]=;\cmdmthfam{cmdName}[NEWNAME] \\
+%       \verb=\cmdNameFam[sub][sub][ext]= = \cmdNameFam[sub][sub][ext]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdmthfam}[2][2=]
+  {\usrmth{#1}{Fam}{fam}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdmthargfam}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdmthargfam{CMDNAME}=;\cmdmthargfam{CMDNAME} \\
+%       \verb=\CMDNAMEFam[sub][sub][ext1]{arg}[ext2]= =
+%       \CMDNAMEFam[sub][sub][ext1]{arg}[ext2]
+%     \item
+%       \verb=\cmdmthargfam{cmdName}[NEWNAME]=;
+%       \cmdmthargfam{cmdName}[NEWNAME] \\
+%       \verb=\cmdNameFam[sub][sub][ext1]{arg}[ext2]= =
+%       \cmdNameFam[sub][sub][ext1]{arg}[ext2]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdmthargfam}[2][2=]
+  {\usrmth{#1}{Fam}{argfam}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdmthoargfam}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdmthoargfam{CMDNAME}=;\cmdmthoargfam{CMDNAME} \\
+%       \verb=\CMDNAMEFam[sub][sub][arg]= = \CMDNAMEFam[sub][sub][arg]
+%     \item
+%       \verb=\cmdmthoargfam{cmdFam}[NEWNAME]=;
+%       \cmdmthoargfam{cmdFam}[NEWNAME] \\
+%       \verb=\cmdFamFam[sub][sub][arg]= = \cmdFamFam[sub][sub][arg]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdmthoargfam}[2][2=]
+  {\usrmth{#1}{Fam}{oargfam}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdmthparfam}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdmthparfam{CMDNAME}=;\cmdmthparfam{CMDNAME} \\
+%       \verb=\CMDNAMEFam[sub][sub][ext1]{par}[ext2]= =
+%       \CMDNAMEFam[sub][sub][ext1]{par}[ext2]
+%     \item
+%       \verb=\cmdmthparfam{cmdName}[NEWNAME]=;
+%       \cmdmthparfam{cmdName}[NEWNAME] \\
+%       \verb=\cmdNameFam[sub][sub][ext1]{par}[ext2]= =
+%       \cmdNameFam[sub][sub][ext1]{par}[ext2]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdmthparfam}[2][2=]
+  {\usrmth{#1}{Fam}{parfam}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdmthoparfam}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdmthoparfam{CMDNAME}=;\cmdmthoparfam{CMDNAME} \\
+%       \verb=\CMDNAMEFam[sub][sub][par]= = \CMDNAMEFam[sub][sub][par]
+%     \item
+%       \verb=\cmdmthoparfam{cmdFam}[NEWNAME]=;
+%       \cmdmthoparfam{cmdFam}[NEWNAME] \\
+%       \verb=\cmdFamFam[sub][sub][par]= = \cmdFamFam[sub][sub][par]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdmthoparfam}[2][2=]
+  {\usrmth{#1}{Fam}{oparfam}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\mthcls, ...}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\mthcls{NAME}[sub][sup][Ext]= = \mthcls{NAME}[sub][sup][Ext]
+%     \item
+%       \verb=\mthargcls{NAME}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       \mthargcls{NAME}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]
+%     \item
+%       \verb=\mthargcls*{NAME}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       \mthargcls*{NAME}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]
+%     \item
+%       \verb=\mthparcls{NAME}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       \mthparcls{NAME}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]
+%     \item
+%       \verb=\mthparcls*{NAME}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       \mthparcls*{NAME}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]
+%   \end{itemize}
+%    \begin{macrocode}
+%% Style for Classes
+\cmdmthall{cls}\newcommand{\mthstycls}{\matheus}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\ACls, ...}
+%   ... to do! \\
+%   \small
+%   \ACls, \BCls, \CCls, \DCls, \ECls, \FCls, \GCls, \HCls, \ICls, \JCls, \KCls,
+%   \LCls, \MCls, \NCls, \OCls, \PCls, \QCls, \RCls, \SCls, \TCls, \UCls, \VCls,
+%   \WCls, \XCls, \YCls, \ZCls
+%    \begin{macrocode}
+\seqoflatupp{Cls}{mthcls}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdmthcls}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdmthcls{CMDNAME}=;\cmdmthcls{CMDNAME} \\
+%       \verb=\CMDNAMECls[sub][sub][ext]= = \CMDNAMECls[sub][sub][ext]
+%     \item
+%       \verb=\cmdmthcls{cmdName}[NEWNAME]=;\cmdmthcls{cmdName}[NEWNAME] \\
+%       \verb=\cmdNameCls[sub][sub][ext]= = \cmdNameCls[sub][sub][ext]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdmthcls}[2][2=]
+  {\usrmth{#1}{Cls}{cls}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdmthargcls}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdmthargcls{CMDNAME}=;\cmdmthargcls{CMDNAME} \\
+%       \verb=\CMDNAMECls[sub][sub][ext1]{arg}[ext2]= =
+%       \CMDNAMECls[sub][sub][ext1]{arg}[ext2]
+%     \item
+%       \verb=\cmdmthargcls{cmdName}[NEWNAME]=;
+%       \cmdmthargcls{cmdName}[NEWNAME] \\
+%       \verb=\cmdNameCls[sub][sub][ext1]{arg}[ext2]= =
+%       \cmdNameCls[sub][sub][ext1]{arg}[ext2]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdmthargcls}[2][2=]
+  {\usrmth{#1}{Cls}{argcls}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdmthoargcls}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdmthoargcls{CMDNAME}=;\cmdmthoargcls{CMDNAME} \\
+%       \verb=\CMDNAMECls[sub][sub][arg]= = \CMDNAMECls[sub][sub][arg]
+%     \item
+%       \verb=\cmdmthoargcls{cmdCls}[NEWNAME]=;
+%       \cmdmthoargcls{cmdCls}[NEWNAME] \\
+%       \verb=\cmdClsCls[sub][sub][arg]= = \cmdClsCls[sub][sub][arg]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdmthoargcls}[2][2=]
+  {\usrmth{#1}{Cls}{oargcls}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdmthparcls}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdmthparcls{CMDNAME}=;\cmdmthparcls{CMDNAME} \\
+%       \verb=\CMDNAMECls[sub][sub][ext1]{par}[ext2]= =
+%       \CMDNAMECls[sub][sub][ext1]{par}[ext2]
+%     \item
+%       \verb=\cmdmthparcls{cmdName}[NEWNAME]=;
+%       \cmdmthparcls{cmdName}[NEWNAME] \\
+%       \verb=\cmdNameCls[sub][sub][ext1]{par}[ext2]= =
+%       \cmdNameCls[sub][sub][ext1]{par}[ext2]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdmthparcls}[2][2=]
+  {\usrmth{#1}{Cls}{parcls}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdmthoparcls}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdmthoparcls{CMDNAME}=;\cmdmthoparcls{CMDNAME} \\
+%       \verb=\CMDNAMECls[sub][sub][par]= = \CMDNAMECls[sub][sub][par]
+%     \item
+%       \verb=\cmdmthoparcls{cmdCls}[NEWNAME]=;
+%       \cmdmthoparcls{cmdCls}[NEWNAME] \\
+%       \verb=\cmdClsCls[sub][sub][par]= = \cmdClsCls[sub][sub][par]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdmthoparcls}[2][2=]
+  {\usrmth{#1}{Cls}{oparcls}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\mthsig, ...}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\mthsig{Name}[sub][sup][Ext]= = \mthsig{Name}[sub][sup][Ext]
+%     \item
+%       \verb=\mthargsig{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       \mthargsig{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]
+%     \item
+%       \verb=\mthargsig*{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       \mthargsig*{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]
+%     \item
+%       \verb=\mthparsig{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       \mthparsig{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]
+%     \item
+%       \verb=\mthparsig*{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       \mthparsig*{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]
+%   \end{itemize}
+%    \begin{macrocode}
+%% Style for Signatures
+\cmdmthall{sig}\newcommand{\mthstysig}{\mathpzc}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\aSig, ...}
+%   ... to do! \\
+%   \small
+%   \aSig, \bSig, \cSig, \dSig, \eSig, \fSig, \gSig, \hSig, \iSig, \jSig, \kSig,
+%   \lSig, \mSig, \nSig, \oSig, \pSig, \qSig, \rSig, \sSig, \tSig, \uSig, \vSig,
+%   \wSig, \xSig, \ySig, \zSig \\
+%   \ASig, \BSig, \CSig, \DSig, \ESig, \FSig, \GSig, \HSig, \ISig, \JSig, \KSig,
+%   \LSig, \MSig, \NSig, \OSig, \PSig, \QSig, \RSig, \SSig, \TSig, \USig, \VSig,
+%   \WSig, \XSig, \YSig, \ZSig \\
+%   \alphaSig, \betaSig, \gammaSig, \deltaSig, \epsilonSig, \varepsilonSig,
+%   \zetaSig, \etaSig, \thetaSig, \varthetaSig, \iotaSig, \kappaSig,
+%   \varkappaSig, \lambdaSig, \muSig, \nuSig, \xiSig, \omicronSig, \piSig,
+%   \varpiSig, \rhoSig, \varrhoSig, \sigmaSig, \varsigmaSig, \tauSig,
+%   \upsilonSig, \phiSig, \varphiSig, \chiSig, \psiSig, \omegaSig
+%    \begin{macrocode}
+\seqoflatlet{Sig}{mthsig}\seqofgrklow{Sig}{mthsig}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdmthsig}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdmthsig{cmdName}=;\cmdmthsig{cmdName} \\
+%       \verb=\cmdNameSig[sub][sub][ext]= = \cmdNameSig[sub][sub][ext]
+%     \item
+%       \verb=\cmdmthsig{cmdName}[NewName]=;\cmdmthsig{cmdName}[NewName] \\
+%       \verb=\cmdNameSig[sub][sub][ext]= = \cmdNameSig[sub][sub][ext]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdmthsig}[2][2=]
+  {\usrmth{#1}{Sig}{sig}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdmthargsig}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdmthargsig{cmdName}=;\cmdmthargsig{cmdName} \\
+%       \verb=\cmdNameSig[sub][sub][ext1]{arg}[ext2]= =
+%       \cmdNameSig[sub][sub][ext1]{arg}[ext2]
+%     \item
+%       \verb=\cmdmthargsig{cmdName}[NewName]=;
+%       \cmdmthargsig{cmdName}[NewName] \\
+%       \verb=\cmdNameSig[sub][sub][ext1]{arg}[ext2]= =
+%       \cmdNameSig[sub][sub][ext1]{arg}[ext2]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdmthargsig}[2][2=]
+  {\usrmth{#1}{Sig}{argsig}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdmthoargsig}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdmthoargsig{cmdName}=;\cmdmthoargsig{cmdName} \\
+%       \verb=\cmdNameSig[sub][sub][arg]= = \cmdNameSig[sub][sub][arg]
+%     \item
+%       \verb=\cmdmthoargsig{cmdSig}[NewName]=;
+%       \cmdmthoargsig{cmdSig}[NewName] \\
+%       \verb=\cmdSigSig[sub][sub][arg]= = \cmdSigSig[sub][sub][arg]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdmthoargsig}[2][2=]
+  {\usrmth{#1}{Sig}{oargsig}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdmthparsig}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdmthparsig{cmdName}=;\cmdmthparsig{cmdName} \\
+%       \verb=\cmdNameSig[sub][sub][ext1]{par}[ext2]= =
+%       \cmdNameSig[sub][sub][ext1]{par}[ext2]
+%     \item
+%       \verb=\cmdmthparsig{cmdName}[NewName]=;
+%       \cmdmthparsig{cmdName}[NewName] \\
+%       \verb=\cmdNameSig[sub][sub][ext1]{par}[ext2]= =
+%       \cmdNameSig[sub][sub][ext1]{par}[ext2]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdmthparsig}[2][2=]
+  {\usrmth{#1}{Sig}{parsig}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdmthoparsig}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdmthoparsig{cmdName}=;\cmdmthoparsig{cmdName} \\
+%       \verb=\cmdNameSig[sub][sub][par]= = \cmdNameSig[sub][sub][par]
+%     \item
+%       \verb=\cmdmthoparsig{cmdSig}[NewName]=;
+%       \cmdmthoparsig{cmdSig}[NewName] \\
+%       \verb=\cmdSigSig[sub][sub][par]= = \cmdSigSig[sub][sub][par]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdmthoparsig}[2][2=]
+  {\usrmth{#1}{Sig}{oparsig}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\mthstr, ...}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\mthstr{Name}[sub][sup][Ext]= = \mthstr{Name}[sub][sup][Ext]
+%     \item
+%       \verb=\mthargstr{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       \mthargstr{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]
+%     \item
+%       \verb=\mthargstr*{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       \mthargstr*{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]
+%     \item
+%       \verb=\mthparstr{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       \mthparstr{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]
+%     \item
+%       \verb=\mthparstr*{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       \mthparstr*{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]
+%   \end{itemize}
+%    \begin{macrocode}
+%% Style for Structures
+\cmdmthall{str}\newcommand{\mthstystr}{\mathfrak}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\aStr, ...}
+%   ... to do! \\
+%   \small
+%   \aStr, \bStr, \cStr, \dStr, \eStr, \fStr, \gStr, \hStr, \iStr, \jStr, \kStr,
+%   \lStr, \mStr, \nStr, \oStr, \pStr, \qStr, \rStr, \sStr, \tStr, \uStr, \vStr,
+%   \wStr, \xStr, \yStr, \zStr \\
+%   \AStr, \BStr, \CStr, \DStr, \EStr, \FStr, \GStr, \HStr, \IStr, \JStr, \KStr,
+%   \LStr, \MStr, \NStr, \OStr, \PStr, \QStr, \RStr, \SStr, \TStr, \UStr, \VStr,
+%   \WStr, \XStr, \YStr, \ZStr \\
+%   \alphaStr, \betaStr, \gammaStr, \deltaStr, \epsilonStr, \varepsilonStr,
+%   \zetaStr, \etaStr, \thetaStr, \varthetaStr, \iotaStr, \kappaStr,
+%   \varkappaStr, \lambdaStr, \muStr, \nuStr, \xiStr, \omicronStr, \piStr,
+%   \varpiStr, \rhoStr, \varrhoStr, \sigmaStr, \varsigmaStr, \tauStr,
+%   \upsilonStr, \phiStr, \varphiStr, \chiStr, \psiStr, \omegaStr
+%    \begin{macrocode}
+\seqoflatlet{Str}{mthstr}\seqofgrklow{Str}{mthstr}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdmthstr}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdmthstr{cmdName}=;\cmdmthstr{cmdName} \\
+%       \verb=\cmdNameStr[sub][sub][ext]= = \cmdNameStr[sub][sub][ext]
+%     \item
+%       \verb=\cmdmthstr{cmdName}[NewName]=;\cmdmthstr{cmdName}[NewName] \\
+%       \verb=\cmdNameStr[sub][sub][ext]= = \cmdNameStr[sub][sub][ext]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdmthstr}[2][2=]
+  {\usrmth{#1}{Str}{str}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdmthargstr}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdmthargstr{cmdName}=;\cmdmthargstr{cmdName} \\
+%       \verb=\cmdNameStr[sub][sub][ext1]{arg}[ext2]= =
+%       \cmdNameStr[sub][sub][ext1]{arg}[ext2]
+%     \item
+%       \verb=\cmdmthargstr{cmdName}[NewName]=;
+%       \cmdmthargstr{cmdName}[NewName] \\
+%       \verb=\cmdNameStr[sub][sub][ext1]{arg}[ext2]= =
+%       \cmdNameStr[sub][sub][ext1]{arg}[ext2]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdmthargstr}[2][2=]
+  {\usrmth{#1}{Str}{argstr}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdmthoargstr}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdmthoargstr{cmdName}=;\cmdmthoargstr{cmdName} \\
+%       \verb=\cmdNameStr[sub][sub][arg]= = \cmdNameStr[sub][sub][arg]
+%     \item
+%       \verb=\cmdmthoargstr{cmdStr}[NewName]=;
+%       \cmdmthoargstr{cmdStr}[NewName] \\
+%       \verb=\cmdStrStr[sub][sub][arg]= = \cmdStrStr[sub][sub][arg]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdmthoargstr}[2][2=]
+  {\usrmth{#1}{Str}{oargstr}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdmthparstr}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdmthparstr{cmdName}=;\cmdmthparstr{cmdName} \\
+%       \verb=\cmdNameStr[sub][sub][ext1]{par}[ext2]= =
+%       \cmdNameStr[sub][sub][ext1]{par}[ext2]
+%     \item
+%       \verb=\cmdmthparstr{cmdName}[NewName]=;
+%       \cmdmthparstr{cmdName}[NewName] \\
+%       \verb=\cmdNameStr[sub][sub][ext1]{par}[ext2]= =
+%       \cmdNameStr[sub][sub][ext1]{par}[ext2]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdmthparstr}[2][2=]
+  {\usrmth{#1}{Str}{parstr}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdmthoparstr}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdmthoparstr{cmdName}=;\cmdmthoparstr{cmdName} \\
+%       \verb=\cmdNameStr[sub][sub][par]= = \cmdNameStr[sub][sub][par]
+%     \item
+%       \verb=\cmdmthoparstr{cmdStr}[NewName]=;
+%       \cmdmthoparstr{cmdStr}[NewName] \\
+%       \verb=\cmdStrStr[sub][sub][par]= = \cmdStrStr[sub][sub][par]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdmthoparstr}[2][2=]
+  {\usrmth{#1}{Str}{oparstr}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\mthset, ...}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\mthset{Name}[sub][sup][Ext]= = \mthset{Name}[sub][sup][Ext]
+%     \item
+%       \verb=\mthargset{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       \mthargset{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]
+%     \item
+%       \verb=\mthargset*{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       \mthargset*{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]
+%     \item
+%       \verb=\mthparset{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       \mthparset{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]
+%     \item
+%       \verb=\mthparset*{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       \mthparset*{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]
+%   \end{itemize}
+%    \begin{macrocode}
+%% Style for Sets
+\cmdmthall{set}\newcommand{\mthstyset}{\mathrm}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\aSet, ...}
+%   ... to do! \\
+%   \small
+%   \aSet, \bSet, \cSet, \dSet, \eSet, \fSet, \gSet, \hSet, \iSet, \jSet, \kSet,
+%   \lSet, \mSet, \nSet, \oSet, \pSet, \qSet, \rSet, \sSet, \tSet, \uSet, \vSet,
+%   \wSet, \xSet, \ySet, \zSet \\
+%   \ASet, \BSet, \CSet, \DSet, \ESet, \FSet, \GSet, \HSet, \ISet, \JSet, \KSet,
+%   \LSet, \MSet, \NSet, \OSet, \PSet, \QSet, \RSet, \SSet, \TSet, \USet, \VSet,
+%   \WSet, \XSet, \YSet, \ZSet \\
+%   \alphaSet, \betaSet, \gammaSet, \deltaSet, \epsilonSet, \varepsilonSet,
+%   \zetaSet, \etaSet, \thetaSet, \varthetaSet, \iotaSet, \kappaSet,
+%   \varkappaSet, \lambdaSet, \muSet, \nuSet, \xiSet, \omicronSet, \piSet,
+%   \varpiSet, \rhoSet, \varrhoSet, \sigmaSet, \varsigmaSet, \tauSet,
+%   \upsilonSet, \phiSet, \varphiSet, \chiSet, \psiSet, \omegaSet \\
+%   \AlphaSet, \BetaSet, \GammaSet, \DeltaSet, \EpsilonSet, \varEpsilonSet,
+%   \ZetaSet, \EtaSet, \ThetaSet, \varThetaSet, \IotaSet, \KappaSet,
+%   \varKappaSet, \LambdaSet, \MuSet, \NuSet, \XiSet, \OmicronSet, \PiSet,
+%   \varPiSet, \RhoSet, \varRhoSet, \SigmaSet, \varSigmaSet, \TauSet,
+%   \UpsilonSet, \PhiSet, \varPhiSet, \ChiSet, \PsiSet, \OmegaSet
+%    \begin{macrocode}
+\seqoflet{Set}{mthset}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdmthset}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdmthset{cmdName}=;\cmdmthset{cmdName} \\
+%       \verb=\cmdNameSet[sub][sub][ext]= = \cmdNameSet[sub][sub][ext]
+%     \item
+%       \verb=\cmdmthset{cmdName}[NewName]=;\cmdmthset{cmdName}[NewName] \\
+%       \verb=\cmdNameSet[sub][sub][ext]= = \cmdNameSet[sub][sub][ext]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdmthset}[2][2=]
+  {\usrmth{#1}{Set}{set}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdmthargset}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdmthargset{cmdName}=;\cmdmthargset{cmdName} \\
+%       \verb=\cmdNameSet[sub][sub][ext1]{arg}[ext2]= =
+%       \cmdNameSet[sub][sub][ext1]{arg}[ext2]
+%     \item
+%       \verb=\cmdmthargset{cmdName}[NewName]=;
+%       \cmdmthargset{cmdName}[NewName] \\
+%       \verb=\cmdNameSet[sub][sub][ext1]{arg}[ext2]= =
+%       \cmdNameSet[sub][sub][ext1]{arg}[ext2]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdmthargset}[2][2=]
+  {\usrmth{#1}{Set}{argset}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdmthoargset}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdmthoargset{cmdName}=;\cmdmthoargset{cmdName} \\
+%       \verb=\cmdNameSet[sub][sub][arg]= = \cmdNameSet[sub][sub][arg]
+%     \item
+%       \verb=\cmdmthoargset{cmdSet}[NewName]=;
+%       \cmdmthoargset{cmdSet}[NewName] \\
+%       \verb=\cmdSetSet[sub][sub][arg]= = \cmdSetSet[sub][sub][arg]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdmthoargset}[2][2=]
+  {\usrmth{#1}{Set}{oargset}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdmthparset}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdmthparset{cmdName}=;\cmdmthparset{cmdName} \\
+%       \verb=\cmdNameSet[sub][sub][ext1]{par}[ext2]= =
+%       \cmdNameSet[sub][sub][ext1]{par}[ext2]
+%     \item
+%       \verb=\cmdmthparset{cmdName}[NewName]=;
+%       \cmdmthparset{cmdName}[NewName] \\
+%       \verb=\cmdNameSet[sub][sub][ext1]{par}[ext2]= =
+%       \cmdNameSet[sub][sub][ext1]{par}[ext2]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdmthparset}[2][2=]
+  {\usrmth{#1}{Set}{parset}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdmthoparset}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdmthoparset{cmdName}=;\cmdmthoparset{cmdName} \\
+%       \verb=\cmdNameSet[sub][sub][par]= = \cmdNameSet[sub][sub][par]
+%     \item
+%       \verb=\cmdmthoparset{cmdSet}[NewName]=;
+%       \cmdmthoparset{cmdSet}[NewName] \\
+%       \verb=\cmdSetSet[sub][sub][par]= = \cmdSetSet[sub][sub][par]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdmthoparset}[2][2=]
+  {\usrmth{#1}{Set}{oparset}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdmthsetext}
+%   ... to do!
+%    \begin{macrocode}
+\newcommandx{\cmdmthsetext}[3][2=, 3=]
+  {\cmdmthset{#1}[#2]\caselower[q]{#1}%
+  \usrmthlet{\thestring}{Sym}{sym}
+    [\defval{#3}{\defval{\empchk{#2}{\lowercase{#2}}}{\thestring}}]%
+  \usrmthlet{\thestring}{Elm}{elm}
+    [\defval{#3}{\defval{\empchk{#2}{\lowercase{#2}}}{\thestring}}]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\mthrel, ...}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\mthrel{Name}[sub][sup][Ext]= = \mthrel{Name}[sub][sup][Ext]
+%     \item
+%       \verb=\mthargrel{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       \mthargrel{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]
+%     \item
+%       \verb=\mthargrel*{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       \mthargrel*{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]
+%     \item
+%       \verb=\mthparrel{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       \mthparrel{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]
+%     \item
+%       \verb=\mthparrel*{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       \mthparrel*{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]
+%   \end{itemize}
+%    \begin{macrocode}
+%% Style for Relations
+\cmdmthall{rel}\newcommand{\mthstyrel}{\mathit}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\aRel, ...}
+%   ... to do! \\
+%   \small
+%   \aRel, \bRel, \cRel, \dRel, \eRel, \fRel, \gRel, \hRel, \iRel, \jRel, \kRel,
+%   \lRel, \mRel, \nRel, \oRel, \pRel, \qRel, \rRel, \sRel, \tRel, \uRel, \vRel,
+%   \wRel, \xRel, \yRel, \zRel \\
+%   \ARel, \BRel, \CRel, \DRel, \ERel, \FRel, \GRel, \HRel, \IRel, \JRel, \KRel,
+%   \LRel, \MRel, \NRel, \ORel, \PRel, \QRel, \RRel, \LRel, \TRel, \URel, \VRel,
+%   \WRel, \XRel, \YRel, \ZRel \\
+%   \alphaRel, \betaRel, \gammaRel, \deltaRel, \epsilonRel, \varepsilonRel,
+%   \zetaRel, \etaRel, \thetaRel, \varthetaRel, \iotaRel, \kappaRel,
+%   \varkappaRel, \lambdaRel, \muRel, \nuRel, \xiRel, \omicronRel, \piRel,
+%   \varpiRel, \rhoRel, \varrhoRel, \sigmaRel, \varsigmaRel, \tauRel,
+%   \upsilonRel, \phiRel, \varphiRel, \chiRel, \psiRel, \omegaRel \\
+%   \AlphaRel, \BetaRel, \GammaRel, \DeltaRel, \EpsilonRel, \varEpsilonRel,
+%   \ZetaRel, \EtaRel, \ThetaRel, \varThetaRel, \IotaRel, \KappaRel,
+%   \varKappaRel, \LambdaRel, \MuRel, \NuRel, \XiRel, \OmicronRel, \PiRel,
+%   \varPiRel, \RhoRel, \varRhoRel, \SigmaRel, \varSigmaRel, \TauRel,
+%   \UpsilonRel, \PhiRel, \varPhiRel, \ChiRel, \PsiRel, \OmegaRel
+%    \begin{macrocode}
+\seqoflet{Rel}{mthrel}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdmthrel}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdmthrel{cmdName}=;\cmdmthrel{cmdName} \\
+%       \verb=\cmdNameRel[sub][sub][ext]= = \cmdNameRel[sub][sub][ext]
+%     \item
+%       \verb=\cmdmthrel{cmdName}[NewName]=;\cmdmthrel{cmdName}[NewName] \\
+%       \verb=\cmdNameRel[sub][sub][ext]= = \cmdNameRel[sub][sub][ext]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdmthrel}[2][2=]
+  {\usrmth{#1}{Rel}{rel}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdmthargrel}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdmthargrel{cmdName}=;\cmdmthargrel{cmdName} \\
+%       \verb=\cmdNameRel[sub][sub][ext1]{arg}[ext2]= =
+%       \cmdNameRel[sub][sub][ext1]{arg}[ext2]
+%     \item
+%       \verb=\cmdmthargrel{cmdName}[NewName]=;
+%       \cmdmthargrel{cmdName}[NewName] \\
+%       \verb=\cmdNameRel[sub][sub][ext1]{arg}[ext2]= =
+%       \cmdNameRel[sub][sub][ext1]{arg}[ext2]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdmthargrel}[2][2=]
+  {\usrmth{#1}{Rel}{argrel}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdmthoargrel}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdmthoargrel{cmdName}=;\cmdmthoargrel{cmdName} \\
+%       \verb=\cmdNameRel[sub][sub][arg]= = \cmdNameRel[sub][sub][arg]
+%     \item
+%       \verb=\cmdmthoargrel{cmdRel}[NewName]=;
+%       \cmdmthoargrel{cmdRel}[NewName] \\
+%       \verb=\cmdRelRel[sub][sub][arg]= = \cmdRelRel[sub][sub][arg]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdmthoargrel}[2][2=]
+  {\usrmth{#1}{Rel}{oargrel}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdmthparrel}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdmthparrel{cmdName}=;\cmdmthparrel{cmdName} \\
+%       \verb=\cmdNameRel[sub][sub][ext1]{par}[ext2]= =
+%       \cmdNameRel[sub][sub][ext1]{par}[ext2]
+%     \item
+%       \verb=\cmdmthparrel{cmdName}[NewName]=;
+%       \cmdmthparrel{cmdName}[NewName] \\
+%       \verb=\cmdNameRel[sub][sub][ext1]{par}[ext2]= =
+%       \cmdNameRel[sub][sub][ext1]{par}[ext2]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdmthparrel}[2][2=]
+  {\usrmth{#1}{Rel}{parrel}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdmthoparrel}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdmthoparrel{cmdName}=;\cmdmthoparrel{cmdName} \\
+%       \verb=\cmdNameRel[sub][sub][par]= = \cmdNameRel[sub][sub][par]
+%     \item
+%       \verb=\cmdmthoparrel{cmdRel}[NewName]=;
+%       \cmdmthoparrel{cmdRel}[NewName] \\
+%       \verb=\cmdRelRel[sub][sub][par]= = \cmdRelRel[sub][sub][par]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdmthoparrel}[2][2=]
+  {\usrmth{#1}{Rel}{oparrel}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\mthfun, ...}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\mthfun{Name}[sub][sup][Ext]= = \mthfun{Name}[sub][sup][Ext]
+%     \item
+%       \verb=\mthargfun{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       \mthargfun{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]
+%     \item
+%       \verb=\mthargfun*{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       \mthargfun*{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]
+%     \item
+%       \verb=\mthparfun{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       \mthparfun{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]
+%     \item
+%       \verb=\mthparfun*{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       \mthparfun*{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]
+%   \end{itemize}
+%    \begin{macrocode}
+%% Style for Functions
+\cmdmthall{fun}\newcommand{\mthstyfun}{\mathsf}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\aFun, ...}
+%   ... to do! \\
+%   \small
+%   \aFun, \bFun, \cFun, \dFun, \eFun, \fFun, \gFun, \hFun, \iFun, \jFun, \kFun,
+%   \lFun, \mFun, \nFun, \oFun, \pFun, \qFun, \rFun, \sFun, \tFun, \uFun, \vFun,
+%   \wFun, \xFun, \yFun, \zFun \\
+%   \AFun, \BFun, \CFun, \DFun, \EFun, \FFun, \GFun, \HFun, \IFun, \JFun, \KFun,
+%   \LFun, \MFun, \NFun, \OFun, \PFun, \QFun, \RFun, \SFun, \TFun, \UFun, \VFun,
+%   \WFun, \XFun, \YFun, \ZFun \\
+%   \alphaFun, \betaFun, \gammaFun, \deltaFun, \epsilonFun, \varepsilonFun,
+%   \zetaFun, \etaFun, \thetaFun, \varthetaFun, \iotaFun, \kappaFun,
+%   \varkappaFun, \lambdaFun, \muFun, \nuFun, \xiFun, \omicronFun, \piFun,
+%   \varpiFun, \rhoFun, \varrhoFun, \sigmaFun, \varsigmaFun, \tauFun,
+%   \upsilonFun, \phiFun, \varphiFun, \chiFun, \psiFun, \omegaFun \\
+%   \AlphaFun, \BetaFun, \GammaFun, \DeltaFun, \EpsilonFun, \varEpsilonFun,
+%   \ZetaFun, \EtaFun, \ThetaFun, \varThetaFun, \IotaFun, \KappaFun,
+%   \varKappaFun, \LambdaFun, \MuFun, \NuFun, \XiFun, \OmicronFun, \PiFun,
+%   \varPiFun, \RhoFun, \varRhoFun, \SigmaFun, \varSigmaFun, \TauFun,
+%   \UpsilonFun, \PhiFun, \varPhiFun, \ChiFun, \PsiFun, \OmegaFun
+%    \begin{macrocode}
+\seqoflet{Fun}{mthfun}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdmthfun}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdmthfun{cmdName}=;\cmdmthfun{cmdName} \\
+%       \verb=\cmdNameFun[sub][sub][ext]= = \cmdNameFun[sub][sub][ext]
+%     \item
+%       \verb=\cmdmthfun{cmdName}[NewName]=;\cmdmthfun{cmdName}[NewName] \\
+%       \verb=\cmdNameFun[sub][sub][ext]= = \cmdNameFun[sub][sub][ext]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdmthfun}[2][2=]
+  {\usrmth{#1}{Fun}{fun}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdmthargfun}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdmthargfun{cmdName}=;\cmdmthargfun{cmdName} \\
+%       \verb=\cmdNameFun[sub][sub][ext1]{arg}[ext2]= =
+%       \cmdNameFun[sub][sub][ext1]{arg}[ext2]
+%     \item
+%       \verb=\cmdmthargfun{cmdName}[NewName]=;
+%       \cmdmthargfun{cmdName}[NewName] \\
+%       \verb=\cmdNameFun[sub][sub][ext1]{arg}[ext2]= =
+%       \cmdNameFun[sub][sub][ext1]{arg}[ext2]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdmthargfun}[2][2=]
+  {\usrmth{#1}{Fun}{argfun}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdmthoargfun}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdmthoargfun{cmdName}=;\cmdmthoargfun{cmdName} \\
+%       \verb=\cmdNameFun[sub][sub][arg]= = \cmdNameFun[sub][sub][arg]
+%     \item
+%       \verb=\cmdmthoargfun{cmdFun}[NewName]=;
+%       \cmdmthoargfun{cmdFun}[NewName] \\
+%       \verb=\cmdFunFun[sub][sub][arg]= = \cmdFunFun[sub][sub][arg]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdmthoargfun}[2][2=]
+  {\usrmth{#1}{Fun}{oargfun}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdmthparfun}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdmthparfun{cmdName}=;\cmdmthparfun{cmdName} \\
+%       \verb=\cmdNameFun[sub][sub][ext1]{par}[ext2]= =
+%       \cmdNameFun[sub][sub][ext1]{par}[ext2]
+%     \item
+%       \verb=\cmdmthparfun{cmdName}[NewName]=;
+%       \cmdmthparfun{cmdName}[NewName] \\
+%       \verb=\cmdNameFun[sub][sub][ext1]{par}[ext2]= =
+%       \cmdNameFun[sub][sub][ext1]{par}[ext2]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdmthparfun}[2][2=]
+  {\usrmth{#1}{Fun}{parfun}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdmthoparfun}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdmthoparfun{cmdName}=;\cmdmthoparfun{cmdName} \\
+%       \verb=\cmdNameFun[sub][sub][par]= = \cmdNameFun[sub][sub][par]
+%     \item
+%       \verb=\cmdmthoparfun{cmdFun}[NewName]=;
+%       \cmdmthoparfun{cmdFun}[NewName] \\
+%       \verb=\cmdFunFun[sub][sub][par]= = \cmdFunFun[sub][sub][par]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdmthoparfun}[2][2=]
+  {\usrmth{#1}{Fun}{oparfun}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\mthsym, ...}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\mthsym{Name}[sub][sup][Ext]= = \mthsym{Name}[sub][sup][Ext]
+%     \item
+%       \verb=\mthargsym{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       \mthargsym{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]
+%     \item
+%       \verb=\mthargsym*{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       \mthargsym*{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]
+%     \item
+%       \verb=\mthparsym{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       \mthparsym{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]
+%     \item
+%       \verb=\mthparsym*{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       \mthparsym*{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]
+%   \end{itemize}
+%    \begin{macrocode}
+%% Style for Symbols
+\cmdmthall{sym}\newcommand{\mthstysym}{\mathtt}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\aSym, ...}
+%   ... to do! \\
+%   \small
+%   \aSym, \bSym, \cSym, \dSym, \eSym, \fSym, \gSym, \hSym, \iSym, \jSym, \kSym,
+%   \lSym, \mSym, \nSym, \oSym, \pSym, \qSym, \rSym, \sSym, \tSym, \uSym, \vSym,
+%   \wSym, \xSym, \ySym, \zSym \\
+%   \ASym, \BSym, \CSym, \DSym, \ESym, \FSym, \GSym, \HSym, \ISym, \JSym, \KSym,
+%   \LSym, \MSym, \NSym, \OSym, \PSym, \QSym, \RSym, \SSym, \TSym, \USym, \VSym,
+%   \WSym, \XSym, \YSym, \ZSym \\
+%   \alphaSym, \betaSym, \gammaSym, \deltaSym, \epsilonSym, \varepsilonSym,
+%   \zetaSym, \etaSym, \thetaSym, \varthetaSym, \iotaSym, \kappaSym,
+%   \varkappaSym, \lambdaSym, \muSym, \nuSym, \xiSym, \omicronSym, \piSym,
+%   \varpiSym, \rhoSym, \varrhoSym, \sigmaSym, \varsigmaSym, \tauSym,
+%   \upsilonSym, \phiSym, \varphiSym, \chiSym, \psiSym, \omegaSym \\
+%   \AlphaSym, \BetaSym, \GammaSym, \DeltaSym, \EpsilonSym, \varEpsilonSym,
+%   \ZetaSym, \EtaSym, \ThetaSym, \varThetaSym, \IotaSym, \KappaSym,
+%   \varKappaSym, \LambdaSym, \MuSym, \NuSym, \XiSym, \OmicronSym, \PiSym,
+%   \varPiSym, \RhoSym, \varRhoSym, \SigmaSym, \varSigmaSym, \TauSym,
+%   \UpsilonSym, \PhiSym, \varPhiSym, \ChiSym, \PsiSym, \OmegaSym
+%    \begin{macrocode}
+\seqoflet{Sym}{mthsym}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdmthsym}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdmthsym{cmdName}=;\cmdmthsym{cmdName} \\
+%       \verb=\cmdNameSym[sub][sub][ext]= = \cmdNameSym[sub][sub][ext]
+%     \item
+%       \verb=\cmdmthsym{cmdName}[NewName]=;\cmdmthsym{cmdName}[NewName] \\
+%       \verb=\cmdNameSym[sub][sub][ext]= = \cmdNameSym[sub][sub][ext]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdmthsym}[2][2=]
+  {\usrmth{#1}{Sym}{sym}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdmthargsym}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdmthargsym{cmdName}=;\cmdmthargsym{cmdName} \\
+%       \verb=\cmdNameSym[sub][sub][ext1]{arg}[ext2]= =
+%       \cmdNameSym[sub][sub][ext1]{arg}[ext2]
+%     \item
+%       \verb=\cmdmthargsym{cmdName}[NewName]=;
+%       \cmdmthargsym{cmdName}[NewName] \\
+%       \verb=\cmdNameSym[sub][sub][ext1]{arg}[ext2]= =
+%       \cmdNameSym[sub][sub][ext1]{arg}[ext2]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdmthargsym}[2][2=]
+  {\usrmth{#1}{Sym}{argsym}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdmthoargsym}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdmthoargsym{cmdName}=;\cmdmthoargsym{cmdName} \\
+%       \verb=\cmdNameSym[sub][sub][arg]= = \cmdNameSym[sub][sub][arg]
+%     \item
+%       \verb=\cmdmthoargsym{cmdSym}[NewName]=;
+%       \cmdmthoargsym{cmdSym}[NewName] \\
+%       \verb=\cmdSymSym[sub][sub][arg]= = \cmdSymSym[sub][sub][arg]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdmthoargsym}[2][2=]
+  {\usrmth{#1}{Sym}{oargsym}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdmthparsym}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdmthparsym{cmdName}=;\cmdmthparsym{cmdName} \\
+%       \verb=\cmdNameSym[sub][sub][ext1]{par}[ext2]= =
+%       \cmdNameSym[sub][sub][ext1]{par}[ext2]
+%     \item
+%       \verb=\cmdmthparsym{cmdName}[NewName]=;
+%       \cmdmthparsym{cmdName}[NewName] \\
+%       \verb=\cmdNameSym[sub][sub][ext1]{par}[ext2]= =
+%       \cmdNameSym[sub][sub][ext1]{par}[ext2]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdmthparsym}[2][2=]
+  {\usrmth{#1}{Sym}{parsym}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdmthoparsym}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdmthoparsym{cmdName}=;\cmdmthoparsym{cmdName} \\
+%       \verb=\cmdNameSym[sub][sub][par]= = \cmdNameSym[sub][sub][par]
+%     \item
+%       \verb=\cmdmthoparsym{cmdSym}[NewName]=;
+%       \cmdmthoparsym{cmdSym}[NewName] \\
+%       \verb=\cmdSymSym[sub][sub][par]= = \cmdSymSym[sub][sub][par]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdmthoparsym}[2][2=]
+  {\usrmth{#1}{Sym}{oparsym}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\mthelm, ...}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\mthelm{Name}[sub][sup][Ext]= = \mthelm{Name}[sub][sup][Ext]
+%     \item
+%       \verb=\mthargelm{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       \mthargelm{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]
+%     \item
+%       \verb=\mthargelm*{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       \mthargelm*{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]
+%     \item
+%       \verb=\mthparelm{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       \mthparelm{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]
+%     \item
+%       \verb=\mthparelm*{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       \mthparelm*{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]
+%   \end{itemize}
+%    \begin{macrocode}
+%% Style for Elements
+\cmdmthall{elm}\newcommand{\mthstyelm}{\mathnormal}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\aElm, ...}
+%   ... to do! \\
+%   \small
+%   \aElm, \bElm, \cElm, \dElm, \eElm, \fElm, \gElm, \hElm, \iElm, \jElm, \kElm,
+%   \lElm, \mElm, \nElm, \oElm, \pElm, \qElm, \rElm, \sElm, \tElm, \uElm, \vElm,
+%   \wElm, \xElm, \yElm, \zElm \\
+%   \AElm, \BElm, \CElm, \DElm, \EElm, \FElm, \GElm, \HElm, \IElm, \JElm, \KElm,
+%   \LElm, \MElm, \NElm, \OElm, \PElm, \QElm, \RElm, \SElm, \TElm, \UElm, \VElm,
+%   \WElm, \XElm, \YElm, \ZElm \\
+%   \alphaElm, \betaElm, \gammaElm, \deltaElm, \epsilonElm, \varepsilonElm,
+%   \zetaElm, \etaElm, \thetaElm, \varthetaElm, \iotaElm, \kappaElm,
+%   \varkappaElm, \lambdaElm, \muElm, \nuElm, \xiElm, \omicronElm, \piElm,
+%   \varpiElm, \rhoElm, \varrhoElm, \sigmaElm, \varsigmaElm, \tauElm,
+%   \upsilonElm, \phiElm, \varphiElm, \chiElm, \psiElm, \omegaElm \\
+%   \AlphaElm, \BetaElm, \GammaElm, \DeltaElm, \EpsilonElm, \varEpsilonElm,
+%   \ZetaElm, \EtaElm, \ThetaElm, \varThetaElm, \IotaElm, \KappaElm,
+%   \varKappaElm, \LambdaElm, \MuElm, \NuElm, \XiElm, \OmicronElm, \PiElm,
+%   \varPiElm, \RhoElm, \varRhoElm, \SigmaElm, \varSigmaElm, \TauElm,
+%   \UpsilonElm, \PhiElm, \varPhiElm, \ChiElm, \PsiElm, \OmegaElm
+%    \begin{macrocode}
+\seqoflet{Elm}{mthelm}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdmthelm}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdmthelm{cmdName}=;\cmdmthelm{cmdName} \\
+%       \verb=\cmdNameElm[sub][sub][ext]= = \cmdNameElm[sub][sub][ext]
+%     \item
+%       \verb=\cmdmthelm{cmdName}[NewName]=;\cmdmthelm{cmdName}[NewName] \\
+%       \verb=\cmdNameElm[sub][sub][ext]= = \cmdNameElm[sub][sub][ext]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdmthelm}[2][2=]
+  {\usrmth{#1}{Elm}{elm}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdmthargelm}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdmthargelm{cmdName}=;\cmdmthargelm{cmdName} \\
+%       \verb=\cmdNameElm[sub][sub][ext1]{arg}[ext2]= =
+%       \cmdNameElm[sub][sub][ext1]{arg}[ext2]
+%     \item
+%       \verb=\cmdmthargelm{cmdName}[NewName]=;
+%       \cmdmthargelm{cmdName}[NewName] \\
+%       \verb=\cmdNameElm[sub][sub][ext1]{arg}[ext2]= =
+%       \cmdNameElm[sub][sub][ext1]{arg}[ext2]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdmthargelm}[2][2=]
+  {\usrmth{#1}{Elm}{argelm}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdmthoargelm}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdmthoargelm{cmdName}=;\cmdmthoargelm{cmdName} \\
+%       \verb=\cmdNameElm[sub][sub][arg]= = \cmdNameElm[sub][sub][arg]
+%     \item
+%       \verb=\cmdmthoargelm{cmdElm}[NewName]=;
+%       \cmdmthoargelm{cmdElm}[NewName] \\
+%       \verb=\cmdElmElm[sub][sub][arg]= = \cmdElmElm[sub][sub][arg]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdmthoargelm}[2][2=]
+  {\usrmth{#1}{Elm}{oargelm}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdmthparelm}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdmthparelm{cmdName}=;\cmdmthparelm{cmdName} \\
+%       \verb=\cmdNameElm[sub][sub][ext1]{par}[ext2]= =
+%       \cmdNameElm[sub][sub][ext1]{par}[ext2]
+%     \item
+%       \verb=\cmdmthparelm{cmdName}[NewName]=;
+%       \cmdmthparelm{cmdName}[NewName] \\
+%       \verb=\cmdNameElm[sub][sub][ext1]{par}[ext2]= =
+%       \cmdNameElm[sub][sub][ext1]{par}[ext2]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdmthparelm}[2][2=]
+  {\usrmth{#1}{Elm}{parelm}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdmthoparelm}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdmthoparelm{cmdName}=;\cmdmthoparelm{cmdName} \\
+%       \verb=\cmdNameElm[sub][sub][par]= = \cmdNameElm[sub][sub][par]
+%     \item
+%       \verb=\cmdmthoparelm{cmdElm}[NewName]=;
+%       \cmdmthoparelm{cmdElm}[NewName] \\
+%       \verb=\cmdElmElm[sub][sub][par]= = \cmdElmElm[sub][sub][par]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdmthoparelm}[2][2=]
+  {\usrmth{#1}{Elm}{oparelm}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+%%****************************************************************************%%
+%    \end{macrocode}
+
+% \begin{macro}{\cmdmthsymelm}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdmthsymelm{cmdName}=;\cmdmthsymelm{cmdName} \\
+%       \verb=\cmdNameSym[sub][sub][ext]= = \cmdNameSym[sub][sub][ext] \\
+%       \verb=\cmdNameElm[sub][sub][ext]= = \cmdNameElm[sub][sub][ext]
+%     \item
+%       \verb=\cmdmthsymelm{cmdName}[NewName]=;
+%       \cmdmthsymelm{cmdName}[NewName] \\
+%       \verb=\cmdNameSym[sub][sub][ext]= = \cmdNameSym[sub][sub][ext] \\
+%       \verb=\cmdNameElm[sub][sub][ext]= = \cmdNameElm[sub][sub][ext]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdmthsymelm}[2][2=]
+  {\cmdmthsym{#1}[#2]%
+  \cmdmthelm{#1}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdmthargsymelm}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdmthargsymelm{cmdName}=;\cmdmthargsymelm{cmdName} \\
+%       \verb=\cmdNameSym[sub][sub][ext1]{arg}[ext2]= =
+%       \cmdNameSym[sub][sub][ext1]{arg}[ext2] \\
+%       \verb=\cmdNameElm[sub][sub][ext1]{arg}[ext2]= =
+%       \cmdNameElm[sub][sub][ext1]{arg}[ext2]
+%     \item
+%       \verb=\cmdmthargsymelm{cmdName}[NewName]=;
+%       \cmdmthargsymelm{cmdName}[NewName] \\
+%       \verb=\cmdNameSym[sub][sub][ext1]{arg}[ext2]= =
+%       \cmdNameSym[sub][sub][ext1]{arg}[ext2] \\
+%       \verb=\cmdNameElm[sub][sub][ext1]{arg}[ext2]= =
+%       \cmdNameElm[sub][sub][ext1]{arg}[ext2]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdmthargsymelm}[2][2=]
+  {\cmdmthargsym{#1}[#2]%
+  \cmdmthargelm{#1}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdmthoargsymelm}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdmthoargsymelm{cmdName}=;\cmdmthoargsymelm{cmdName} \\
+%       \verb=\cmdNameSym[sub][sub][arg]= =
+%       \cmdNameSym[sub][sub][arg] \\
+%       \verb=\cmdNameElm[sub][sub][arg]= =
+%       \cmdNameElm[sub][sub][arg]
+%     \item
+%       \verb=\cmdmthoargsymelm{cmdName}[NewName]=;
+%       \cmdmthoargsymelm{cmdName}[NewName] \\
+%       \verb=\cmdNameSym[sub][sub][arg]= =
+%       \cmdNameSym[sub][sub][arg] \\
+%       \verb=\cmdNameElm[sub][sub][arg]= =
+%       \cmdNameElm[sub][sub][arg]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdmthoargsymelm}[2][2=]
+  {\cmdmthoargsym{#1}[#2]%
+  \cmdmthoargelm{#1}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdmthparsymelm}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdmthparsymelm{cmdName}=;\cmdmthparsymelm{cmdName} \\
+%       \verb=\cmdNameSym[sub][sub][ext1]{par}[ext2]= =
+%       \cmdNameSym[sub][sub][ext1]{par}[ext2] \\
+%       \verb=\cmdNameElm[sub][sub][ext1]{par}[ext2]= =
+%       \cmdNameElm[sub][sub][ext1]{par}[ext2]
+%     \item
+%       \verb=\cmdmthparsymelm{cmdName}[NewName]=;
+%       \cmdmthparsymelm{cmdName}[NewName] \\
+%       \verb=\cmdNameSym[sub][sub][ext1]{par}[ext2]= =
+%       \cmdNameSym[sub][sub][ext1]{par}[ext2] \\
+%       \verb=\cmdNameElm[sub][sub][ext1]{par}[ext2]= =
+%       \cmdNameElm[sub][sub][ext1]{par}[ext2]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdmthparsymelm}[2][2=]
+  {\cmdmthparsym{#1}[#2]%
+  \cmdmthparelm{#1}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdmthoparsymelm}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdmthoparsymelm{cmdName}=;\cmdmthoparsymelm{cmdName} \\
+%       \verb=\cmdNameSym[sub][sub][par]= =
+%       \cmdNameSym[sub][sub][par] \\
+%       \verb=\cmdNameElm[sub][sub][par]= =
+%       \cmdNameElm[sub][sub][par]
+%     \item
+%       \verb=\cmdmthoparsymelm{cmdName}[NewName]=;
+%       \cmdmthoparsymelm{cmdName}[NewName] \\
+%       \verb=\cmdNameSym[sub][sub][par]= =
+%       \cmdNameSym[sub][sub][par] \\
+%       \verb=\cmdNameElm[sub][sub][par]= =
+%       \cmdNameElm[sub][sub][par]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdmthoparsymelm}[2][2=]
+  {\cmdmthoparsym{#1}[#2]%
+  \cmdmthoparelm{#1}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+%%****************************************************************************%%
+%    \end{macrocode}
+
+% \begin{macro}{\mthluop, ...}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\mthluop{\oplus}[sub][sup][Ext]= = \mthluop{\oplus}[sub][sup][Ext]
+%     \item
+%       \verb=\mthlbop{\oplus}[sub][sup][Ext]= = \mthlbop{\oplus}[sub][sup][Ext]
+%   \end{itemize}
+%    \begin{macrocode}
+%% Style for \LaTex Operators
+\cmdmth{luop}\newcommand{\mthstyluop}[1]{\textstyle\mathop{#1}}
+\cmdmth{lbop}\newcommand{\mthstylbop}[1]{\textstyle\mathbin{#1}}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdmthluop, ...}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdmthluop{cmdName}=;\cmdmthluop{cmdName} \\
+%       \verb=\cmdNameUOp[sub][sub][ext]= = \cmdNameUOp[sub][sub][ext]
+%     \item
+%       \verb=\cmdmthluop{cmdName}[\oplus]=;\cmdmthluop{cmdName}[\oplus] \\
+%       \verb=\cmdNameUOp[sub][sub][ext]= = \cmdNameUOp[sub][sub][ext]
+%     \item
+%       \verb=\cmdmthlbop{cmdName}=;\cmdmthlbop{cmdName} \\
+%       \verb=\cmdNameBOp[sub][sub][ext]= = \cmdNameBOp[sub][sub][ext]
+%     \item
+%       \verb=\cmdmthlbop{cmdName}[\oplus]=;\cmdmthlbop{cmdName}[\oplus] \\
+%       \verb=\cmdNameBOp[sub][sub][ext]= = \cmdNameBOp[sub][sub][ext]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdmthluop}[2][2=]
+  {\usrmth{#1}{UOp}{luop}[#2]}
+\newcommandx{\cmdmthlbop}[2][2=]
+  {\usrmth{#1}{BOp}{lbop}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\mthlrel}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\mthlrel{\preceq}[sub][sup][Ext]= =
+%       \mthlrel{\preceq}[sub][sup][Ext]
+%   \end{itemize}
+%    \begin{macrocode}
+%% Style for \LaTex Relations
+\cmdmth{lrel}\newcommand{\mthstylrel}{\mathrel}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdmthlrel}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdmthlrel{cmdName}=;\cmdmthlrel{cmdName} \\
+%       \verb=\cmdNameRel[sub][sub][ext]= = \cmdNameRel[sub][sub][ext]
+%     \item
+%       \verb=\cmdmthlrel{cmdName}[\preceq]=;\cmdmthlrel{cmdName}[\preceq] \\
+%       \verb=\cmdNameRel[sub][sub][ext]= = \cmdNameRel[sub][sub][ext]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdmthlrel}[2][2=]
+  {\usrmth{#1}{Rel}{lrel}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+%%****************************************************************************%%
+%    \end{macrocode}
+
+% \begin{macro}{\mthsnt, ...}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\mthsnt{Name}[sub][sup][Ext]= = \mthsnt{Name}[sub][sup][Ext]
+%     \item
+%       \verb=\mthargsnt{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       \mthargsnt{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]
+%     \item
+%       \verb=\mthargsnt*{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       \mthargsnt*{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]
+%     \item
+%       \verb=\mthparsnt{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       \mthparsnt{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]
+%     \item
+%       \verb=\mthparsnt*{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       \mthparsnt*{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]
+%   \end{itemize}
+%    \begin{macrocode}
+%% Style for Sentences
+\cmdmthall{snt}\newcommand{\mthstysnt}{\mathsf}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\aSnt, ...}
+%   ... to do! \\
+%   \small
+%   \aSnt, \bSnt, \cSnt, \dSnt, \eSnt, \fSnt, \gSnt, \hSnt, \iSnt, \jSnt, \kSnt,
+%   \lSnt, \mSnt, \nSnt, \oSnt, \pSnt, \qSnt, \rSnt, \sSnt, \tSnt, \uSnt, \vSnt,
+%   \wSnt, \xSnt, \ySnt, \zSnt \\
+%   \ASnt, \BSnt, \CSnt, \DSnt, \ESnt, \FSnt, \GSnt, \HSnt, \ISnt, \JSnt, \KSnt,
+%   \LSnt, \MSnt, \NSnt, \OSnt, \PSnt, \QSnt, \RSnt, \SSnt, \TSnt, \USnt, \VSnt,
+%   \WSnt, \XSnt, \YSnt, \ZSnt \\
+%   \alphaSnt, \betaSnt, \gammaSnt, \deltaSnt, \epsilonSnt, \varepsilonSnt,
+%   \zetaSnt, \etaSnt, \thetaSnt, \varthetaSnt, \iotaSnt, \kappaSnt,
+%   \varkappaSnt, \lambdaSnt, \muSnt, \nuSnt, \xiSnt, \omicronSnt, \piSnt,
+%   \varpiSnt, \rhoSnt, \varrhoSnt, \sigmaSnt, \varsigmaSnt, \tauSnt,
+%   \upsilonSnt, \phiSnt, \varphiSnt, \chiSnt, \psiSnt, \omegaSnt \\
+%   \AlphaSnt, \BetaSnt, \GammaSnt, \DeltaSnt, \EpsilonSnt, \varEpsilonSnt,
+%   \ZetaSnt, \EtaSnt, \ThetaSnt, \varThetaSnt, \IotaSnt, \KappaSnt,
+%   \varKappaSnt, \LambdaSnt, \MuSnt, \NuSnt, \XiSnt, \OmicronSnt, \PiSnt,
+%   \varPiSnt, \RhoSnt, \varRhoSnt, \SigmaSnt, \varSigmaSnt, \TauSnt,
+%   \UpsilonSnt, \PhiSnt, \varPhiSnt, \ChiSnt, \PsiSnt, \OmegaSnt
+%    \begin{macrocode}
+\seqoflet{Snt}{mthsnt}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdmthsnt}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdmthsnt{cmdName}=;\cmdmthsnt{cmdName} \\
+%       \verb=\cmdNameSnt[sub][sub][ext]= = \cmdNameSnt[sub][sub][ext]
+%     \item
+%       \verb=\cmdmthsnt{cmdName}[NewName]=;\cmdmthsnt{cmdName}[NewName] \\
+%       \verb=\cmdNameSnt[sub][sub][ext]= = \cmdNameSnt[sub][sub][ext]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdmthsnt}[2][2=]
+  {\usrmth{#1}{Snt}{snt}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdmthargsnt}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdmthargsnt{cmdName}=;\cmdmthargsnt{cmdName} \\
+%       \verb=\cmdNameSnt[sub][sub][ext1]{arg}[ext2]= =
+%       \cmdNameSnt[sub][sub][ext1]{arg}[ext2]
+%     \item
+%       \verb=\cmdmthargsnt{cmdName}[NewName]=;
+%       \cmdmthargsnt{cmdName}[NewName] \\
+%       \verb=\cmdNameSnt[sub][sub][ext1]{arg}[ext2]= =
+%       \cmdNameSnt[sub][sub][ext1]{arg}[ext2]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdmthargsnt}[2][2=]
+  {\usrmth{#1}{Snt}{argsnt}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdmthoargsnt}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdmthoargsnt{cmdName}=;\cmdmthoargsnt{cmdName} \\
+%       \verb=\cmdNameSnt[sub][sub][arg]= = \cmdNameSnt[sub][sub][arg]
+%     \item
+%       \verb=\cmdmthoargsnt{cmdName}[NewName]=;
+%       \cmdmthoargsnt{cmdName}[NewName] \\
+%       \verb=\cmdNameSnt[sub][sub][arg]= = \cmdNameSnt[sub][sub][arg]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdmthoargsnt}[2][2=]
+  {\usrmth{#1}{Snt}{oargsnt}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdmthparsnt}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdmthparsnt{cmdName}=;\cmdmthparsnt{cmdName} \\
+%       \verb=\cmdNameSnt[sub][sub][ext1]{par}[ext2]= =
+%       \cmdNameSnt[sub][sub][ext1]{par}[ext2]
+%     \item
+%       \verb=\cmdmthparsnt{cmdName}[NewName]=;
+%       \cmdmthparsnt{cmdName}[NewName] \\
+%       \verb=\cmdNameSnt[sub][sub][ext1]{par}[ext2]= =
+%       \cmdNameSnt[sub][sub][ext1]{par}[ext2]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdmthparsnt}[2][2=]
+  {\usrmth{#1}{Snt}{parsnt}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdmthoparsnt}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdmthoparsnt{cmdName}=;\cmdmthoparsnt{cmdName} \\
+%       \verb=\cmdNameSnt[sub][sub][par]= = \cmdNameSnt[sub][sub][par]
+%     \item
+%       \verb=\cmdmthoparsnt{cmdName}[NewName]=;
+%       \cmdmthoparsnt{cmdName}[NewName] \\
+%       \verb=\cmdNameSnt[sub][sub][par]= = \cmdNameSnt[sub][sub][par]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdmthoparsnt}[2][2=]
+  {\usrmth{#1}{Snt}{oparsnt}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\mthfrm, ...}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\mthfrm{Name}[sub][sup][Ext]= = \mthfrm{Name}[sub][sup][Ext]
+%     \item
+%       \verb=\mthargfrm{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       \mthargfrm{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]
+%     \item
+%       \verb=\mthargfrm*{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       \mthargfrm*{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]
+%     \item
+%       \verb=\mthparfrm{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       \mthparfrm{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]
+%     \item
+%       \verb=\mthparfrm*{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       \mthparfrm*{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]
+%   \end{itemize}
+%    \begin{macrocode}
+%% Style for Formulae
+\cmdmthall{frm}\newcommand{\mthstyfrm}{\mathit}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\aFrm, ...}
+%   ... to do! \\
+%   \small
+%   \aFrm, \bFrm, \cFrm, \dFrm, \eFrm, \fFrm, \gFrm, \hFrm, \iFrm, \jFrm, \kFrm,
+%   \lFrm, \mFrm, \nFrm, \oFrm, \pFrm, \qFrm, \rFrm, \sFrm, \tFrm, \uFrm, \vFrm,
+%   \wFrm, \xFrm, \yFrm, \zFrm \\
+%   \AFrm, \BFrm, \CFrm, \DFrm, \EFrm, \FFrm, \GFrm, \HFrm, \IFrm, \JFrm, \KFrm,
+%   \LFrm, \MFrm, \NFrm, \OFrm, \PFrm, \QFrm, \RFrm, \SFrm, \TFrm, \UFrm, \VFrm,
+%   \WFrm, \XFrm, \YFrm, \ZFrm \\
+%   \alphaFrm, \betaFrm, \gammaFrm, \deltaFrm, \epsilonFrm, \varepsilonFrm,
+%   \zetaFrm, \etaFrm, \thetaFrm, \varthetaFrm, \iotaFrm, \kappaFrm,
+%   \varkappaFrm, \lambdaFrm, \muFrm, \nuFrm, \xiFrm, \omicronFrm, \piFrm,
+%   \varpiFrm, \rhoFrm, \varrhoFrm, \sigmaFrm, \varsigmaFrm, \tauFrm,
+%   \upsilonFrm, \phiFrm, \varphiFrm, \chiFrm, \psiFrm, \omegaFrm \\
+%   \AlphaFrm, \BetaFrm, \GammaFrm, \DeltaFrm, \EpsilonFrm, \varEpsilonFrm,
+%   \ZetaFrm, \EtaFrm, \ThetaFrm, \varThetaFrm, \IotaFrm, \KappaFrm,
+%   \varKappaFrm, \LambdaFrm, \MuFrm, \NuFrm, \XiFrm, \OmicronFrm, \PiFrm,
+%   \varPiFrm, \RhoFrm, \varRhoFrm, \SigmaFrm, \varSigmaFrm, \TauFrm,
+%   \UpsilonFrm, \PhiFrm, \varPhiFrm, \ChiFrm, \PsiFrm, \OmegaFrm
+%    \begin{macrocode}
+\seqoflet{Frm}{mthfrm}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdmthfrm}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdmthfrm{cmdName}=;\cmdmthfrm{cmdName} \\
+%       \verb=\cmdNameFrm[sub][sub][ext]= = \cmdNameFrm[sub][sub][ext]
+%     \item
+%       \verb=\cmdmthfrm{cmdName}[NewName]=;\cmdmthfrm{cmdName}[NewName] \\
+%       \verb=\cmdNameFrm[sub][sub][ext]= = \cmdNameFrm[sub][sub][ext]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdmthfrm}[2][2=]
+  {\usrmth{#1}{Frm}{frm}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdmthargfrm}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdmthargfrm{cmdName}=;\cmdmthargfrm{cmdName} \\
+%       \verb=\cmdNameFrm[sub][sub][ext1]{arg}[ext2]= =
+%       \cmdNameFrm[sub][sub][ext1]{arg}[ext2]
+%     \item
+%       \verb=\cmdmthargfrm{cmdName}[NewName]=;
+%       \cmdmthargfrm{cmdName}[NewName] \\
+%       \verb=\cmdNameFrm[sub][sub][ext1]{arg}[ext2]= =
+%       \cmdNameFrm[sub][sub][ext1]{arg}[ext2]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdmthargfrm}[2][2=]
+  {\usrmth{#1}{Frm}{argfrm}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdmthoargfrm}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdmthoargfrm{cmdName}=;\cmdmthoargfrm{cmdName} \\
+%       \verb=\cmdNameFrm[sub][sub][arg]= = \cmdNameFrm[sub][sub][arg]
+%     \item
+%       \verb=\cmdmthoargfrm{cmdName}[NewName]=;
+%       \cmdmthoargfrm{cmdName}[NewName] \\
+%       \verb=\cmdNameFrm[sub][sub][arg]= = \cmdNameFrm[sub][sub][arg]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdmthoargfrm}[2][2=]
+  {\usrmth{#1}{Frm}{oargfrm}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdmthparfrm}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdmthparfrm{cmdName}=;\cmdmthparfrm{cmdName} \\
+%       \verb=\cmdNameFrm[sub][sub][ext1]{par}[ext2]= =
+%       \cmdNameFrm[sub][sub][ext1]{par}[ext2]
+%     \item
+%       \verb=\cmdmthparfrm{cmdName}[NewName]=;
+%       \cmdmthparfrm{cmdName}[NewName] \\
+%       \verb=\cmdNameFrm[sub][sub][ext1]{par}[ext2]= =
+%       \cmdNameFrm[sub][sub][ext1]{par}[ext2]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdmthparfrm}[2][2=]
+  {\usrmth{#1}{Frm}{parfrm}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdmthoparfrm}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdmthoparfrm{cmdName}=;\cmdmthoparfrm{cmdName} \\
+%       \verb=\cmdNameFrm[sub][sub][par]= = \cmdNameFrm[sub][sub][par]
+%     \item
+%       \verb=\cmdmthoparfrm{cmdName}[NewName]=;
+%       \cmdmthoparfrm{cmdName}[NewName] \\
+%       \verb=\cmdNameFrm[sub][sub][par]= = \cmdNameFrm[sub][sub][par]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdmthoparfrm}[2][2=]
+  {\usrmth{#1}{Frm}{oparfrm}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+%%****************************************************************************%%
+%    \end{macrocode}
+
+% \begin{macro}{\mthmat, ...}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\mthmat{Name}[sub][sup][Ext]= = \mthmat{Name}[sub][sup][Ext]
+%     \item
+%       \verb=\mthargmat{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       \mthargmat{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]
+%     \item
+%       \verb=\mthargmat*{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       \mthargmat*{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]
+%     \item
+%       \verb=\mthparmat{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       \mthparmat{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]
+%     \item
+%       \verb=\mthparmat*{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       \mthparmat*{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]
+%   \end{itemize}
+%    \begin{macrocode}
+%% Style for Matrices
+\cmdmthall{mat}\newcommand{\mthstymat}[1]{\boldsymbol{\mathsf{#1}}}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\aMat, ...}
+%   ... to do! \\
+%   \small
+%   \aMat, \bMat, \cMat, \dMat, \eMat, \fMat, \gMat, \hMat, \iMat, \jMat, \kMat,
+%   \lMat, \mMat, \nMat, \oMat, \pMat, \qMat, \rMat, \sMat, \tMat, \uMat, \vMat,
+%   \wMat, \xMat, \yMat, \zMat \\
+%   \AMat, \BMat, \CMat, \DMat, \EMat, \FMat, \GMat, \HMat, \IMat, \JMat, \KMat,
+%   \LMat, \MMat, \NMat, \OMat, \PMat, \QMat, \RMat, \SMat, \TMat, \UMat, \VMat,
+%   \WMat, \XMat, \YMat, \ZMat \\
+%   \alphaMat, \betaMat, \gammaMat, \deltaMat, \epsilonMat, \varepsilonMat,
+%   \zetaMat, \etaMat, \thetaMat, \varthetaMat, \iotaMat, \kappaMat,
+%   \varkappaMat, \lambdaMat, \muMat, \nuMat, \xiMat, \omicronMat, \piMat,
+%   \varpiMat, \rhoMat, \varrhoMat, \sigmaMat, \varsigmaMat, \tauMat,
+%   \upsilonMat, \phiMat, \varphiMat, \chiMat, \psiMat, \omegaMat \\
+%   \AlphaMat, \BetaMat, \GammaMat, \DeltaMat, \EpsilonMat, \varEpsilonMat,
+%   \ZetaMat, \EtaMat, \ThetaMat, \varThetaMat, \IotaMat, \KappaMat,
+%   \varKappaMat, \LambdaMat, \MuMat, \NuMat, \XiMat, \OmicronMat, \PiMat,
+%   \varPiMat, \RhoMat, \varRhoMat, \SigmaMat, \varSigmaMat, \TauMat,
+%   \UpsilonMat, \PhiMat, \varPhiMat, \ChiMat, \PsiMat, \OmegaMat
+%    \begin{macrocode}
+\seqoflet{Mat}{mthmat}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdmthmat}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdmthmat{cmdName}=;\cmdmthmat{cmdName} \\
+%       \verb=\cmdNameMat[sub][sub][ext]= = \cmdNameMat[sub][sub][ext]
+%     \item
+%       \verb=\cmdmthmat{cmdName}[NewName]=;\cmdmthmat{cmdName}[NewName] \\
+%       \verb=\cmdNameMat[sub][sub][ext]= = \cmdNameMat[sub][sub][ext]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdmthmat}[2][2=]
+  {\usrmth{#1}{Mat}{mat}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdmthargmat}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdmthargmat{cmdName}=;\cmdmthargmat{cmdName} \\
+%       \verb=\cmdNameMat[sub][sub][ext1]{arg}[ext2]= =
+%       \cmdNameMat[sub][sub][ext1]{arg}[ext2]
+%     \item
+%       \verb=\cmdmthargmat{cmdName}[NewName]=;
+%       \cmdmthargmat{cmdName}[NewName] \\
+%       \verb=\cmdNameMat[sub][sub][ext1]{arg}[ext2]= =
+%       \cmdNameMat[sub][sub][ext1]{arg}[ext2]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdmthargmat}[2][2=]
+  {\usrmth{#1}{Mat}{argmat}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdmthoargmat}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdmthoargmat{cmdName}=;\cmdmthoargmat{cmdName} \\
+%       \verb=\cmdNameMat[sub][sub][arg]= = \cmdNameMat[sub][sub][arg]
+%     \item
+%       \verb=\cmdmthoargmat{cmdName}[NewName]=;
+%       \cmdmthoargmat{cmdName}[NewName] \\
+%       \verb=\cmdNameMat[sub][sub][arg]= = \cmdNameMat[sub][sub][arg]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdmthoargmat}[2][2=]
+  {\usrmth{#1}{Mat}{oargmat}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdmthparmat}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdmthparmat{cmdName}=;\cmdmthparmat{cmdName} \\
+%       \verb=\cmdNameMat[sub][sub][ext1]{par}[ext2]= =
+%       \cmdNameMat[sub][sub][ext1]{par}[ext2]
+%     \item
+%       \verb=\cmdmthparmat{cmdName}[NewName]=;
+%       \cmdmthparmat{cmdName}[NewName] \\
+%       \verb=\cmdNameMat[sub][sub][ext1]{par}[ext2]= =
+%       \cmdNameMat[sub][sub][ext1]{par}[ext2]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdmthparmat}[2][2=]
+  {\usrmth{#1}{Mat}{parmat}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdmthoparmat}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdmthoparmat{cmdName}=;\cmdmthoparmat{cmdName} \\
+%       \verb=\cmdNameMat[sub][sub][par]= = \cmdNameMat[sub][sub][par]
+%     \item
+%       \verb=\cmdmthoparmat{cmdName}[NewName]=;
+%       \cmdmthoparmat{cmdName}[NewName] \\
+%       \verb=\cmdNameMat[sub][sub][par]= = \cmdNameMat[sub][sub][par]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdmthoparmat}[2][2=]
+  {\usrmth{#1}{Mat}{oparmat}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\mthvec, ...}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\mthvec{Name}[sub][sup][Ext]= = \mthvec{Name}[sub][sup][Ext]
+%     \item
+%       \verb=\mthargvec{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       \mthargvec{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]
+%     \item
+%       \verb=\mthargvec*{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       \mthargvec*{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]
+%     \item
+%       \verb=\mthparvec{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       \mthparvec{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]
+%     \item
+%       \verb=\mthparvec*{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       \mthparvec*{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]
+%   \end{itemize}
+%    \begin{macrocode}
+%% Style for Vectors
+\cmdmthall{vec}\newcommand{\mthstyvec}[1]{\boldsymbol{\mathit{#1}}}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\aVec, ...}
+%   ... to do! \\
+%   \small
+%   \aVec, \bVec, \cVec, \dVec, \eVec, \fVec, \gVec, \hVec, \iVec, \jVec, \kVec,
+%   \lVec, \mVec, \nVec, \oVec, \pVec, \qVec, \rVec, \sVec, \tVec, \uVec, \vVec,
+%   \wVec, \xVec, \yVec, \zVec \\
+%   \AVec, \BVec, \CVec, \DVec, \EVec, \FVec, \GVec, \HVec, \IVec, \JVec, \KVec,
+%   \LVec, \MVec, \NVec, \OVec, \PVec, \QVec, \RVec, \SVec, \TVec, \UVec, \VVec,
+%   \WVec, \XVec, \YVec, \ZVec \\
+%   \alphaVec, \betaVec, \gammaVec, \deltaVec, \epsilonVec, \varepsilonVec,
+%   \zetaVec, \etaVec, \thetaVec, \varthetaVec, \iotaVec, \kappaVec,
+%   \varkappaVec, \lambdaVec, \muVec, \nuVec, \xiVec, \omicronVec, \piVec,
+%   \varpiVec, \rhoVec, \varrhoVec, \sigmaVec, \varsigmaVec, \tauVec,
+%   \upsilonVec, \phiVec, \varphiVec, \chiVec, \psiVec, \omegaVec \\
+%   \AlphaVec, \BetaVec, \GammaVec, \DeltaVec, \EpsilonVec, \varEpsilonVec,
+%   \ZetaVec, \EtaVec, \ThetaVec, \varThetaVec, \IotaVec, \KappaVec,
+%   \varKappaVec, \LambdaVec, \MuVec, \NuVec, \XiVec, \OmicronVec, \PiVec,
+%   \varPiVec, \RhoVec, \varRhoVec, \SigmaVec, \varSigmaVec, \TauVec,
+%   \UpsilonVec, \PhiVec, \varPhiVec, \ChiVec, \PsiVec, \OmegaVec
+%    \begin{macrocode}
+\seqoflet{Vec}{mthvec}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdmthvec}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdmthvec{cmdName}=;\cmdmthvec{cmdName} \\
+%       \verb=\cmdNameVec[sub][sub][ext]= = \cmdNameVec[sub][sub][ext]
+%     \item
+%       \verb=\cmdmthvec{cmdName}[NewName]=;\cmdmthvec{cmdName}[NewName] \\
+%       \verb=\cmdNameVec[sub][sub][ext]= = \cmdNameVec[sub][sub][ext]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdmthvec}[2][2=]
+  {\usrmth{#1}{Vec}{vec}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdmthargvec}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdmthargvec{cmdName}=;\cmdmthargvec{cmdName} \\
+%       \verb=\cmdNameVec[sub][sub][ext1]{arg}[ext2]= =
+%       \cmdNameVec[sub][sub][ext1]{arg}[ext2]
+%     \item
+%       \verb=\cmdmthargvec{cmdName}[NewName]=;
+%       \cmdmthargvec{cmdName}[NewName] \\
+%       \verb=\cmdNameVec[sub][sub][ext1]{arg}[ext2]= =
+%       \cmdNameVec[sub][sub][ext1]{arg}[ext2]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdmthargvec}[2][2=]
+  {\usrmth{#1}{Vec}{argvec}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdmthoargvec}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdmthoargvec{cmdName}=;\cmdmthoargvec{cmdName} \\
+%       \verb=\cmdNameVec[sub][sub][arg]= = \cmdNameVec[sub][sub][arg]
+%     \item
+%       \verb=\cmdmthoargvec{cmdName}[NewName]=;
+%       \cmdmthoargvec{cmdName}[NewName] \\
+%       \verb=\cmdNameVec[sub][sub][arg]= = \cmdNameVec[sub][sub][arg]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdmthoargvec}[2][2=]
+  {\usrmth{#1}{Vec}{oargvec}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdmthparvec}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdmthparvec{cmdName}=;\cmdmthparvec{cmdName} \\
+%       \verb=\cmdNameVec[sub][sub][ext1]{par}[ext2]= =
+%       \cmdNameVec[sub][sub][ext1]{par}[ext2]
+%     \item
+%       \verb=\cmdmthparvec{cmdName}[NewName]=;
+%       \cmdmthparvec{cmdName}[NewName] \\
+%       \verb=\cmdNameVec[sub][sub][ext1]{par}[ext2]= =
+%       \cmdNameVec[sub][sub][ext1]{par}[ext2]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdmthparvec}[2][2=]
+  {\usrmth{#1}{Vec}{parvec}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdmthoparvec}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdmthoparvec{cmdName}=;\cmdmthoparvec{cmdName} \\
+%       \verb=\cmdNameVec[sub][sub][par]= = \cmdNameVec[sub][sub][par]
+%     \item
+%       \verb=\cmdmthoparvec{cmdName}[NewName]=;
+%       \cmdmthoparvec{cmdName}[NewName] \\
+%       \verb=\cmdNameVec[sub][sub][par]= = \cmdNameVec[sub][sub][par]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\cmdmthoparvec}[2][2=]
+  {\usrmth{#1}{Vec}{oparvec}[#2]}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+\fi
+%%****************************************************************************%%
+%    \end{macrocode}
+
+\endinput

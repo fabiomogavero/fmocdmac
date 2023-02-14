@@ -1,0 +1,121 @@
+
+%    \begin{macrocode}
+%%****************************************************************************%%
+%%** Auxiliary Packages ******************************************************%%
+%%****************************************************************************%%
+\ifaux@
+
+\ifamsdef@
+  % AMS Packages
+  \RequirePackage{amsmath}
+  \RequirePackage{amssymb}
+  \RequirePackage{stmaryrd}
+  \interdisplaylinepenalty=2500
+\fi
+
+\ifamsthm@
+  % AMS Theorem Tools
+  \RequirePackage{amsthm}
+\fi
+
+\ifthmtls@
+  % Extended Theorem Tools
+  \RequirePackage{thmtools, thm-restate}
+\fi
+
+\ifenmtls@
+  % Enumeration Tools
+  \RequirePackage{paralist}
+\fi
+
+\ifhypref@
+  % Hyper References
+  \RequirePackage{hyperref}
+  \hypersetup {
+    pdfsubject    = {},
+    pdfkeywords   = {},
+    pdfproducer   = {},
+    pdfcreator    = {},
+    pdfpagemode   = {UseNone},
+    pdfstartview  = {FitH},
+    urlcolor      = {blue},
+    colorlinks
+  }
+\fi
+
+\iffnttls@
+  % Font Tools
+  \RequirePackage[final]{microtype}
+\fi
+
+\ifcrv@
+  % Camera-Ready Version
+
+  %%...
+
+\else
+  % Draft Version
+
+  %%...
+
+  \ifchgbar@
+    % Change Bars
+    \RequirePackage{changebar}
+  \fi
+
+  \iflinnum@
+    % Line Numbers
+    \if@twocolumn
+      \RequirePackage[switch, columnwise, mathlines]{lineno}\linenumbers
+    \else
+      \RequirePackage[columnwise, mathlines]{lineno}\linenumbers
+    \fi
+  \fi
+
+  %%...
+
+\fi
+
+\fi
+%%****************************************************************************%%
+%    \end{macrocode}
+
+%    \begin{macrocode}
+%%****************************************************************************%%
+%%** Auxiliary Font Declarations *********************************************%%
+%%****************************************************************************%%
+%    \end{macrocode}
+
+% \begin{macro}{\mathbbo}
+%   \textbf{Bbo Math Font:} ... to do!
+%    \begin{macrocode}
+\ifdef{\mathbbo}{}{\DeclareMathAlphabet{\mathbbo}{U}{bbold}{m}{n}}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\matheus}
+%   \textbf{Eus Math Font:} ... to do!
+%    \begin{macrocode}
+\ifdef{\matheus}{}{\DeclareMathAlphabet{\matheus}{U}{eus}{m}{n}}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\mathpzc}
+%   \textbf{Pzc Math Font:} ... to do!
+%    \begin{macrocode}
+\ifdef{\mathpzc}{}{\DeclareMathAlphabet{\mathpzc}{T1}{pzc}{m}{it}}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\mathscr}
+%   \textbf{Scr Math Font:} ... to do!
+%    \begin{macrocode}
+\ifdef{\mathscr}{}{\DeclareMathAlphabet{\mathscr}{U}{rsfs}{m}{n}}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+%%****************************************************************************%%
+%    \end{macrocode}
+
+\endinput

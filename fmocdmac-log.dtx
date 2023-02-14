@@ -1,0 +1,1200 @@
+
+%    \begin{macrocode}
+%%****************************************************************************%%
+%%** Macros for Logics *******************************************************%%
+%%****************************************************************************%%
+\iflog@
+%    \end{macrocode}
+
+%    \begin{macrocode}
+%%** Propositional Logics ****************************************************%%
+%    \end{macrocode}
+
+% \begin{macro}{\BF, \QBF, ...}
+%   ...
+%    \begin{macrocode}
+% Boolean Formulae
+\cmdtxtoparname{BF}
+
+% Quantified Boolean Formulae
+\DeclareRobustCommand{\QBF}
+  {{\txtname{Q}}\BF}
+\DeclareRobustCommand{\EBF}
+  {\ensuremath{\exists}\BF}
+\DeclareRobustCommand{\UBF}
+  {\ensuremath{\forall}\BF}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+%%** Syntax ******************************************************************%%
+%    \end{macrocode}
+
+% \begin{macro}{\LogSig, ...}
+%   ...
+%    \begin{macrocode}
+\newcommand{\logsig}{L}
+\usrmthlatupp{Log}{Sig}{sig}[\logsig]
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\Tt, \Ff}
+%   ...
+%    \begin{macrocode}
+\newcommand{\ttsym}{\top}
+\usrmth{Tt}{}{sym}[\ttsym]
+\newcommand{\ffsym}{\bot}
+\usrmth{Ff}{}{sym}[\ffsym]
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\LNeg, \LNot}
+%   ...
+%    \begin{macrocode}
+\newcommand{\lnegsym}{\neg}
+\usrmth{LNeg}{}{luop}[\lnegsym]
+\newcommand{\lnotsym}{\sim}
+\usrmth{LNot}{}{luop}[\lnotsym]
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\LCon, \LDis}
+%   ...
+%    \begin{macrocode}
+\newcommand{\lconsym}{\land}
+\usrmth{LCon}{}{lbop}[\lconsym]
+\newcommand{\ldissym}{\lor}
+\usrmth{LDis}{}{lbop}[\ldissym]
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\LImp, \LCoi}
+%   ...
+%    \begin{macrocode}
+\newcommand{\limpsym}{\rightarrow}
+\usrmth{LImp}{}{lbop}[\limpsym]
+\newcommand{\lcoisym}{\leftrightarrow}
+\usrmth{LCoi}{}{lbop}[\lcoisym]
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\LExs, \LAll}
+%   ...
+%    \begin{macrocode}
+\newcommand{\lexssym}{\exists}
+\usrmth{LExs}{}{luop}[\lexssym]
+\newcommand{\lallsym}{\forall}
+\usrmth{LAll}{}{luop}[\lallsym]
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\APSet, ...}
+%   ...
+%    \begin{macrocode}
+\newcommand{\apsym}{p}
+\newcommand{\apset}{AP}
+\cmdmthsetext{AP}[\apset][\apsym]
+\cmdmthfun{ap}\usrmth{ap}{}{argfun}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\sub}
+%   ...
+%    \begin{macrocode}
+\usrmth{sub}{}{argfun}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\Cnt, \Qnt, \Sym}
+%   ...
+%    \begin{macrocode}
+\usrmth{Cnt}{}{sym}[C]
+\usrmth{Qnt}{}{sym}[Q]
+\usrmth{Sym}{}{sym}[\odot]
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\QAE, \QEA}
+%   ...
+%    \begin{macrocode}
+\usrmth{QAE}{}{sym}[\forall\exists]
+\usrmth{QEA}{}{sym}[\exists\forall]
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\QntSet, ...}
+%   ...
+%    \begin{macrocode}
+\newcommand{\qntsym}{\wp}
+\newcommand{\qntset}{Qn}
+\cmdmthsetext{Qnt}[\qntset][\qntsym]
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\free, \bound}
+%   ...
+%    \begin{macrocode}
+\usrmth{free}{}{argfun}
+\usrmth{bound}{}{argfun}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\dep, \alt}
+%   ...
+%    \begin{macrocode}
+\usrmth{dep}{}{argfun}
+\usrmth{alt}{}{argfun}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cnf, \dnf, ...}
+%   ...
+%    \begin{macrocode}
+\cmdtxtabr{cnf}
+\cmdtxtabr{dnf}
+\cmdtxtabr{pnf}
+\cmdtxtabr{nnf}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+%%** Semantics ***************************************************************%%
+%    \end{macrocode}
+
+% \begin{macro}{\LogStr, ...}
+%   ...
+%    \begin{macrocode}
+\newcommand{\logstr}{L}
+\usrmthlatupp{Log}{Str}{str}[\logstr]
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\ValSet, ...}
+%   ...
+%    \begin{macrocode}
+\newcommand{\valsym}{\xi}
+\newcommand{\valset}{Val}
+\cmdmthsetext{Val}[\valset][\valsym]
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\AsgSet, ...}
+%   ...
+%    \begin{macrocode}
+\newcommand{\asgsym}{\chi}
+\newcommand{\asgset}{Asg}
+\cmdmthsetext{Asg}[\asgset][\asgsym]
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+%%** First-Order Logics I ****************************************************%%
+%    \end{macrocode}
+
+% \begin{macro}{\FOL, ...}
+%   ...
+%    \begin{macrocode}
+% First-Order Logic
+\cmdtxtoparname{FOL}[Fol]
+\cmdtxtoparname{FO}[FO]
+
+% Monadic First-Order Logic
+\DeclareRobustCommand{\MFOL}
+  {{\txtname{M}}\FOL}
+\DeclareRobustCommand{\MFO}
+  {{\txtname{M}}\FO}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+%%** Syntax ******************************************************************%%
+%    \end{macrocode}
+
+% \begin{macro}{\VarSig, ...}
+%   ...
+%    \begin{macrocode}
+\newcommand{\varsig}{V}
+\usrmthlatupp{Var}{Sig}{sig}[\varsig]
+\newcommand{\varsym}{x}
+\newcommand{\varset}{Vr}
+\cmdmthsetext{Var}[\varset][\varsym]
+\usrmth{var}{}{argfun}[vr]
+\cmdmthfun{dim}[dm]\usrmth{dim}{}{argfun}[dm]
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\ConSig, ...}
+%   ...
+%    \begin{macrocode}
+\newcommand{\consig}{C}
+\usrmthlatupp{Con}{Sig}{sig}[\consig]
+\newcommand{\consym}{c}
+\newcommand{\conset}{Cn}
+\cmdmthsetext{Con}[\conset][\consym]
+\usrmth{con}{}{argfun}[cn]
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\FunSig, ...}
+%   ...
+%    \begin{macrocode}
+\newcommand{\funsig}{F}
+\usrmthlatupp{Fun}{Sig}{sig}[\funsig]
+\newcommand{\funsym}{f}
+\newcommand{\funset}{Fn}
+\cmdmthsetext{Fun}[\funset][\funsym]
+\usrmth{fun}{}{argfun}[fn]
+\cmdmthfun{art}[ar]\usrmth{art}{}{argfun}[ar]
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\TerSig, ...}
+%   ...
+%    \begin{macrocode}
+\newcommand{\tersig}{T}
+\usrmthlatupp{Ter}{Sig}{sig}[\tersig]
+\newcommand{\tersym}{t}
+\newcommand{\terset}{Tr}
+\cmdmthsetext{Ter}[\terset][\tersym]
+\usrmth{ter}{}{argfun}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\RelSig, ...}
+%   ...
+%    \begin{macrocode}
+\newcommand{\relsig}{R}
+\usrmthlatupp{Rel}{Sig}{sig}[\relsig]
+\newcommand{\relsym}{r}
+\newcommand{\relset}{Rl}
+\cmdmthsetext{Rel}[\relset][\relsym]
+\usrmth{rel}{}{argfun}[rl]
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\skm}
+%   ...
+%    \begin{macrocode}
+\usrmth{skm}{}{argfun}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+%%** Semantics ***************************************************************%%
+%    \end{macrocode}
+
+% \begin{macro}{\ConStr, ...}
+%   ...
+%    \begin{macrocode}
+\newcommand{\constr}{C}
+\usrmthlatupp{Con}{Str}{str}[\constr]
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\FunStr, ...}
+%   ...
+%    \begin{macrocode}
+\newcommand{\funstr}{F}
+\usrmthlatupp{Fun}{Str}{str}[\funstr]
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\TerStr, ...}
+%   ...
+%    \begin{macrocode}
+\newcommand{\terstr}{T}
+\usrmthlatupp{Ter}{Str}{str}[\terstr]
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\RelStr, ...}
+%   ...
+%    \begin{macrocode}
+\newcommand{\relstr}{R}
+\usrmthlatupp{Rel}{Str}{str}[\relstr]
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+%%** First-Order Logics II ***************************************************%%
+%    \end{macrocode}
+
+% \begin{macro}{\DF, \IF, ...}
+%   ...
+%    \begin{macrocode}
+% Dependence-Friendly Logic
+\cmdtxtoparname{DF}
+
+% Independence-Friendly Logic
+\cmdtxtoparname{IF}
+
+% Dependence/Independence-Friendly Logic
+\cmdtxtoparname{DIF}
+
+% Dependence Logic
+\cmdtxtoparname{DL}
+
+% Team Logic
+\cmdtxtoparname{TL}
+
+% Alternating Dependence-Friendly Logic
+\cmdtxtoparname{ADF}
+
+% Alternating Independence-Friendly Logic
+\cmdtxtoparname{AIF}
+
+% Alternating Dependence/Independence-Friendly Logic
+\cmdtxtoparname{ADIF}
+%    \end{macrocode}
+% \end{macro}
+
+%% ...
+
+%    \begin{macrocode}
+%%** Syntax ******************************************************************%%
+%    \end{macrocode}
+
+% \begin{macro}{\LEExs, \LAAll}
+%   ...
+%    \begin{macrocode}
+\newcommand{\leexssym}{\Sigma}
+\usrmth{LEExs}{}{luop}[\leexssym]
+\newcommand{\laallsym}{\Pi}
+\usrmth{LAAll}{}{luop}[\laallsym]
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+%%** Semantics ***************************************************************%%
+%    \end{macrocode}
+
+%% ...
+
+%    \begin{macrocode}
+%%** Second-Order Logics I ***************************************************%%
+%    \end{macrocode}
+
+% \begin{macro}{\SOL, ...}
+%   ...
+%    \begin{macrocode}
+% Second-Order Logic
+\cmdtxtoparname{SOL}[Sol]
+\cmdtxtoparname{SO}
+
+% Weak Second-Order Logic
+\DeclareRobustCommand{\WSOL}
+  {{\txtname{W}}\SOL}
+\DeclareRobustCommand{\WSO}
+  {{\txtname{W}}\SO}
+
+% coWeak Second-Order Logic
+\DeclareRobustCommand{\coWSOL}
+  {{\txtname{coW}}\SOL}
+\DeclareRobustCommand{\coWSO}
+  {{\txtname{coW}}\SO}
+
+% Monadic Second-Order Logic
+\DeclareRobustCommand{\MSOL}
+  {{\txtname{M}}\SOL}
+\DeclareRobustCommand{\MSO}
+  {{\txtname{M}}\SO}
+
+% Weak Monadic Second-Order Logic
+\DeclareRobustCommand{\WMSOL}
+  {{\txtname{W}}\MSOL}
+\DeclareRobustCommand{\WMSO}
+  {{\txtname{W}}\MSO}
+
+% coWeak Monadic Second-Order Logic
+\DeclareRobustCommand{\coWMSOL}
+  {{\txtname{coW}}\MSOL}
+\DeclareRobustCommand{\coWMSO}
+  {{\txtname{coW}}\MSO}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+%%** Syntax ******************************************************************%%
+%    \end{macrocode}
+
+% \begin{macro}{\FVarSet, ...}
+%   ...
+%    \begin{macrocode}
+\newcommand{\fvarsym}{x}
+\newcommand{\fvarset}{FVr}
+\cmdmthsetext{FVar}[\fvarset][\fvarsym]
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\SVarSet, ...}
+%   ...
+%    \begin{macrocode}
+\newcommand{\svarsym}{X}
+\newcommand{\svarset}{SVr}
+\cmdmthsetext{SVar}[\svarset][\svarsym]
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+%%** Semantics ***************************************************************%%
+%    \end{macrocode}
+
+%% ...
+
+%    \begin{macrocode}
+%%** Second-Order Logics II **************************************************%%
+%    \end{macrocode}
+
+% \begin{macro}{\TL, \PL, ...}
+%   ...
+%    \begin{macrocode}
+% Tree Logic
+\cmdtxtoparname{TL}
+
+% Weak Tree Logic
+\DeclareRobustCommand{\WTL}
+  {{\txtname{W}}\TL}
+
+% coWeak Tree Logic
+\DeclareRobustCommand{\coWTL}
+  {{\txtname{coW}}\TL}
+
+% Monadic Tree Logic
+\DeclareRobustCommand{\MTL}
+  {{\txtname{M}}\TL}
+
+% Weak Monadic Tree Logic
+\DeclareRobustCommand{\WMTL}
+  {{\txtname{W}}\MTL}
+
+% coWeak Monadic Tree Logic
+\DeclareRobustCommand{\coWMTL}
+  {{\txtname{coW}}\MTL}
+
+% Path Logic
+\cmdtxtoparname{PL}
+
+% Weak Path Logic
+\DeclareRobustCommand{\WPL}
+  {{\txtname{W}}\PL}
+
+% coWeak Path Logic
+\DeclareRobustCommand{\coWPL}
+  {{\txtname{coW}}\PL}
+
+% Monadic Path Logic
+\DeclareRobustCommand{\MPL}
+  {{\txtname{M}}\PL}
+
+% Weak Monadic Path Logic
+\DeclareRobustCommand{\WMPL}
+  {{\txtname{W}}\MPL}
+
+% coWeak Monadic Path Logic
+\DeclareRobustCommand{\coWMPL}
+  {{\txtname{coW}}\MPL}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+%%** Syntax ******************************************************************%%
+%    \end{macrocode}
+
+%% ...
+
+%    \begin{macrocode}
+%%** Semantics ***************************************************************%%
+%    \end{macrocode}
+
+%% ...
+
+%    \begin{macrocode}
+%%** Modal Logics I **********************************************************%%
+%    \end{macrocode}
+
+% \begin{macro}{\ML, \GML, ...}
+%   ...
+%    \begin{macrocode}
+% Modal Logic
+\cmdtxtoparname{ML}
+
+% Graded Modal Logic
+\DeclareRobustCommand{\GML}
+  {{\txtname{G}}\ML}
+
+% Quantified Modal Logic
+\DeclareRobustCommand{\QML}
+  {{\txtname{Q}}\ML}
+\DeclareRobustCommand{\EML}
+  {\ensuremath{\exists}\ML}
+\DeclareRobustCommand{\UML}
+  {\ensuremath{\forall}\ML}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+%%** Syntax ******************************************************************%%
+%    \end{macrocode}
+
+% \begin{macro}{\Opr}
+%   ...
+%    \begin{macrocode}
+\usrmth{Opr}{}{sym}[Op]
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\DMod, \BMod}
+%   ...
+%    \begin{macrocode}
+\usrmth{DMod}{}{sym}[\Diamond]
+\usrmth{BMod}{}{sym}[\Box]
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\Exs, \All}
+%   ...
+%    \begin{macrocode}
+\DeclareRobustCommand{\Exs}[1]
+  {\mth{\defval{\argmid{\langle}{#1}{\rangle}}{\DMod}}}
+\DeclareRobustCommand{\All}[1]
+  {\mth{\defval{\argmid{\left[}{#1}{\right]}}{\BMod}}}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+%%** Semantics ***************************************************************%%
+%    \end{macrocode}
+
+% \begin{macro}{\KrpStr, ...}
+%   ...
+%    \begin{macrocode}
+\newcommand{\krpstr}{K}
+\usrmthlatupp{Krp}{Str}{str}[\krpstr]
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\WrlSet, ...}
+%   ...
+%    \begin{macrocode}
+\newcommand{\wrlsym}{w}
+\newcommand{\wrlset}{W}
+\cmdmthsetext{Wrl}[\wrlset][\wrlsym]
+\cmdmthsymelm{iwrl}[\wrlsym_{I}]
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\AccRel, \TrnRel}
+%   ...
+%    \begin{macrocode}
+\newcommand{\accsym}{R}
+\cmdmthrel{Acc}[\accsym]
+\cmdmthrel{Trn}[\accsym]
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\labFun}
+%   ...
+%    \begin{macrocode}
+\newcommand{\labsym}{\lambda}
+\cmdmthfun{lab}[\labsym]
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\PthSet, \pthFun}
+%   ...
+%    \begin{macrocode}
+\providecommand{\pthsym}{\pi}
+\providecommand{\pthset}{Pth}
+\cmdmthsetext{Pth}[\pthset][\pthsym]
+\cmdmthfun{pth}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+%%** Modal Logics II *********************************************************%%
+%    \end{macrocode}
+
+% \begin{macro}{\MC, \GMC, ...}
+%   ...
+%    \begin{macrocode}
+% Mu Calculus
+\cmdtxtoparname{MC}[\ensuremath{\mu}-Calculus]
+
+% Graded Mu Calculus
+\DeclareRobustCommand{\GMC}
+  {{\txtname{G}}\MC}
+
+% Quantified Mu Calculus
+\DeclareRobustCommand{\QMC}
+  {{\txtname{Q}}\MC}
+\DeclareRobustCommand{\EMC}
+  {\ensuremath{\exists}\MC}
+\DeclareRobustCommand{\UMC}
+  {\ensuremath{\forall}\MC}
+
+% Alternation-Free Mu Calculus
+\DeclareRobustCommand{\AFMC}
+  {{\txtname{AF}}\MC}
+
+% Alternation-Free Graded Mu Calculus
+\DeclareRobustCommand{\AFGMC}
+  {{\txtname{AF}}\GMC}
+
+% Quantified Alternation-Free Mu Calculus
+\DeclareRobustCommand{\QAFMC}
+  {{\txtname{Q}}\AFMC}
+\DeclareRobustCommand{\EAFMC}
+  {\ensuremath{\exists}\AFMC}
+\DeclareRobustCommand{\UAFMC}
+  {\ensuremath{\forall}\AFMC}
+
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+%%** Syntax ******************************************************************%%
+%    \end{macrocode}
+
+%% ...
+
+%    \begin{macrocode}
+%%** Semantics ***************************************************************%%
+%    \end{macrocode}
+
+%% ...
+
+%    \begin{macrocode}
+%%** Temporal Logics I *******************************************************%%
+%    \end{macrocode}
+
+% \begin{macro}{\PTL, \LTL, ...}
+%   ...
+%    \begin{macrocode}
+% Propositional Temporal Logic
+\cmdtxtoparname{PTL}
+
+% Quantified Propositional Temporal Logic
+\DeclareRobustCommand{\QPTL}
+  {{\txtname{Q}}\PTL}
+\DeclareRobustCommand{\EPTL}
+  {\ensuremath{\exists}\PTL}
+\DeclareRobustCommand{\UPTL}
+  {\ensuremath{\forall}\PTL}
+
+% Linear Temporal Logic
+\cmdtxtoparname{LTL}
+
+% Quantified Linear Temporal Logic
+\DeclareRobustCommand{\QLTL}
+  {{\txtname{Q}}\LTL}
+\DeclareRobustCommand{\ELTL}
+  {\ensuremath{\exists}\LTL}
+\DeclareRobustCommand{\ULTL}
+  {\ensuremath{\forall}\LTL}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+%%** Syntax ******************************************************************%%
+%    \end{macrocode}
+
+% \begin{macro}{\X, ...}
+%   ...
+%    \begin{macrocode}
+\usrmth{X}{}{sym}[X\,]
+\usrmth{F}{}{sym}[F\,]
+\usrmth{G}{}{sym}[G\,]
+\usrmth{U}{}{sym}[\,U\,]
+\usrmth{R}{}{sym}[\,R\,]
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\Y, ...}
+%   ...
+%    \begin{macrocode}
+\usrmth{Y}{}{sym}[G\,]
+\usrmth{P}{}{sym}[P\,]\let\SavePilcrow\P
+\usrmth{H}{}{sym}[H\,]\let\SaveDoubleAcute\H
+\usrmth{S}{}{sym}[\,S\,]\let\SaveSectionSymbol\S
+\usrmth{B}{}{sym}[\,B\,]
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+%%** Semantics ***************************************************************%%
+%    \end{macrocode}
+
+%% ...
+
+%    \begin{macrocode}
+%%** Temporal Logics II ******************************************************%%
+%    \end{macrocode}
+
+% \begin{macro}{\PDL, \CTL, ...}
+%   ...
+%    \begin{macrocode}
+
+% Propositional Dynamic Logic
+\cmdtxtoparname{PDL}
+
+% Computation Tree Logic
+\cmdtxtoparname{CTL}
+
+% Weak Computation Tree Logic
+\DeclareRobustCommand{\WCTL}
+  {{\txtname{W}}\CTL}
+
+% Quantified Computation Tree Logic
+\DeclareRobustCommand{\QCTL}
+  {{\txtname{Q}}\CTL}
+\DeclareRobustCommand{\ECTL}
+  {\ensuremath{\exists}\CTL}
+\DeclareRobustCommand{\UCTL}
+  {\ensuremath{\forall}\CTL}
+
+% Improved Computation Tree Logic
+\cmdtxtoparname{CTLP}[CTL$^{+}$]
+
+% Weak Improved Computation Tree Logic
+\DeclareRobustCommand{\WCTLP}
+  {{\txtname{W}}\CTLP}
+
+% Quantified Improved Computation Tree Logic
+\DeclareRobustCommand{\QCTLP}
+  {{\txtname{Q}}\CTLP}
+\DeclareRobustCommand{\ECTLP}
+  {\ensuremath{\exists}\CTLP}
+\DeclareRobustCommand{\UCTLP}
+  {\ensuremath{\forall}\CTLP}
+
+% Full Computation Tree Logic
+\cmdtxtoparname{CTLS}[CTL*]
+
+% Weak Full Computation Tree Logic
+\DeclareRobustCommand{\WCTLS}
+  {{\txtname{W}}\CTLS}
+
+% Quantified Full Computation Tree Logic
+\DeclareRobustCommand{\QCTLS}
+  {{\txtname{Q}}\CTLS}
+\DeclareRobustCommand{\ECTLS}
+  {\ensuremath{\exists}\CTLS}
+\DeclareRobustCommand{\UCTLS}
+  {\ensuremath{\forall}\CTLS}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+%%** Syntax ******************************************************************%%
+%    \end{macrocode}
+
+% \begin{macro}{\E, \A}
+%   ...
+%    \begin{macrocode}
+\usrmth{E}{}{sym}
+\usrmth{A}{}{sym}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+%%** Semantics ***************************************************************%%
+%    \end{macrocode}
+
+%% ...
+
+%    \begin{macrocode}
+%%** Strategic Logics I ******************************************************%%
+%    \end{macrocode}
+
+% \begin{macro}{\ATL, ...}
+%   ...
+%    \begin{macrocode}
+% Alternating Temporal Logic
+\cmdtxtoparname{ATL}
+
+% Weak Alternating Tree Logic
+\DeclareRobustCommand{\WATL}
+  {{\txtname{W}}\ATL}
+
+% Quantified Alternating Temporal Logic
+\DeclareRobustCommand{\QATL}
+  {{\txtname{Q}}\ATL}
+\DeclareRobustCommand{\EATL}
+  {\ensuremath{\exists}\ATL}
+\DeclareRobustCommand{\UATL}
+  {\ensuremath{\forall}\ATL}
+
+% Improved Alternating Temporal Logic
+\cmdtxtoparname{ATLP}[ATL$^{+}$]
+
+% Weak Improved Alternating Tree Logic
+\DeclareRobustCommand{\WATLP}
+  {{\txtname{W}}\ATLP}
+
+% Quantified Improved Alternating Temporal Logic
+\DeclareRobustCommand{\QATLP}
+  {{\txtname{Q}}\ATLP}
+\DeclareRobustCommand{\EATLP}
+  {\ensuremath{\exists}\ATLP}
+\DeclareRobustCommand{\UATLP}
+  {\ensuremath{\forall}\ATLP}
+
+% Full Alternating Temporal Logic
+\cmdtxtoparname{ATLS}[ATL*]
+
+% Weak Full Alternating Tree Logic
+\DeclareRobustCommand{\WATLS}
+  {{\txtname{W}}\ATLS}
+
+% Quantified Full Alternating Temporal Logic
+\DeclareRobustCommand{\QATLS}
+  {{\txtname{Q}}\ATLS}
+\DeclareRobustCommand{\EATLS}
+  {\ensuremath{\exists}\ATLS}
+\DeclareRobustCommand{\UATLS}
+  {\ensuremath{\forall}\ATLS}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+%%** Syntax ******************************************************************%%
+%    \end{macrocode}
+
+% \begin{macro}{\EExs, \AAll}
+%   ...
+%    \begin{macrocode}
+\DeclareRobustCommand{\EExs}[1]
+  {\mth{\argmid{\langle\!\langle}{\defval{#1}{\emptyset}}{\rangle\!\rangle}}}
+\DeclareRobustCommand{\AAll}[1]
+  {\mth{\argmid{\left[\left[}{\defval{#1}{\emptyset}}{\right]\right]}}}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+%%** Semantics ***************************************************************%%
+%    \end{macrocode}
+
+% \begin{macro}{\CGS}
+%   ...
+%    \begin{macrocode}
+\cmdtxtname{CGS}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\CGSStr, ...}
+%   ...
+%    \begin{macrocode}
+\newcommand{\cgsstr}{G}
+\usrmthlatupp{CGS}{Str}{str}[\cgsstr]
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\AgnSet, ...}
+%   ...
+%    \begin{macrocode}
+\newcommand{\agnsym}{a}
+\newcommand{\agnset}{Ag}
+\cmdmthsetext{Agn}[\agnset][\agnsym]
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\PosSet, ...}
+%   ...
+%    \begin{macrocode}
+\providecommand{\possym}{v}
+\providecommand{\posset}{Ps}
+\cmdmthsetext{Pos}[\posset][\possym]
+\cmdmthsymelm{ipos}[\possym_{I}]
+\cmdmthsymelm{fpos}[\possym_{F}]
+\cmdmthset{PPos}[\posset_{\PlrSym}]
+\cmdmthsymelm{ppos}[\possym_{\PlrSym}]
+\cmdmthset{OPos}[\posset_{\OppSym}]
+\cmdmthsymelm{opos}[\possym_{\OppSym}]
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\SttSet, ...}
+%   ...
+%    \begin{macrocode}
+\newcommand{\sttsym}{s}
+\newcommand{\sttset}{St}
+\cmdmthsetext{Stt}[\sttset][\sttsym]
+\cmdmthset{IStt}[\sttset_{I}]
+\cmdmthsymelm{istt}[\sttsym_{I}]
+\cmdmthset{FStt}[\sttset_{F}]
+\cmdmthsymelm{fstt}[\sttsym_{F}]
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\ActSet, ...}
+%   ...
+%    \begin{macrocode}
+\newcommand{\actsym}{c}
+\newcommand{\actset}{Ac}
+\cmdmthsetext{Act}[\actset][\actsym]
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\DecSet, ...}
+%   ...
+%    \begin{macrocode}
+\newcommand{\decsym}{d}
+\newcommand{\decset}{Dc}
+\cmdmthsetext{Dec}[\decset][\decsym]
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\movFun}
+%   ...
+%    \begin{macrocode}
+\newcommand{\movsym}{\tau}
+\cmdmthfun{mov}[\movsym]
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\HstSet, ...}
+%   ...
+%    \begin{macrocode}
+\providecommand{\hstsym}{\rho}
+\providecommand{\hstset}{Hst}
+\cmdmthsetext{Hst}[\hstset][\hstsym]
+\cmdmthset{PHst}[\hstset_{\PlrSym}]
+\cmdmthsymelm{phst}[\hstsym_{\PlrSym}]
+\cmdmthset{OHst}[\hstset_{\OppSym}]
+\cmdmthsymelm{ohst}[\hstsym_{\OppSym}]
+\cmdmthfun{hst}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\PlaySet,\playFun}
+%   ...
+%    \begin{macrocode}
+\providecommand{\playsym}{\pi}
+\providecommand{\playset}{Play}
+\cmdmthsetext{Play}[\playset][\playsym]
+\cmdmthfun{play}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\StrSet, ...}
+%   ...
+%    \begin{macrocode}
+\providecommand{\strsym}{\sigma}
+\providecommand{\strset}{Str}
+\cmdmthsetext{Str}[\strset][\strsym]
+\cmdmthset{PStr}[\strset_{\PlrSym}]
+\cmdmthsymelm{pstr}[\strsym_{\PlrSym}]
+\cmdmthset{OStr}[\strset_{\OppSym}]
+\cmdmthsymelm{ostr}[\strsym_{\OppSym}]
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\PrfSet, \prfFun}
+%   ...
+%    \begin{macrocode}
+\providecommand{\prfsym}{\xi}
+\providecommand{\prfset}{Prf}
+\cmdmthsetext{Prf}[\prfset][\prfsym]
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+%%** Strategic Logics II *****************************************************%%
+%    \end{macrocode}
+
+% \begin{macro}{\SL, ...}
+%   ...
+%    \begin{macrocode}
+% Strategy Logic
+\cmdtxtoparname{SL}
+
+\DeclareRobustCommand{\ESL}
+  {\ensuremath{\exists}\SL}
+\DeclareRobustCommand{\USL}
+  {\ensuremath{\forall}\SL}
+
+\DeclareRobustCommand{\FSL}
+  {{\txtname{F}}\SL}
+
+\DeclareRobustCommand{\EFSL}
+  {\ensuremath{\exists}\FSL}
+\DeclareRobustCommand{\UFSL}
+  {\ensuremath{\forall}\FSL}
+
+% One-Goal Strategy Logic
+\DeclareRobustCommandx{\OGSL}[3][1=, 2=, 3=]
+  {\SL[#1][#2][1g\arglef{,}{#3}]}
+
+\DeclareRobustCommand{\EOGSL}
+  {\ensuremath{\exists}\OGSL}
+\DeclareRobustCommand{\UOGSL}
+  {\ensuremath{\forall}\OGSL}
+
+\DeclareRobustCommand{\FOGSL}
+  {{\txtname{F}}\OGSL}
+
+\DeclareRobustCommand{\EFOGSL}
+  {\ensuremath{\exists}\FOGSL}
+\DeclareRobustCommand{\UFOGSL}
+  {\ensuremath{\forall}\FOGSL}
+
+% Conjunctive-Goal Strategy Logic
+\DeclareRobustCommandx{\CGSL}[3][1=, 2=, 3=]
+  {\SL[#1][#2][cg\arglef{,}{#3}]}
+
+\DeclareRobustCommand{\ECGSL}
+  {\ensuremath{\exists}\CGSL}
+\DeclareRobustCommand{\UCGSL}
+  {\ensuremath{\forall}\CGSL}
+
+\DeclareRobustCommand{\FCGSL}
+  {{\txtname{F}}\xGSL}
+
+\DeclareRobustCommand{\EFCGSL}
+  {\ensuremath{\exists}\FCGSL}
+\DeclareRobustCommand{\UFCGSL}
+  {\ensuremath{\forall}\FCGSL}
+
+% Disjunctive-Goal Strategy Logic
+\DeclareRobustCommandx{\DGSL}[3][1=, 2=, 3=]
+  {\SL[#1][#2][dg\arglef{,}{#3}]}
+
+\DeclareRobustCommand{\EDGSL}
+  {\ensuremath{\exists}\DGSL}
+\DeclareRobustCommand{\UDGSL}
+  {\ensuremath{\forall}\DGSL}
+
+\DeclareRobustCommand{\FDGSL}
+  {{\txtname{F}}\xGSL}
+
+\DeclareRobustCommand{\EFDGSL}
+  {\ensuremath{\exists}\FDGSL}
+\DeclareRobustCommand{\UFDGSL}
+  {\ensuremath{\forall}\FDGSL}
+
+% Alternating-Goal Strategy Logic
+\DeclareRobustCommandx{\AGSL}[3][1=, 2=, 3=]
+  {\SL[#1][#2][ag\arglef{,}{#3}]}
+
+\DeclareRobustCommand{\EAGSL}
+  {\ensuremath{\exists}\AGSL}
+\DeclareRobustCommand{\UAGSL}
+  {\ensuremath{\forall}\AGSL}
+
+\DeclareRobustCommand{\FAGSL}
+  {{\txtname{F}}\xGSL}
+
+\DeclareRobustCommand{\EFAGSL}
+  {\ensuremath{\exists}\FAGSL}
+\DeclareRobustCommand{\UFAGSL}
+  {\ensuremath{\forall}\FAGSL}
+
+% Extended-Goal Strategy Logic
+\DeclareRobustCommandx{\EGSL}[3][1=, 2=, 3=]
+  {\SL[#1][#2][eg\arglef{,}{#3}]}
+
+\DeclareRobustCommand{\EEGSL}
+  {\ensuremath{\exists}\EGSL}
+\DeclareRobustCommand{\UEGSL}
+  {\ensuremath{\forall}\EGSL}
+
+\DeclareRobustCommand{\FEGSL}
+  {{\txtname{F}}\xGSL}
+
+\DeclareRobustCommand{\EFEGSL}
+  {\ensuremath{\exists}\FEGSL}
+\DeclareRobustCommand{\UFEGSL}
+  {\ensuremath{\forall}\FEGSL}
+
+% Boolean-Goal Strategy Logic
+\DeclareRobustCommandx{\BGSL}[3][1=, 2=, 3=]
+  {\SL[#1][#2][bg\arglef{,}{#3}]}
+
+\DeclareRobustCommand{\EBGSL}
+  {\ensuremath{\exists}\BGSL}
+\DeclareRobustCommand{\UBGSL}
+  {\ensuremath{\forall}\BGSL}
+
+\DeclareRobustCommand{\FBGSL}
+  {{\txtname{F}}\xGSL}
+
+\DeclareRobustCommand{\EFBGSL}
+  {\ensuremath{\exists}\FBGSL}
+\DeclareRobustCommand{\UFBGSL}
+  {\ensuremath{\forall}\FBGSL}
+
+% Nested-Goal Strategy Logic
+\DeclareRobustCommandx{\NGSL}[3][1=, 2=, 3=]
+  {\SL[#1][#2][ng\arglef{,}{#3}]}
+
+\DeclareRobustCommand{\ENGSL}
+  {\ensuremath{\exists}\NGSL}
+\DeclareRobustCommand{\UNGSL}
+  {\ensuremath{\forall}\NGSL}
+
+\DeclareRobustCommand{\FNGSL}
+  {{\txtname{F}}\xGSL}
+
+\DeclareRobustCommand{\EFNGSL}
+  {\ensuremath{\exists}\FNGSL}
+\DeclareRobustCommand{\UFNGSL}
+  {\ensuremath{\forall}\FNGSL}
+
+% Undefined-Goal Strategy Logic
+\DeclareRobustCommandx{\XGSL}[3][1=, 2=, 3=]
+  {\SL[#1][#2][xg\arglef{,}{#3}]}
+
+\DeclareRobustCommand{\EXGSL}
+  {\ensuremath{\exists}\XGSL}
+\DeclareRobustCommand{\UXGSL}
+  {\ensuremath{\forall}\XGSL}
+
+\DeclareRobustCommand{\FXGSL}
+  {{\txtname{F}}\xGSL}
+
+\DeclareRobustCommand{\EFXGSL}
+  {\ensuremath{\exists}\FXGSL}
+\DeclareRobustCommand{\UFXGSL}
+  {\ensuremath{\forall}\FXGSL}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+%%** Syntax ******************************************************************%%
+%    \end{macrocode}
+
+% \begin{macro}{\BndSet, ...}
+%   ...
+%    \begin{macrocode}
+\newcommand{\bndsym}{\flat}
+\newcommand{\bndset}{Bn}
+\cmdmthsetext{Bnd}[\bndset][\bndsym]
+\usrmth{bnd}{}{argfun}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\psn}
+%   ...
+%    \begin{macrocode}
+\usrmth{psn}{}{argfun}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+%%** Semantics ***************************************************************%%
+%    \end{macrocode}
+
+% \begin{macro}{\nxtFun}
+%   ...
+%    \begin{macrocode}
+\newcommand{\nxtfun}{nxt}
+\cmdmthfun{nxt}[\nxtfun]
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+\fi
+%%****************************************************************************%%
+%    \end{macrocode}
+
+\endinput

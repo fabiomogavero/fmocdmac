@@ -1,0 +1,625 @@
+
+%    \begin{macrocode}
+%%****************************************************************************%%
+%%** Macros for Computational-Complexity Classes *****************************%%
+%%****************************************************************************%%
+\ifcom@
+%    \end{macrocode}
+
+% \begin{macro}{\defcomcls}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\defcomcls{CompClass}=; \defcomcls{CompClass}
+%       \vspace{1em}\newline
+%       \verb=\CompClass[sub][sup][arg]= = \CompClass[sub][sup][arg] \\
+%     \item
+%       \verb=\defcomcls{CompClass}[NewClass]=;
+%       \defcomcls{CompClass}[NewClass]
+%       \vspace{1em}\newline
+%       \verb=\CompClass[sub][sup][arg]= = \CompClass[sub][sup][arg] \\
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\defcomcls}[2][2=]
+  {\csdef{#1}{\txtoargcom{\defval{#2}{#1}}}}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\defcomclsgrp}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\defcomclsgrp{CompClass}=;
+%       \defcomclsgrp{CompClass}
+%       \vspace{1em}\newline
+%       \verb=\CompClass[sub][sup][arg]= = \CompClass[sub][sup][arg] \\
+%       \verb=\CoCompClass[sub][sup][arg]= = \CoCompClass[sub][sup][arg] \\
+%       \verb=\CompClassE[sub][sup][arg]= = \CompClassE[sub][sup][arg] \\
+%       \verb=\CoCompClassE[sub][sup][arg]= = \CoCompClassE[sub][sup][arg] \\
+%       \verb=\CompClassH[sub][sup][arg]= = \CompClassH[sub][sup][arg] \\
+%       \verb=\CoCompClassH[sub][sup][arg]= = \CoCompClassH[sub][sup][arg] \\
+%       \verb=\CompClassC[sub][sup][arg]= = \CompClassC[sub][sup][arg] \\
+%       \verb=\CoCompClassC[sub][sup][arg]= = \CoCompClassC[sub][sup][arg]
+%       \vspace{1em}\newline
+%       \verb=\DCompClass[sub][sup][arg]= = \DCompClass[sub][sup][arg] \\
+%       \verb=\CoDCompClass[sub][sup][arg]= = \CoDCompClass[sub][sup][arg] \\
+%       \verb=\DCompClassE[sub][sup][arg]= = \DCompClassE[sub][sup][arg] \\
+%       \verb=\CoDCompClassE[sub][sup][arg]= = \CoDCompClassE[sub][sup][arg] \\
+%       \verb=\DCompClassH[sub][sup][arg]= = \DCompClassH[sub][sup][arg] \\
+%       \verb=\CoDCompClassH[sub][sup][arg]= = \CoDCompClassH[sub][sup][arg] \\
+%       \verb=\DCompClassC[sub][sup][arg]= = \DCompClassC[sub][sup][arg] \\
+%       \verb=\CoDCompClassC[sub][sup][arg]= = \CoDCompClassC[sub][sup][arg]
+%       \vspace{1em}\newline
+%       \verb=\NCompClass[sub][sup][arg]= = \NCompClass[sub][sup][arg] \\
+%       \verb=\CoNCompClass[sub][sup][arg]= = \CoNCompClass[sub][sup][arg] \\
+%       \verb=\NCompClassE[sub][sup][arg]= = \NCompClassE[sub][sup][arg] \\
+%       \verb=\CoNCompClassE[sub][sup][arg]= = \CoNCompClassE[sub][sup][arg] \\
+%       \verb=\NCompClassH[sub][sup][arg]= = \NCompClassH[sub][sup][arg] \\
+%       \verb=\CoNCompClassH[sub][sup][arg]= = \CoNCompClassH[sub][sup][arg] \\
+%       \verb=\NCompClassC[sub][sup][arg]= = \NCompClassC[sub][sup][arg] \\
+%       \verb=\CoNCompClassC[sub][sup][arg]= = \CoNCompClassC[sub][sup][arg]
+%       \vspace{1em}\newline
+%       \verb=\UCompClass[sub][sup][arg]= = \UCompClass[sub][sup][arg] \\
+%       \verb=\CoUCompClass[sub][sup][arg]= = \CoUCompClass[sub][sup][arg] \\
+%       \verb=\UCompClassE[sub][sup][arg]= = \UCompClassE[sub][sup][arg] \\
+%       \verb=\CoUCompClassE[sub][sup][arg]= = \CoUCompClassE[sub][sup][arg] \\
+%       \verb=\UCompClassH[sub][sup][arg]= = \UCompClassH[sub][sup][arg] \\
+%       \verb=\CoUCompClassH[sub][sup][arg]= = \CoUCompClassH[sub][sup][arg] \\
+%       \verb=\UCompClassC[sub][sup][arg]= = \UCompClassC[sub][sup][arg] \\
+%       \verb=\CoUCompClassC[sub][sup][arg]= = \CoUCompClassC[sub][sup][arg]
+%       \vspace{1em}\newline
+%       \verb=\ACompClass[sub][sup][arg]= = \ACompClass[sub][sup][arg] \\
+%       \verb=\CoACompClass[sub][sup][arg]= = \CoACompClass[sub][sup][arg] \\
+%       \verb=\ACompClassE[sub][sup][arg]= = \ACompClassE[sub][sup][arg] \\
+%       \verb=\CoACompClassE[sub][sup][arg]= = \CoACompClassE[sub][sup][arg] \\
+%       \verb=\ACompClassH[sub][sup][arg]= = \ACompClassH[sub][sup][arg] \\
+%       \verb=\CoACompClassH[sub][sup][arg]= = \CoACompClassH[sub][sup][arg] \\
+%       \verb=\ACompClassC[sub][sup][arg]= = \ACompClassC[sub][sup][arg] \\
+%       \verb=\CoACompClassC[sub][sup][arg]= = \CoACompClassC[sub][sup][arg]
+%     \item
+%       \verb=\defcomclsgrp{CompClass}[NewClass]=;
+%       \defcomclsgrp{CompClass}[NewClass]
+%       \vspace{1em}\newline
+%       \verb=\CompClass[sub][sup][arg]= = \CompClass[sub][sup][arg] \\
+%       \verb=\CoCompClass[sub][sup][arg]= = \CoCompClass[sub][sup][arg] \\
+%       \verb=\CompClassE[sub][sup][arg]= = \CompClassE[sub][sup][arg] \\
+%       \verb=\CoCompClassE[sub][sup][arg]= = \CoCompClassE[sub][sup][arg] \\
+%       \verb=\CompClassH[sub][sup][arg]= = \CompClassH[sub][sup][arg] \\
+%       \verb=\CoCompClassH[sub][sup][arg]= = \CoCompClassH[sub][sup][arg] \\
+%       \verb=\CompClassC[sub][sup][arg]= = \CompClassC[sub][sup][arg] \\
+%       \verb=\CoCompClassC[sub][sup][arg]= = \CoCompClassC[sub][sup][arg]
+%       \vspace{1em}\newline
+%       \verb=\DCompClass[sub][sup][arg]= = \DCompClass[sub][sup][arg] \\
+%       \verb=\CoDCompClass[sub][sup][arg]= = \CoDCompClass[sub][sup][arg] \\
+%       \verb=\DCompClassE[sub][sup][arg]= = \DCompClassE[sub][sup][arg] \\
+%       \verb=\CoDCompClassE[sub][sup][arg]= = \CoDCompClassE[sub][sup][arg] \\
+%       \verb=\DCompClassH[sub][sup][arg]= = \DCompClassH[sub][sup][arg] \\
+%       \verb=\CoDCompClassH[sub][sup][arg]= = \CoDCompClassH[sub][sup][arg] \\
+%       \verb=\DCompClassC[sub][sup][arg]= = \DCompClassC[sub][sup][arg] \\
+%       \verb=\CoDCompClassC[sub][sup][arg]= = \CoDCompClassC[sub][sup][arg]
+%       \vspace{1em}\newline
+%       \verb=\NCompClass[sub][sup][arg]= = \NCompClass[sub][sup][arg] \\
+%       \verb=\CoNCompClass[sub][sup][arg]= = \CoNCompClass[sub][sup][arg] \\
+%       \verb=\NCompClassE[sub][sup][arg]= = \NCompClassE[sub][sup][arg] \\
+%       \verb=\CoNCompClassE[sub][sup][arg]= = \CoNCompClassE[sub][sup][arg] \\
+%       \verb=\NCompClassH[sub][sup][arg]= = \NCompClassH[sub][sup][arg] \\
+%       \verb=\CoNCompClassH[sub][sup][arg]= = \CoNCompClassH[sub][sup][arg] \\
+%       \verb=\NCompClassC[sub][sup][arg]= = \NCompClassC[sub][sup][arg] \\
+%       \verb=\CoNCompClassC[sub][sup][arg]= = \CoNCompClassC[sub][sup][arg]
+%       \vspace{1em}\newline
+%       \verb=\UCompClass[sub][sup][arg]= = \UCompClass[sub][sup][arg] \\
+%       \verb=\CoUCompClass[sub][sup][arg]= = \CoUCompClass[sub][sup][arg] \\
+%       \verb=\UCompClassE[sub][sup][arg]= = \UCompClassE[sub][sup][arg] \\
+%       \verb=\CoUCompClassE[sub][sup][arg]= = \CoUCompClassE[sub][sup][arg] \\
+%       \verb=\UCompClassH[sub][sup][arg]= = \UCompClassH[sub][sup][arg] \\
+%       \verb=\CoUCompClassH[sub][sup][arg]= = \CoUCompClassH[sub][sup][arg] \\
+%       \verb=\UCompClassC[sub][sup][arg]= = \UCompClassC[sub][sup][arg] \\
+%       \verb=\CoUCompClassC[sub][sup][arg]= = \CoUCompClassC[sub][sup][arg]
+%       \vspace{1em}\newline
+%       \verb=\ACompClass[sub][sup][arg]= = \ACompClass[sub][sup][arg] \\
+%       \verb=\CoACompClass[sub][sup][arg]= = \CoACompClass[sub][sup][arg] \\
+%       \verb=\ACompClassE[sub][sup][arg]= = \ACompClassE[sub][sup][arg] \\
+%       \verb=\CoACompClassE[sub][sup][arg]= = \CoACompClassE[sub][sup][arg] \\
+%       \verb=\ACompClassH[sub][sup][arg]= = \ACompClassH[sub][sup][arg] \\
+%       \verb=\CoACompClassH[sub][sup][arg]= = \CoACompClassH[sub][sup][arg] \\
+%       \verb=\ACompClassC[sub][sup][arg]= = \ACompClassC[sub][sup][arg] \\
+%       \verb=\CoACompClassC[sub][sup][arg]= = \CoACompClassC[sub][sup][arg]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\defcomclsgrp}[2][2=]
+  {\defcomclsgrpsem{#1}{\defval{#2}{#1}}%
+  \defcomclsgrpsem{#1}{\defval{#2}{#1}}[Co]}
+\newcommandx{\defcomclsgrpsem}[3][3=]
+  {\defcomclsgrpred{#3#1}{#2}[#3]%
+  \defcomclsgrpred{#3D#1}{#2}[#3D]%
+  \defcomclsgrpred{#3N#1}{#2}[#3N]%
+  \defcomclsgrpred{#3U#1}{#2}[#3U]%
+  \defcomclsgrpred{#3A#1}{#2}[#3A]}
+\newcommandx{\defcomclsgrpred}[3][3=]
+  {\defcomclsgrpcmd{#1}{#2}[#3]%
+  \defcomclsgrpcmd{#1E}{#2}[#3][-easy]%
+  \defcomclsgrpcmd{#1H}{#2}[#3][-hard]%
+  \defcomclsgrpcmd{#1C}{#2}[#3][-complete]}%
+\newcommandx{\defcomclsgrpcmd}[4][3=, 4=]
+  {\csdef{#1}{\txtoargcom{#3#2#4}}}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\defcomhrc}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\defcomhrc{CompHierarchy}=; \defcomhrc{CompHierarchy}
+%       \vspace{1em}\newline
+%       \verb=CompHierarchy[sub][sup][par]= = \CompHierarchy[sub][sup][par] \\
+%     \item
+%       \verb=\defcomhrc{CompHierarchy}[NewHierarchy]=;
+%       \defcomhrc{CompHierarchy}[NewHierarchy]
+%       \vspace{1em}\newline
+%       \verb=CompHierarchy[sub][sup][par]= = \CompHierarchy[sub][sup][par] \\
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\defcomhrc}[2][2=]
+  {\csdef{#1}{\txtoparcom{\defval{#2}{#1}}}}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+%%****************************************************************************%%
+%    \end{macrocode}
+
+% \begin{macro}{\Easy, \Hard, ...}
+%    \begin{macrocode}
+\cmdtxtcom{Easy}
+\cmdtxtcom{Hard}
+\cmdtxtcom{Complete}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+%%****************************************************************************%%
+%    \end{macrocode}
+
+% \begin{macro}{\FPT}
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\FPT[sub][sup][arg]= = \FPT[sub][sup][arg]
+%   \end{itemize}
+%    \begin{macrocode}
+\defcomcls{FPT}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+%%****************************************************************************%%
+%    \end{macrocode}
+
+% \begin{macro}{\Time, ...}
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\Time[sub][sup][arg]= = \Time[sub][sup][arg] \\
+%       \verb=\TimeE[sub][sup][arg]= = \TimeE[sub][sup][arg] \\
+%       \verb=\TimeH[sub][sup][arg]= = \TimeH[sub][sup][arg] \\
+%       \verb=\TimeC[sub][sup][arg]= = \TimeC[sub][sup][arg]
+%     \item
+%       \verb=\DTime[sub][sup][arg]= = \DTime[sub][sup][arg] \\
+%       \verb=\DTimeE[sub][sup][arg]= = \DTimeE[sub][sup][arg] \\
+%       \verb=\DTimeH[sub][sup][arg]= = \DTimeH[sub][sup][arg] \\
+%       \verb=\DTimeC[sub][sup][arg]= = \DTimeC[sub][sup][arg]
+%     \item
+%       \verb=\NTime[sub][sup][arg]= = \NTime[sub][sup][arg] \\
+%       \verb=\NTimeE[sub][sup][arg]= = \NTimeE[sub][sup][arg] \\
+%       \verb=\NTimeH[sub][sup][arg]= = \NTimeH[sub][sup][arg] \\
+%       \verb=\NTimeC[sub][sup][arg]= = \NTimeC[sub][sup][arg]
+%     \item
+%       \verb=\UTime[sub][sup][arg]= = \UTime[sub][sup][arg] \\
+%       \verb=\UTimeE[sub][sup][arg]= = \UTimeE[sub][sup][arg] \\
+%       \verb=\UTimeH[sub][sup][arg]= = \UTimeH[sub][sup][arg] \\
+%       \verb=\UTimeC[sub][sup][arg]= = \UTimeC[sub][sup][arg]
+%     \item
+%       \verb=\ATime[sub][sup][arg]= = \ATime[sub][sup][arg] \\
+%       \verb=\ATimeE[sub][sup][arg]= = \ATimeE[sub][sup][arg] \\
+%       \verb=\ATimeH[sub][sup][arg]= = \ATimeH[sub][sup][arg] \\
+%       \verb=\ATimeC[sub][sup][arg]= = \ATimeC[sub][sup][arg]
+%   \end{itemize}
+%    \begin{macrocode}
+\defcomclsgrp{Time}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\Space, ...}
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\Space[sub][sup][arg]= = \Space[sub][sup][arg] \\
+%       \verb=\SpaceE[sub][sup][arg]= = \SpaceE[sub][sup][arg] \\
+%       \verb=\SpaceH[sub][sup][arg]= = \SpaceH[sub][sup][arg] \\
+%       \verb=\SpaceC[sub][sup][arg]= = \SpaceC[sub][sup][arg]
+%     \item
+%       \verb=\DSpace[sub][sup][arg]= = \DSpace[sub][sup][arg] \\
+%       \verb=\DSpaceE[sub][sup][arg]= = \DSpaceE[sub][sup][arg] \\
+%       \verb=\DSpaceH[sub][sup][arg]= = \DSpaceH[sub][sup][arg] \\
+%       \verb=\DSpaceC[sub][sup][arg]= = \DSpaceC[sub][sup][arg]
+%     \item
+%       \verb=\NSpace[sub][sup][arg]= = \NSpace[sub][sup][arg] \\
+%       \verb=\NSpaceE[sub][sup][arg]= = \NSpaceE[sub][sup][arg] \\
+%       \verb=\NSpaceH[sub][sup][arg]= = \NSpaceH[sub][sup][arg] \\
+%       \verb=\NSpaceC[sub][sup][arg]= = \NSpaceC[sub][sup][arg]
+%     \item
+%       \verb=\USpace[sub][sup][arg]= = \USpace[sub][sup][arg] \\
+%       \verb=\USpaceE[sub][sup][arg]= = \USpaceE[sub][sup][arg] \\
+%       \verb=\USpaceH[sub][sup][arg]= = \USpaceH[sub][sup][arg] \\
+%       \verb=\USpaceC[sub][sup][arg]= = \USpaceC[sub][sup][arg]
+%     \item
+%       \verb=\ASpace[sub][sup][arg]= = \ASpace[sub][sup][arg] \\
+%       \verb=\ASpaceE[sub][sup][arg]= = \ASpaceE[sub][sup][arg] \\
+%       \verb=\ASpaceH[sub][sup][arg]= = \ASpaceH[sub][sup][arg] \\
+%       \verb=\ASpaceC[sub][sup][arg]= = \ASpaceC[sub][sup][arg]
+%   \end{itemize}
+%    \begin{macrocode}
+\defcomclsgrp{Space}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\LogTime, ...}
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\LogTime[sub][sup][arg]= = \LogTime[sub][sup][arg] \\
+%       \verb=\LogTimeE[sub][sup][arg]= = \LogTimeE[sub][sup][arg] \\
+%       \verb=\LogTimeH[sub][sup][arg]= = \LogTimeH[sub][sup][arg] \\
+%       \verb=\LogTimeC[sub][sup][arg]= = \LogTimeC[sub][sup][arg]
+%     \item
+%       \verb=\DLogTime[sub][sup][arg]= = \DLogTime[sub][sup][arg] \\
+%       \verb=\DLogTimeE[sub][sup][arg]= = \DLogTimeE[sub][sup][arg] \\
+%       \verb=\DLogTimeH[sub][sup][arg]= = \DLogTimeH[sub][sup][arg] \\
+%       \verb=\DLogTimeC[sub][sup][arg]= = \DLogTimeC[sub][sup][arg]
+%     \item
+%       \verb=\NLogTime[sub][sup][arg]= = \NLogTime[sub][sup][arg] \\
+%       \verb=\NLogTimeE[sub][sup][arg]= = \NLogTimeE[sub][sup][arg] \\
+%       \verb=\NLogTimeH[sub][sup][arg]= = \NLogTimeH[sub][sup][arg] \\
+%       \verb=\NLogTimeC[sub][sup][arg]= = \NLogTimeC[sub][sup][arg]
+%     \item
+%       \verb=\ULogTime[sub][sup][arg]= = \ULogTime[sub][sup][arg] \\
+%       \verb=\ULogTimeE[sub][sup][arg]= = \ULogTimeE[sub][sup][arg] \\
+%       \verb=\ULogTimeH[sub][sup][arg]= = \ULogTimeH[sub][sup][arg] \\
+%       \verb=\ULogTimeC[sub][sup][arg]= = \ULogTimeC[sub][sup][arg]
+%     \item
+%       \verb=\ALogTime[sub][sup][arg]= = \ALogTime[sub][sup][arg] \\
+%       \verb=\ALogTimeE[sub][sup][arg]= = \ALogTimeE[sub][sup][arg] \\
+%       \verb=\ALogTimeH[sub][sup][arg]= = \ALogTimeH[sub][sup][arg] \\
+%       \verb=\ALogTimeC[sub][sup][arg]= = \ALogTimeC[sub][sup][arg]
+%   \end{itemize}
+%    \begin{macrocode}
+\defcomclsgrp{LogTime}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\LogSpace, ...}
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\LogSpace[sub][sup][arg]= = \LogSpace[sub][sup][arg] \\
+%       \verb=\LogSpaceE[sub][sup][arg]= = \LogSpaceE[sub][sup][arg] \\
+%       \verb=\LogSpaceH[sub][sup][arg]= = \LogSpaceH[sub][sup][arg] \\
+%       \verb=\LogSpaceC[sub][sup][arg]= = \LogSpaceC[sub][sup][arg]
+%     \item
+%       \verb=\DLogSpace[sub][sup][arg]= = \DLogSpace[sub][sup][arg] \\
+%       \verb=\DLogSpaceE[sub][sup][arg]= = \DLogSpaceE[sub][sup][arg] \\
+%       \verb=\DLogSpaceH[sub][sup][arg]= = \DLogSpaceH[sub][sup][arg] \\
+%       \verb=\DLogSpaceC[sub][sup][arg]= = \DLogSpaceC[sub][sup][arg]
+%     \item
+%       \verb=\NLogSpace[sub][sup][arg]= = \NLogSpace[sub][sup][arg] \\
+%       \verb=\NLogSpaceE[sub][sup][arg]= = \NLogSpaceE[sub][sup][arg] \\
+%       \verb=\NLogSpaceH[sub][sup][arg]= = \NLogSpaceH[sub][sup][arg] \\
+%       \verb=\NLogSpaceC[sub][sup][arg]= = \NLogSpaceC[sub][sup][arg]
+%     \item
+%       \verb=\ULogSpace[sub][sup][arg]= = \ULogSpace[sub][sup][arg] \\
+%       \verb=\ULogSpaceE[sub][sup][arg]= = \ULogSpaceE[sub][sup][arg] \\
+%       \verb=\ULogSpaceH[sub][sup][arg]= = \ULogSpaceH[sub][sup][arg] \\
+%       \verb=\ULogSpaceC[sub][sup][arg]= = \ULogSpaceC[sub][sup][arg]
+%     \item
+%       \verb=\ALogSpace[sub][sup][arg]= = \ALogSpace[sub][sup][arg] \\
+%       \verb=\ALogSpaceE[sub][sup][arg]= = \ALogSpaceE[sub][sup][arg] \\
+%       \verb=\ALogSpaceH[sub][sup][arg]= = \ALogSpaceH[sub][sup][arg] \\
+%       \verb=\ALogSpaceC[sub][sup][arg]= = \ALogSpaceC[sub][sup][arg]
+%   \end{itemize}
+%    \begin{macrocode}
+\defcomclsgrp{LogSpace}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\PTime, ...}
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\PTime[sub][sup][arg]= = \PTime[sub][sup][arg] \\
+%       \verb=\PTimeE[sub][sup][arg]= = \PTimeE[sub][sup][arg] \\
+%       \verb=\PTimeH[sub][sup][arg]= = \PTimeH[sub][sup][arg] \\
+%       \verb=\PTimeC[sub][sup][arg]= = \PTimeC[sub][sup][arg]
+%     \item
+%       \verb=\DPTime[sub][sup][arg]= = \DPTime[sub][sup][arg] \\
+%       \verb=\DPTimeE[sub][sup][arg]= = \DPTimeE[sub][sup][arg] \\
+%       \verb=\DPTimeH[sub][sup][arg]= = \DPTimeH[sub][sup][arg] \\
+%       \verb=\DPTimeC[sub][sup][arg]= = \DPTimeC[sub][sup][arg]
+%     \item
+%       \verb=\NPTime[sub][sup][arg]= = \NPTime[sub][sup][arg] \\
+%       \verb=\NPTimeE[sub][sup][arg]= = \NPTimeE[sub][sup][arg] \\
+%       \verb=\NPTimeH[sub][sup][arg]= = \NPTimeH[sub][sup][arg] \\
+%       \verb=\NPTimeC[sub][sup][arg]= = \NPTimeC[sub][sup][arg]
+%     \item
+%       \verb=\UPTime[sub][sup][arg]= = \UPTime[sub][sup][arg] \\
+%       \verb=\UPTimeE[sub][sup][arg]= = \UPTimeE[sub][sup][arg] \\
+%       \verb=\UPTimeH[sub][sup][arg]= = \UPTimeH[sub][sup][arg] \\
+%       \verb=\UPTimeC[sub][sup][arg]= = \UPTimeC[sub][sup][arg]
+%     \item
+%       \verb=\APTime[sub][sup][arg]= = \APTime[sub][sup][arg] \\
+%       \verb=\APTimeE[sub][sup][arg]= = \APTimeE[sub][sup][arg] \\
+%       \verb=\APTimeH[sub][sup][arg]= = \APTimeH[sub][sup][arg] \\
+%       \verb=\APTimeC[sub][sup][arg]= = \APTimeC[sub][sup][arg]
+%   \end{itemize}
+%    \begin{macrocode}
+\defcomclsgrp{PTime}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\PSpace, ...}
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\PSpace[sub][sup][arg]= = \PSpace[sub][sup][arg] \\
+%       \verb=\PSpaceE[sub][sup][arg]= = \PSpaceE[sub][sup][arg] \\
+%       \verb=\PSpaceH[sub][sup][arg]= = \PSpaceH[sub][sup][arg] \\
+%       \verb=\PSpaceC[sub][sup][arg]= = \PSpaceC[sub][sup][arg]
+%     \item
+%       \verb=\DPSpace[sub][sup][arg]= = \DPSpace[sub][sup][arg] \\
+%       \verb=\DPSpaceE[sub][sup][arg]= = \DPSpaceE[sub][sup][arg] \\
+%       \verb=\DPSpaceH[sub][sup][arg]= = \DPSpaceH[sub][sup][arg] \\
+%       \verb=\DPSpaceC[sub][sup][arg]= = \DPSpaceC[sub][sup][arg]
+%     \item
+%       \verb=\NPSpace[sub][sup][arg]= = \NPSpace[sub][sup][arg] \\
+%       \verb=\NPSpaceE[sub][sup][arg]= = \NPSpaceE[sub][sup][arg] \\
+%       \verb=\NPSpaceH[sub][sup][arg]= = \NPSpaceH[sub][sup][arg] \\
+%       \verb=\NPSpaceC[sub][sup][arg]= = \NPSpaceC[sub][sup][arg]
+%     \item
+%       \verb=\UPSpace[sub][sup][arg]= = \UPSpace[sub][sup][arg] \\
+%       \verb=\UPSpaceE[sub][sup][arg]= = \UPSpaceE[sub][sup][arg] \\
+%       \verb=\UPSpaceH[sub][sup][arg]= = \UPSpaceH[sub][sup][arg] \\
+%       \verb=\UPSpaceC[sub][sup][arg]= = \UPSpaceC[sub][sup][arg]
+%     \item
+%       \verb=\APSpace[sub][sup][arg]= = \APSpace[sub][sup][arg] \\
+%       \verb=\APSpaceE[sub][sup][arg]= = \APSpaceE[sub][sup][arg] \\
+%       \verb=\APSpaceH[sub][sup][arg]= = \APSpaceH[sub][sup][arg] \\
+%       \verb=\APSpaceC[sub][sup][arg]= = \APSpaceC[sub][sup][arg]
+%   \end{itemize}
+%    \begin{macrocode}
+\defcomclsgrp{PSpace}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\QPTime, ...}
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\QPTime[sub][sup][arg]= = \QPTime[sub][sup][arg] \\
+%       \verb=\QPTimeE[sub][sup][arg]= = \QPTimeE[sub][sup][arg] \\
+%       \verb=\QPTimeH[sub][sup][arg]= = \QPTimeH[sub][sup][arg] \\
+%       \verb=\QPTimeC[sub][sup][arg]= = \QPTimeC[sub][sup][arg]
+%     \item
+%       \verb=\DQPTime[sub][sup][arg]= = \DQPTime[sub][sup][arg] \\
+%       \verb=\DQPTimeE[sub][sup][arg]= = \DQPTimeE[sub][sup][arg] \\
+%       \verb=\DQPTimeH[sub][sup][arg]= = \DQPTimeH[sub][sup][arg] \\
+%       \verb=\DQPTimeC[sub][sup][arg]= = \DQPTimeC[sub][sup][arg]
+%     \item
+%       \verb=\NQPTime[sub][sup][arg]= = \NQPTime[sub][sup][arg] \\
+%       \verb=\NQPTimeE[sub][sup][arg]= = \NQPTimeE[sub][sup][arg] \\
+%       \verb=\NQPTimeH[sub][sup][arg]= = \NQPTimeH[sub][sup][arg] \\
+%       \verb=\NQPTimeC[sub][sup][arg]= = \NQPTimeC[sub][sup][arg]
+%     \item
+%       \verb=\UQPTime[sub][sup][arg]= = \UQPTime[sub][sup][arg] \\
+%       \verb=\UQPTimeE[sub][sup][arg]= = \UQPTimeE[sub][sup][arg] \\
+%       \verb=\UQPTimeH[sub][sup][arg]= = \UQPTimeH[sub][sup][arg] \\
+%       \verb=\UQPTimeC[sub][sup][arg]= = \UQPTimeC[sub][sup][arg]
+%     \item
+%       \verb=\AQPTime[sub][sup][arg]= = \AQPTime[sub][sup][arg] \\
+%       \verb=\AQPTimeE[sub][sup][arg]= = \AQPTimeE[sub][sup][arg] \\
+%       \verb=\AQPTimeH[sub][sup][arg]= = \AQPTimeH[sub][sup][arg] \\
+%       \verb=\AQPTimeC[sub][sup][arg]= = \AQPTimeC[sub][sup][arg]
+%   \end{itemize}
+%    \begin{macrocode}
+\defcomclsgrp{QPTime}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\QPSpace, ...}
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\QPSpace[sub][sup][arg]= = \QPSpace[sub][sup][arg] \\
+%       \verb=\QPSpaceE[sub][sup][arg]= = \QPSpaceE[sub][sup][arg] \\
+%       \verb=\QPSpaceH[sub][sup][arg]= = \QPSpaceH[sub][sup][arg] \\
+%       \verb=\QPSpaceC[sub][sup][arg]= = \QPSpaceC[sub][sup][arg]
+%     \item
+%       \verb=\DQPSpace[sub][sup][arg]= = \DQPSpace[sub][sup][arg] \\
+%       \verb=\DQPSpaceE[sub][sup][arg]= = \DQPSpaceE[sub][sup][arg] \\
+%       \verb=\DQPSpaceH[sub][sup][arg]= = \DQPSpaceH[sub][sup][arg] \\
+%       \verb=\DQPSpaceC[sub][sup][arg]= = \DQPSpaceC[sub][sup][arg]
+%     \item
+%       \verb=\NQPSpace[sub][sup][arg]= = \NQPSpace[sub][sup][arg] \\
+%       \verb=\NQPSpaceE[sub][sup][arg]= = \NQPSpaceE[sub][sup][arg] \\
+%       \verb=\NQPSpaceH[sub][sup][arg]= = \NQPSpaceH[sub][sup][arg] \\
+%       \verb=\NQPSpaceC[sub][sup][arg]= = \NQPSpaceC[sub][sup][arg]
+%     \item
+%       \verb=\UQPSpace[sub][sup][arg]= = \UQPSpace[sub][sup][arg] \\
+%       \verb=\UQPSpaceE[sub][sup][arg]= = \UQPSpaceE[sub][sup][arg] \\
+%       \verb=\UQPSpaceH[sub][sup][arg]= = \UQPSpaceH[sub][sup][arg] \\
+%       \verb=\UQPSpaceC[sub][sup][arg]= = \UQPSpaceC[sub][sup][arg]
+%     \item
+%       \verb=\AQPSpace[sub][sup][arg]= = \AQPSpace[sub][sup][arg] \\
+%       \verb=\AQPSpaceE[sub][sup][arg]= = \AQPSpaceE[sub][sup][arg] \\
+%       \verb=\AQPSpaceH[sub][sup][arg]= = \AQPSpaceH[sub][sup][arg] \\
+%       \verb=\AQPSpaceC[sub][sup][arg]= = \AQPSpaceC[sub][sup][arg]
+%   \end{itemize}
+%    \begin{macrocode}
+\defcomclsgrp{QPSpace}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\ExpTime, ...}
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\ExpTime[sub][sup][arg]= = \ExpTime[sub][sup][arg] \\
+%       \verb=\ExpTimeE[sub][sup][arg]= = \ExpTimeE[sub][sup][arg] \\
+%       \verb=\ExpTimeH[sub][sup][arg]= = \ExpTimeH[sub][sup][arg] \\
+%       \verb=\ExpTimeC[sub][sup][arg]= = \ExpTimeC[sub][sup][arg]
+%     \item
+%       \verb=\DExpTime[sub][sup][arg]= = \DExpTime[sub][sup][arg] \\
+%       \verb=\DExpTimeE[sub][sup][arg]= = \DExpTimeE[sub][sup][arg] \\
+%       \verb=\DExpTimeH[sub][sup][arg]= = \DExpTimeH[sub][sup][arg] \\
+%       \verb=\DExpTimeC[sub][sup][arg]= = \DExpTimeC[sub][sup][arg]
+%     \item
+%       \verb=\NExpTime[sub][sup][arg]= = \NExpTime[sub][sup][arg] \\
+%       \verb=\NExpTimeE[sub][sup][arg]= = \NExpTimeE[sub][sup][arg] \\
+%       \verb=\NExpTimeH[sub][sup][arg]= = \NExpTimeH[sub][sup][arg] \\
+%       \verb=\NExpTimeC[sub][sup][arg]= = \NExpTimeC[sub][sup][arg]
+%     \item
+%       \verb=\UExpTime[sub][sup][arg]= = \UExpTime[sub][sup][arg] \\
+%       \verb=\UExpTimeE[sub][sup][arg]= = \UExpTimeE[sub][sup][arg] \\
+%       \verb=\UExpTimeH[sub][sup][arg]= = \UExpTimeH[sub][sup][arg] \\
+%       \verb=\UExpTimeC[sub][sup][arg]= = \UExpTimeC[sub][sup][arg]
+%     \item
+%       \verb=\AExpTime[sub][sup][arg]= = \AExpTime[sub][sup][arg] \\
+%       \verb=\AExpTimeE[sub][sup][arg]= = \AExpTimeE[sub][sup][arg] \\
+%       \verb=\AExpTimeH[sub][sup][arg]= = \AExpTimeH[sub][sup][arg] \\
+%       \verb=\AExpTimeC[sub][sup][arg]= = \AExpTimeC[sub][sup][arg]
+%   \end{itemize}
+%    \begin{macrocode}
+\defcomclsgrp{ExpTime}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\ExpSpace, ...}
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\ExpSpace[sub][sup][arg]= = \ExpSpace[sub][sup][arg] \\
+%       \verb=\ExpSpaceE[sub][sup][arg]= = \ExpSpaceE[sub][sup][arg] \\
+%       \verb=\ExpSpaceH[sub][sup][arg]= = \ExpSpaceH[sub][sup][arg] \\
+%       \verb=\ExpSpaceC[sub][sup][arg]= = \ExpSpaceC[sub][sup][arg]
+%     \item
+%       \verb=\DExpSpace[sub][sup][arg]= = \DExpSpace[sub][sup][arg] \\
+%       \verb=\DExpSpaceE[sub][sup][arg]= = \DExpSpaceE[sub][sup][arg] \\
+%       \verb=\DExpSpaceH[sub][sup][arg]= = \DExpSpaceH[sub][sup][arg] \\
+%       \verb=\DExpSpaceC[sub][sup][arg]= = \DExpSpaceC[sub][sup][arg]
+%     \item
+%       \verb=\NExpSpace[sub][sup][arg]= = \NExpSpace[sub][sup][arg] \\
+%       \verb=\NExpSpaceE[sub][sup][arg]= = \NExpSpaceE[sub][sup][arg] \\
+%       \verb=\NExpSpaceH[sub][sup][arg]= = \NExpSpaceH[sub][sup][arg] \\
+%       \verb=\NExpSpaceC[sub][sup][arg]= = \NExpSpaceC[sub][sup][arg]
+%     \item
+%       \verb=\UExpSpace[sub][sup][arg]= = \UExpSpace[sub][sup][arg] \\
+%       \verb=\UExpSpaceE[sub][sup][arg]= = \UExpSpaceE[sub][sup][arg] \\
+%       \verb=\UExpSpaceH[sub][sup][arg]= = \UExpSpaceH[sub][sup][arg] \\
+%       \verb=\UExpSpaceC[sub][sup][arg]= = \UExpSpaceC[sub][sup][arg]
+%     \item
+%       \verb=\AExpSpace[sub][sup][arg]= = \AExpSpace[sub][sup][arg] \\
+%       \verb=\AExpSpaceE[sub][sup][arg]= = \AExpSpaceE[sub][sup][arg] \\
+%       \verb=\AExpSpaceH[sub][sup][arg]= = \AExpSpaceH[sub][sup][arg] \\
+%       \verb=\AExpSpaceC[sub][sup][arg]= = \AExpSpaceC[sub][sup][arg]
+%   \end{itemize}
+%    \begin{macrocode}
+\defcomclsgrp{ExpSpace}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+%%****************************************************************************%%
+%    \end{macrocode}
+
+% \begin{macro}{\PH}
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\PH[sub][sup][par]= = \PH[sub][sup][par]
+%   \end{itemize}
+%    \begin{macrocode}
+\defcomhrc{PH}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\WH}
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\WH[sub][sup][par]= = \WH[sub][sup][par]
+%   \end{itemize}
+%    \begin{macrocode}
+\defcomhrc{WH}[W]
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\AH}
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\AH[sub][sup][par]= = \AH[sub][sup][par]
+%   \end{itemize}
+%    \begin{macrocode}
+\defcomhrc{AH}[A]
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\DLH, \DBH}
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\DLH[sub][sup][par]= = \DLH[sub][sup][par]
+%     \item
+%       \verb=\DBH[sub][sup][par]= = \DBH[sub][sup][par]
+%   \end{itemize}
+%    \begin{macrocode}
+\defcomhrc{DLH}[{\mth{\Delta}}]
+\defcomhrc{DBH}[{\mth[mathbf]{\Delta}}]
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\ELH, \EBH}
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\ELH[sub][sup][par]= = \ELH[sub][sup][par]
+%     \item
+%       \verb=\EBH[sub][sup][par]= = \EBH[sub][sup][par]
+%   \end{itemize}
+%    \begin{macrocode}
+\defcomhrc{ELH}[{\mth{\Sigma}}]
+\defcomhrc{EBH}[{\mth[mathbf]{\Sigma}}]
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\ULH, \UBH}
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\ULH[sub][sup][par]= = \ULH[sub][sup][par]
+%     \item
+%       \verb=\UBH[sub][sup][par]= = \UBH[sub][sup][par]
+%   \end{itemize}
+%    \begin{macrocode}
+\defcomhrc{ULH}[{\mth{\Pi}}]
+\defcomhrc{UBH}[{\mth[mathbf]{\Pi}}]
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+\fi
+%%****************************************************************************%%
+%    \end{macrocode}
+
+\endinput

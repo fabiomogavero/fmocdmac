@@ -5,6 +5,19 @@
 %% The original source files were:
 %%
 %% fmocdmac.dtx  (with options: `package')
+%% fmocdmac-aux.dtx 
+%% fmocdmac-txtgen.dtx 
+%% fmocdmac-mthgen.dtx 
+%% fmocdmac-txt.dtx 
+%% fmocdmac-mth.dtx 
+%% fmocdmac-com.dtx 
+%% fmocdmac-gam.dtx 
+%% fmocdmac-log.dtx 
+%% fmocdmac-aut.dtx 
+%% fmocdmac-frm.dtx 
+%% fmocdmac-fig.dtx 
+%% fmocdmac-tab.dtx 
+%% fmocdmac-alg.dtx 
 %% 
 %% --------:| ------------------------------------------------------------------
 %% fmocdmac:| FM's OCD LaTeX Macros
@@ -16,7 +29,7 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesPackage{fmocdmac}
-  [2023/02/05 v0.14 FM's OCD LaTeX Macro]
+  [2023/02/14 v0.15 FM's OCD LaTeX Macro]
 
 \RequirePackage{etoolbox}
 
@@ -143,99 +156,6 @@
 
 
 %%****************************************************************************%%
-%%** Auxiliary Tricks ********************************************************%%
-%%****************************************************************************%%
-\ifaux@
-
-\ifamsdef@
-  % AMS Packages
-  \RequirePackage{amsmath}
-  \RequirePackage{amssymb}
-  \RequirePackage{stmaryrd}
-  \interdisplaylinepenalty=2500
-\fi
-
-\ifamsthm@
-  % AMS Theorem Tools
-  \RequirePackage{amsthm}
-\fi
-
-\ifthmtls@
-  % Extended Theorem Tools
-  \RequirePackage{thmtools, thm-restate}
-\fi
-
-\ifenmtls@
-  % Enumeration Tools
-  \RequirePackage{paralist}
-\fi
-
-\ifhypref@
-  % Hyper References
-  \RequirePackage{hyperref}
-  \hypersetup {
-    pdfsubject    = {},
-    pdfkeywords   = {},
-    pdfproducer   = {},
-    pdfcreator    = {},
-    pdfpagemode   = {UseNone},
-    pdfstartview  = {FitH},
-    urlcolor      = {blue},
-    colorlinks
-  }
-\fi
-
-\iffnttls@
-  % Font Tools
-  \RequirePackage[final]{microtype}
-\fi
-
-\ifcrv@
-  % Camera-Ready Version
-
-  %%...
-
-\else
-  % Draft Version
-
-  %%...
-
-  \ifchgbar@
-    % Change Bars
-    \RequirePackage{changebar}
-  \fi
-
-  \iflinnum@
-    % Line Numbers
-    \if@twocolumn
-      \RequirePackage[switch, columnwise, mathlines]{lineno}\linenumbers
-    \else
-      \RequirePackage[columnwise, mathlines]{lineno}\linenumbers
-    \fi
-  \fi
-
-  %%...
-
-\fi
-
-\fi
-%%****************************************************************************%%
-
-%%****************************************************************************%%
-%%** Auxiliary Font Declarations *********************************************%%
-%%****************************************************************************%%
-
-\ifdef{\mathbbo}{}{\DeclareMathAlphabet{\mathbbo}{U}{bbold}{m}{n}}
-
-\ifdef{\matheus}{}{\DeclareMathAlphabet{\matheus}{U}{eus}{m}{n}}
-
-\ifdef{\mathpzc}{}{\DeclareMathAlphabet{\mathpzc}{T1}{pzc}{m}{it}}
-
-\ifdef{\mathscr}{}{\DeclareMathAlphabet{\mathscr}{U}{rsfs}{m}{n}}
-
-%%****************************************************************************%%
-
-%%****************************************************************************%%
 %%** Auxiliary Alphabet Letters **********************************************%%
 %%****************************************************************************%%
 
@@ -331,6 +251,99 @@
 
 \newcommand{\seqoflet}[2]
   {\seqoflow{#1}{#2}\seqofupp{#1}{#2}}
+
+%%****************************************************************************%%
+
+%%****************************************************************************%%
+%%** Auxiliary Packages ******************************************************%%
+%%****************************************************************************%%
+\ifaux@
+
+\ifamsdef@
+  % AMS Packages
+  \RequirePackage{amsmath}
+  \RequirePackage{amssymb}
+  \RequirePackage{stmaryrd}
+  \interdisplaylinepenalty=2500
+\fi
+
+\ifamsthm@
+  % AMS Theorem Tools
+  \RequirePackage{amsthm}
+\fi
+
+\ifthmtls@
+  % Extended Theorem Tools
+  \RequirePackage{thmtools, thm-restate}
+\fi
+
+\ifenmtls@
+  % Enumeration Tools
+  \RequirePackage{paralist}
+\fi
+
+\ifhypref@
+  % Hyper References
+  \RequirePackage{hyperref}
+  \hypersetup {
+    pdfsubject    = {},
+    pdfkeywords   = {},
+    pdfproducer   = {},
+    pdfcreator    = {},
+    pdfpagemode   = {UseNone},
+    pdfstartview  = {FitH},
+    urlcolor      = {blue},
+    colorlinks
+  }
+\fi
+
+\iffnttls@
+  % Font Tools
+  \RequirePackage[final]{microtype}
+\fi
+
+\ifcrv@
+  % Camera-Ready Version
+
+  %%...
+
+\else
+  % Draft Version
+
+  %%...
+
+  \ifchgbar@
+    % Change Bars
+    \RequirePackage{changebar}
+  \fi
+
+  \iflinnum@
+    % Line Numbers
+    \if@twocolumn
+      \RequirePackage[switch, columnwise, mathlines]{lineno}\linenumbers
+    \else
+      \RequirePackage[columnwise, mathlines]{lineno}\linenumbers
+    \fi
+  \fi
+
+  %%...
+
+\fi
+
+\fi
+%%****************************************************************************%%
+
+%%****************************************************************************%%
+%%** Auxiliary Font Declarations *********************************************%%
+%%****************************************************************************%%
+
+\ifdef{\mathbbo}{}{\DeclareMathAlphabet{\mathbbo}{U}{bbold}{m}{n}}
+
+\ifdef{\matheus}{}{\DeclareMathAlphabet{\matheus}{U}{eus}{m}{n}}
+
+\ifdef{\mathpzc}{}{\DeclareMathAlphabet{\mathpzc}{T1}{pzc}{m}{it}}
+
+\ifdef{\mathscr}{}{\DeclareMathAlphabet{\mathscr}{U}{rsfs}{m}{n}}
 
 %%****************************************************************************%%
 
@@ -1404,6 +1417,7 @@
   \defcomclsgrpsem{#1}{\defval{#2}{#1}}[Co]}
 \newcommandx{\defcomclsgrpsem}[3][3=]
   {\defcomclsgrpred{#3#1}{#2}[#3]%
+  \defcomclsgrpred{#3D#1}{#2}[#3D]%
   \defcomclsgrpred{#3N#1}{#2}[#3N]%
   \defcomclsgrpred{#3U#1}{#2}[#3U]%
   \defcomclsgrpred{#3A#1}{#2}[#3A]}
@@ -2519,9 +2533,9 @@
 \ifalg@
 
 \RequirePackage[ruled,vlined]{algorithm2e}
-\setlength{\algomargin}{1.25em}
 \DontPrintSemicolon
 \SetInd{0.25em}{0.5em}
+\setlength{\algomargin}{1.25em}
 
 \SetKw{Signature}{signature}
 

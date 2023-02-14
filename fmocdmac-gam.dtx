@@ -1,0 +1,340 @@
+
+%    \begin{macrocode}
+%%****************************************************************************%%
+%%** Macros for Games ********************************************************%%
+%%****************************************************************************%%
+\ifgam@
+%    \end{macrocode}
+
+%    \begin{macrocode}
+%%** Logic Games *************************************************************%%
+%    \end{macrocode}
+
+% \begin{macro}{\SATG, ...}
+%   ...
+%    \begin{macrocode}
+%% Satisfiability Games
+\cmdtxtoparname{SATG}[Sat]
+
+%% Validity Games
+\cmdtxtoparname{VALG}[Val]
+
+%% Evaluation Games
+\cmdtxtoparname{EVLG}[Evl]
+
+%% Synthesis Games
+\cmdtxtoparname{SYNG}[Syn]
+
+%% Model-Checking Games
+\cmdtxtoparname{MCG}[MC]
+
+%% Ehrenfeucht-Fraisse Games
+\cmdtxtoparname{EFG}[EF]
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+%%** Syntax ******************************************************************%%
+%    \end{macrocode}
+
+% \begin{macro}{\PlrSym, \OppSym}
+%   ...
+%    \begin{macrocode}
+\newcommand{\plrsym}{E}
+\cmdmthsym{Plr}[\plrsym]
+\newcommand{\oppsym}{A}
+\cmdmthsym{Opp}[\oppsym]
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\ArenaName, ...}
+%   ...
+%    \begin{macrocode}
+\newcommand{\arenaname}{A}
+\usrmthlatupp{Arena}{Name}{name}[\arenaname]
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\PosSet, ...}
+%   ...
+%    \begin{macrocode}
+\newcommand{\possym}{v}
+\newcommand{\posset}{Ps}
+\cmdmthsetext{Pos}[\posset][\possym]
+\cmdmthsymelm{ipos}[\possym_{I}]
+\cmdmthsymelm{fpos}[\possym_{F}]
+\cmdmthset{PPos}[\posset_{\PlrSym}]
+\cmdmthsymelm{ppos}[\possym_{\PlrSym}]
+\cmdmthset{OPos}[\posset_{\OppSym}]
+\cmdmthsymelm{opos}[\possym_{\OppSym}]
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\PlrFun}
+%   ...
+%    \begin{macrocode}
+\newcommand{\plrfun}{pl}
+\cmdmthfun{plr}[\plrfun]
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\MovRel}
+%   ...
+%    \begin{macrocode}
+\newcommand{\movrel}{Mv}
+\cmdmthrel{Mov}[\movrel]
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\GameName, ...}
+%   ...
+%    \begin{macrocode}
+\newcommand{\gamename}{\Game}
+\usrmthlatupp{Game}{Name}{name}[\gamename]
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\WinSet}
+%   ...
+%    \begin{macrocode}
+\newcommand{\winset}{Wn}
+\cmdmthset{Win}[\winset]
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\ObsSet, \obsFun}
+%   ...
+%    \begin{macrocode}
+\newcommand{\obsset}{Ob}
+\cmdmthset{Obs}[\obsset]
+\cmdmthfun{obs}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+%%** Semantics ***************************************************************%%
+%    \end{macrocode}
+
+% \begin{macro}{\PthSet, \pthFun}
+%   ...
+%    \begin{macrocode}
+\newcommand{\pthsym}{\pi}
+\newcommand{\pthset}{Pth}
+\cmdmthsetext{Pth}[\pthset][\pthsym]
+\cmdmthfun{pth}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\HstSet, ...}
+%   ...
+%    \begin{macrocode}
+\newcommand{\hstsym}{\rho}
+\newcommand{\hstset}{Hst}
+\cmdmthsetext{Hst}[\hstset][\hstsym]
+\cmdmthset{PHst}[\hstset_{\PlrSym}]
+\cmdmthsymelm{phst}[\hstsym_{\PlrSym}]
+\cmdmthset{OHst}[\hstset_{\OppSym}]
+\cmdmthsymelm{ohst}[\hstsym_{\OppSym}]
+\cmdmthfun{hst}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\PlaySet,\playFun}
+%   ...
+%    \begin{macrocode}
+\newcommand{\playsym}{\pi}
+\newcommand{\playset}{Play}
+\cmdmthsetext{Play}[\playset][\playsym]
+\cmdmthfun{play}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\StrSet, ...}
+%   ...
+%    \begin{macrocode}
+\newcommand{\strsym}{\sigma}
+\newcommand{\strset}{Str}
+\cmdmthsetext{Str}[\strset][\strsym]
+\cmdmthset{PStr}[\strset_{\PlrSym}]
+\cmdmthsymelm{pstr}[\strsym_{\PlrSym}]
+\cmdmthset{OStr}[\strset_{\OppSym}]
+\cmdmthsymelm{ostr}[\strsym_{\OppSym}]
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\PrfSet, \prfFun}
+%   ...
+%    \begin{macrocode}
+\newcommand{\prfsym}{\xi}
+\newcommand{\prfset}{Prf}
+\cmdmthsetext{Prf}[\prfset][\prfsym]
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\preFun, \sucFun}
+%   ...
+%    \begin{macrocode}
+\newcommand{\prefun}{pre}
+\cmdmthoargfun{pre}[\prefun]
+\newcommand{\sucfun}{suc}
+\cmdmthoargfun{suc}[\sucfun]
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\entFun, \escFun}
+%   ...
+%    \begin{macrocode}
+\newcommand{\entfun}{ent}
+\cmdmthoargfun{ent}[\entfun]
+\newcommand{\escfun}{esc}
+\cmdmthoargfun{esc}[\escfun]
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\intFun, \outFun}
+%   ...
+%    \begin{macrocode}
+\newcommand{\intfun}{int}
+\cmdmthoargfun{int}[\intfun]
+\newcommand{\outfun}{out}
+\cmdmthoargfun{out}[\outfun]
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\atrFun, \rchFun}
+%   ...
+%    \begin{macrocode}
+\newcommand{\atrfun}{atr}
+\cmdmthoargfun{atr}[\atrfun]
+\newcommand{\rchfun}{rch}
+\cmdmthoargfun{rch}[\rchfun]
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\liftFun}
+%   ...
+%    \begin{macrocode}
+\newcommand{\liftfun}{lift}
+\cmdmthoargfun{lift}[\liftfun]
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\solFun}
+%   ...
+%    \begin{macrocode}
+\newcommand{\solfun}{sol}
+\cmdmthoargfun{sol}[\solfun]
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+%%** Qualitative Games on Graph **********************************************%%
+%    \end{macrocode}
+
+% \begin{macro}{\BG, ...}
+%   ...
+%    \begin{macrocode}
+%% Buchi Games
+\cmdtxtoparname{BG}
+
+%% Co-Buchi Games
+\cmdtxtoparname{CG}
+
+%% Parity Games
+\cmdtxtoparname{PG}
+
+%% Rabin Games
+\cmdtxtoparname{RG}
+
+%% Streett Games
+\cmdtxtoparname{SG}
+
+%% Muller Games
+\cmdtxtoparname{MG}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+%%** Syntax ******************************************************************%%
+%    \end{macrocode}
+
+% \begin{macro}{\EvnSym, \OddSym}
+%   ...
+%    \begin{macrocode}
+\newcommand{\evnsym}{0}
+\cmdmthsym{Evn}[\evnsym]
+\newcommand{\oddsym}{1}
+\cmdmthsym{Odd}[\oddsym]
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\PrtSet, \prtFun}
+%   ...
+%    \begin{macrocode}
+\newcommand{\prtsym}{p}
+\newcommand{\prtset}{Pr}
+\cmdmthsetext{Prt}[\prtset][\prtsym]
+\cmdmthfun{prt}[pr]
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+%%** Semantics ***************************************************************%%
+%    \end{macrocode}
+
+%%...
+
+%    \begin{macrocode}
+%%** Quantitative Games on Graph *********************************************%%
+%    \end{macrocode}
+
+% \begin{macro}{\EG, ...}
+%   ...
+%    \begin{macrocode}
+%% Energy Games
+\cmdtxtoparname{EG}
+
+%% Mean-Payoff Games
+\cmdtxtoparname{MPG}
+
+%% Discounted-Payoff Games
+\cmdtxtoparname{DPG}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+%%** Syntax ******************************************************************%%
+%    \end{macrocode}
+
+% \begin{macro}{\MaxSym, \MinSym}
+%   ...
+%    \begin{macrocode}
+\newcommand{\maxsym}{\oplus}
+\cmdmthsym{Max}[\maxsym]
+\newcommand{\minsym}{\boxminus}
+\cmdmthsym{Min}[\minsym]
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\WghSet, \wghFun}
+%   ...
+%    \begin{macrocode}
+\newcommand{\wghsym}{w}
+\newcommand{\wghset}{Wg}
+\cmdmthsetext{Wgh}[\wghset][\wghsym]
+\cmdmthfun{wgh}[wg]
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+%%** Semantics ***************************************************************%%
+%    \end{macrocode}
+
+%%...
+
+%    \begin{macrocode}
+\fi
+%%****************************************************************************%%
+%    \end{macrocode}
+
+\endinput

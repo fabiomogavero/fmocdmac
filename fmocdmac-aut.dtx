@@ -1,0 +1,180 @@
+
+%    \begin{macrocode}
+%%****************************************************************************%%
+%%** Macros for Automata *****************************************************%%
+%%****************************************************************************%%
+\ifaut@
+%    \end{macrocode}
+
+%    \begin{macrocode}
+%%** Finite Word Automata ****************************************************%%
+%    \end{macrocode}
+
+% \begin{macro}{\DFA, ...}
+%   ...
+%    \begin{macrocode}
+\cmdtxtoparname{DFA}\cmdtxtoparname{NFA}\cmdtxtoparname{UFA}\cmdtxtoparname{AFA}
+
+\cmdtxtoparname{DWA}\cmdtxtoparname{NWA}\cmdtxtoparname{UWA}\cmdtxtoparname{AWA}
+
+\cmdtxtoparname{DFW}\cmdtxtoparname{NFW}\cmdtxtoparname{UFW}\cmdtxtoparname{AFW}
+\cmdtxtoparname{DBW}\cmdtxtoparname{NBW}\cmdtxtoparname{UBW}\cmdtxtoparname{ABW}
+\cmdtxtoparname{DCW}\cmdtxtoparname{NCW}\cmdtxtoparname{UCW}\cmdtxtoparname{ACW}
+\cmdtxtoparname{DPW}\cmdtxtoparname{NPW}\cmdtxtoparname{UPW}\cmdtxtoparname{APW}
+\cmdtxtoparname{DRW}\cmdtxtoparname{NRW}\cmdtxtoparname{URW}\cmdtxtoparname{ARW}
+\cmdtxtoparname{DSW}\cmdtxtoparname{NSW}\cmdtxtoparname{USW}\cmdtxtoparname{ASW}
+\cmdtxtoparname{DMW}\cmdtxtoparname{NMW}\cmdtxtoparname{UMW}\cmdtxtoparname{AMW}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\GFG, \PD, ...}
+%   ...
+%    \begin{macrocode}
+\cmdtxtoparname{GFG}
+
+\cmdtxtoparname{PD}
+
+%% ...
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+%%** Syntax ******************************************************************%%
+%    \end{macrocode}
+
+% \begin{macro}{\AutName, ...}
+%   ...
+%    \begin{macrocode}
+\newcommand{\autname}{A}
+\usrmthlatupp{Aut}{Name}{name}[\autname]
+\newcommand{\autset}{Aut}
+\cmdmthset{Aut}[\autset]
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\WAutSet}
+%   ...
+%    \begin{macrocode}
+\newcommand{\wautset}{WAut}
+\cmdmthset{WAut}[\wautset]
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\SttSet, ...}
+%   ...
+%    \begin{macrocode}
+\def\sttsym{q}
+\def\sttset{Q}
+\cmdmthsetext{Stt}[\sttset][\sttsym]
+\cmdmthset{IStt}[\sttset_{I}]
+\cmdmthsymelm{istt}[\sttsym_{I}]
+\cmdmthset{FStt}[\sttset_{F}]
+\cmdmthsymelm{fstt}[\sttsym_{F}]
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\SymSet, ...}
+%   ...
+%    \begin{macrocode}
+\newcommand{\symsym}{\sigma}
+\newcommand{\symset}{\Sigma}
+\cmdmthsetext{Sym}[\symset][\symsym]
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\trnFun}
+%   ...
+%    \begin{macrocode}
+\newcommand{\trnsym}{\delta}
+\cmdmthfun{trn}[\trnsym]
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+%%** Semantics ***************************************************************%%
+%    \end{macrocode}
+
+% \begin{macro}{\LangFun}
+%   ...
+%    \begin{macrocode}
+\newcommand{\langfun}{L}
+\cmdmthfun{Lang}[\langfun]
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\WrdSet, ...}
+%   ...
+%    \begin{macrocode}
+\newcommand{\wrdsym}{w}
+\newcommand{\wrdset}{Wr}
+\cmdmthsetext{Wrd}[\wrdset][\wrdsym]
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+%%** Finite Tree Automata ****************************************************%%
+%    \end{macrocode}
+
+% \begin{macro}{\DTA, ...}
+%   ...
+%    \begin{macrocode}
+\cmdtxtoparname{DTA}\cmdtxtoparname{NTA}\cmdtxtoparname{UTA}\cmdtxtoparname{ATA}
+
+\cmdtxtoparname{DFT}\cmdtxtoparname{NFT}\cmdtxtoparname{UFT}\cmdtxtoparname{AFT}
+\cmdtxtoparname{DBT}\cmdtxtoparname{NBT}\cmdtxtoparname{UBT}\cmdtxtoparname{ABT}
+\cmdtxtoparname{DCT}\cmdtxtoparname{NCT}\cmdtxtoparname{UCT}\cmdtxtoparname{ACT}
+\cmdtxtoparname{DPT}\cmdtxtoparname{NPT}\cmdtxtoparname{UPT}\cmdtxtoparname{APT}
+\cmdtxtoparname{DRT}\cmdtxtoparname{NRT}\cmdtxtoparname{URT}\cmdtxtoparname{ART}
+\cmdtxtoparname{DST}\cmdtxtoparname{NST}\cmdtxtoparname{UST}\cmdtxtoparname{AST}
+\cmdtxtoparname{DMT}\cmdtxtoparname{NMT}\cmdtxtoparname{UMT}\cmdtxtoparname{AMT}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+%%** Syntax ******************************************************************%%
+%    \end{macrocode}
+
+% \begin{macro}{\TAutSet}
+%   ...
+%    \begin{macrocode}
+\newcommand{\tautset}{TAut}
+\cmdmthset{TAut}[\tautset]
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\DirSet, ...}
+%   ...
+%    \begin{macrocode}
+\newcommand{\dirsym}{d}
+\newcommand{\dirset}{\Lambda}
+\cmdmthsetext{Dir}[\dirset][\dirsym]
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+%%** Semantics ***************************************************************%%
+%    \end{macrocode}
+
+% \begin{macro}{\TreeSet, ...}
+%   ...
+%    \begin{macrocode}
+\newcommand{\treesym}{T}
+\newcommand{\treeset}{Tr}
+\cmdmthsetext{Tree}[\treeset][\treesym]
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\wotFun}
+%   ...
+%    \begin{macrocode}
+\newcommand{\wotfun}{wot}
+\cmdmthfun{wot}[\wotfun]
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+\fi
+%%****************************************************************************%%
+%    \end{macrocode}
+
+\endinput

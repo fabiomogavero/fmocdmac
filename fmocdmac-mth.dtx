@@ -1,0 +1,536 @@
+
+%    \begin{macrocode}
+%%****************************************************************************%%
+%%** Elementary Macros for Math **********************************************%%
+%%****************************************************************************%%
+\ifmath@
+%    \end{macrocode}
+
+%    \begin{macrocode}
+%%** General Notation ********************************************************%%
+%    \end{macrocode}
+
+% \begin{macro}{\defeq, \seteq}
+%   ...
+%    \begin{macrocode}
+\DeclareRobustCommand{\defeq}
+  {\@ifstar%
+    {\mthlbop{\stackrel{\text{\textup{def}}}{=}}}%
+    {\mthlbop{\triangleq}}}
+\DeclareRobustCommand{\seteq}
+  {\@ifstar{\mthlbop{::=}}{\mthlbop{:=}}}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+%%****************************************************************************%%
+%    \end{macrocode}
+
+% \begin{macro}{\implies, ...}
+%   ...
+%    \begin{macrocode}
+\DeclareRobustCommand{\implies}
+  {\mthlrel{\Rightarrow}}
+\DeclareRobustCommand{\notimplies}
+  {\mthlrel{\not\Rightarrow}}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\implied, ...}
+%   ...
+%    \begin{macrocode}
+\DeclareRobustCommand{\implied}
+  {\mthlrel{\Leftarrow}}
+\DeclareRobustCommand{\notimplied}
+  {\mthlrel{\not\Leftarrow}}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\coimplies, ...}
+%   ...
+%    \begin{macrocode}
+\DeclareRobustCommand{\coimplies}
+  {\mthlrel{\Leftrightarrow}}
+\DeclareRobustCommand{\notcoimplies}
+  {\mthlrel{\not\!\Leftrightarrow}}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+%%****************************************************************************%%
+%    \end{macrocode}
+
+% \begin{macro}{\cmodels, ...}
+%   ...
+%    \begin{macrocode}
+\DeclareRobustCommand{\cmodels}
+  {\mthlrel{\models}}
+\DeclareRobustCommand{\notcmodels}
+  {\mthlrel{\not\models}}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cequiv, ...}
+%   ...
+%    \begin{macrocode}
+\DeclareRobustCommand{\cequiv}
+  {\mthlrel{\equiv}}
+\DeclareRobustCommand{\notcequiv}
+  {\mthlrel{\not\equiv}}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+%%****************************************************************************%%
+%    \end{macrocode}
+
+% \begin{macro}{\denot}
+%   ...
+%    \begin{macrocode}
+\DeclareRobustCommand{\denot}
+  {\@ifstar{\@denot}{\@denot[\left][\right]}}
+\DeclareRobustCommandx{\@denot}[3][1=, 2=]
+  {\mth{\argmid{#1\llbracket}{#3}{#2\rrbracket}}}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+%%****************************************************************************%%
+%    \end{macrocode}
+
+% \begin{macro}{\dual, \adj, ...}
+%   ...
+%    \begin{macrocode}
+\DeclareRobustCommand{\dual}[1]
+  {\mth{\overline{#1}}}
+\DeclareRobustCommand{\adj}[1]
+  {\mth{\mathring{#1}}}
+\DeclareRobustCommand{\der}[1]
+  {\mth{\widehat{#1}}}
+\DeclareRobustCommand{\trn}[1]
+  {\mth{\widetilde{#1}}}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\vec}
+%   ...
+%    \begin{macrocode}
+\DeclareRobustCommand{\vec}
+  {\@ifstar{\@svec}{\@vec}}
+\DeclareRobustCommand{\@vec}[1]
+  {\mth{\mathaccent"017E{#1}}}
+\DeclareRobustCommand{\@svec}[1]
+  {\mth{\overline{#1}}}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+%%****************************************************************************%%
+%    \end{macrocode}
+
+% \begin{macro}{\enumeration, ...}
+%   ...
+%    \begin{macrocode}
+\varcmd{enumeration}{\mth}{}{,}{}{}
+\varcmd{enumerationx}{\mth}{}{;}{}{}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\sequence, ...}
+%   ...
+%    \begin{macrocode}
+\varcmd{sequence}{\mth}{\left[}{,}{\right]}{}
+\varcmd{sequencel}{\mth}{\left[}{,}{\right.}{}
+\varcmd{sequencer}{\mth}{\left.}{,}{\right]}{}
+\varcmd{sequencex}{\mth}{\left[}{;}{\right]}{}
+\varcmd{sequencexl}{\mth}{\left[}{;}{\right.}{}
+\varcmd{sequencexr}{\mth}{\left.}{;}{\right]}{}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\tuple, ...}
+%   ...
+%    \begin{macrocode}
+\varcmd{tuple}{\mth}{\left\langle}{,}{\right\rangle}{}
+\varcmd{tuplel}{\mth}{\left\langle}{,}{\right.}{}
+\varcmd{tupler}{\mth}{\left.}{,}{\right\rangle}{}
+\varcmd{tuplex}{\mth}{\left\langle}{;}{\right\rangle}{}
+\varcmd{tuplexl}{\mth}{\left\langle}{;}{\right.}{}
+\varcmd{tuplexr}{\mth}{\left.}{;}{\right\rangle}{}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+%%** Sets ********************************************************************%%
+%    \end{macrocode}
+
+% \begin{macro}{\set, ...}
+%   ...
+%    \begin{macrocode}
+\DeclareRobustCommand{\set}
+  {\@ifstar{\@set}{\@set[\left][\middle][\right]}}
+\DeclareRobustCommandx{\@set}[5][1=, 2=, 3=]
+  {\mth{\argmid{#1\lbrace}{\argsep{#4}{\,#2\vert\,}{#5}}{#3\rbrace}}}
+\DeclareRobustCommand{\setl}
+  {\@ifstar{\@setl}{\@setl[\left][\right]}}
+\DeclareRobustCommandx{\@setl}[3][1=, 2=]
+  {\mth{\argmid{#1\lbrace}{#3}{\,#2\vert\!}}}
+\DeclareRobustCommand{\setr}
+  {\@ifstar{\@setr}{\@setr[\left.][\right]}}
+\DeclareRobustCommandx{\@setr}[3][1=, 2=]
+  {\mth{\argmid{#1}{#3}{#2\rbrace}}}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\card}
+%   ...
+%    \begin{macrocode}
+\DeclareRobustCommand{\card}
+  {\@ifstar{\@card}{\@card[\left][\right]}}
+\DeclareRobustCommandx{\@card}[3][1=, 2=]
+  {\mth{\argmid{#1\lvert}{#3}{#2\rvert}}}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\pow}
+%   ...
+%    \begin{macrocode}
+\DeclareRobustCommand{\pow}[1]
+  {\mth{2^{\defval{#1}{\cdot}}}}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+%%** Relations ***************************************************************%%
+%    \end{macrocode}
+
+% \begin{macro}{\emptyrel}
+%   ...
+%    \begin{macrocode}
+\DeclareRobustCommand{\emptyrel}
+  {\mth{\varnothing}}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+%%****************************************************************************%%
+%    \end{macrocode}
+
+% \begin{macro}{\dom, \cod, ...}
+%   ...
+%    \begin{macrocode}
+\usrmth{dom}{}{argfun}
+\usrmth{cod}{}{argfun}
+\usrmth{rng}{}{argfun}
+\usrmth{img}{}{argfun}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+%%****************************************************************************%%
+%    \end{macrocode}
+
+% \begin{macro}{\prj}
+%   ...
+%    \begin{macrocode}
+\DeclareRobustCommand{\prj}
+  {\mthargfun{prj}}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\rst}
+%   ...
+%    \begin{macrocode}
+\DeclareRobustCommand{\rst}
+  {\mthlbop{\upharpoonright}}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmp}
+%   ...
+%    \begin{macrocode}
+\DeclareRobustCommand{\cmp}
+  {\mthlbop{\circ}}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+%%** Functions ***************************************************************%%
+%    \end{macrocode}
+
+% \begin{macro}{\emptyfun}
+%   ...
+%    \begin{macrocode}
+\DeclareRobustCommand{\emptyfun}
+  {\mth{\varnothing}}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+%%****************************************************************************%%
+%    \end{macrocode}
+
+% \begin{macro}{\pto, \pmapsto}
+%   ...
+%    \begin{macrocode}
+\DeclareMathOperator{\pto}
+  {\ensuremath{\rightharpoonup}}
+\DeclareMathOperator{\pmapsto}
+  {\ensuremath{\mathrel{\raisebox{0.5ex}{\footnotesize${\llcorner}$}%
+    \kern-1.5ex\rightharpoonup}}}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+%%****************************************************************************%%
+%    \end{macrocode}
+
+% \begin{macro}{\fix, \ifp, ...}
+%   ...
+%    \begin{macrocode}
+\usrmth{fix}{}{fun}
+\usrmth{ifp}{}{fun}
+\usrmth{lfp}{}{fun}
+\usrmth{gfp}{}{fun}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+%%****************************************************************************%%
+%    \end{macrocode}
+
+% \begin{macro}{\Aomega, \AOmega}
+%   ...
+%    \begin{macrocode}
+\usrmth{Aomega}{}{argset}[\omega]
+\usrmth{AOmega}{}{argset}[\Omega]
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\Atheta, \ATheta}
+%   ...
+%    \begin{macrocode}
+\usrmth{Atheta}{}{argset}[\theta]
+\usrmth{ATheta}{}{argset}[\Theta]
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\Aomicron, ...}
+%   ...
+%    \begin{macrocode}
+\usrmth{Aomicron}{}{argset}[\omicron]
+\usrmth{AOmicron}{}{argset}[\Omicron]
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+%%** Numbers *****************************************************************%%
+%    \end{macrocode}
+
+% \begin{macro}{\SetB}
+%   ...
+%    \begin{macrocode}
+\DeclareRobustCommand{\SetB}
+  {\mthset[mathbb]{B}}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\SetF}
+%   ...
+%    \begin{macrocode}
+\DeclareRobustCommand{\SetF}
+  {\mthset[mathbb]{F}}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\SetN, ...}
+%   ...
+%    \begin{macrocode}
+\DeclareRobustCommand{\SetN}
+  {\mthset[mathbb]{N}}
+\DeclareRobustCommand{\SetNI}[1][]
+  {\SetN[\infty #1]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\SetZ, ...}
+%   ...
+%    \begin{macrocode}
+\DeclareRobustCommand{\SetZ}
+  {\mthset[mathbb]{Z}}
+\DeclareRobustCommand{\SetZI}[1][]
+  {\SetZ[\pm\infty #1]}
+\DeclareRobustCommand{\SetZPI}[1][]
+  {\SetZ[+\infty #1]}
+\DeclareRobustCommand{\SetZNI}[1][]
+  {\SetZ[-\infty #1]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\SetQ, ...}
+%   ...
+%    \begin{macrocode}
+\DeclareRobustCommand{\SetQ}
+  {\mthset[mathbb]{Q}}
+\DeclareRobustCommand{\SetQI}[1][]
+  {\SetQ[\pm\infty #1]}
+\DeclareRobustCommand{\SetQPI}[1][]
+  {\SetQ[+\infty #1]}
+\DeclareRobustCommand{\SetQNI}[1][]
+  {\SetQ[-\infty #1]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\SetR, ...}
+%   ...
+%    \begin{macrocode}
+\DeclareRobustCommand{\SetR}
+  {\mthset[mathbb]{R}}
+\DeclareRobustCommand{\SetRI}[1][]
+  {\SetR[\pm\infty #1]}
+\DeclareRobustCommand{\SetRPI}[1][]
+  {\SetR[+\infty #1]}
+\DeclareRobustCommand{\SetRNI}[1][]
+  {\SetR[-\infty #1]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\SetC, ...}
+%   ...
+%    \begin{macrocode}
+\DeclareRobustCommand{\SetC}
+  {\mthset[mathbb]{C}}
+\DeclareRobustCommand{\SetCI}[1][]
+  {\SetC[\infty #1]}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+%%****************************************************************************%%
+%    \end{macrocode}
+
+% \begin{macro}{\num, ...}
+%   ...
+%    \begin{macrocode}
+\DeclareRobustCommand{\num}[1]
+  {\mth{[#1]}}
+\DeclareRobustCommand{\numcc}[2]
+  {\mth{[\argsep{#1}{,}{#2}]}}
+\DeclareRobustCommand{\numco}[2]
+  {\mth{[\argsep{#1}{,}{#2})}}
+\DeclareRobustCommand{\numoc}[2]
+  {\mth{(\argsep{#1}{,}{#2}]}}
+\DeclareRobustCommand{\numoo}[2]
+  {\mth{(\argsep{#1}{,}{#2})}}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+%%****************************************************************************%%
+%    \end{macrocode}
+
+% \begin{macro}{\abs}
+%   ...
+%    \begin{macrocode}
+\DeclareRobustCommand{\abs}
+  {\@ifstar{\@abs}{\@abs[\left][\right]}}
+\DeclareRobustCommandx{\@abs}[3][1=, 2=]
+  {\mth{\argmid{#1\lvert}{#3}{#2\rvert}}}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\floor, \ceil}
+%   ...
+%    \begin{macrocode}
+\DeclareRobustCommand{\floor}
+  {\@ifstar{\@floor}{\@floor[\left][\right]}}
+\DeclareRobustCommandx{\@floor}[3][1=, 2=]
+  {\mth{\argmid{#1\lfloor}{#3}{#2\rfloor}}}
+\DeclareRobustCommand{\ceil}
+  {\@ifstar{\@ceil}{\@ceil[\left][\right]}}
+\DeclareRobustCommandx{\@ceil}[3][1=, 2=]
+  {\mth{\argmid{#1\lceil}{#3}{#2\rceil}}}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+%%****************************************************************************%%
+%    \end{macrocode}
+
+% \begin{macro}{\arg}
+%   ...
+%    \begin{macrocode}
+\usrmth{arg}{}{fun}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\evn, \odd}
+%   ...
+%    \begin{macrocode}
+\usrmth{evn}{}{fun}
+\usrmth{odd}{}{fun}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\bst, ...}
+%   ...
+%    \begin{macrocode}
+\usrmth{bst}{}{fun}
+\usrmth{argbst}{}{fun}[arg\,bst]
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\min, \max, ...}
+%   ...
+%    \begin{macrocode}
+\usrmth{min}{}{fun}
+\usrmth{max}{}{fun}
+\usrmth{argmin}{}{fun}[arg\,min]
+\usrmth{argmax}{}{fun}[arg\,max]
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\inf, \sup}
+%   ...
+%    \begin{macrocode}
+\usrmth{inf}{}{fun}
+\usrmth{sup}{}{fun}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+%%** Sequences ***************************************************************%%
+%    \end{macrocode}
+
+% \begin{macro}{\emptyseq}
+%   ...
+%    \begin{macrocode}
+\DeclareRobustCommand{\emptyseq}
+  {\mth{\varepsilon}}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\len}
+%   ...
+%    \begin{macrocode}
+\DeclareRobustCommand{\len}
+  {\@ifstar{\@len}{\@len[\left][\right]}}
+\DeclareRobustCommandx{\@len}[3][1=, 2=]
+  {\mth{\argmid{#1\lvert}{#3}{#2\rvert}}}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\fst, \lst}
+%   ...
+%    \begin{macrocode}
+\usrmth{fst}{}{argfun}
+\usrmth{lst}{}{argfun}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+\fi
+%%****************************************************************************%%
+%    \end{macrocode}
+
+\endinput
