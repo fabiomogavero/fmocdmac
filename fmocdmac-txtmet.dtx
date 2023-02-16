@@ -1,0 +1,492 @@
+
+%    \begin{macrocode}
+%%****************************************************************************%%
+%%** Text Meta Commands ******************************************************%%
+%%****************************************************************************%%
+%    \end{macrocode}
+
+% \begin{macro}{\newtxt}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\newtxt[\rmfamily]{Name}[sub][sup][Ext]= =
+%       ``\newtxt[\rmfamily]{Name}[sub][sup][Ext]''
+%     \item
+%       \verb=\newtxt[\sffamily]{Name}[sub][sup][Ext]= =
+%       ``\newtxt[\sffamily]{Name}[sub][sup][Ext]''
+%     \item
+%       \verb=\newtxt[\ttfamily]{Name}[sub][sup][Ext]= =
+%       ``\newtxt[\ttfamily]{Name}[sub][sup][Ext]''
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\newtxt}[5][1=, 3=, 4=, 5=]
+  {\text{#1#2\txtsubsup[#1]{#3}{#4}#5}\xspace}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\newtxtsty}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\newtxtsty{\rmfamily}{Name}[sub][sup][Ext]= =
+%       ``\newtxtsty{\rmfamily}{Name}[sub][sup][Ext]''
+%     \item
+%       \verb=\newtxtsty{\rmfamily}[\sffamily]{Name}[sub][sup][Ext]= =
+%       ``\newtxtsty{\rmfamily}[\sffamily]{Name}[sub][sup][Ext]''
+%     \item
+%       \verb=\newtxtsty{\rmfamily}[\ttfamily]{Name}[sub][sup][Ext]= =
+%       ``\newtxtsty{\rmfamily}[\ttfamily]{Name}[sub][sup][Ext]''
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\newtxtsty}[2][2=]
+  {\newtxt[\defval{#2}{#1}]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\newtxtarg}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\newtxtarg[\rmfamily]{Name}[sub][sup][Ext1]{Arg}[Ext2]= =
+%       ``\newtxtarg[\rmfamily]{Name}[sub][sup][Ext1]{Arg}[Ext2]''
+%     \item
+%       \verb=\newtxtarg[\sffamily]{Name}[sub][sup][Ext1]{Arg}[Ext2]= =
+%       ``\newtxtarg[\sffamily]{Name}[sub][sup][Ext1]{Arg}[Ext2]''
+%     \item
+%       \verb=\newtxtarg[\ttfamily]{Name}[sub][sup][Ext1]{Arg}[Ext2]= =
+%       ``\newtxtarg[\ttfamily]{Name}[sub][sup][Ext1]{Arg}[Ext2]''
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\newtxtarg}[7][1=, 3=, 4=, 5=, 7=]
+  {\newtxt[#1]{#2}[#3][#4][\argmid{#5(}{#6}{)#7}]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\newtxtargsty}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\newtxtargsty{\rmfamily}{Name}[sub][sup][Ext1]{Arg}[Ext2]= =
+%       ``\newtxtargsty{\rmfamily}{Name}[sub][sup][Ext1]{Arg}[Ext2]''
+%     \item
+%       \verb=\newtxtargsty{\rmfamily}[\sffamily]{Name}[sub][sup]=\!
+%         \verb=[Ext1]{Arg}[Ext2]= =
+%       ``\newtxtargsty{\rmfamily}[\sffamily]{Name}[sub][sup][Ext1]{Arg}[Ext2]''
+%     \item
+%       \verb=\newtxtargsty{\rmfamily}[\ttfamily]{Name}[sub][sup]=\!
+%         \verb=[Ext1]{Arg}[Ext2]= =
+%       ``\newtxtargsty{\rmfamily}[\ttfamily]{Name}[sub][sup][Ext1]{Arg}[Ext2]''
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\newtxtargsty}[2][2=]
+  {\newtxtarg[\defval{#2}{#1}]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\newtxtoarg}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\newtxtoarg[\rmfamily]{Name}[sub][sup][Arg]= =
+%       ``\newtxtoarg[\rmfamily]{Name}[sub][sup][Arg]''
+%     \item
+%       \verb=\newtxtoarg[\sffamily]{Name}[sub][sup][Arg]= =
+%       ``\newtxtoarg[\sffamily]{Name}[sub][sup][Arg]''
+%     \item
+%       \verb=\newtxtoarg[\ttfamily]{Name}[sub][sup][Arg]= =
+%       ``\newtxtoarg[\ttfamily]{Name}[sub][sup][Arg]''
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\newtxtoarg}[5][1=, 3=, 4=, 5=]
+  {\newtxtarg[#1]{#2}[#3][#4][]{#5}[]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\newtxtoargsty}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\newtxtoargsty{\rmfamily}{Name}[sub][sup][Arg]= =
+%       ``\newtxtoargsty{\rmfamily}{Name}[sub][sup][Arg]''
+%     \item
+%       \verb=\newtxtoargsty{\rmfamily}[\sffamily]{Name}[sub][sup][Arg]= =
+%       ``\newtxtoargsty{\rmfamily}[\sffamily]{Name}[sub][sup][Arg]''
+%     \item
+%       \verb=\newtxtoargsty{\rmfamily}[\ttfamily]{Name}[sub][sup][Arg]= =
+%       ``\newtxtoargsty{\rmfamily}[\ttfamily]{Name}[sub][sup][Arg]''
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\newtxtoargsty}[2][2=]
+  {\newtxtoarg[\defval{#2}{#1}]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\newtxtpar}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\newtxtpar[\rmfamily]{Name}[sub][sup][Ext1]{Par}[Ext2]= =
+%       ``\newtxtpar[\rmfamily]{Name}[sub][sup][Ext1]{Par}[Ext2]''
+%     \item
+%       \verb=\newtxtpar[\sffamily]{Name}[sub][sup][Ext1]{Par}[Ext2]= =
+%       ``\newtxtpar[\sffamily]{Name}[sub][sup][Ext1]{Par}[Ext2]''
+%     \item
+%       \verb=\newtxtpar[\ttfamily]{Name}[sub][sup][Ext1]{Par}[Ext2]= =
+%       ``\newtxtpar[\ttfamily]{Name}[sub][sup][Ext1]{Par}[Ext2]''
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\newtxtpar}[7][1=, 3=, 4=, 5=, 7=]
+  {\newtxt[#1]{#2}[#3][#4][\argmid{#5[}{#6}{]#7}]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\newtxtparsty}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\newtxtparsty{\rmfamily}{Name}[sub][sup][Ext1]{Par}[Ext2]= =
+%       ``\newtxtparsty{\rmfamily}{Name}[sub][sup][Ext1]{Par}[Ext2]''
+%     \item
+%       \verb=\newtxtparsty{\rmfamily}[\sffamily]{Name}[sub][sup]=\!
+%         \verb=[Ext1]{Par}[Ext2]= =
+%       ``\newtxtparsty{\rmfamily}[\sffamily]{Name}[sub][sup][Ext1]{Par}[Ext2]''
+%     \item
+%       \verb=\newtxtparsty{\rmfamily}[\ttfamily]{Name}[sub][sup]=\!
+%         \verb=[Ext1]{Par}[Ext2]= =
+%       ``\newtxtparsty{\rmfamily}[\ttfamily]{Name}[sub][sup][Ext1]{Par}[Ext2]''
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\newtxtparsty}[2][2=]
+  {\newtxtpar[\defval{#2}{#1}]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\newtxtopar}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\newtxtopar[\rmfamily]{Name}[sub][sup][Par]= =
+%       ``\newtxtopar[\rmfamily]{Name}[sub][sup][Par]''
+%     \item
+%       \verb=\newtxtopar[\sffamily]{Name}[sub][sup][Par]= =
+%       ``\newtxtopar[\sffamily]{Name}[sub][sup][Par]''
+%     \item
+%       \verb=\newtxtopar[\ttfamily]{Name}[sub][sup][Par]= =
+%       ``\newtxtopar[\ttfamily]{Name}[sub][sup][Par]''
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\newtxtopar}[5][1=, 3=, 4=, 5=]
+  {\newtxtpar[#1]{#2}[#3][#4][]{#5}[]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\newtxtoparsty}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\newtxtoparsty{\rmfamily}{Name}[sub][sup][Par]= =
+%       ``\newtxtoparsty{\rmfamily}{Name}[sub][sup][Par]''
+%     \item
+%       \verb=\newtxtoparsty{\rmfamily}[\sffamily]{Name}[sub][sup][Par]= =
+%       ``\newtxtoparsty{\rmfamily}[\sffamily]{Name}[sub][sup][Par]''
+%     \item
+%       \verb=\newtxtoparsty{\rmfamily}[\ttfamily]{Name}[sub][sup][Par]= =
+%       ``\newtxtoparsty{\rmfamily}[\ttfamily]{Name}[sub][sup][Par]''
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\newtxtoparsty}[2][2=]
+  {\newtxtopar[\defval{#2}{#1}]}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\txtsubsup}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\txtsubsup{sub}{}= = ``\txtsubsup{sub}{}'';
+%       \verb=\txtsubsup{}{sup}= = ``\txtsubsup{}{sup}'';
+%       \verb=\txtsubsup{sub}{sup}= = ``\txtsubsup{sub}{sup}''
+%     \item
+%       \verb=\txtsubsup[\sffamily]{Aa}{Bb}= = ``\txtsubsup[\sffamily]{Aa}{Bb}''
+%     \item
+%       \verb=\txtsubsup[\ttfamily]{Aa}{Bb}= = ``\txtsubsup[\ttfamily]{Aa}{Bb}''
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommand{\txtsubsup}[3][]
+  {\ensuremath{\empchk{#2}{_{\text{#1#2}}}\empchk{#3}{^{\text{#1#3}}}}}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+%%****************************************************************************%%
+%    \end{macrocode}
+
+% \begin{macro}{\txt}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\txt{Name}[sub][sup][Ext]= =
+%       ``\txt{Name}[sub][sup][Ext]''
+%     \item
+%       \verb=\txt[\scshape]{Name}[sub][sup][Ext]= =
+%       ``\txt[\scshape]{Name}[sub][sup][Ext]''
+%     \item
+%       \verb=\txt[\bfseries]{Name}[sub][sup][Ext]= =
+%       ``\txt[\bfseries]{Name}[sub][sup][Ext]''
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommand{\txt}
+  {\newtxtsty{\txtsty}}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\txtarg}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\txtarg{Name}[sub][sup][Ext1]{Arg}[Ext2]= =
+%       ``\txtarg{Name}[sub][sup][Ext1]{Arg}[Ext2]''
+%     \item
+%       \verb=\txtarg[\scshape]{Name}[sub][sup][Ext1]{Arg}[Ext2]= =
+%       ``\txtarg[\scshape]{Name}[sub][sup][Ext1]{Arg}[Ext2]''
+%     \item
+%       \verb=\txtarg[\bfseries]{Name}[sub][sup][Ext1]{Arg}[Ext2]= =
+%       ``\txtarg[\bfseries]{Name}[sub][sup][Ext1]{Arg}[Ext2]''
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommand{\txtarg}
+  {\newtxtargsty{\txtsty}}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\txtoarg}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\txtoarg{Name}[sub][sup][Arg]= =
+%       ``\txtoarg{Name}[sub][sup][Arg]''
+%     \item
+%       \verb=\txtoarg[\scshape]{Name}[sub][sup][Arg]= =
+%       ``\txtoarg[\scshape]{Name}[sub][sup][Arg]''
+%     \item
+%       \verb=\txtoarg[\bfseries]{Name}[sub][sup][Arg]= =
+%       ``\txtoarg[\bfseries]{Name}[sub][sup][Arg]''
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommand{\txtoarg}
+  {\newtxtoargsty{\txtsty}}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\txtpar}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\txtpar{Name}[sub][sup][Ext1]{Par}[Ext2]= =
+%       ``\txtpar{Name}[sub][sup][Ext1]{Par}[Ext2]''
+%     \item
+%       \verb=\txtpar[\scshape]{Name}[sub][sup][Ext1]{Par}[Ext2]= =
+%       ``\txtpar[\scshape]{Name}[sub][sup][Ext1]{Par}[Ext2]''
+%     \item
+%       \verb=\txtpar[\bfseries]{Name}[sub][sup][Ext1]{Par}[Ext2]= =
+%       ``\txtpar[\bfseries]{Name}[sub][sup][Ext1]{Par}[Ext2]''
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommand{\txtpar}
+  {\newtxtparsty{\txtsty}}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\txtopar}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\txtopar{Name}[sub][sup][Par]= =
+%       ``\txtopar{Name}[sub][sup][Par]''
+%     \item
+%       \verb=\txtopar[\scshape]{Name}[sub][sup][Par]= =
+%       ``\txtopar[\scshape]{Name}[sub][sup][Par]''
+%     \item
+%       \verb=\txtopar[\bfseries]{Name}[sub][sup][Par]= =
+%       ``\txtopar[\bfseries]{Name}[sub][sup][Par]''
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommand{\txtopar}
+  {\newtxtoparsty{\txtsty}}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\txtsty}
+%   ... to do!
+%    \begin{macrocode}
+\newcommand{\txtsty}
+  {\mdseries\upshape\rmfamily}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+%%****************************************************************************%%
+%    \end{macrocode}
+
+% \begin{macro}{\cmdtxt}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdtxt{NewCmd}=;\cmdtxt{NewCmd}
+%       \verb=\newcommand{txtstyNewCmd}{\scshape\ttfamily}=;
+%       \newcommand{\txtstyNewCmd}{\scshape\ttfamily} \\
+%       \verb=\txtNewCmd{Name}[sub][sup][Ext]= =
+%       \txtNewCmd{Name}[sub][sup][Ext]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommand{\cmdtxt}[1]
+  {\csdef{txt#1}{\newtxtsty{\csname txtsty#1\endcsname}}}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdtxtarg}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdtxtarg{NewCmd}=;\cmdtxtarg{NewCmd}
+%       \verb=\newcommand{txtstyNewCmd}{\scshape\ttfamily}=;
+%       \newcommand{\txtstyNewCmd}{\scshape\ttfamily} \\
+%       \verb=\txtargNewCmd{Name}[sub][sup][Ext1]{Arg}[Ext2]= =
+%       \txtargNewCmd{Name}[sub][sup][Ext1]{Arg}[Ext2]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommand{\cmdtxtarg}[1]
+  {\csdef{txtarg#1}{\newtxtargsty{\csname txtsty#1\endcsname}}}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdtxtoarg}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdtxtoarg{NewCmd}=;\cmdtxtoarg{NewCmd}
+%       \verb=\newcommand{txtstyNewCmd}{\scshape\ttfamily}=;
+%       \newcommand{\txtstyNewCmd}{\scshape\ttfamily} \\
+%       \verb=\txtoargNewCmd{Name}[sub][sup][Arg]= =
+%       \txtoargNewCmd{Name}[sub][sup][Arg]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommand{\cmdtxtoarg}[1]
+  {\csdef{txtoarg#1}{\newtxtoargsty{\csname txtsty#1\endcsname}}}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdtxtpar}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdtxtpar{NewCmd}=;\cmdtxtpar{NewCmd}
+%       \verb=\newcommand{txtstyNewCmd}{\scshape\ttfamily}=;
+%       \newcommand{\txtstyNewCmd}{\scshape\ttfamily} \\
+%       \verb=\txtparNewCmd{Name}[sub][sup][Ext1]{Par}[Ext2]= =
+%       \txtparNewCmd{Name}[sub][sup][Ext1]{Par}[Ext2]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommand{\cmdtxtpar}[1]
+  {\csdef{txtpar#1}{\newtxtparsty{\csname txtsty#1\endcsname}}}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdtxtopar}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdtxtopar{NewCmd}=;\cmdtxtopar{NewCmd}
+%       \verb=\newcommand{txtstyNewCmd}{\scshape\ttfamily}=;
+%       \newcommand{\txtstyNewCmd}{\scshape\ttfamily} \\
+%       \verb=\txtoparNewCmd{Name}[sub][sup][Par]= =
+%       \txtoparNewCmd{Name}[sub][sup][Par]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommand{\cmdtxtopar}[1]
+  {\csdef{txtopar#1}{\newtxtoparsty{\csname txtsty#1\endcsname}}}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cmdtxtall}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\cmdtxtall{NewCmd}=;\cmdtxtall{NewCmd}
+%       \verb=\newcommand{txtstyNewCmd}{\scshape\ttfamily}=;
+%       \newcommand{\txtstyNewCmd}{\scshape\ttfamily} \\
+%       \verb=\txtNewCmd{Name}[sub][sup][Ext]= =
+%       \txtNewCmd{Name}[sub][sup][Ext] \\
+%       \verb=\txtargNewCmd{Name}[sub][sup][Ext1]{Arg}[Ext2]= =
+%       \txtargNewCmd{Name}[sub][sup][Ext1]{Arg}[Ext2] \\
+%       \verb=\txtoargNewCmd{Name}[sub][sup][Arg]= =
+%       \txtoargNewCmd{Name}[sub][sup][Arg] \\
+%       \verb=\txtparNewCmd{Name}[sub][sup][Ext1]{Par}[Ext2]= =
+%       \txtparNewCmd{Name}[sub][sup][Ext1]{Par}[Ext2] \\
+%       \verb=\txtoparNewCmd{Name}[sub][sup][Par]= =
+%       \txtoparNewCmd{Name}[sub][sup][Par]
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommand{\cmdtxtall}[1]
+  {\cmdtxt{#1}\cmdtxtarg{#1}\cmdtxtoarg{#1}\cmdtxtpar{#1}\cmdtxtopar{#1}}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+%%****************************************************************************%%
+%    \end{macrocode}
+
+% \begin{macro}{\usrtxt}
+%   ... to do!
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=\usrtxt{cmdName}{Suf}{}=;\usrtxt{cmdName}{Suf}{}
+%       \verb=\cmdNameSuf= = \cmdNameSuf \\
+%       \verb=\usrtxt{cmdName}{Suf}{arg}=;\usrtxt{cmdName}{Suf}{arg}
+%       \verb=\cmdNameSuf{Arg}= = \cmdNameSuf{Arg} \\
+%       \verb=\usrtxt{cmdName}{Suf}{par}=;\usrtxt{cmdName}{Suf}{par}
+%       \verb=\cmdNameSuf{Par}= = \cmdNameSuf{Par}
+%     \item
+%       \verb=\usrtxt{cmdName}{Suf}{}[newName]=;\usrtxt{cmdName}{Suf}{}[newName]
+%       \verb=\cmdNameSuf= = \cmdNameSuf \\
+%       \verb=\usrtxt{cmdName}{Suf}{arg}[newName]=;\!\!
+%       \usrtxt{cmdName}{Suf}{arg}[newName]
+%       \verb=\cmdNameSuf{Arg}= = \cmdNameSuf{Arg} \\
+%       \verb=\usrtxt{cmdName}{Suf}{par}[newName]=;\!\!
+%       \usrtxt{cmdName}{Suf}{par}[newName]
+%       \verb=\cmdNameSuf{Par}= = \cmdNameSuf{Par}
+%   \end{itemize}
+%    \begin{macrocode}
+\newcommandx{\usrtxt}[4][4=]
+  {\csdef{#1#2}{\csname txt#3\endcsname{\defval{#4}{#1}}}}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+%%****************************************************************************%%
+%    \end{macrocode}
+
+\endinput

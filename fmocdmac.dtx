@@ -64,6 +64,8 @@ install" installs the files in the local TeX tree.
   \file{\jobname.sty}{%
     \from{\jobname.dtx}{package}%
     \from{\jobname-aux.dtx}{}%
+    \from{\jobname-txtmet.dtx}{}%
+    \from{\jobname-mthmet.dtx}{}%
     \from{\jobname-txtgen.dtx}{}%
     \from{\jobname-mthgen.dtx}{}%
     \from{\jobname-txt.dtx}{}%
@@ -129,6 +131,9 @@ install" installs the files in the local TeX tree.
   \DocInput{\jobname.dtx}
 
   \DocInput{\jobname-aux.dtx}
+
+  \DocInput{\jobname-txtmet.dtx}
+  \DocInput{\jobname-mthmet.dtx}
 
   \DocInput{\jobname-txtgen.dtx}
   \DocInput{\jobname-mthgen.dtx}
