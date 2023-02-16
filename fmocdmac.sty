@@ -29,7 +29,7 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesPackage{fmocdmac}
-  [2023/02/14 v0.15 FM's OCD LaTeX Macro]
+  [2023/02/16 v0.16 FM's OCD LaTeX Macro]
 
 \RequirePackage{etoolbox}
 
@@ -83,23 +83,23 @@
 \newif\iftxtgen@ \txtgen@false
 \DeclareOption{txtgen}{\txtgen@true}
 \DeclareOption{notxtgen}
-  {\txtgen@false\text@false\com@false\gam@false\log@false\aut@false}
+  {\txtgen@false\txt@false\com@false\gam@false\log@false\aut@false}
 
 %% Math macro generation
 \newif\ifmthgen@ \mthgen@false
 \DeclareOption{mthgen}{\mthgen@true}
 \DeclareOption{nomthgen}
-  {\mthgen@false\math@false\gam@false\log@false\aut@false}
+  {\mthgen@false\mth@false\gam@false\log@false\aut@false}
 
 %% Elementary macros for text
-\newif\iftext@ \text@false
-\DeclareOption{text}{\text@true\txtgen@true}
-\DeclareOption{notext}{\text@false}
+\newif\iftxt@ \txt@false
+\DeclareOption{txt}{\txt@true\txtgen@true}
+\DeclareOption{notxt}{\txt@false}
 
 %% Elementary macros for math
-\newif\ifmath@ \math@false
-\DeclareOption{math}{\math@true\mthgen@true}
-\DeclareOption{nomath}{\math@false}
+\newif\ifmth@ \mth@false
+\DeclareOption{mth}{\mth@true\mthgen@true}
+\DeclareOption{nomth}{\mth@false}
 
 %% Macros for computational-complexity classes
 \newif\ifcom@ \com@false
@@ -148,7 +148,7 @@
 
 \DeclareOption*{\PackageWarning{fmocdmac}{Unknown~‘\CurrentOption’}}%
 
-\ExecuteOptions{aux,txtgen,mthgen,text,math,com,gam,log,aut}%
+\ExecuteOptions{aux,txtgen,mthgen,txt,mth,com,gam,log,aut}%
 
 \ProcessOptions\relax%
 
@@ -261,7 +261,7 @@
 
 \ifamsdef@
   % AMS Packages
-  \RequirePackage{amsmath}
+  \RequirePackage{mathtools}
   \RequirePackage{amssymb}
   \RequirePackage{stmaryrd}
   \interdisplaylinepenalty=2500
@@ -1007,7 +1007,7 @@
 %%****************************************************************************%%
 %%** Elementary Macros for Text **********************************************%%
 %%****************************************************************************%%
-\iftext@
+\iftxt@
 
 %%** Latin Abbreviations *****************************************************%%
 
@@ -1135,7 +1135,7 @@
 %%****************************************************************************%%
 %%** Elementary Macros for Math **********************************************%%
 %%****************************************************************************%%
-\ifmath@
+\ifmth@
 
 %%** General Notation ********************************************************%%
 
@@ -1144,7 +1144,7 @@
     {\mthlbop{\stackrel{\text{\textup{def}}}{=}}}%
     {\mthlbop{\triangleq}}}
 \DeclareRobustCommand{\seteq}
-  {\@ifstar{\mthlbop{::=}}{\mthlbop{:=}}}
+  {\@ifstar{\mthlbop{\Coloneqq}}{\mthlbop{\coloneqq}}}
 
 %%****************************************************************************%%
 
@@ -1205,19 +1205,55 @@
 \varcmd{enumeration}{\mth}{}{,}{}{}
 \varcmd{enumerationx}{\mth}{}{;}{}{}
 
-\varcmd{sequence}{\mth}{\left[}{,}{\right]}{}
-\varcmd{sequencel}{\mth}{\left[}{,}{\right.}{}
-\varcmd{sequencer}{\mth}{\left.}{,}{\right]}{}
-\varcmd{sequencex}{\mth}{\left[}{;}{\right]}{}
-\varcmd{sequencexl}{\mth}{\left[}{;}{\right.}{}
-\varcmd{sequencexr}{\mth}{\left.}{;}{\right]}{}
+\DeclareRobustCommand{\sequence}
+  {\@ifstar{\@ssequence}{\@sequence}}
+\varcmd{@sequence}{\mth}{\left[}{,}{\right]}{}
+\varcmd{@ssequence}{\mth}{[}{,}{]}{}
+\DeclareRobustCommand{\sequencel}
+  {\@ifstar{\@ssequencel}{\@sequencel}}
+\varcmd{@sequencel}{\mth}{\left[}{,}{\right.}{}
+\varcmd{@ssequencel}{\mth}{[}{,}{}{}
+\DeclareRobustCommand{\sequencer}
+  {\@ifstar{\@ssequencer}{\@sequencer}}
+\varcmd{@sequencer}{\mth}{\left.}{,}{\right]}{}
+\varcmd{@ssequencer}{\mth}{}{,}{]}{}
+\DeclareRobustCommand{\sequencex}
+  {\@ifstar{\@ssequencex}{\@sequencex}}
+\varcmd{@sequencex}{\mth}{\left[}{;}{\right]}{}
+\varcmd{@ssequencex}{\mth}{[}{;}{]}{}
+\DeclareRobustCommand{\sequencexl}
+  {\@ifstar{\@ssequencexl}{\@sequencexl}}
+\varcmd{@sequencexl}{\mth}{\left[}{;}{\right.}{}
+\varcmd{@ssequencexl}{\mth}{[}{;}{}{}
+\DeclareRobustCommand{\sequencexr}
+  {\@ifstar{\@ssequencexr}{\@sequencexr}}
+\varcmd{@sequencexr}{\mth}{\left.}{;}{\right]}{}
+\varcmd{@ssequencexr}{\mth}{}{;}{]}{}
 
-\varcmd{tuple}{\mth}{\left\langle}{,}{\right\rangle}{}
-\varcmd{tuplel}{\mth}{\left\langle}{,}{\right.}{}
-\varcmd{tupler}{\mth}{\left.}{,}{\right\rangle}{}
-\varcmd{tuplex}{\mth}{\left\langle}{;}{\right\rangle}{}
-\varcmd{tuplexl}{\mth}{\left\langle}{;}{\right.}{}
-\varcmd{tuplexr}{\mth}{\left.}{;}{\right\rangle}{}
+\DeclareRobustCommand{\tuple}
+  {\@ifstar{\@stuple}{\@tuple}}
+\varcmd{@tuple}{\mth}{\left\langle}{,}{\right\rangle}{}
+\varcmd{@stuple}{\mth}{\langle}{,}{\rangle}{}
+\DeclareRobustCommand{\tuplel}
+  {\@ifstar{\@stuplel}{\@tuplel}}
+\varcmd{@tuplel}{\mth}{\left\langle}{,}{\right.}{}
+\varcmd{@stuplel}{\mth}{\langle}{,}{}{}
+\DeclareRobustCommand{\tupler}
+  {\@ifstar{\@stupler}{\@tupler}}
+\varcmd{@tupler}{\mth}{\left.}{,}{\right\rangle}{}
+\varcmd{@stupler}{\mth}{}{,}{\rangle}{}
+\DeclareRobustCommand{\tuplex}
+  {\@ifstar{\@stuplex}{\@tuplex}}
+\varcmd{@tuplex}{\mth}{\left\langle}{;}{\right\rangle}{}
+\varcmd{@stuplex}{\mth}{\langle}{;}{\rangle}{}
+\DeclareRobustCommand{\tuplexl}
+  {\@ifstar{\@stuplexl}{\@tuplexl}}
+\varcmd{@tuplexl}{\mth}{\left\langle}{;}{\right.}{}
+\varcmd{@stuplexl}{\mth}{\langle}{;}{}{}
+\DeclareRobustCommand{\tuplexr}
+  {\@ifstar{\@stuplexr}{\@tuplexr}}
+\varcmd{@tuplexr}{\mth}{\left.}{;}{\right\rangle}{}
+\varcmd{@stuplexr}{\mth}{}{;}{\rangle}{}
 
 %%** Sets ********************************************************************%%
 
@@ -1360,6 +1396,10 @@
   {\@ifstar{\@abs}{\@abs[\left][\right]}}
 \DeclareRobustCommandx{\@abs}[3][1=, 2=]
   {\mth{\argmid{#1\lvert}{#3}{#2\rvert}}}
+\DeclareRobustCommand{\norm}
+  {\@ifstar{\@norm}{\@norm[\left][\right]}}
+\DeclareRobustCommandx{\@norm}[3][1=, 2=]
+  {\mth{\argmid{#1\lVert}{#3}{#2\rVert}}}
 
 \DeclareRobustCommand{\floor}
   {\@ifstar{\@floor}{\@floor[\left][\right]}}

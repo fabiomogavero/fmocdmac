@@ -30,10 +30,8 @@ behavior... hence the name!
 %
 %<*install>
 \input{docstrip.tex}
-
 \keepsilent
 \askforoverwritefalse
-
 \preamble
 
 --------:| ------------------------------------------------------------------
@@ -45,7 +43,6 @@ fmocdmac:| FM's OCD LaTeX Macros
 --------:| ------------------------------------------------------------------
 
 \endpreamble
-
 \postamble
 
 Copyright (C) 2020-2023 by Fabio Mogavero <fm@fabiomogavero.com>
@@ -62,9 +59,7 @@ Running "make inst" installs the files in the user's TeX tree. Running "make
 install" installs the files in the local TeX tree.
 
 \endpostamble
-
 \usedir{tex/latex/fmocdmac}
-
 \generate{%
   \file{\jobname.sty}{%
     \from{\jobname.dtx}{package}%
@@ -89,23 +84,18 @@ install" installs the files in the local TeX tree.
 %
 %<*internal>
 \usedir{source/latex/fmocdmac}
-
 \generate{%
   \file{\jobname.ins}{%
     \from{\jobname.dtx}{install}%
   }%
 }
-
 \nopreamble\nopostamble
-
 \usedir{doc/latex/fmocdmac}
-
 \generate{%
   \file{readme.txt}{%
     \from{\jobname.dtx}{readme}%
   }%
 }
-
 \ifx\fmtname\nameofplainTeX
   \expandafter\endbatchfile
 \else
@@ -123,7 +113,7 @@ install" installs the files in the local TeX tree.
 %<package>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
 %<package>\ProvidesPackage{fmocdmac}
 %<*package>
-  [2023/02/14 v0.15 FM's OCD LaTeX Macro]
+  [2023/02/16 v0.16 FM's OCD LaTeX Macro]
 %</package>
 %
 %<*driver>
@@ -204,6 +194,8 @@ install" installs the files in the local TeX tree.
 %
 % \changes{v0.15}{2023/02/14}{Refactoring of dtx sources}
 %
+% \changes{v0.16}{2023/02/16}{Small refinements and few additions}
+%
 % \begin{abstract}
 % This package contains almost all the latex macros I heavily use in my tcs
 % research activity and, in particular, in the writing of conference and journal
@@ -282,24 +274,24 @@ install" installs the files in the local TeX tree.
 \newif\iftxtgen@ \txtgen@false
 \DeclareOption{txtgen}{\txtgen@true}
 \DeclareOption{notxtgen}
-  {\txtgen@false\text@false\com@false\gam@false\log@false\aut@false}
+  {\txtgen@false\txt@false\com@false\gam@false\log@false\aut@false}
 
 %% Math macro generation
 \newif\ifmthgen@ \mthgen@false
 \DeclareOption{mthgen}{\mthgen@true}
 \DeclareOption{nomthgen}
-  {\mthgen@false\math@false\gam@false\log@false\aut@false}
+  {\mthgen@false\mth@false\gam@false\log@false\aut@false}
 
 
 %% Elementary macros for text
-\newif\iftext@ \text@false
-\DeclareOption{text}{\text@true\txtgen@true}
-\DeclareOption{notext}{\text@false}
+\newif\iftxt@ \txt@false
+\DeclareOption{txt}{\txt@true\txtgen@true}
+\DeclareOption{notxt}{\txt@false}
 
 %% Elementary macros for math
-\newif\ifmath@ \math@false
-\DeclareOption{math}{\math@true\mthgen@true}
-\DeclareOption{nomath}{\math@false}
+\newif\ifmth@ \mth@false
+\DeclareOption{mth}{\mth@true\mthgen@true}
+\DeclareOption{nomth}{\mth@false}
 
 
 %% Macros for computational-complexity classes
@@ -359,7 +351,7 @@ install" installs the files in the local TeX tree.
 
 \DeclareOption*{\PackageWarning{fmocdmac}{Unknown~‘\CurrentOption’}}%
 
-\ExecuteOptions{aux,txtgen,mthgen,text,math,com,gam,log,aut}%
+\ExecuteOptions{aux,txtgen,mthgen,txt,mth,com,gam,log,aut}%
 
 \ProcessOptions\relax%
 

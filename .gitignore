@@ -40,6 +40,7 @@
 *.synctex.gz
 *.synctex.gz(busy)
 *.pdfsync
+*.tar.gz
 
 ## Build Tool Files ############################################################
 
@@ -219,7 +220,7 @@ sympy-plots-for-*.tex/
 # thmtools
 *.loe
 
-# TikZ & PGF
+# tikz & pgf
 *.dpth
 *.md5
 *.auxlock
@@ -261,25 +262,26 @@ sympy-plots-for-*.tex/
 # gummi
 .*.swp
 
-# KBibTeX
+# kbibtex
 *~[0-9]*
 
-# Kile
+# kile
 *.backup
+*kile*
 
-# Latexian
+# latexian
 TSWLatexianTemp*
 
-# LyX
+# lyx
 *.lyx~
 
-# TeXnicCenter
+# texniccenter
 *.tps
 
-# Texpad
+# texpad
 .texpadtmp
 
-# WinEdt
+# winedt
 *.bak
 *.sav
 

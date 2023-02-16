@@ -3,7 +3,7 @@
 %%****************************************************************************%%
 %%** Elementary Macros for Math **********************************************%%
 %%****************************************************************************%%
-\ifmath@
+\ifmth@
 %    \end{macrocode}
 
 %    \begin{macrocode}
@@ -18,7 +18,7 @@
     {\mthlbop{\stackrel{\text{\textup{def}}}{=}}}%
     {\mthlbop{\triangleq}}}
 \DeclareRobustCommand{\seteq}
-  {\@ifstar{\mthlbop{::=}}{\mthlbop{:=}}}
+  {\@ifstar{\mthlbop{\Coloneqq}}{\mthlbop{\coloneqq}}}
 %    \end{macrocode}
 % \end{macro}
 
@@ -139,24 +139,60 @@
 % \begin{macro}{\sequence, ...}
 %   ...
 %    \begin{macrocode}
-\varcmd{sequence}{\mth}{\left[}{,}{\right]}{}
-\varcmd{sequencel}{\mth}{\left[}{,}{\right.}{}
-\varcmd{sequencer}{\mth}{\left.}{,}{\right]}{}
-\varcmd{sequencex}{\mth}{\left[}{;}{\right]}{}
-\varcmd{sequencexl}{\mth}{\left[}{;}{\right.}{}
-\varcmd{sequencexr}{\mth}{\left.}{;}{\right]}{}
+\DeclareRobustCommand{\sequence}
+  {\@ifstar{\@ssequence}{\@sequence}}
+\varcmd{@sequence}{\mth}{\left[}{,}{\right]}{}
+\varcmd{@ssequence}{\mth}{[}{,}{]}{}
+\DeclareRobustCommand{\sequencel}
+  {\@ifstar{\@ssequencel}{\@sequencel}}
+\varcmd{@sequencel}{\mth}{\left[}{,}{\right.}{}
+\varcmd{@ssequencel}{\mth}{[}{,}{}{}
+\DeclareRobustCommand{\sequencer}
+  {\@ifstar{\@ssequencer}{\@sequencer}}
+\varcmd{@sequencer}{\mth}{\left.}{,}{\right]}{}
+\varcmd{@ssequencer}{\mth}{}{,}{]}{}
+\DeclareRobustCommand{\sequencex}
+  {\@ifstar{\@ssequencex}{\@sequencex}}
+\varcmd{@sequencex}{\mth}{\left[}{;}{\right]}{}
+\varcmd{@ssequencex}{\mth}{[}{;}{]}{}
+\DeclareRobustCommand{\sequencexl}
+  {\@ifstar{\@ssequencexl}{\@sequencexl}}
+\varcmd{@sequencexl}{\mth}{\left[}{;}{\right.}{}
+\varcmd{@ssequencexl}{\mth}{[}{;}{}{}
+\DeclareRobustCommand{\sequencexr}
+  {\@ifstar{\@ssequencexr}{\@sequencexr}}
+\varcmd{@sequencexr}{\mth}{\left.}{;}{\right]}{}
+\varcmd{@ssequencexr}{\mth}{}{;}{]}{}
 %    \end{macrocode}
 % \end{macro}
 
 % \begin{macro}{\tuple, ...}
 %   ...
 %    \begin{macrocode}
-\varcmd{tuple}{\mth}{\left\langle}{,}{\right\rangle}{}
-\varcmd{tuplel}{\mth}{\left\langle}{,}{\right.}{}
-\varcmd{tupler}{\mth}{\left.}{,}{\right\rangle}{}
-\varcmd{tuplex}{\mth}{\left\langle}{;}{\right\rangle}{}
-\varcmd{tuplexl}{\mth}{\left\langle}{;}{\right.}{}
-\varcmd{tuplexr}{\mth}{\left.}{;}{\right\rangle}{}
+\DeclareRobustCommand{\tuple}
+  {\@ifstar{\@stuple}{\@tuple}}
+\varcmd{@tuple}{\mth}{\left\langle}{,}{\right\rangle}{}
+\varcmd{@stuple}{\mth}{\langle}{,}{\rangle}{}
+\DeclareRobustCommand{\tuplel}
+  {\@ifstar{\@stuplel}{\@tuplel}}
+\varcmd{@tuplel}{\mth}{\left\langle}{,}{\right.}{}
+\varcmd{@stuplel}{\mth}{\langle}{,}{}{}
+\DeclareRobustCommand{\tupler}
+  {\@ifstar{\@stupler}{\@tupler}}
+\varcmd{@tupler}{\mth}{\left.}{,}{\right\rangle}{}
+\varcmd{@stupler}{\mth}{}{,}{\rangle}{}
+\DeclareRobustCommand{\tuplex}
+  {\@ifstar{\@stuplex}{\@tuplex}}
+\varcmd{@tuplex}{\mth}{\left\langle}{;}{\right\rangle}{}
+\varcmd{@stuplex}{\mth}{\langle}{;}{\rangle}{}
+\DeclareRobustCommand{\tuplexl}
+  {\@ifstar{\@stuplexl}{\@tuplexl}}
+\varcmd{@tuplexl}{\mth}{\left\langle}{;}{\right.}{}
+\varcmd{@stuplexl}{\mth}{\langle}{;}{}{}
+\DeclareRobustCommand{\tuplexr}
+  {\@ifstar{\@stuplexr}{\@tuplexr}}
+\varcmd{@tuplexr}{\mth}{\left.}{;}{\right\rangle}{}
+\varcmd{@stuplexr}{\mth}{}{;}{\rangle}{}
 %    \end{macrocode}
 % \end{macro}
 
@@ -429,13 +465,17 @@
 %%****************************************************************************%%
 %    \end{macrocode}
 
-% \begin{macro}{\abs}
+% \begin{macro}{\abs, \norm}
 %   ...
 %    \begin{macrocode}
 \DeclareRobustCommand{\abs}
   {\@ifstar{\@abs}{\@abs[\left][\right]}}
 \DeclareRobustCommandx{\@abs}[3][1=, 2=]
   {\mth{\argmid{#1\lvert}{#3}{#2\rvert}}}
+\DeclareRobustCommand{\norm}
+  {\@ifstar{\@norm}{\@norm[\left][\right]}}
+\DeclareRobustCommandx{\@norm}[3][1=, 2=]
+  {\mth{\argmid{#1\lVert}{#3}{#2\rVert}}}
 %    \end{macrocode}
 % \end{macro}
 
