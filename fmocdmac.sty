@@ -31,7 +31,7 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesPackage{fmocdmac}
-  [2023/05/01 v0.17 FM's OCD LaTeX Macro]
+  [2023/05/24 v0.18 FM's OCD LaTeX Macro]
 
 \RequirePackage{etoolbox}
 
@@ -2005,9 +2005,17 @@
 \usrmth{DMod}{}{sym}[\Diamond]
 \usrmth{BMod}{}{sym}[\Box]
 
-\DeclareRobustCommand{\Exs}[1]
+\DeclareRobustCommand{\Exs}
+  {\@ifstar{\@sexs}{\@exs}}
+\DeclareRobustCommand{\@sexs}[1]
+  {\mth{\DMod}[#1]}
+\DeclareRobustCommand{\@exs}[1]
   {\mth{\defval{\argmid{\langle}{#1}{\rangle}}{\DMod}}}
-\DeclareRobustCommand{\All}[1]
+\DeclareRobustCommand{\All}
+  {\@ifstar{\@sall}{\@all}}
+\DeclareRobustCommand{\@sall}[1]
+  {\mth{\BMod}[#1]}
+\DeclareRobustCommand{\@all}[1]
   {\mth{\defval{\argmid{\left[}{#1}{\right]}}{\BMod}}}
 
 %%** Semantics ***************************************************************%%

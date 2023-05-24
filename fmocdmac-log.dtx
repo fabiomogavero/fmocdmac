@@ -554,9 +554,17 @@
 % \begin{macro}{\Exs, \All}
 %   ...
 %    \begin{macrocode}
-\DeclareRobustCommand{\Exs}[1]
+\DeclareRobustCommand{\Exs}
+  {\@ifstar{\@sexs}{\@exs}}
+\DeclareRobustCommand{\@sexs}[1]
+  {\mth{\DMod}[#1]}
+\DeclareRobustCommand{\@exs}[1]
   {\mth{\defval{\argmid{\langle}{#1}{\rangle}}{\DMod}}}
-\DeclareRobustCommand{\All}[1]
+\DeclareRobustCommand{\All}
+  {\@ifstar{\@sall}{\@all}}
+\DeclareRobustCommand{\@sall}[1]
+  {\mth{\BMod}[#1]}
+\DeclareRobustCommand{\@all}[1]
   {\mth{\defval{\argmid{\left[}{#1}{\right]}}{\BMod}}}
 %    \end{macrocode}
 % \end{macro}
