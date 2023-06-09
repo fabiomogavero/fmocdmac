@@ -88,9 +88,11 @@
 %   ...
 %    \begin{macrocode}
 \DeclareRobustCommand{\denot}
-  {\@ifstar{\@denot}{\@denot[\left][\right]}}
-\DeclareRobustCommandx{\@denot}[3][1=, 2=]
-  {\mth{\argmid{#1\llbracket}{#3}{#2\rrbracket}}}
+  {\@ifstar{\@sdenot}{\@denot}}
+\DeclareRobustCommand{\@denot}[1]
+  {\mth{\argmid{\left\llbracket}{#1}{\right\rrbracket}}}
+\DeclareRobustCommand{\@sdenot}[1]
+  {\mth*{\argmid{\llbracket}{#1}{\rrbracket}}}
 %    \end{macrocode}
 % \end{macro}
 
@@ -131,8 +133,8 @@
 % \begin{macro}{\enumeration, ...}
 %   ...
 %    \begin{macrocode}
-\varcmd{enumeration}{\mth}{}{,}{}{}
-\varcmd{enumerationx}{\mth}{}{;}{}{}
+\varcmd{enumeration}{\mth*}{}{,}{}{}
+\varcmd{enumerationx}{\mth*}{}{;}{}{}
 %    \end{macrocode}
 % \end{macro}
 
@@ -142,27 +144,27 @@
 \DeclareRobustCommand{\sequence}
   {\@ifstar{\@ssequence}{\@sequence}}
 \varcmd{@sequence}{\mth}{\left[}{,}{\right]}{}
-\varcmd{@ssequence}{\mth}{[}{,}{]}{}
+\varcmd{@ssequence}{\mth*}{[}{,}{]}{}
 \DeclareRobustCommand{\sequencel}
   {\@ifstar{\@ssequencel}{\@sequencel}}
 \varcmd{@sequencel}{\mth}{\left[}{,}{\right.}{}
-\varcmd{@ssequencel}{\mth}{[}{,}{}{}
+\varcmd{@ssequencel}{\mth*}{[}{,}{}{}
 \DeclareRobustCommand{\sequencer}
   {\@ifstar{\@ssequencer}{\@sequencer}}
 \varcmd{@sequencer}{\mth}{\left.}{,}{\right]}{}
-\varcmd{@ssequencer}{\mth}{}{,}{]}{}
+\varcmd{@ssequencer}{\mth*}{}{,}{]}{}
 \DeclareRobustCommand{\sequencex}
   {\@ifstar{\@ssequencex}{\@sequencex}}
 \varcmd{@sequencex}{\mth}{\left[}{;}{\right]}{}
-\varcmd{@ssequencex}{\mth}{[}{;}{]}{}
+\varcmd{@ssequencex}{\mth*}{[}{;}{]}{}
 \DeclareRobustCommand{\sequencexl}
   {\@ifstar{\@ssequencexl}{\@sequencexl}}
 \varcmd{@sequencexl}{\mth}{\left[}{;}{\right.}{}
-\varcmd{@ssequencexl}{\mth}{[}{;}{}{}
+\varcmd{@ssequencexl}{\mth*}{[}{;}{}{}
 \DeclareRobustCommand{\sequencexr}
   {\@ifstar{\@ssequencexr}{\@sequencexr}}
 \varcmd{@sequencexr}{\mth}{\left.}{;}{\right]}{}
-\varcmd{@ssequencexr}{\mth}{}{;}{]}{}
+\varcmd{@ssequencexr}{\mth*}{}{;}{]}{}
 %    \end{macrocode}
 % \end{macro}
 
@@ -172,27 +174,27 @@
 \DeclareRobustCommand{\tuple}
   {\@ifstar{\@stuple}{\@tuple}}
 \varcmd{@tuple}{\mth}{\left\langle}{,}{\right\rangle}{}
-\varcmd{@stuple}{\mth}{\langle}{,}{\rangle}{}
+\varcmd{@stuple}{\mth*}{\langle}{,}{\rangle}{}
 \DeclareRobustCommand{\tuplel}
   {\@ifstar{\@stuplel}{\@tuplel}}
 \varcmd{@tuplel}{\mth}{\left\langle}{,}{\right.}{}
-\varcmd{@stuplel}{\mth}{\langle}{,}{}{}
+\varcmd{@stuplel}{\mth*}{\langle}{,}{}{}
 \DeclareRobustCommand{\tupler}
   {\@ifstar{\@stupler}{\@tupler}}
 \varcmd{@tupler}{\mth}{\left.}{,}{\right\rangle}{}
-\varcmd{@stupler}{\mth}{}{,}{\rangle}{}
+\varcmd{@stupler}{\mth*}{}{,}{\rangle}{}
 \DeclareRobustCommand{\tuplex}
   {\@ifstar{\@stuplex}{\@tuplex}}
 \varcmd{@tuplex}{\mth}{\left\langle}{;}{\right\rangle}{}
-\varcmd{@stuplex}{\mth}{\langle}{;}{\rangle}{}
+\varcmd{@stuplex}{\mth*}{\langle}{;}{\rangle}{}
 \DeclareRobustCommand{\tuplexl}
   {\@ifstar{\@stuplexl}{\@tuplexl}}
 \varcmd{@tuplexl}{\mth}{\left\langle}{;}{\right.}{}
-\varcmd{@stuplexl}{\mth}{\langle}{;}{}{}
+\varcmd{@stuplexl}{\mth*}{\langle}{;}{}{}
 \DeclareRobustCommand{\tuplexr}
   {\@ifstar{\@stuplexr}{\@tuplexr}}
 \varcmd{@tuplexr}{\mth}{\left.}{;}{\right\rangle}{}
-\varcmd{@stuplexr}{\mth}{}{;}{\rangle}{}
+\varcmd{@stuplexr}{\mth*}{}{;}{\rangle}{}
 %    \end{macrocode}
 % \end{macro}
 
@@ -204,17 +206,29 @@
 %   ...
 %    \begin{macrocode}
 \DeclareRobustCommand{\set}
-  {\@ifstar{\@set}{\@set[\left][\middle][\right]}}
-\DeclareRobustCommandx{\@set}[5][1=, 2=, 3=]
-  {\mth{\argmid{#1\lbrace}{\argsep{#4}{\,#2\vert\,}{#5}}{#3\rbrace}}}
+  {\@ifstar{\@sset{\vert}}{\@set{\vert}}}
+\DeclareRobustCommand{\setx}
+  {\@ifstar{\@sset{:}}{\@set{.\!:}}}
+\DeclareRobustCommand{\@set}[3]
+  {\mth{\argmid{\left\lbrace}{\argsep{#2}{\,\middle#1\,}{#3}}{\right\rbrace}}}
+\DeclareRobustCommand{\@sset}[3]
+  {\mth*{\argmid{\lbrace}{\argsep{#2}{\,#1\,}{#3}}{\rbrace}}}
 \DeclareRobustCommand{\setl}
-  {\@ifstar{\@setl}{\@setl[\left][\right]}}
-\DeclareRobustCommandx{\@setl}[3][1=, 2=]
-  {\mth{\argmid{#1\lbrace}{#3}{\,#2\vert\!}}}
+  {\@ifstar{\@ssetl{\vert}}{\@setl{\vert}}}
+\DeclareRobustCommand{\setlx}
+  {\@ifstar{\@ssetl{:}}{\@setl{.\!\!\!:}}}
+\DeclareRobustCommand{\@setl}[2]
+  {\mth{\argmid{\left\lbrace}{#2}{\,\right#1\!}}}
+\DeclareRobustCommand{\@ssetl}[2]
+  {\mth*{\argmid{\lbrace}{#2}{\,#1\!}}}
 \DeclareRobustCommand{\setr}
-  {\@ifstar{\@setr}{\@setr[\left.][\right]}}
-\DeclareRobustCommandx{\@setr}[3][1=, 2=]
-  {\mth{\argmid{#1}{#3}{#2\rbrace}}}
+  {\@ifstar{\@ssetr}{\@setr}}
+\DeclareRobustCommand{\setrx}
+  {\@ifstar{\@ssetr}{\@setr}}
+\DeclareRobustCommand{\@setr}[1]
+  {\mth{\argmid{\left.}{#1}{\right\rbrace}}}
+\DeclareRobustCommand{\@ssetr}[1]
+  {\mth*{\argmid{}{#1}{\rbrace}}}
 %    \end{macrocode}
 % \end{macro}
 
@@ -222,9 +236,11 @@
 %   ...
 %    \begin{macrocode}
 \DeclareRobustCommand{\card}
-  {\@ifstar{\@card}{\@card[\left][\right]}}
-\DeclareRobustCommandx{\@card}[3][1=, 2=]
-  {\mth{\argmid{#1\lvert}{#3}{#2\rvert}}}
+  {\@ifstar{\@scard}{\@card}}
+\DeclareRobustCommand{\@card}[1]
+  {\mth{\argmid{\left\lvert}{#1}{\right\rvert}}}
+\DeclareRobustCommand{\@scard}[1]
+  {\mth*{\argmid{\lvert}{#1}{\rvert}}}
 %    \end{macrocode}
 % \end{macro}
 
@@ -270,7 +286,7 @@
 %   ...
 %    \begin{macrocode}
 \DeclareRobustCommand{\prj}
-  {\mthargfun{prj}}
+  {\mthlbop{\downarrow}}
 %    \end{macrocode}
 % \end{macro}
 
@@ -469,13 +485,17 @@
 %   ...
 %    \begin{macrocode}
 \DeclareRobustCommand{\abs}
-  {\@ifstar{\@abs}{\@abs[\left][\right]}}
-\DeclareRobustCommandx{\@abs}[3][1=, 2=]
-  {\mth{\argmid{#1\lvert}{#3}{#2\rvert}}}
+  {\@ifstar{\@sabs}{\@abs}}
+\DeclareRobustCommand{\@abs}[1]
+  {\mth{\argmid{\left\lvert}{#1}{\right\rvert}}}
+\DeclareRobustCommand{\@sabs}[1]
+  {\mth*{\argmid{\lvert}{#1}{\rvert}}}
 \DeclareRobustCommand{\norm}
-  {\@ifstar{\@norm}{\@norm[\left][\right]}}
-\DeclareRobustCommandx{\@norm}[3][1=, 2=]
-  {\mth{\argmid{#1\lVert}{#3}{#2\rVert}}}
+  {\@ifstar{\@snorm}{\@norm}}
+\DeclareRobustCommand{\@norm}[1]
+  {\mth{\argmid{\left\lVert}{#1}{\right\rVert}}}
+\DeclareRobustCommand{\@snorm}[1]
+  {\mth*{\argmid{\lVert}{#1}{\rVert}}}
 %    \end{macrocode}
 % \end{macro}
 
@@ -483,13 +503,17 @@
 %   ...
 %    \begin{macrocode}
 \DeclareRobustCommand{\floor}
-  {\@ifstar{\@floor}{\@floor[\left][\right]}}
-\DeclareRobustCommandx{\@floor}[3][1=, 2=]
-  {\mth{\argmid{#1\lfloor}{#3}{#2\rfloor}}}
+  {\@ifstar{\@sfloor}{\@floor}}
+\DeclareRobustCommand{\@floor}[1]
+  {\mth{\argmid{\left\lfloor}{#1}{\right\rfloor}}}
+\DeclareRobustCommand{\@sfloor}[1]
+  {\mth*{\argmid{\lfloor}{#1}{\rfloor}}}
 \DeclareRobustCommand{\ceil}
-  {\@ifstar{\@ceil}{\@ceil[\left][\right]}}
-\DeclareRobustCommandx{\@ceil}[3][1=, 2=]
-  {\mth{\argmid{#1\lceil}{#3}{#2\rceil}}}
+  {\@ifstar{\@sceil}{\@ceil}}
+\DeclareRobustCommand{\@ceil}[1]
+  {\mth{\argmid{\left\lceil}{#1}{\right\rceil}}}
+\DeclareRobustCommand{\@sceil}[1]
+  {\mth*{\argmid{\lceil}{#1}{\rceil}}}
 %    \end{macrocode}
 % \end{macro}
 
@@ -554,9 +578,13 @@
 %   ...
 %    \begin{macrocode}
 \DeclareRobustCommand{\len}
-  {\@ifstar{\@len}{\@len[\left][\right]}}
+  {\@ifstar{\@slen}{\@len}}
 \DeclareRobustCommandx{\@len}[3][1=, 2=]
   {\mth{\argmid{#1\lvert}{#3}{#2\rvert}}}
+\DeclareRobustCommand{\@len}[1]
+  {\mth{\argmid{\left\lvert}{#1}{\right\rvert}}}
+\DeclareRobustCommand{\@slen}[1]
+  {\mth*{\argmid{\lvert}{#1}{\rvert}}}
 %    \end{macrocode}
 % \end{macro}
 

@@ -18,10 +18,23 @@
 %     \item
 %       \verb=\newmth[mathtt]{Name}[sub][sup][Ext]= =
 %       ``\newmth[mathtt]{Name}[sub][sup][Ext]''
+%     \item
+%       \verb=\newmth*[mathrm]{Name}[sub][sup][Ext]= =
+%       ``\newmth*[mathrm]{Name}[sub][sup][Ext]''
+%     \item
+%       \verb=\newmth*[mathsf]{Name}[sub][sup][Ext]= =
+%       ``\newmth*[mathsf]{Name}[sub][sup][Ext]''
+%     \item
+%       \verb=\newmth*[mathtt]{Name}[sub][sup][Ext]= =
+%       ``\newmth*[mathtt]{Name}[sub][sup][Ext]''
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\newmth}[5][1=, 3=, 4=, 5=]
+\newcommand{\newmth}
+  {\@ifstar{\@snewmth}{\@newmth}}
+\newcommandx{\@newmth}[5][1=, 3=, 4=, 5=]
   {\ensuremath{\csname#1\endcsname{#2}\mthsubsup{#3}{#4}#5}}
+\newcommandx{\@snewmth}[5][1=, 3=, 4=, 5=]
+  {\ensuremath{\csname#1\endcsname #2\mthsubsup{#3}{#4}#5}}
 %    \end{macrocode}
 % \end{macro}
 
@@ -38,10 +51,23 @@
 %     \item
 %       \verb=\newmthsty{mathrm}[mathtt]{Name}[sub][sup][Ext]= =
 %       ``\newmthsty{mathrm}[mathtt]{Name}[sub][sup][Ext]''
+%     \item
+%       \verb=\newmthsty*{mathrm}{Name}[sub][sup][Ext]= =
+%       ``\newmthsty*{mathrm}{Name}[sub][sup][Ext]''
+%     \item
+%       \verb=\newmthsty*{mathrm}[mathsf]{Name}[sub][sup][Ext]= =
+%       ``\newmthsty*{mathrm}[mathsf]{Name}[sub][sup][Ext]''
+%     \item
+%       \verb=\newmthsty*{mathrm}[mathtt]{Name}[sub][sup][Ext]= =
+%       ``\newmthsty*{mathrm}[mathtt]{Name}[sub][sup][Ext]''
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\newmthsty}[2][2=]
+\newcommand{\newmthsty}
+  {\@ifstar{\@snewmthsty}{\@newmthsty}}
+\newcommandx{\@newmthsty}[2][2=]
   {\newmth[\defval{#2}{#1}]}
+\newcommandx{\@snewmthsty}[2][2=]
+  {\newmth*[\defval{#2}{#1}]}
 %    \end{macrocode}
 % \end{macro}
 
@@ -354,10 +380,19 @@
 %     \item
 %       \verb=\mth[mathtt]{Name}[sub][sup][Ext]= =
 %       ``\mth[mathtt]{Name}[sub][sup][Ext]''
+%     \item
+%       \verb=\mth*{Name}[sub][sup][Ext]= =
+%       ``\mth*{Name}[sub][sup][Ext]''
+%     \item
+%       \verb=\mth*[mathbf]{Name}[sub][sup][Ext]= =
+%       ``\mth*[mathbf]{Name}[sub][sup][Ext]''
+%     \item
+%       \verb=\mth*[mathtt]{Name}[sub][sup][Ext]= =
+%       ``\mth*[mathtt]{Name}[sub][sup][Ext]''
 %   \end{itemize}
 %    \begin{macrocode}
 \newcommand{\mth}
-  {\newmthsty{\mthsty}}
+  {\@ifstar{\newmthsty{\mthsty}}{\newmthsty*{\mthsty}}}
 %    \end{macrocode}
 % \end{macro}
 
@@ -497,11 +532,15 @@
 %       \verb=\cmdmth{NewCmd}=;\cmdmth{NewCmd}
 %       \verb=\newcommand{mthstyNewCmd}{\mathtt}=;
 %       \newcommand{\mthstyNewCmd}{\mathtt} \\
-%       \verb=\mthNewCmd{Name}[sub][sup][Ext]= = \mthNewCmd{Name}[sub][sup][Ext]
+%       \verb=\mthNewCmd{Name}[sub][sup][Ext]= =
+%       \mthNewCmd{Name}[sub][sup][Ext] \\
+%       \verb=\mthNewCmd*{Name}[sub][sup][Ext]= =
+%       \mthNewCmd*{Name}[sub][sup][Ext]
 %   \end{itemize}
 %    \begin{macrocode}
 \newcommand{\cmdmth}[1]
-  {\csdef{mth#1}{\newmthsty{mthsty#1}}}
+  {\csdef{mth#1}%
+    {\@ifstar{\newmthsty*{mthsty#1}}{\newmthsty{mthsty#1}}}}
 %    \end{macrocode}
 % \end{macro}
 
@@ -627,8 +666,9 @@
 %   \small
 %   \begin{itemize}
 %     \item
-%       \verb=\usrmth{cmdName}{Suf}{}=;\usrmth{cmdName}{Suf}{}
+%       \verb=\usrmth{cmdName}{Suf}{}=;\usrmth{cmdName}{Suf}{} \\
 %       \verb=\cmdNameSuf= = \cmdNameSuf \\
+%       \verb=\cmdNameSuf*= = \cmdNameSuf* \\
 %       \verb=\usrmth{cmdName}{Suf}{arg}=;\usrmth{cmdName}{Suf}{arg} \\
 %       \verb=\cmdNameSuf{Arg^{Ex^{Ex}}}= = \cmdNameSuf{Arg^{Ex^{Ex}}} \\
 %       \verb=\cmdNameSuf*{Arg^{Ex^{Ex}}}= = \cmdNameSuf*{Arg^{Ex^{Ex}}} \\
@@ -636,8 +676,10 @@
 %       \verb=\cmdNameSuf{Par^{Ex^{Ex}}}= = \cmdNameSuf{Par^{Ex^{Ex}}} \\
 %       \verb=\cmdNameSuf*{Par^{Ex^{Ex}}}= = \cmdNameSuf*{Par^{Ex^{Ex}}}
 %     \item
-%       \verb=\usrmth{cmdName}{Suf}{}[newName]=;\usrmth{cmdName}{Suf}{}[newName]
+%       \verb=\usrmth{cmdName}{Suf}{}[newName]=;
+%       \usrmth{cmdName}{Suf}{}[newName] \\
 %       \verb=\cmdNameSuf= = \cmdNameSuf \\
+%       \verb=\cmdNameSuf*= = \cmdNameSuf* \\
 %       \verb=\usrmth{cmdName}{Suf}{arg}[newName]=;
 %       \usrmth{cmdName}{Suf}{arg}[newName] \\
 %       \verb=\cmdNameSuf{Arg^{Ex^{Ex}}}= = \cmdNameSuf{Arg^{Ex^{Ex}}} \\
@@ -652,8 +694,7 @@
   {\csdef{#1#2}{%
     \@ifstar%
       {\csname mth#3\endcsname*{\defval{#4}{#1}}}%
-      {\csname mth#3\endcsname{\defval{#4}{#1}}}%
-  }}
+      {\csname mth#3\endcsname{\defval{#4}{#1}}}}}
 %    \end{macrocode}
 % \end{macro}
 

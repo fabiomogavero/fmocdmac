@@ -31,7 +31,7 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesPackage{fmocdmac}
-  [2023/05/24 v0.18 FM's OCD LaTeX Macro]
+  [2023/06/09 v0.19 FM's OCD LaTeX Macro]
 
 \RequirePackage{etoolbox}
 
@@ -353,35 +353,75 @@
 %%** Text Meta Commands ******************************************************%%
 %%****************************************************************************%%
 
-\newcommandx{\newtxt}[5][1=, 3=, 4=, 5=]
+\newcommand{\newtxt}
+  {\@ifstar{\@snewtxt}{\@newtxt}}
+\newcommandx{\@newtxt}[5][1=, 3=, 4=, 5=]
   {\text{#1#2\txtsubsup[#1]{#3}{#4}#5}\xspace}
+\newcommandx{\@snewtxt}[5][1=, 3=, 4=, 5=]
+  {#1#2\txtsubsup[#1]{#3}{#4}#5\normalfont\xspace}
 
-\newcommandx{\newtxtsty}[2][2=]
+\newcommand{\newtxtsty}
+  {\@ifstar{\@snewtxtsty}{\@newtxtsty}}
+\newcommandx{\@newtxtsty}[2][2=]
   {\newtxt[\defval{#2}{#1}]}
+\newcommandx{\@snewtxtsty}[2][2=]
+  {\newtxt*[\defval{#2}{#1}]}
 
-\newcommandx{\newtxtarg}[7][1=, 3=, 4=, 5=, 7=]
+\newcommand{\newtxtarg}
+  {\@ifstar{\@snewtxtarg}{\@newtxtarg}}
+\newcommandx{\@newtxtarg}[7][1=, 3=, 4=, 5=, 7=]
   {\newtxt[#1]{#2}[#3][#4][\argmid{#5(}{#6}{)#7}]}
+\newcommandx{\@snewtxtarg}[7][1=, 3=, 4=, 5=, 7=]
+  {\newtxt*[#1]{#2}[#3][#4][\argmid{#5(}{#6}{)#7}]}
 
-\newcommandx{\newtxtargsty}[2][2=]
+\newcommand{\newtxtargsty}
+  {\@ifstar{\@snewtxtargsty}{\@newtxtargsty}}
+\newcommandx{\@newtxtargsty}[2][2=]
   {\newtxtarg[\defval{#2}{#1}]}
+\newcommandx{\@snewtxtargsty}[2][2=]
+  {\newtxtarg*[\defval{#2}{#1}]}
 
-\newcommandx{\newtxtoarg}[5][1=, 3=, 4=, 5=]
+\newcommand{\newtxtoarg}
+  {\@ifstar{\@snewtxtoarg}{\@newtxtoarg}}
+\newcommandx{\@newtxtoarg}[5][1=, 3=, 4=, 5=]
   {\newtxtarg[#1]{#2}[#3][#4][]{#5}[]}
+\newcommandx{\@snewtxtoarg}[5][1=, 3=, 4=, 5=]
+  {\newtxtarg*[#1]{#2}[#3][#4][]{#5}[]}
 
-\newcommandx{\newtxtoargsty}[2][2=]
+\newcommand{\newtxtoargsty}
+  {\@ifstar{\@snewtxtoargsty}{\@newtxtoargsty}}
+\newcommandx{\@newtxtoargsty}[2][2=]
   {\newtxtoarg[\defval{#2}{#1}]}
+\newcommandx{\@snewtxtoargsty}[2][2=]
+  {\newtxtoarg*[\defval{#2}{#1}]}
 
-\newcommandx{\newtxtpar}[7][1=, 3=, 4=, 5=, 7=]
+\newcommand{\newtxtpar}
+  {\@ifstar{\@snewtxtpar}{\@newtxtpar}}
+\newcommandx{\@newtxtpar}[7][1=, 3=, 4=, 5=, 7=]
   {\newtxt[#1]{#2}[#3][#4][\argmid{#5[}{#6}{]#7}]}
+\newcommandx{\@snewtxtpar}[7][1=, 3=, 4=, 5=, 7=]
+  {\newtxt*[#1]{#2}[#3][#4][\argmid{#5[}{#6}{]#7}]}
 
-\newcommandx{\newtxtparsty}[2][2=]
+\newcommand{\newtxtparsty}
+  {\@ifstar{\@snewtxtparsty}{\@newtxtparsty}}
+\newcommandx{\@newtxtparsty}[2][2=]
   {\newtxtpar[\defval{#2}{#1}]}
+\newcommandx{\@snewtxtparsty}[2][2=]
+  {\newtxtpar*[\defval{#2}{#1}]}
 
-\newcommandx{\newtxtopar}[5][1=, 3=, 4=, 5=]
+\newcommand{\newtxtopar}
+  {\@ifstar{\@snewtxtopar}{\@newtxtopar}}
+\newcommandx{\@newtxtopar}[5][1=, 3=, 4=, 5=]
   {\newtxtpar[#1]{#2}[#3][#4][]{#5}[]}
+\newcommandx{\@snewtxtopar}[5][1=, 3=, 4=, 5=]
+  {\newtxtpar*[#1]{#2}[#3][#4][]{#5}[]}
 
-\newcommandx{\newtxtoparsty}[2][2=]
+\newcommand{\newtxtoparsty}
+  {\@ifstar{\@snewtxtoparsty}{\@newtxtoparsty}}
+\newcommandx{\@newtxtoparsty}[2][2=]
   {\newtxtopar[\defval{#2}{#1}]}
+\newcommandx{\@snewtxtoparsty}[2][2=]
+  {\newtxtopar*[\defval{#2}{#1}]}
 
 \newcommand{\txtsubsup}[3][]
   {\ensuremath{\empchk{#2}{_{\text{#1#2}}}\empchk{#3}{^{\text{#1#3}}}}}
@@ -389,19 +429,19 @@
 %%****************************************************************************%%
 
 \newcommand{\txt}
-  {\newtxtsty{\txtsty}}
+  {\@ifstar{\newtxtsty{\txtsty}}{\newtxtsty*{\txtsty}}}
 
 \newcommand{\txtarg}
-  {\newtxtargsty{\txtsty}}
+  {\@ifstar{\newtxtargsty{\txtsty}}{\newtxtargsty*{\txtsty}}}
 
 \newcommand{\txtoarg}
-  {\newtxtoargsty{\txtsty}}
+  {\@ifstar{\newtxtoargsty{\txtsty}}{\newtxtoargsty*{\txtsty}}}
 
 \newcommand{\txtpar}
-  {\newtxtparsty{\txtsty}}
+  {\@ifstar{\newtxtparsty{\txtsty}}{\newtxtparsty*{\txtsty}}}
 
 \newcommand{\txtopar}
-  {\newtxtoparsty{\txtsty}}
+  {\@ifstar{\newtxtoparsty{\txtsty}}{\newtxtoparsty*{\txtsty}}}
 
 \newcommand{\txtsty}
   {\mdseries\upshape\rmfamily}
@@ -409,19 +449,34 @@
 %%****************************************************************************%%
 
 \newcommand{\cmdtxt}[1]
-  {\csdef{txt#1}{\newtxtsty{\csname txtsty#1\endcsname}}}
+  {\csdef{txt#1}%
+    {\@ifstar%
+      {\newtxtsty*{\csname txtsty#1\endcsname}}%
+      {\newtxtsty{\csname txtsty#1\endcsname}}}}
 
 \newcommand{\cmdtxtarg}[1]
-  {\csdef{txtarg#1}{\newtxtargsty{\csname txtsty#1\endcsname}}}
+  {\csdef{txtarg#1}%
+    {\@ifstar%
+      {\newtxtargsty*{\csname txtsty#1\endcsname}}%
+      {\newtxtargsty{\csname txtsty#1\endcsname}}}}
 
 \newcommand{\cmdtxtoarg}[1]
-  {\csdef{txtoarg#1}{\newtxtoargsty{\csname txtsty#1\endcsname}}}
+  {\csdef{txtoarg#1}%
+    {\@ifstar%
+      {\newtxtoargsty*{\csname txtsty#1\endcsname}}%
+      {\newtxtoargsty{\csname txtsty#1\endcsname}}}}
 
 \newcommand{\cmdtxtpar}[1]
-  {\csdef{txtpar#1}{\newtxtparsty{\csname txtsty#1\endcsname}}}
+  {\csdef{txtpar#1}%
+    {\@ifstar%
+      {\newtxtparsty*{\csname txtsty#1\endcsname}}%
+      {\newtxtparsty{\csname txtsty#1\endcsname}}}}
 
 \newcommand{\cmdtxtopar}[1]
-  {\csdef{txtopar#1}{\newtxtoparsty{\csname txtsty#1\endcsname}}}
+  {\csdef{txtopar#1}%
+    {\@ifstar%
+      {\newtxtoparsty*{\csname txtsty#1\endcsname}}%
+      {\newtxtoparsty{\csname txtsty#1\endcsname}}}}
 
 \newcommand{\cmdtxtall}[1]
   {\cmdtxt{#1}\cmdtxtarg{#1}\cmdtxtoarg{#1}\cmdtxtpar{#1}\cmdtxtopar{#1}}
@@ -429,7 +484,10 @@
 %%****************************************************************************%%
 
 \newcommandx{\usrtxt}[4][4=]
-  {\csdef{#1#2}{\csname txt#3\endcsname{\defval{#4}{#1}}}}
+  {\csdef{#1#2}{%
+    \@ifstar%
+      {\csname txt#3\endcsname*{\defval{#4}{#1}}}%
+      {\csname txt#3\endcsname{\defval{#4}{#1}}}}}
 
 %%****************************************************************************%%
 
@@ -437,11 +495,19 @@
 %%** Math Meta Commands ******************************************************%%
 %%****************************************************************************%%
 
-\newcommandx{\newmth}[5][1=, 3=, 4=, 5=]
+\newcommand{\newmth}
+  {\@ifstar{\@snewmth}{\@newmth}}
+\newcommandx{\@newmth}[5][1=, 3=, 4=, 5=]
   {\ensuremath{\csname#1\endcsname{#2}\mthsubsup{#3}{#4}#5}}
+\newcommandx{\@snewmth}[5][1=, 3=, 4=, 5=]
+  {\ensuremath{\csname#1\endcsname #2\mthsubsup{#3}{#4}#5}}
 
-\newcommandx{\newmthsty}[2][2=]
+\newcommand{\newmthsty}
+  {\@ifstar{\@snewmthsty}{\@newmthsty}}
+\newcommandx{\@newmthsty}[2][2=]
   {\newmth[\defval{#2}{#1}]}
+\newcommandx{\@snewmthsty}[2][2=]
+  {\newmth*[\defval{#2}{#1}]}
 
 \newcommand{\newmtharg}
   {\@ifstar{\@snewmtharg}{\@newmtharg}}
@@ -505,7 +571,7 @@
 %%****************************************************************************%%
 
 \newcommand{\mth}
-  {\newmthsty{\mthsty}}
+  {\@ifstar{\newmthsty{\mthsty}}{\newmthsty*{\mthsty}}}
 
 \newcommand{\mtharg}
   {\@ifstar{\newmthargsty*{\mthsty}}{\newmthargsty{\mthsty}}}
@@ -525,7 +591,8 @@
 %%****************************************************************************%%
 
 \newcommand{\cmdmth}[1]
-  {\csdef{mth#1}{\newmthsty{mthsty#1}}}
+  {\csdef{mth#1}%
+    {\@ifstar{\newmthsty*{mthsty#1}}{\newmthsty{mthsty#1}}}}
 
 \newcommand{\cmdmtharg}[1]
   {\csdef{mtharg#1}%
@@ -552,8 +619,7 @@
   {\csdef{#1#2}{%
     \@ifstar%
       {\csname mth#3\endcsname*{\defval{#4}{#1}}}%
-      {\csname mth#3\endcsname{\defval{#4}{#1}}}%
-  }}
+      {\csname mth#3\endcsname{\defval{#4}{#1}}}}}
 
 %%****************************************************************************%%
 
@@ -1180,9 +1246,11 @@
 %%****************************************************************************%%
 
 \DeclareRobustCommand{\denot}
-  {\@ifstar{\@denot}{\@denot[\left][\right]}}
-\DeclareRobustCommandx{\@denot}[3][1=, 2=]
-  {\mth{\argmid{#1\llbracket}{#3}{#2\rrbracket}}}
+  {\@ifstar{\@sdenot}{\@denot}}
+\DeclareRobustCommand{\@denot}[1]
+  {\mth{\argmid{\left\llbracket}{#1}{\right\rrbracket}}}
+\DeclareRobustCommand{\@sdenot}[1]
+  {\mth*{\argmid{\llbracket}{#1}{\rrbracket}}}
 
 %%****************************************************************************%%
 
@@ -1204,78 +1272,92 @@
 
 %%****************************************************************************%%
 
-\varcmd{enumeration}{\mth}{}{,}{}{}
-\varcmd{enumerationx}{\mth}{}{;}{}{}
+\varcmd{enumeration}{\mth*}{}{,}{}{}
+\varcmd{enumerationx}{\mth*}{}{;}{}{}
 
 \DeclareRobustCommand{\sequence}
   {\@ifstar{\@ssequence}{\@sequence}}
 \varcmd{@sequence}{\mth}{\left[}{,}{\right]}{}
-\varcmd{@ssequence}{\mth}{[}{,}{]}{}
+\varcmd{@ssequence}{\mth*}{[}{,}{]}{}
 \DeclareRobustCommand{\sequencel}
   {\@ifstar{\@ssequencel}{\@sequencel}}
 \varcmd{@sequencel}{\mth}{\left[}{,}{\right.}{}
-\varcmd{@ssequencel}{\mth}{[}{,}{}{}
+\varcmd{@ssequencel}{\mth*}{[}{,}{}{}
 \DeclareRobustCommand{\sequencer}
   {\@ifstar{\@ssequencer}{\@sequencer}}
 \varcmd{@sequencer}{\mth}{\left.}{,}{\right]}{}
-\varcmd{@ssequencer}{\mth}{}{,}{]}{}
+\varcmd{@ssequencer}{\mth*}{}{,}{]}{}
 \DeclareRobustCommand{\sequencex}
   {\@ifstar{\@ssequencex}{\@sequencex}}
 \varcmd{@sequencex}{\mth}{\left[}{;}{\right]}{}
-\varcmd{@ssequencex}{\mth}{[}{;}{]}{}
+\varcmd{@ssequencex}{\mth*}{[}{;}{]}{}
 \DeclareRobustCommand{\sequencexl}
   {\@ifstar{\@ssequencexl}{\@sequencexl}}
 \varcmd{@sequencexl}{\mth}{\left[}{;}{\right.}{}
-\varcmd{@ssequencexl}{\mth}{[}{;}{}{}
+\varcmd{@ssequencexl}{\mth*}{[}{;}{}{}
 \DeclareRobustCommand{\sequencexr}
   {\@ifstar{\@ssequencexr}{\@sequencexr}}
 \varcmd{@sequencexr}{\mth}{\left.}{;}{\right]}{}
-\varcmd{@ssequencexr}{\mth}{}{;}{]}{}
+\varcmd{@ssequencexr}{\mth*}{}{;}{]}{}
 
 \DeclareRobustCommand{\tuple}
   {\@ifstar{\@stuple}{\@tuple}}
 \varcmd{@tuple}{\mth}{\left\langle}{,}{\right\rangle}{}
-\varcmd{@stuple}{\mth}{\langle}{,}{\rangle}{}
+\varcmd{@stuple}{\mth*}{\langle}{,}{\rangle}{}
 \DeclareRobustCommand{\tuplel}
   {\@ifstar{\@stuplel}{\@tuplel}}
 \varcmd{@tuplel}{\mth}{\left\langle}{,}{\right.}{}
-\varcmd{@stuplel}{\mth}{\langle}{,}{}{}
+\varcmd{@stuplel}{\mth*}{\langle}{,}{}{}
 \DeclareRobustCommand{\tupler}
   {\@ifstar{\@stupler}{\@tupler}}
 \varcmd{@tupler}{\mth}{\left.}{,}{\right\rangle}{}
-\varcmd{@stupler}{\mth}{}{,}{\rangle}{}
+\varcmd{@stupler}{\mth*}{}{,}{\rangle}{}
 \DeclareRobustCommand{\tuplex}
   {\@ifstar{\@stuplex}{\@tuplex}}
 \varcmd{@tuplex}{\mth}{\left\langle}{;}{\right\rangle}{}
-\varcmd{@stuplex}{\mth}{\langle}{;}{\rangle}{}
+\varcmd{@stuplex}{\mth*}{\langle}{;}{\rangle}{}
 \DeclareRobustCommand{\tuplexl}
   {\@ifstar{\@stuplexl}{\@tuplexl}}
 \varcmd{@tuplexl}{\mth}{\left\langle}{;}{\right.}{}
-\varcmd{@stuplexl}{\mth}{\langle}{;}{}{}
+\varcmd{@stuplexl}{\mth*}{\langle}{;}{}{}
 \DeclareRobustCommand{\tuplexr}
   {\@ifstar{\@stuplexr}{\@tuplexr}}
 \varcmd{@tuplexr}{\mth}{\left.}{;}{\right\rangle}{}
-\varcmd{@stuplexr}{\mth}{}{;}{\rangle}{}
+\varcmd{@stuplexr}{\mth*}{}{;}{\rangle}{}
 
 %%** Sets ********************************************************************%%
 
 \DeclareRobustCommand{\set}
-  {\@ifstar{\@set}{\@set[\left][\middle][\right]}}
-\DeclareRobustCommandx{\@set}[5][1=, 2=, 3=]
-  {\mth{\argmid{#1\lbrace}{\argsep{#4}{\,#2\vert\,}{#5}}{#3\rbrace}}}
+  {\@ifstar{\@sset{\vert}}{\@set{\vert}}}
+\DeclareRobustCommand{\setx}
+  {\@ifstar{\@sset{:}}{\@set{.\!:}}}
+\DeclareRobustCommand{\@set}[3]
+  {\mth{\argmid{\left\lbrace}{\argsep{#2}{\,\middle#1\,}{#3}}{\right\rbrace}}}
+\DeclareRobustCommand{\@sset}[3]
+  {\mth*{\argmid{\lbrace}{\argsep{#2}{\,#1\,}{#3}}{\rbrace}}}
 \DeclareRobustCommand{\setl}
-  {\@ifstar{\@setl}{\@setl[\left][\right]}}
-\DeclareRobustCommandx{\@setl}[3][1=, 2=]
-  {\mth{\argmid{#1\lbrace}{#3}{\,#2\vert\!}}}
+  {\@ifstar{\@ssetl{\vert}}{\@setl{\vert}}}
+\DeclareRobustCommand{\setlx}
+  {\@ifstar{\@ssetl{:}}{\@setl{.\!\!\!:}}}
+\DeclareRobustCommand{\@setl}[2]
+  {\mth{\argmid{\left\lbrace}{#2}{\,\right#1\!}}}
+\DeclareRobustCommand{\@ssetl}[2]
+  {\mth*{\argmid{\lbrace}{#2}{\,#1\!}}}
 \DeclareRobustCommand{\setr}
-  {\@ifstar{\@setr}{\@setr[\left.][\right]}}
-\DeclareRobustCommandx{\@setr}[3][1=, 2=]
-  {\mth{\argmid{#1}{#3}{#2\rbrace}}}
+  {\@ifstar{\@ssetr}{\@setr}}
+\DeclareRobustCommand{\setrx}
+  {\@ifstar{\@ssetr}{\@setr}}
+\DeclareRobustCommand{\@setr}[1]
+  {\mth{\argmid{\left.}{#1}{\right\rbrace}}}
+\DeclareRobustCommand{\@ssetr}[1]
+  {\mth*{\argmid{}{#1}{\rbrace}}}
 
 \DeclareRobustCommand{\card}
-  {\@ifstar{\@card}{\@card[\left][\right]}}
-\DeclareRobustCommandx{\@card}[3][1=, 2=]
-  {\mth{\argmid{#1\lvert}{#3}{#2\rvert}}}
+  {\@ifstar{\@scard}{\@card}}
+\DeclareRobustCommand{\@card}[1]
+  {\mth{\argmid{\left\lvert}{#1}{\right\rvert}}}
+\DeclareRobustCommand{\@scard}[1]
+  {\mth*{\argmid{\lvert}{#1}{\rvert}}}
 
 \DeclareRobustCommand{\pow}[1]
   {\mth{2^{\defval{#1}{\cdot}}}}
@@ -1295,7 +1377,7 @@
 %%****************************************************************************%%
 
 \DeclareRobustCommand{\prj}
-  {\mthargfun{prj}}
+  {\mthlbop{\downarrow}}
 
 \DeclareRobustCommand{\rst}
   {\mthlbop{\upharpoonright}}
@@ -1395,22 +1477,30 @@
 %%****************************************************************************%%
 
 \DeclareRobustCommand{\abs}
-  {\@ifstar{\@abs}{\@abs[\left][\right]}}
-\DeclareRobustCommandx{\@abs}[3][1=, 2=]
-  {\mth{\argmid{#1\lvert}{#3}{#2\rvert}}}
+  {\@ifstar{\@sabs}{\@abs}}
+\DeclareRobustCommand{\@abs}[1]
+  {\mth{\argmid{\left\lvert}{#1}{\right\rvert}}}
+\DeclareRobustCommand{\@sabs}[1]
+  {\mth*{\argmid{\lvert}{#1}{\rvert}}}
 \DeclareRobustCommand{\norm}
-  {\@ifstar{\@norm}{\@norm[\left][\right]}}
-\DeclareRobustCommandx{\@norm}[3][1=, 2=]
-  {\mth{\argmid{#1\lVert}{#3}{#2\rVert}}}
+  {\@ifstar{\@snorm}{\@norm}}
+\DeclareRobustCommand{\@norm}[1]
+  {\mth{\argmid{\left\lVert}{#1}{\right\rVert}}}
+\DeclareRobustCommand{\@snorm}[1]
+  {\mth*{\argmid{\lVert}{#1}{\rVert}}}
 
 \DeclareRobustCommand{\floor}
-  {\@ifstar{\@floor}{\@floor[\left][\right]}}
-\DeclareRobustCommandx{\@floor}[3][1=, 2=]
-  {\mth{\argmid{#1\lfloor}{#3}{#2\rfloor}}}
+  {\@ifstar{\@sfloor}{\@floor}}
+\DeclareRobustCommand{\@floor}[1]
+  {\mth{\argmid{\left\lfloor}{#1}{\right\rfloor}}}
+\DeclareRobustCommand{\@sfloor}[1]
+  {\mth*{\argmid{\lfloor}{#1}{\rfloor}}}
 \DeclareRobustCommand{\ceil}
-  {\@ifstar{\@ceil}{\@ceil[\left][\right]}}
-\DeclareRobustCommandx{\@ceil}[3][1=, 2=]
-  {\mth{\argmid{#1\lceil}{#3}{#2\rceil}}}
+  {\@ifstar{\@sceil}{\@ceil}}
+\DeclareRobustCommand{\@ceil}[1]
+  {\mth{\argmid{\left\lceil}{#1}{\right\rceil}}}
+\DeclareRobustCommand{\@sceil}[1]
+  {\mth*{\argmid{\lceil}{#1}{\rceil}}}
 
 %%****************************************************************************%%
 
@@ -1436,9 +1526,13 @@
   {\mth{\varepsilon}}
 
 \DeclareRobustCommand{\len}
-  {\@ifstar{\@len}{\@len[\left][\right]}}
+  {\@ifstar{\@slen}{\@len}}
 \DeclareRobustCommandx{\@len}[3][1=, 2=]
   {\mth{\argmid{#1\lvert}{#3}{#2\rvert}}}
+\DeclareRobustCommand{\@len}[1]
+  {\mth{\argmid{\left\lvert}{#1}{\right\rvert}}}
+\DeclareRobustCommand{\@slen}[1]
+  {\mth*{\argmid{\lvert}{#1}{\rvert}}}
 
 \usrmth{fst}{}{argfun}
 \usrmth{lst}{}{argfun}
