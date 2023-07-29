@@ -31,7 +31,7 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesPackage{fmocdmac}
-  [2023/06/09 v0.19 FM's OCD LaTeX Macro]
+  [2023/07/29 v0.20 FM's OCD LaTeX Macro]
 
 \RequirePackage{etoolbox}
 
@@ -1213,6 +1213,14 @@
     {\mthlbop{\triangleq}}}
 \DeclareRobustCommand{\seteq}
   {\@ifstar{\mthlbop{\Coloneqq}}{\mthlbop{\coloneqq}}}
+
+%%****************************************************************************%%
+
+\DeclareRobustCommand{\limp}
+  {\mthlbop{\rightarrow}}
+
+\DeclareRobustCommand{\lcoimp}
+  {\mthlbop{\Leftrightarrow}}
 
 %%****************************************************************************%%
 
