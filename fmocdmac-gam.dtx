@@ -121,21 +121,21 @@
 \newcommand{\pthsym}{\pi}
 \newcommand{\pthset}{Pth}
 \cmdmthsetext{Pth}[\pthset][\pthsym]
-\cmdmthfun{pth}
+\usrmth{path}{}{argfun}
 %    \end{macrocode}
 % \end{macro}
 
 % \begin{macro}{\HstSet, ...}
 %   ...
 %    \begin{macrocode}
-\newcommand{\hstsym}{\rho}
+\newcommand{\hstsym}{\varpi}
 \newcommand{\hstset}{Hst}
 \cmdmthsetext{Hst}[\hstset][\hstsym]
 \cmdmthset{PHst}[\hstset_{\PlrSym}]
 \cmdmthsymelm{phst}[\hstsym_{\PlrSym}]
 \cmdmthset{OHst}[\hstset_{\OppSym}]
 \cmdmthsymelm{ohst}[\hstsym_{\OppSym}]
-\cmdmthfun{hst}
+\usrmth{play}{}{argfun}
 %    \end{macrocode}
 % \end{macro}
 
@@ -145,7 +145,7 @@
 \newcommand{\playsym}{\pi}
 \newcommand{\playset}{Play}
 \cmdmthsetext{Play}[\playset][\playsym]
-\cmdmthfun{play}
+\usrmth{hst}{}{argfun}
 %    \end{macrocode}
 % \end{macro}
 
@@ -171,59 +171,49 @@
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\preFun, \sucFun}
+% \begin{macro}{\pre, \suc}
 %   ...
 %    \begin{macrocode}
-\newcommand{\prefun}{pre}
-\cmdmthoargfun{pre}[\prefun]
-\newcommand{\sucfun}{suc}
-\cmdmthoargfun{suc}[\sucfun]
+\usrmth{pre}{}{oargfun}
+\usrmth{suc}{}{oargfun}
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\entFun, \escFun}
+% \begin{macro}{\ent, \esc}
 %   ...
 %    \begin{macrocode}
-\newcommand{\entfun}{ent}
-\cmdmthoargfun{ent}[\entfun]
-\newcommand{\escfun}{esc}
-\cmdmthoargfun{esc}[\escfun]
+\usrmth{ent}{}{oargfun}
+\usrmth{esc}{}{oargfun}
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\intFun, \outFun}
+% \begin{macro}{\int, \out}
 %   ...
 %    \begin{macrocode}
-\newcommand{\intfun}{int}
-\cmdmthoargfun{int}[\intfun]
-\newcommand{\outfun}{out}
-\cmdmthoargfun{out}[\outfun]
+\usrmth{int}{}{oargfun}
+\usrmth{out}{}{oargfun}
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\atrFun, \rchFun}
+% \begin{macro}{\atr, \rch}
 %   ...
 %    \begin{macrocode}
-\newcommand{\atrfun}{atr}
-\cmdmthoargfun{atr}[\atrfun]
-\newcommand{\rchfun}{rch}
-\cmdmthoargfun{rch}[\rchfun]
+\usrmth{atr}{}{oargfun}
+\usrmth{rch}{}{oargfun}
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\liftFun}
+% \begin{macro}{\lift}
 %   ...
 %    \begin{macrocode}
-\newcommand{\liftfun}{lift}
-\cmdmthoargfun{lift}[\liftfun]
+\usrmth{lift}{}{oargfun}
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\solFun}
+% \begin{macro}{\sol}
 %   ...
 %    \begin{macrocode}
-\newcommand{\solfun}{sol}
-\cmdmthoargfun{sol}[\solfun]
+\usrmth{sol}{}{oargfun}
 %    \end{macrocode}
 % \end{macro}
 

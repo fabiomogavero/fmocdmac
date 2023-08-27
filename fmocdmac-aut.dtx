@@ -63,6 +63,15 @@
 %    \end{macrocode}
 % \end{macro}
 
+% \begin{macro}{\SymSet, ...}
+%   ...
+%    \begin{macrocode}
+\newcommand{\symsym}{\sigma}
+\newcommand{\symset}{\Sigma}
+\cmdmthsetext{Sym}[\symset][\symsym]
+%    \end{macrocode}
+% \end{macro}
+
 % \begin{macro}{\SttSet, ...}
 %   ...
 %    \begin{macrocode}
@@ -76,20 +85,12 @@
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\SymSet, ...}
+% \begin{macro}{\trnFun, \trnRel}
 %   ...
 %    \begin{macrocode}
-\newcommand{\symsym}{\sigma}
-\newcommand{\symset}{\Sigma}
-\cmdmthsetext{Sym}[\symset][\symsym]
-%    \end{macrocode}
-% \end{macro}
-
-% \begin{macro}{\trnFun}
-%   ...
-%    \begin{macrocode}
-\newcommand{\trnsym}{\delta}
+\def\trnsym{\delta}
 \cmdmthfun{trn}[\trnsym]
+\cmdmthrel{trn}[\trnsym]
 %    \end{macrocode}
 % \end{macro}
 
@@ -97,20 +98,19 @@
 %%** Semantics ***************************************************************%%
 %    \end{macrocode}
 
-% \begin{macro}{\LangFun}
-%   ...
-%    \begin{macrocode}
-\newcommand{\langfun}{L}
-\cmdmthfun{Lang}[\langfun]
-%    \end{macrocode}
-% \end{macro}
-
 % \begin{macro}{\WrdSet, ...}
 %   ...
 %    \begin{macrocode}
 \newcommand{\wrdsym}{w}
 \newcommand{\wrdset}{Wr}
 \cmdmthsetext{Wrd}[\wrdset][\wrdsym]
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\Lang}
+%   ...
+%    \begin{macrocode}
+\usrmth{Lang}{}{argfun}[L]
 %    \end{macrocode}
 % \end{macro}
 
@@ -168,11 +168,10 @@
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\wotFun}
+% \begin{macro}{\wot}
 %   ...
 %    \begin{macrocode}
-\newcommand{\wotfun}{wot}
-\cmdmthfun{wot}[\wotfun]
+\usrmth{wot}{}{argfun}
 %    \end{macrocode}
 % \end{macro}
 

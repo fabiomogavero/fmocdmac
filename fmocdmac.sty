@@ -31,7 +31,7 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesPackage{fmocdmac}
-  [2023/07/29 v0.20 FM's OCD LaTeX Macro]
+  [2023/08/27 v0.21 FM's OCD LaTeX Macro]
 
 \RequirePackage{etoolbox}
 
@@ -1694,21 +1694,21 @@
 \newcommand{\pthsym}{\pi}
 \newcommand{\pthset}{Pth}
 \cmdmthsetext{Pth}[\pthset][\pthsym]
-\cmdmthfun{pth}
+\usrmth{path}{}{argfun}
 
-\newcommand{\hstsym}{\rho}
+\newcommand{\hstsym}{\varpi}
 \newcommand{\hstset}{Hst}
 \cmdmthsetext{Hst}[\hstset][\hstsym]
 \cmdmthset{PHst}[\hstset_{\PlrSym}]
 \cmdmthsymelm{phst}[\hstsym_{\PlrSym}]
 \cmdmthset{OHst}[\hstset_{\OppSym}]
 \cmdmthsymelm{ohst}[\hstsym_{\OppSym}]
-\cmdmthfun{hst}
+\usrmth{play}{}{argfun}
 
 \newcommand{\playsym}{\pi}
 \newcommand{\playset}{Play}
 \cmdmthsetext{Play}[\playset][\playsym]
-\cmdmthfun{play}
+\usrmth{hst}{}{argfun}
 
 \newcommand{\strsym}{\sigma}
 \newcommand{\strset}{Str}
@@ -1722,31 +1722,21 @@
 \newcommand{\prfset}{Prf}
 \cmdmthsetext{Prf}[\prfset][\prfsym]
 
-\newcommand{\prefun}{pre}
-\cmdmthoargfun{pre}[\prefun]
-\newcommand{\sucfun}{suc}
-\cmdmthoargfun{suc}[\sucfun]
+\usrmth{pre}{}{oargfun}
+\usrmth{suc}{}{oargfun}
 
-\newcommand{\entfun}{ent}
-\cmdmthoargfun{ent}[\entfun]
-\newcommand{\escfun}{esc}
-\cmdmthoargfun{esc}[\escfun]
+\usrmth{ent}{}{oargfun}
+\usrmth{esc}{}{oargfun}
 
-\newcommand{\intfun}{int}
-\cmdmthoargfun{int}[\intfun]
-\newcommand{\outfun}{out}
-\cmdmthoargfun{out}[\outfun]
+\usrmth{int}{}{oargfun}
+\usrmth{out}{}{oargfun}
 
-\newcommand{\atrfun}{atr}
-\cmdmthoargfun{atr}[\atrfun]
-\newcommand{\rchfun}{rch}
-\cmdmthoargfun{rch}[\rchfun]
+\usrmth{atr}{}{oargfun}
+\usrmth{rch}{}{oargfun}
 
-\newcommand{\liftfun}{lift}
-\cmdmthoargfun{lift}[\liftfun]
+\usrmth{lift}{}{oargfun}
 
-\newcommand{\solfun}{sol}
-\cmdmthoargfun{sol}[\solfun]
+\usrmth{sol}{}{oargfun}
 
 %%** Qualitative Games on Graph **********************************************%%
 
@@ -1863,7 +1853,7 @@
 \newcommand{\apsym}{p}
 \newcommand{\apset}{AP}
 \cmdmthsetext{AP}[\apset][\apsym]
-\cmdmthfun{ap}\usrmth{ap}{}{argfun}
+\usrmth{ap}{}{argfun}
 
 \usrmth{sub}{}{argfun}
 
@@ -1920,7 +1910,7 @@
 \newcommand{\varset}{Vr}
 \cmdmthsetext{Var}[\varset][\varsym]
 \usrmth{var}{}{argfun}[vr]
-\cmdmthfun{dim}[dm]\usrmth{dim}{}{argfun}[dm]
+\usrmth{dim}{}{argfun}[dm]
 
 \newcommand{\consig}{C}
 \usrmthlatupp{Con}{Sig}{sig}[\consig]
@@ -1935,7 +1925,7 @@
 \newcommand{\funset}{Fn}
 \cmdmthsetext{Fun}[\funset][\funsym]
 \usrmth{fun}{}{argfun}[fn]
-\cmdmthfun{art}[ar]\usrmth{art}{}{argfun}[ar]
+\usrmth{art}{}{argfun}[ar]
 
 \newcommand{\tersig}{T}
 \usrmthlatupp{Ter}{Sig}{sig}[\tersig]
@@ -2140,7 +2130,7 @@
 \providecommand{\pthsym}{\pi}
 \providecommand{\pthset}{Pth}
 \cmdmthsetext{Pth}[\pthset][\pthsym]
-\cmdmthfun{pth}
+\usrmth{path}{}{argfun}
 
 %%** Modal Logics II *********************************************************%%
 
@@ -2266,7 +2256,7 @@
 
 %% ...
 
-%%** Strategic Logics I ******************************************************%%
+%%** Game Logics I ***********************************************************%%
 
 \cmdtxtoparname{ATL}
 
@@ -2322,6 +2312,10 @@
 \newcommand{\agnset}{Ag}
 \cmdmthsetext{Agn}[\agnset][\agnsym]
 
+\newcommand{\actsym}{c}
+\newcommand{\actset}{Ac}
+\cmdmthsetext{Act}[\actset][\actsym]
+
 \providecommand{\possym}{v}
 \providecommand{\posset}{Ps}
 \cmdmthsetext{Pos}[\posset][\possym]
@@ -2340,30 +2334,43 @@
 \cmdmthset{FStt}[\sttset_{F}]
 \cmdmthsymelm{fstt}[\sttsym_{F}]
 
-\newcommand{\actsym}{c}
-\newcommand{\actset}{Ac}
-\cmdmthsetext{Act}[\actset][\actsym]
-
 \newcommand{\decsym}{d}
 \newcommand{\decset}{Dc}
 \cmdmthsetext{Dec}[\decset][\decsym]
 
 \newcommand{\movsym}{\tau}
 \cmdmthfun{mov}[\movsym]
+\cmdmthrel{mov}[\movsym]
 
-\providecommand{\hstsym}{\rho}
+\newcommand{\trnsym}{\delta}
+\cmdmthfun{trn}[\trnsym]
+\cmdmthrel{trn}[\trnsym]
+
+\providecommand{\prfsym}{\xi}
+\providecommand{\prfset}{Prf}
+\cmdmthsetext{Prf}[\prfset][\prfsym]
+
+\providecommand{\hstsym}{\varpi}
 \providecommand{\hstset}{Hst}
 \cmdmthsetext{Hst}[\hstset][\hstsym]
 \cmdmthset{PHst}[\hstset_{\PlrSym}]
 \cmdmthsymelm{phst}[\hstsym_{\PlrSym}]
 \cmdmthset{OHst}[\hstset_{\OppSym}]
 \cmdmthsymelm{ohst}[\hstsym_{\OppSym}]
-\cmdmthfun{hst}
+\usrmth{hst}{}{argfun}
 
 \providecommand{\playsym}{\pi}
 \providecommand{\playset}{Play}
 \cmdmthsetext{Play}[\playset][\playsym]
-\cmdmthfun{play}
+\usrmth{play}{}{argfun}
+
+\providecommand{\plnsym}{\rho}
+\providecommand{\plnset}{Pln}
+\cmdmthsetext{Pln}[\plnset][\plnsym]
+\cmdmthset{PPln}[\plnset_{\PlrSym}]
+\cmdmthsymelm{pPln}[\plnsym_{\PlrSym}]
+\cmdmthset{OPln}[\plnset_{\OppSym}]
+\cmdmthsymelm{oPln}[\plnsym_{\OppSym}]
 
 \providecommand{\strsym}{\sigma}
 \providecommand{\strset}{Str}
@@ -2373,11 +2380,134 @@
 \cmdmthset{OStr}[\strset_{\OppSym}]
 \cmdmthsymelm{ostr}[\strsym_{\OppSym}]
 
-\providecommand{\prfsym}{\xi}
-\providecommand{\prfset}{Prf}
-\cmdmthsetext{Prf}[\prfset][\prfsym]
+%%** Game Logics II **********************************************************%%
 
-%%** Strategic Logics II *****************************************************%%
+\cmdtxtoparname{PL}
+
+\DeclareRobustCommand{\EPL}
+  {\ensuremath{\exists}\PL}
+\DeclareRobustCommand{\UPL}
+  {\ensuremath{\forall}\PL}
+
+\DeclareRobustCommand{\FPL}
+  {{\txtname{F}}\PL}
+
+\DeclareRobustCommand{\EFPL}
+  {\ensuremath{\exists}\FPL}
+\DeclareRobustCommand{\UFPL}
+  {\ensuremath{\forall}\FPL}
+
+\DeclareRobustCommandx{\OGPL}[3][1=, 2=, 3=]
+  {\PL[#1][#2][1g\arglef{,}{#3}]}
+
+\DeclareRobustCommand{\EOGPL}
+  {\ensuremath{\exists}\OGPL}
+\DeclareRobustCommand{\UOGPL}
+  {\ensuremath{\forall}\OGPL}
+
+\DeclareRobustCommand{\FOGPL}
+  {{\txtname{F}}\OGPL}
+
+\DeclareRobustCommand{\EFOGPL}
+  {\ensuremath{\exists}\FOGPL}
+\DeclareRobustCommand{\UFOGPL}
+  {\ensuremath{\forall}\FOGPL}
+
+\DeclareRobustCommandx{\CGPL}[3][1=, 2=, 3=]
+  {\PL[#1][#2][cg\arglef{,}{#3}]}
+
+\DeclareRobustCommand{\ECGPL}
+  {\ensuremath{\exists}\CGPL}
+\DeclareRobustCommand{\UCGPL}
+  {\ensuremath{\forall}\CGPL}
+
+\DeclareRobustCommand{\FCGPL}
+  {{\txtname{F}}\CGPL}
+
+\DeclareRobustCommand{\EFCGPL}
+  {\ensuremath{\exists}\FCGPL}
+\DeclareRobustCommand{\UFCGPL}
+  {\ensuremath{\forall}\FCGPL}
+
+\DeclareRobustCommandx{\DGPL}[3][1=, 2=, 3=]
+  {\PL[#1][#2][dg\arglef{,}{#3}]}
+
+\DeclareRobustCommand{\EDGPL}
+  {\ensuremath{\exists}\DGPL}
+\DeclareRobustCommand{\UDGPL}
+  {\ensuremath{\forall}\DGPL}
+
+\DeclareRobustCommand{\FDGPL}
+  {{\txtname{F}}\DGPL}
+
+\DeclareRobustCommand{\EFDGPL}
+  {\ensuremath{\exists}\FDGPL}
+\DeclareRobustCommand{\UFDGPL}
+  {\ensuremath{\forall}\FDGPL}
+
+\DeclareRobustCommandx{\AGPL}[3][1=, 2=, 3=]
+  {\PL[#1][#2][ag\arglef{,}{#3}]}
+
+\DeclareRobustCommand{\EAGPL}
+  {\ensuremath{\exists}\AGPL}
+\DeclareRobustCommand{\UAGPL}
+  {\ensuremath{\forall}\AGPL}
+
+\DeclareRobustCommand{\FAGPL}
+  {{\txtname{F}}\AGPL}
+
+\DeclareRobustCommand{\EFAGPL}
+  {\ensuremath{\exists}\FAGPL}
+\DeclareRobustCommand{\UFAGPL}
+  {\ensuremath{\forall}\FAGPL}
+
+\DeclareRobustCommandx{\EGPL}[3][1=, 2=, 3=]
+  {\PL[#1][#2][eg\arglef{,}{#3}]}
+
+\DeclareRobustCommand{\EEGPL}
+  {\ensuremath{\exists}\EGPL}
+\DeclareRobustCommand{\UEGPL}
+  {\ensuremath{\forall}\EGPL}
+
+\DeclareRobustCommand{\FEGPL}
+  {{\txtname{F}}\EGPL}
+
+\DeclareRobustCommand{\EFEGPL}
+  {\ensuremath{\exists}\FEGPL}
+\DeclareRobustCommand{\UFEGPL}
+  {\ensuremath{\forall}\FEGPL}
+
+\DeclareRobustCommandx{\BGPL}[3][1=, 2=, 3=]
+  {\PL[#1][#2][bg\arglef{,}{#3}]}
+
+\DeclareRobustCommand{\EBGPL}
+  {\ensuremath{\exists}\BGPL}
+\DeclareRobustCommand{\UBGPL}
+  {\ensuremath{\forall}\BGPL}
+
+\DeclareRobustCommand{\FBGPL}
+  {{\txtname{F}}\BGPL}
+
+\DeclareRobustCommand{\EFBGPL}
+  {\ensuremath{\exists}\FBGPL}
+\DeclareRobustCommand{\UFBGPL}
+  {\ensuremath{\forall}\FBGPL}
+
+\DeclareRobustCommandx{\XGPL}[3][1=, 2=, 3=]
+  {\PL[#1][#2][xg\arglef{,}{#3}]}
+
+\DeclareRobustCommand{\EXGPL}
+  {\ensuremath{\exists}\XGPL}
+\DeclareRobustCommand{\UXGPL}
+  {\ensuremath{\forall}\XGPL}
+
+\DeclareRobustCommand{\FXGPL}
+  {{\txtname{F}}\XGPL}
+
+\DeclareRobustCommand{\EFXGPL}
+  {\ensuremath{\exists}\FXGPL}
+\DeclareRobustCommand{\UFXGPL}
+  {\ensuremath{\forall}\FXGPL}
 
 \cmdtxtoparname{SL}
 
@@ -2419,7 +2549,7 @@
   {\ensuremath{\forall}\CGSL}
 
 \DeclareRobustCommand{\FCGSL}
-  {{\txtname{F}}\xGSL}
+  {{\txtname{F}}\CGSL}
 
 \DeclareRobustCommand{\EFCGSL}
   {\ensuremath{\exists}\FCGSL}
@@ -2435,7 +2565,7 @@
   {\ensuremath{\forall}\DGSL}
 
 \DeclareRobustCommand{\FDGSL}
-  {{\txtname{F}}\xGSL}
+  {{\txtname{F}}\DGSL}
 
 \DeclareRobustCommand{\EFDGSL}
   {\ensuremath{\exists}\FDGSL}
@@ -2451,7 +2581,7 @@
   {\ensuremath{\forall}\AGSL}
 
 \DeclareRobustCommand{\FAGSL}
-  {{\txtname{F}}\xGSL}
+  {{\txtname{F}}\AGSL}
 
 \DeclareRobustCommand{\EFAGSL}
   {\ensuremath{\exists}\FAGSL}
@@ -2467,7 +2597,7 @@
   {\ensuremath{\forall}\EGSL}
 
 \DeclareRobustCommand{\FEGSL}
-  {{\txtname{F}}\xGSL}
+  {{\txtname{F}}\EGSL}
 
 \DeclareRobustCommand{\EFEGSL}
   {\ensuremath{\exists}\FEGSL}
@@ -2483,7 +2613,7 @@
   {\ensuremath{\forall}\BGSL}
 
 \DeclareRobustCommand{\FBGSL}
-  {{\txtname{F}}\xGSL}
+  {{\txtname{F}}\BGSL}
 
 \DeclareRobustCommand{\EFBGSL}
   {\ensuremath{\exists}\FBGSL}
@@ -2499,7 +2629,7 @@
   {\ensuremath{\forall}\NGSL}
 
 \DeclareRobustCommand{\FNGSL}
-  {{\txtname{F}}\xGSL}
+  {{\txtname{F}}\NGSL}
 
 \DeclareRobustCommand{\EFNGSL}
   {\ensuremath{\exists}\FNGSL}
@@ -2515,7 +2645,7 @@
   {\ensuremath{\forall}\XGSL}
 
 \DeclareRobustCommand{\FXGSL}
-  {{\txtname{F}}\xGSL}
+  {{\txtname{F}}\XGSL}
 
 \DeclareRobustCommand{\EFXGSL}
   {\ensuremath{\exists}\FXGSL}
@@ -2533,8 +2663,7 @@
 
 %%** Semantics ***************************************************************%%
 
-\newcommand{\nxtfun}{nxt}
-\cmdmthfun{nxt}[\nxtfun]
+\usrmth{nxt}{}{argfun}
 
 \fi
 %%****************************************************************************%%
@@ -2577,6 +2706,10 @@
 \newcommand{\wautset}{WAut}
 \cmdmthset{WAut}[\wautset]
 
+\newcommand{\symsym}{\sigma}
+\newcommand{\symset}{\Sigma}
+\cmdmthsetext{Sym}[\symset][\symsym]
+
 \def\sttsym{q}
 \def\sttset{Q}
 \cmdmthsetext{Stt}[\sttset][\sttsym]
@@ -2585,21 +2718,17 @@
 \cmdmthset{FStt}[\sttset_{F}]
 \cmdmthsymelm{fstt}[\sttsym_{F}]
 
-\newcommand{\symsym}{\sigma}
-\newcommand{\symset}{\Sigma}
-\cmdmthsetext{Sym}[\symset][\symsym]
-
-\newcommand{\trnsym}{\delta}
+\def\trnsym{\delta}
 \cmdmthfun{trn}[\trnsym]
+\cmdmthrel{trn}[\trnsym]
 
 %%** Semantics ***************************************************************%%
-
-\newcommand{\langfun}{L}
-\cmdmthfun{Lang}[\langfun]
 
 \newcommand{\wrdsym}{w}
 \newcommand{\wrdset}{Wr}
 \cmdmthsetext{Wrd}[\wrdset][\wrdsym]
+
+\usrmth{Lang}{}{argfun}[L]
 
 %%** Finite Tree Automata ****************************************************%%
 
@@ -2629,8 +2758,7 @@
 \newcommand{\treeset}{Tr}
 \cmdmthsetext{Tree}[\treeset][\treesym]
 
-\newcommand{\wotfun}{wot}
-\cmdmthfun{wot}[\wotfun]
+\usrmth{wot}{}{argfun}
 
 \fi
 %%****************************************************************************%%
@@ -2651,7 +2779,7 @@
 \iffig@
 
 \RequirePackage{tikz}
-\usetikzlibrary{arrows,graphs,matrix,patterns,shapes}
+\usetikzlibrary{arrows,shapes,patterns,graphs,matrix}
 
 \tikzstyle{every node} =
   [draw = none, fill = none, black, thin]

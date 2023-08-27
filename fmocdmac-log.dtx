@@ -94,7 +94,7 @@
 \newcommand{\apsym}{p}
 \newcommand{\apset}{AP}
 \cmdmthsetext{AP}[\apset][\apsym]
-\cmdmthfun{ap}\usrmth{ap}{}{argfun}
+\usrmth{ap}{}{argfun}
 %    \end{macrocode}
 % \end{macro}
 
@@ -219,7 +219,7 @@
 \newcommand{\varset}{Vr}
 \cmdmthsetext{Var}[\varset][\varsym]
 \usrmth{var}{}{argfun}[vr]
-\cmdmthfun{dim}[dm]\usrmth{dim}{}{argfun}[dm]
+\usrmth{dim}{}{argfun}[dm]
 %    \end{macrocode}
 % \end{macro}
 
@@ -244,7 +244,7 @@
 \newcommand{\funset}{Fn}
 \cmdmthsetext{Fun}[\funset][\funsym]
 \usrmth{fun}{}{argfun}[fn]
-\cmdmthfun{art}[ar]\usrmth{art}{}{argfun}[ar]
+\usrmth{art}{}{argfun}[ar]
 %    \end{macrocode}
 % \end{macro}
 
@@ -608,13 +608,13 @@
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\PthSet, \pthFun}
+% \begin{macro}{\PthSet, ...}
 %   ...
 %    \begin{macrocode}
 \providecommand{\pthsym}{\pi}
 \providecommand{\pthset}{Pth}
 \cmdmthsetext{Pth}[\pthset][\pthsym]
-\cmdmthfun{pth}
+\usrmth{path}{}{argfun}
 %    \end{macrocode}
 % \end{macro}
 
@@ -811,7 +811,7 @@
 %% ...
 
 %    \begin{macrocode}
-%%** Strategic Logics I ******************************************************%%
+%%** Game Logics I ***********************************************************%%
 %    \end{macrocode}
 
 % \begin{macro}{\ATL, ...}
@@ -906,6 +906,15 @@
 %    \end{macrocode}
 % \end{macro}
 
+% \begin{macro}{\ActSet, ...}
+%   ...
+%    \begin{macrocode}
+\newcommand{\actsym}{c}
+\newcommand{\actset}{Ac}
+\cmdmthsetext{Act}[\actset][\actsym]
+%    \end{macrocode}
+% \end{macro}
+
 % \begin{macro}{\PosSet, ...}
 %   ...
 %    \begin{macrocode}
@@ -934,15 +943,6 @@
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\ActSet, ...}
-%   ...
-%    \begin{macrocode}
-\newcommand{\actsym}{c}
-\newcommand{\actset}{Ac}
-\cmdmthsetext{Act}[\actset][\actsym]
-%    \end{macrocode}
-% \end{macro}
-
 % \begin{macro}{\DecSet, ...}
 %   ...
 %    \begin{macrocode}
@@ -952,35 +952,67 @@
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\movFun}
+% \begin{macro}{\movFun, \movRel}
 %   ...
 %    \begin{macrocode}
 \newcommand{\movsym}{\tau}
 \cmdmthfun{mov}[\movsym]
+\cmdmthrel{mov}[\movsym]
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\trnFun, \trnRel}
+%   ...
+%    \begin{macrocode}
+\newcommand{\trnsym}{\delta}
+\cmdmthfun{trn}[\trnsym]
+\cmdmthrel{trn}[\trnsym]
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\PrfSet}
+%   ...
+%    \begin{macrocode}
+\providecommand{\prfsym}{\xi}
+\providecommand{\prfset}{Prf}
+\cmdmthsetext{Prf}[\prfset][\prfsym]
 %    \end{macrocode}
 % \end{macro}
 
 % \begin{macro}{\HstSet, ...}
 %   ...
 %    \begin{macrocode}
-\providecommand{\hstsym}{\rho}
+\providecommand{\hstsym}{\varpi}
 \providecommand{\hstset}{Hst}
 \cmdmthsetext{Hst}[\hstset][\hstsym]
 \cmdmthset{PHst}[\hstset_{\PlrSym}]
 \cmdmthsymelm{phst}[\hstsym_{\PlrSym}]
 \cmdmthset{OHst}[\hstset_{\OppSym}]
 \cmdmthsymelm{ohst}[\hstsym_{\OppSym}]
-\cmdmthfun{hst}
+\usrmth{hst}{}{argfun}
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\PlaySet,\playFun}
+% \begin{macro}{\PlaySet, ...}
 %   ...
 %    \begin{macrocode}
 \providecommand{\playsym}{\pi}
 \providecommand{\playset}{Play}
 \cmdmthsetext{Play}[\playset][\playsym]
-\cmdmthfun{play}
+\usrmth{play}{}{argfun}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\PlnSet, ...}
+%   ...
+%    \begin{macrocode}
+\providecommand{\plnsym}{\rho}
+\providecommand{\plnset}{Pln}
+\cmdmthsetext{Pln}[\plnset][\plnsym]
+\cmdmthset{PPln}[\plnset_{\PlrSym}]
+\cmdmthsymelm{pPln}[\plnsym_{\PlrSym}]
+\cmdmthset{OPln}[\plnset_{\OppSym}]
+\cmdmthsymelm{oPln}[\plnsym_{\OppSym}]
 %    \end{macrocode}
 % \end{macro}
 
@@ -997,18 +1029,149 @@
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\PrfSet, \prfFun}
+%    \begin{macrocode}
+%%** Game Logics II **********************************************************%%
+%    \end{macrocode}
+
+% \begin{macro}{\PL, ...}
 %   ...
 %    \begin{macrocode}
-\providecommand{\prfsym}{\xi}
-\providecommand{\prfset}{Prf}
-\cmdmthsetext{Prf}[\prfset][\prfsym]
+% Plan Logic
+\cmdtxtoparname{PL}
+
+\DeclareRobustCommand{\EPL}
+  {\ensuremath{\exists}\PL}
+\DeclareRobustCommand{\UPL}
+  {\ensuremath{\forall}\PL}
+
+\DeclareRobustCommand{\FPL}
+  {{\txtname{F}}\PL}
+
+\DeclareRobustCommand{\EFPL}
+  {\ensuremath{\exists}\FPL}
+\DeclareRobustCommand{\UFPL}
+  {\ensuremath{\forall}\FPL}
+
+% One-Goal Plan Logic
+\DeclareRobustCommandx{\OGPL}[3][1=, 2=, 3=]
+  {\PL[#1][#2][1g\arglef{,}{#3}]}
+
+\DeclareRobustCommand{\EOGPL}
+  {\ensuremath{\exists}\OGPL}
+\DeclareRobustCommand{\UOGPL}
+  {\ensuremath{\forall}\OGPL}
+
+\DeclareRobustCommand{\FOGPL}
+  {{\txtname{F}}\OGPL}
+
+\DeclareRobustCommand{\EFOGPL}
+  {\ensuremath{\exists}\FOGPL}
+\DeclareRobustCommand{\UFOGPL}
+  {\ensuremath{\forall}\FOGPL}
+
+% Conjunctive-Goal Plan Logic
+\DeclareRobustCommandx{\CGPL}[3][1=, 2=, 3=]
+  {\PL[#1][#2][cg\arglef{,}{#3}]}
+
+\DeclareRobustCommand{\ECGPL}
+  {\ensuremath{\exists}\CGPL}
+\DeclareRobustCommand{\UCGPL}
+  {\ensuremath{\forall}\CGPL}
+
+\DeclareRobustCommand{\FCGPL}
+  {{\txtname{F}}\CGPL}
+
+\DeclareRobustCommand{\EFCGPL}
+  {\ensuremath{\exists}\FCGPL}
+\DeclareRobustCommand{\UFCGPL}
+  {\ensuremath{\forall}\FCGPL}
+
+% Disjunctive-Goal Plan Logic
+\DeclareRobustCommandx{\DGPL}[3][1=, 2=, 3=]
+  {\PL[#1][#2][dg\arglef{,}{#3}]}
+
+\DeclareRobustCommand{\EDGPL}
+  {\ensuremath{\exists}\DGPL}
+\DeclareRobustCommand{\UDGPL}
+  {\ensuremath{\forall}\DGPL}
+
+\DeclareRobustCommand{\FDGPL}
+  {{\txtname{F}}\DGPL}
+
+\DeclareRobustCommand{\EFDGPL}
+  {\ensuremath{\exists}\FDGPL}
+\DeclareRobustCommand{\UFDGPL}
+  {\ensuremath{\forall}\FDGPL}
+
+% Alternating-Goal Plan Logic
+\DeclareRobustCommandx{\AGPL}[3][1=, 2=, 3=]
+  {\PL[#1][#2][ag\arglef{,}{#3}]}
+
+\DeclareRobustCommand{\EAGPL}
+  {\ensuremath{\exists}\AGPL}
+\DeclareRobustCommand{\UAGPL}
+  {\ensuremath{\forall}\AGPL}
+
+\DeclareRobustCommand{\FAGPL}
+  {{\txtname{F}}\AGPL}
+
+\DeclareRobustCommand{\EFAGPL}
+  {\ensuremath{\exists}\FAGPL}
+\DeclareRobustCommand{\UFAGPL}
+  {\ensuremath{\forall}\FAGPL}
+
+% Extended-Goal Plan Logic
+\DeclareRobustCommandx{\EGPL}[3][1=, 2=, 3=]
+  {\PL[#1][#2][eg\arglef{,}{#3}]}
+
+\DeclareRobustCommand{\EEGPL}
+  {\ensuremath{\exists}\EGPL}
+\DeclareRobustCommand{\UEGPL}
+  {\ensuremath{\forall}\EGPL}
+
+\DeclareRobustCommand{\FEGPL}
+  {{\txtname{F}}\EGPL}
+
+\DeclareRobustCommand{\EFEGPL}
+  {\ensuremath{\exists}\FEGPL}
+\DeclareRobustCommand{\UFEGPL}
+  {\ensuremath{\forall}\FEGPL}
+
+% Boolean-Goal Plan Logic
+\DeclareRobustCommandx{\BGPL}[3][1=, 2=, 3=]
+  {\PL[#1][#2][bg\arglef{,}{#3}]}
+
+\DeclareRobustCommand{\EBGPL}
+  {\ensuremath{\exists}\BGPL}
+\DeclareRobustCommand{\UBGPL}
+  {\ensuremath{\forall}\BGPL}
+
+\DeclareRobustCommand{\FBGPL}
+  {{\txtname{F}}\BGPL}
+
+\DeclareRobustCommand{\EFBGPL}
+  {\ensuremath{\exists}\FBGPL}
+\DeclareRobustCommand{\UFBGPL}
+  {\ensuremath{\forall}\FBGPL}
+
+% Undefined-Goal Plan Logic
+\DeclareRobustCommandx{\XGPL}[3][1=, 2=, 3=]
+  {\PL[#1][#2][xg\arglef{,}{#3}]}
+
+\DeclareRobustCommand{\EXGPL}
+  {\ensuremath{\exists}\XGPL}
+\DeclareRobustCommand{\UXGPL}
+  {\ensuremath{\forall}\XGPL}
+
+\DeclareRobustCommand{\FXGPL}
+  {{\txtname{F}}\XGPL}
+
+\DeclareRobustCommand{\EFXGPL}
+  {\ensuremath{\exists}\FXGPL}
+\DeclareRobustCommand{\UFXGPL}
+  {\ensuremath{\forall}\FXGPL}
 %    \end{macrocode}
 % \end{macro}
-
-%    \begin{macrocode}
-%%** Strategic Logics II *****************************************************%%
-%    \end{macrocode}
 
 % \begin{macro}{\SL, ...}
 %   ...
@@ -1056,7 +1219,7 @@
   {\ensuremath{\forall}\CGSL}
 
 \DeclareRobustCommand{\FCGSL}
-  {{\txtname{F}}\xGSL}
+  {{\txtname{F}}\CGSL}
 
 \DeclareRobustCommand{\EFCGSL}
   {\ensuremath{\exists}\FCGSL}
@@ -1073,7 +1236,7 @@
   {\ensuremath{\forall}\DGSL}
 
 \DeclareRobustCommand{\FDGSL}
-  {{\txtname{F}}\xGSL}
+  {{\txtname{F}}\DGSL}
 
 \DeclareRobustCommand{\EFDGSL}
   {\ensuremath{\exists}\FDGSL}
@@ -1090,7 +1253,7 @@
   {\ensuremath{\forall}\AGSL}
 
 \DeclareRobustCommand{\FAGSL}
-  {{\txtname{F}}\xGSL}
+  {{\txtname{F}}\AGSL}
 
 \DeclareRobustCommand{\EFAGSL}
   {\ensuremath{\exists}\FAGSL}
@@ -1107,7 +1270,7 @@
   {\ensuremath{\forall}\EGSL}
 
 \DeclareRobustCommand{\FEGSL}
-  {{\txtname{F}}\xGSL}
+  {{\txtname{F}}\EGSL}
 
 \DeclareRobustCommand{\EFEGSL}
   {\ensuremath{\exists}\FEGSL}
@@ -1124,7 +1287,7 @@
   {\ensuremath{\forall}\BGSL}
 
 \DeclareRobustCommand{\FBGSL}
-  {{\txtname{F}}\xGSL}
+  {{\txtname{F}}\BGSL}
 
 \DeclareRobustCommand{\EFBGSL}
   {\ensuremath{\exists}\FBGSL}
@@ -1141,7 +1304,7 @@
   {\ensuremath{\forall}\NGSL}
 
 \DeclareRobustCommand{\FNGSL}
-  {{\txtname{F}}\xGSL}
+  {{\txtname{F}}\NGSL}
 
 \DeclareRobustCommand{\EFNGSL}
   {\ensuremath{\exists}\FNGSL}
@@ -1158,7 +1321,7 @@
   {\ensuremath{\forall}\XGSL}
 
 \DeclareRobustCommand{\FXGSL}
-  {{\txtname{F}}\xGSL}
+  {{\txtname{F}}\XGSL}
 
 \DeclareRobustCommand{\EFXGSL}
   {\ensuremath{\exists}\FXGSL}
@@ -1192,11 +1355,10 @@
 %%** Semantics ***************************************************************%%
 %    \end{macrocode}
 
-% \begin{macro}{\nxtFun}
+% \begin{macro}{\nxt}
 %   ...
 %    \begin{macrocode}
-\newcommand{\nxtfun}{nxt}
-\cmdmthfun{nxt}[\nxtfun]
+\usrmth{nxt}{}{argfun}
 %    \end{macrocode}
 % \end{macro}
 
