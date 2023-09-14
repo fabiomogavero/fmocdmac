@@ -183,17 +183,23 @@
 %%****************************************************************************%%
 %    \end{macrocode}
 
-% \begin{macro}{\FPT, \FPL}
+% \begin{macro}{\FPT, ...}
 %   \small
 %   \begin{itemize}
 %     \item
 %       \verb=\FPT[sub][sup][arg]= = \FPT[sub][sup][arg]
 %     \item
-%       \verb=\FPL[sub][sup][arg]= = \FPL[sub][sup][arg]
+%       \verb=\FPLin[sub][sup][arg]= = \FPLin[sub][sup][arg]
+%     \item
+%       \verb=\FPQdr[sub][sup][arg]= = \FPQdr[sub][sup][arg]
+%     \item
+%       \verb=\FPCub[sub][sup][arg]= = \FPCub[sub][sup][arg]
 %   \end{itemize}
 %    \begin{macrocode}
 \defcomcls{FPT}
-\defcomcls{FPL}
+\defcomcls{FPLin}[FPL]
+\defcomcls{FPQdr}[FPQ]
+\defcomcls{FPCub}[FPC]
 %    \end{macrocode}
 % \end{macro}
 
