@@ -31,7 +31,7 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesPackage{fmocdmac}
-  [2023/08/27 v0.21 FM's OCD LaTeX Macro]
+  [2023/09/14 v0.22 FM's OCD LaTeX Macro]
 
 \RequirePackage{etoolbox}
 
@@ -1163,6 +1163,8 @@
 
 %%** French Abbreviations ****************************************************%%
 
+\cmdtxtabr{ala}[\`a la]
+
 \cmdtxtabr{naif}[na\"{i}f]
 
 \cmdtxtabr{naive}[na\"{i}ve]
@@ -1585,6 +1587,7 @@
 %%****************************************************************************%%
 
 \defcomcls{FPT}
+\defcomcls{FPL}
 
 %%****************************************************************************%%
 
@@ -2389,7 +2392,7 @@
 \DeclareRobustCommand{\UPL}
   {\ensuremath{\forall}\PL}
 
-\DeclareRobustCommand{\FPL}
+\DeclareRobustCommand{\XPL}
   {{\txtname{F}}\PL}
 
 \DeclareRobustCommand{\EFPL}
