@@ -1,0 +1,68 @@
+
+%    \begin{macrocode}
+%%****************************************************************************%%
+%%** Macros for Graphs *******************************************************%%
+%%****************************************************************************%%
+\ifgrp@
+%    \end{macrocode}
+
+%    \begin{macrocode}
+%%** Syntax ******************************************************************%%
+%    \end{macrocode}
+
+% \begin{macro}{\GrpName, ...}
+%   ...
+%    \begin{macrocode}
+\newcommand{\grpname}{G}
+\usrmthlatupp{Grp}{Name}{name}[\grpname]
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\VerSet, ...}
+%   ...
+%    \begin{macrocode}
+\newcommand{\versym}{v}
+\newcommand{\verset}{V}
+\cmdmthsetext{Ver}[\verset][\versym]
+\cmdmthsymelm{iver}[\versym_{I}]
+\cmdmthsymelm{fver}[\versym_{F}]
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\EdgRel}
+%   ...
+%    \begin{macrocode}
+\newcommand{\edgrel}{E}
+\cmdmthrel{Edg}[\edgrel]
+%    \end{macrocode}
+% \end{macro}
+
+
+%    \begin{macrocode}
+%%** Semantics ***************************************************************%%
+%    \end{macrocode}
+
+% \begin{macro}{\PthSet, \pthFun}
+%   ...
+%    \begin{macrocode}
+\newcommand{\pthsym}{\pi}
+\newcommand{\pthset}{Pth}
+\cmdmthsetext{Pth}[\pthset][\pthsym]
+\usrmth{path}{}{argfun}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\pre, \suc}
+%   ...
+%    \begin{macrocode}
+\usrmth{pre}{}{oargfun}
+\usrmth{suc}{}{oargfun}
+%    \end{macrocode}
+% \end{macro}
+
+%    \begin{macrocode}
+\fi
+%%****************************************************************************%%
+%    \end{macrocode}
+
+\endinput

@@ -71,6 +71,7 @@ install" installs the files in the local TeX tree.
     \from{\jobname-txt.dtx}{}%
     \from{\jobname-mth.dtx}{}%
     \from{\jobname-com.dtx}{}%
+    \from{\jobname-grp.dtx}{}%
     \from{\jobname-gam.dtx}{}%
     \from{\jobname-log.dtx}{}%
     \from{\jobname-aut.dtx}{}%
@@ -115,7 +116,7 @@ install" installs the files in the local TeX tree.
 %<package>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
 %<package>\ProvidesPackage{fmocdmac}
 %<*package>
-  [2023/09/14 v0.22 FM's OCD LaTeX Macro]
+  [2023/09/16 v0.23 FM's OCD LaTeX Macro]
 %</package>
 %
 %<*driver>
@@ -143,6 +144,7 @@ install" installs the files in the local TeX tree.
 
   \DocInput{\jobname-com.dtx}
 
+  \DocInput{\jobname-grp.dtx}
   \DocInput{\jobname-gam.dtx}
   \DocInput{\jobname-log.dtx}
   \DocInput{\jobname-aut.dtx}
@@ -212,6 +214,8 @@ install" installs the files in the local TeX tree.
 % \changes{v0.21}{2023/08/27}{Refactoring of function macros}
 %
 % \changes{v0.22}{2023/09/14}{Few additions}
+%
+% \changes{v0.23}{2023/09/16}{New `Graphs' section and small improvements}
 %
 % \begin{abstract}
 % This package contains almost all the latex macros I heavily use in my tcs
@@ -317,6 +321,11 @@ install" installs the files in the local TeX tree.
 \DeclareOption{nocom}{\com@false}
 
 
+%% Macros for graphs
+\newif\ifgrp@ \grp@false
+\DeclareOption{grp}{\grp@true\txtgen@true\mthgen@true}
+\DeclareOption{nogrp}{\grp@false}
+
 %% Macros for games
 \newif\ifgam@ \gam@false
 \DeclareOption{gam}{\gam@true\txtgen@true\mthgen@true}
@@ -368,7 +377,7 @@ install" installs the files in the local TeX tree.
 
 \DeclareOption*{\PackageWarning{fmocdmac}{Unknown~‘\CurrentOption’}}%
 
-\ExecuteOptions{aux,txtgen,mthgen,txt,mth,com,gam,log,aut}%
+\ExecuteOptions{aux,txtgen,mthgen,txt,mth,com,grp,gam,log,aut}%
 
 \ProcessOptions\relax%
 

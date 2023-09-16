@@ -13,6 +13,7 @@
 %% fmocdmac-txt.dtx 
 %% fmocdmac-mth.dtx 
 %% fmocdmac-com.dtx 
+%% fmocdmac-grp.dtx 
 %% fmocdmac-gam.dtx 
 %% fmocdmac-log.dtx 
 %% fmocdmac-aut.dtx 
@@ -31,7 +32,7 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesPackage{fmocdmac}
-  [2023/09/14 v0.22 FM's OCD LaTeX Macro]
+  [2023/09/16 v0.23 FM's OCD LaTeX Macro]
 
 \RequirePackage{etoolbox}
 
@@ -108,6 +109,11 @@
 \DeclareOption{com}{\com@true\txtgen@true}
 \DeclareOption{nocom}{\com@false}
 
+%% Macros for graphs
+\newif\ifgrp@ \grp@false
+\DeclareOption{grp}{\grp@true\txtgen@true\mthgen@true}
+\DeclareOption{nogrp}{\grp@false}
+
 %% Macros for games
 \newif\ifgam@ \gam@false
 \DeclareOption{gam}{\gam@true\txtgen@true\mthgen@true}
@@ -150,7 +156,7 @@
 
 \DeclareOption*{\PackageWarning{fmocdmac}{Unknown~‘\CurrentOption’}}%
 
-\ExecuteOptions{aux,txtgen,mthgen,txt,mth,com,gam,log,aut}%
+\ExecuteOptions{aux,txtgen,mthgen,txt,mth,com,grp,gam,log,aut}%
 
 \ProcessOptions\relax%
 
@@ -276,7 +282,8 @@
 
 \ifthmtls@
   % Extended Theorem Tools
-  \RequirePackage{thmtools, thm-restate}
+  \RequirePackage{thmtools}
+  \RequirePackage{thm-restate}
 \fi
 
 \ifenmtls@
@@ -1087,7 +1094,7 @@
 
 \cmdtxtabr{aposteriori}[a posteriori]
 
-\cmdtxtabr{cf}[cf.]
+\cmdtxtabr{cf}[cf.\@]
 
 \cmdtxtabr{dedicto}[de dicto]
 
@@ -1097,7 +1104,7 @@
 
 \cmdtxtabr{divideetimpera}[divide et impera]
 
-\cmdtxtabr{eg}[e.g.]
+\cmdtxtabr{eg}[e.g.\@]
 
 \cmdtxtabr{ergo}
 
@@ -1105,11 +1112,11 @@
 
 \cmdtxtabr{erratum}
 
-\cmdtxtabr{etal}[et al.]
+\cmdtxtabr{etal}[et al.\@]
 
-\cmdtxtabr{etc}[etc.]
+\cmdtxtabr{etc}[etc.\@]
 
-\cmdtxtabr{ie}[i.e.]
+\cmdtxtabr{ie}[i.e.\@]
 
 \cmdtxtabr{mutatismutandis}[mutatis mutandis]
 
@@ -1119,9 +1126,9 @@
 
 \cmdtxtabr{viceversa}[vice versa]
 
-\cmdtxtabr{vs}[vs.]
+\cmdtxtabr{vs}[vs.\@]
 
-\cmdtxtabr{viz}[viz.]
+\cmdtxtabr{viz}[viz.\@]
 
 %%****************************************************************************%%
 
@@ -1139,7 +1146,7 @@
 
 \cmdtxtabr{Divideetimpera}[Divide et impera]
 
-\cmdtxtabr{Eg}[E.g.]
+\cmdtxtabr{Eg}[E.g.\@]
 
 \cmdtxtabr{Errata}
 
@@ -1177,27 +1184,27 @@
 
 %%** English Abbreviations ***************************************************%%
 
-\cmdtxtabr{aka}[a.k.a.]
+\cmdtxtabr{aka}[a.k.a.\@]
 
-\cmdtxtabr{contd}[contd.]
+\cmdtxtabr{contd}[contd.\@]
 
 \cmdtxtabr{iff}
 
-\cmdtxtabr{iht}[i.h.t.]
+\cmdtxtabr{iht}[i.h.t.\@]
 
-\cmdtxtabr{stx}[s.t.]
+\cmdtxtabr{stx}[s.t.\@]
 
-\cmdtxtabr{resp}[resp.]
+\cmdtxtabr{resp}[resp.\@]
 
-\cmdtxtabr{wrt}[w.r.t.]
+\cmdtxtabr{wrt}[w.r.t.\@]
 
-\cmdtxtabr{wlogx}[w.l.o.g.]
+\cmdtxtabr{wlogx}[w.l.o.g.\@]
 
 %%****************************************************************************%%
 
-\cmdtxtabr{Contd}[Contd.]
+\cmdtxtabr{Contd}[Contd.\@]
 
-\cmdtxtabr{Wlogx}[W.l.o.g.]
+\cmdtxtabr{Wlogx}[W.l.o.g.\@]
 
 \fi
 %%****************************************************************************%%
@@ -1634,6 +1641,38 @@
 %%****************************************************************************%%
 
 %%****************************************************************************%%
+%%** Macros for Graphs *******************************************************%%
+%%****************************************************************************%%
+\ifgrp@
+
+%%** Syntax ******************************************************************%%
+
+\newcommand{\grpname}{G}
+\usrmthlatupp{Grp}{Name}{name}[\grpname]
+
+\newcommand{\versym}{v}
+\newcommand{\verset}{V}
+\cmdmthsetext{Ver}[\verset][\versym]
+\cmdmthsymelm{iver}[\versym_{I}]
+\cmdmthsymelm{fver}[\versym_{F}]
+
+\newcommand{\edgrel}{E}
+\cmdmthrel{Edg}[\edgrel]
+
+%%** Semantics ***************************************************************%%
+
+\newcommand{\pthsym}{\pi}
+\newcommand{\pthset}{Pth}
+\cmdmthsetext{Pth}[\pthset][\pthsym]
+\usrmth{path}{}{argfun}
+
+\usrmth{pre}{}{oargfun}
+\usrmth{suc}{}{oargfun}
+
+\fi
+%%****************************************************************************%%
+
+%%****************************************************************************%%
 %%** Macros for Games ********************************************************%%
 %%****************************************************************************%%
 \ifgam@
@@ -1696,11 +1735,6 @@
 
 %%** Semantics ***************************************************************%%
 
-\newcommand{\pthsym}{\pi}
-\newcommand{\pthset}{Pth}
-\cmdmthsetext{Pth}[\pthset][\pthsym]
-\usrmth{path}{}{argfun}
-
 \newcommand{\hstsym}{\varpi}
 \newcommand{\hstset}{Hst}
 \cmdmthsetext{Hst}[\hstset][\hstsym]
@@ -1726,9 +1760,6 @@
 \newcommand{\prfsym}{\xi}
 \newcommand{\prfset}{Prf}
 \cmdmthsetext{Prf}[\prfset][\prfsym]
-
-\usrmth{pre}{}{oargfun}
-\usrmth{suc}{}{oargfun}
 
 \usrmth{ent}{}{oargfun}
 \usrmth{esc}{}{oargfun}
