@@ -116,7 +116,7 @@ install" installs the files in the local TeX tree.
 %<package>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
 %<package>\ProvidesPackage{fmocdmac}
 %<*package>
-  [2023/09/16 v0.23 FM's OCD LaTeX Macro]
+  [2023/09/18 v0.24 FM's OCD LaTeX Macro]
 %</package>
 %
 %<*driver>
@@ -216,6 +216,8 @@ install" installs the files in the local TeX tree.
 % \changes{v0.22}{2023/09/14}{Few additions}
 %
 % \changes{v0.23}{2023/09/16}{New `Graphs' section and small improvements}
+%
+% \changes{v0.24}{2023/09/18}{Correction of fragile macros}
 %
 % \begin{abstract}
 % This package contains almost all the latex macros I heavily use in my tcs
@@ -435,7 +437,7 @@ install" installs the files in the local TeX tree.
 %       \verb=\empchk{A}{B}= = ``\empchk{A}{B}''
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommand{\empchk}[2]
+\DeclareRobustCommand{\empchk}[2]
   {\if&#1&\else#2\fi}
 %    \end{macrocode}
 % \end{macro}
@@ -473,7 +475,7 @@ install" installs the files in the local TeX tree.
 %       \verb=\arglef{A}{B}= = ``\arglef{A}{B}''
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommand{\arglef}[2]
+\DeclareRobustCommand{\arglef}[2]
   {\empchk{#2}{#1#2}}
 %    \end{macrocode}
 % \end{macro}
@@ -490,7 +492,7 @@ install" installs the files in the local TeX tree.
 %       \verb=\argrig{A}{B}= = ``\argrig{A}{B}''
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommand{\argrig}[2]
+\DeclareRobustCommand{\argrig}[2]
   {\empchk{#1}{#1#2}}
 %    \end{macrocode}
 % \end{macro}
@@ -507,7 +509,7 @@ install" installs the files in the local TeX tree.
 %       \verb=\argmid{A}{B}{C}= = ``\argmid{A}{B}{C}''
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommand{\argmid}[3]
+\DeclareRobustCommand{\argmid}[3]
   {\empchk{#2}{#1#2#3}}
 %    \end{macrocode}
 % \end{macro}
@@ -528,7 +530,7 @@ install" installs the files in the local TeX tree.
 %       \verb=\argsep{A}{B}{C}= = ``\argsep{A}{B}{C}''
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommand{\argsep}[3]
+\DeclareRobustCommand{\argsep}[3]
   {\if&#1&#3\else#1\arglef{#2}{#3}\fi}
 %    \end{macrocode}
 % \end{macro}
@@ -542,7 +544,7 @@ install" installs the files in the local TeX tree.
 %   \cmd{\varcmd}\marg{A}\marg{B}\marg{C}\marg{D}\marg{E}\marg{F}
 %   ... to do!
 %    \begin{macrocode}
-\newcommand{\varcmd}[6]
+\DeclareRobustCommand{\varcmd}[6]
   {\expandafter\newcommand\csname gobble#1arg\endcsname[2]
     {\csname check#1arg\endcsname{\argsep{##1}{#4}{\empchk{##2}{{##2}}}}}%
   \expandafter\newcommand\csname check#1arg\endcsname[1]
@@ -562,7 +564,7 @@ install" installs the files in the local TeX tree.
 %   \cmd{\seqoftag}\marg{A}\marg{B}\marg{C}
 %   ... to do!
 %    \begin{macrocode}
-\newcommand{\seqoftag}[3]
+\DeclareRobustCommand{\seqoftag}[3]
   {\@for\itr:={#1}\do%
     {\expandafter\csedef{\itr#2}%
       {\noexpand\csname #3\endcsname{\itr}}}}
@@ -574,7 +576,7 @@ install" installs the files in the local TeX tree.
 %   \cmd{\seqofcmd}\marg{A}\marg{B}\marg{C}
 %   ... to do!
 %    \begin{macrocode}
-\newcommand{\seqofcmd}[3]
+\DeclareRobustCommand{\seqofcmd}[3]
   {\@for\itr:={#1}\do%
     {\expandafter\csedef{\itr#2}%
       {\noexpand\csname #3\endcsname{\csname \itr\endcsname}}}}
@@ -590,7 +592,7 @@ install" installs the files in the local TeX tree.
 %   \cmd{\seqoflatlow}\marg{A}\marg{B}
 %   ... to do!
 %    \begin{macrocode}
-\newcommand{\seqoflatlow}
+\DeclareRobustCommand{\seqoflatlow}
   {\seqoftag{a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z}}
 %    \end{macrocode}
 % \end{macro}
@@ -600,7 +602,7 @@ install" installs the files in the local TeX tree.
 %   \cmd{\seqoflatupp}\marg{A}\marg{B}
 %   ... to do!
 %    \begin{macrocode}
-\newcommand{\seqoflatupp}
+\DeclareRobustCommand{\seqoflatupp}
   {\seqoftag{A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z}}
 %    \end{macrocode}
 % \end{macro}
@@ -610,7 +612,7 @@ install" installs the files in the local TeX tree.
 %   \cmd{\seqoflatlet}\marg{A}\marg{B}
 %   ... to do!
 %    \begin{macrocode}
-\newcommand{\seqoflatlet}[2]
+\DeclareRobustCommand{\seqoflatlet}[2]
   {\seqoflatlow{#1}{#2}\seqoflatupp{#1}{#2}}
 %    \end{macrocode}
 % \end{macro}
@@ -624,7 +626,7 @@ install" installs the files in the local TeX tree.
 %   \cmd{\seqofgrklow}\marg{A}\marg{B}
 %   ... to do!
 %    \begin{macrocode}
-\newcommand{\seqofgrklow}
+\DeclareRobustCommand{\seqofgrklow}
   {\seqofcmd{alpha,beta,gamma,delta,epsilon,varepsilon,zeta,eta,theta,vartheta,%
   iota,kappa,varkappa,lambda,mu,nu,xi,omicron,pi,varpi,rho,varrho,sigma,%
   varsigma,tau,upsilon,phi,varphi,chi,psi,omega}}
@@ -636,7 +638,7 @@ install" installs the files in the local TeX tree.
 %   \cmd{\seqofgrkupp}\marg{A}\marg{B}
 %   ... to do!
 %    \begin{macrocode}
-\newcommand{\seqofgrkupp}
+\DeclareRobustCommand{\seqofgrkupp}
   {\seqofcmd{Alpha,Beta,Gamma,Delta,Epsilon,varEpsilon,Zeta,Eta,Theta,varTheta,%
   Iota,Kappa,varKappa,Lambda,Mu,Nu,Xi,Omicron,Pi,varPi,Rho,varRho,Sigma,%
   varSigma,Tau,Upsilon,Phi,varPhi,Chi,Psi,Omega}}
@@ -648,7 +650,7 @@ install" installs the files in the local TeX tree.
 %   \cmd{\seqofgrklet}\marg{A}\marg{B}
 %   ... to do!
 %    \begin{macrocode}
-\newcommand{\seqofgrklet}[2]
+\DeclareRobustCommand{\seqofgrklet}[2]
   {\seqofgrklow{#1}{#2}\seqofgrkupp{#1}{#2}}
 %    \end{macrocode}
 % \end{macro}
@@ -662,7 +664,7 @@ install" installs the files in the local TeX tree.
 %   \cmd{\seqoflow}\marg{A}\marg{B}
 %   ... to do!
 %    \begin{macrocode}
-\newcommand{\seqoflow}[2]
+\DeclareRobustCommand{\seqoflow}[2]
   {\seqoflatlow{#1}{#2}\seqofgrklow{#1}{#2}}
 %    \end{macrocode}
 % \end{macro}
@@ -672,7 +674,7 @@ install" installs the files in the local TeX tree.
 %   \cmd{\seqofupp}\marg{A}\marg{B}
 %   ... to do!
 %    \begin{macrocode}
-\newcommand{\seqofupp}[2]
+\DeclareRobustCommand{\seqofupp}[2]
   {\seqoflatupp{#1}{#2}\seqofgrkupp{#1}{#2}}
 %    \end{macrocode}
 % \end{macro}
@@ -682,7 +684,7 @@ install" installs the files in the local TeX tree.
 %   \cmd{\seqoflet}\marg{A}\marg{B}
 %   ... to do!
 %    \begin{macrocode}
-\newcommand{\seqoflet}[2]
+\DeclareRobustCommand{\seqoflet}[2]
   {\seqoflow{#1}{#2}\seqofupp{#1}{#2}}
 %    \end{macrocode}
 % \end{macro}

@@ -29,11 +29,11 @@
 %       ``\newtxt*[\ttfamily]{Name}[sub][sup][Ext]''
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommand{\newtxt}
+\DeclareRobustCommand{\newtxt}
   {\@ifstar{\@snewtxt}{\@newtxt}}
-\newcommandx{\@newtxt}[5][1=, 3=, 4=, 5=]
+\DeclareRobustCommandx{\@newtxt}[5][1=, 3=, 4=, 5=]
   {\text{#1#2\txtsubsup[#1]{#3}{#4}#5}\xspace}
-\newcommandx{\@snewtxt}[5][1=, 3=, 4=, 5=]
+\DeclareRobustCommandx{\@snewtxt}[5][1=, 3=, 4=, 5=]
   {#1#2\txtsubsup[#1]{#3}{#4}#5\normalfont\xspace}
 %    \end{macrocode}
 % \end{macro}
@@ -62,11 +62,11 @@
 %       ``\newtxtsty*{\rmfamily}[\ttfamily]{Name}[sub][sup][Ext]''
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommand{\newtxtsty}
+\DeclareRobustCommand{\newtxtsty}
   {\@ifstar{\@snewtxtsty}{\@newtxtsty}}
-\newcommandx{\@newtxtsty}[2][2=]
+\DeclareRobustCommandx{\@newtxtsty}[2][2=]
   {\newtxt[\defval{#2}{#1}]}
-\newcommandx{\@snewtxtsty}[2][2=]
+\DeclareRobustCommandx{\@snewtxtsty}[2][2=]
   {\newtxt*[\defval{#2}{#1}]}
 %    \end{macrocode}
 % \end{macro}
@@ -95,11 +95,11 @@
 %       ``\newtxtarg*[\ttfamily]{Name}[sub][sup][Ext1]{Arg}[Ext2]''
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommand{\newtxtarg}
+\DeclareRobustCommand{\newtxtarg}
   {\@ifstar{\@snewtxtarg}{\@newtxtarg}}
-\newcommandx{\@newtxtarg}[7][1=, 3=, 4=, 5=, 7=]
+\DeclareRobustCommandx{\@newtxtarg}[7][1=, 3=, 4=, 5=, 7=]
   {\newtxt[#1]{#2}[#3][#4][\argmid{#5(}{#6}{)#7}]}
-\newcommandx{\@snewtxtarg}[7][1=, 3=, 4=, 5=, 7=]
+\DeclareRobustCommandx{\@snewtxtarg}[7][1=, 3=, 4=, 5=, 7=]
   {\newtxt*[#1]{#2}[#3][#4][\argmid{#5(}{#6}{)#7}]}
 %    \end{macrocode}
 % \end{macro}
@@ -134,11 +134,11 @@
 %         [Ext2]''
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommand{\newtxtargsty}
+\DeclareRobustCommand{\newtxtargsty}
   {\@ifstar{\@snewtxtargsty}{\@newtxtargsty}}
-\newcommandx{\@newtxtargsty}[2][2=]
+\DeclareRobustCommandx{\@newtxtargsty}[2][2=]
   {\newtxtarg[\defval{#2}{#1}]}
-\newcommandx{\@snewtxtargsty}[2][2=]
+\DeclareRobustCommandx{\@snewtxtargsty}[2][2=]
   {\newtxtarg*[\defval{#2}{#1}]}
 %    \end{macrocode}
 % \end{macro}
@@ -167,11 +167,11 @@
 %       ``\newtxtoarg*[\ttfamily]{Name}[sub][sup][Arg]''
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommand{\newtxtoarg}
+\DeclareRobustCommand{\newtxtoarg}
   {\@ifstar{\@snewtxtoarg}{\@newtxtoarg}}
-\newcommandx{\@newtxtoarg}[5][1=, 3=, 4=, 5=]
+\DeclareRobustCommandx{\@newtxtoarg}[5][1=, 3=, 4=, 5=]
   {\newtxtarg[#1]{#2}[#3][#4][]{#5}[]}
-\newcommandx{\@snewtxtoarg}[5][1=, 3=, 4=, 5=]
+\DeclareRobustCommandx{\@snewtxtoarg}[5][1=, 3=, 4=, 5=]
   {\newtxtarg*[#1]{#2}[#3][#4][]{#5}[]}
 %    \end{macrocode}
 % \end{macro}
@@ -200,11 +200,11 @@
 %       ``\newtxtoargsty*{\rmfamily}[\ttfamily]{Name}[sub][sup][Arg]''
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommand{\newtxtoargsty}
+\DeclareRobustCommand{\newtxtoargsty}
   {\@ifstar{\@snewtxtoargsty}{\@newtxtoargsty}}
-\newcommandx{\@newtxtoargsty}[2][2=]
+\DeclareRobustCommandx{\@newtxtoargsty}[2][2=]
   {\newtxtoarg[\defval{#2}{#1}]}
-\newcommandx{\@snewtxtoargsty}[2][2=]
+\DeclareRobustCommandx{\@snewtxtoargsty}[2][2=]
   {\newtxtoarg*[\defval{#2}{#1}]}
 %    \end{macrocode}
 % \end{macro}
@@ -233,11 +233,11 @@
 %       ``\newtxtpar*[\ttfamily]{Name}[sub][sup][Ext1]{Par}[Ext2]''
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommand{\newtxtpar}
+\DeclareRobustCommand{\newtxtpar}
   {\@ifstar{\@snewtxtpar}{\@newtxtpar}}
-\newcommandx{\@newtxtpar}[7][1=, 3=, 4=, 5=, 7=]
+\DeclareRobustCommandx{\@newtxtpar}[7][1=, 3=, 4=, 5=, 7=]
   {\newtxt[#1]{#2}[#3][#4][\argmid{#5[}{#6}{]#7}]}
-\newcommandx{\@snewtxtpar}[7][1=, 3=, 4=, 5=, 7=]
+\DeclareRobustCommandx{\@snewtxtpar}[7][1=, 3=, 4=, 5=, 7=]
   {\newtxt*[#1]{#2}[#3][#4][\argmid{#5[}{#6}{]#7}]}
 %    \end{macrocode}
 % \end{macro}
@@ -272,11 +272,11 @@
 %         [Ext2]''
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommand{\newtxtparsty}
+\DeclareRobustCommand{\newtxtparsty}
   {\@ifstar{\@snewtxtparsty}{\@newtxtparsty}}
-\newcommandx{\@newtxtparsty}[2][2=]
+\DeclareRobustCommandx{\@newtxtparsty}[2][2=]
   {\newtxtpar[\defval{#2}{#1}]}
-\newcommandx{\@snewtxtparsty}[2][2=]
+\DeclareRobustCommandx{\@snewtxtparsty}[2][2=]
   {\newtxtpar*[\defval{#2}{#1}]}
 %    \end{macrocode}
 % \end{macro}
@@ -305,11 +305,11 @@
 %       ``\newtxtopar*[\ttfamily]{Name}[sub][sup][Par]''
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommand{\newtxtopar}
+\DeclareRobustCommand{\newtxtopar}
   {\@ifstar{\@snewtxtopar}{\@newtxtopar}}
-\newcommandx{\@newtxtopar}[5][1=, 3=, 4=, 5=]
+\DeclareRobustCommandx{\@newtxtopar}[5][1=, 3=, 4=, 5=]
   {\newtxtpar[#1]{#2}[#3][#4][]{#5}[]}
-\newcommandx{\@snewtxtopar}[5][1=, 3=, 4=, 5=]
+\DeclareRobustCommandx{\@snewtxtopar}[5][1=, 3=, 4=, 5=]
   {\newtxtpar*[#1]{#2}[#3][#4][]{#5}[]}
 %    \end{macrocode}
 % \end{macro}
@@ -338,11 +338,11 @@
 %       ``\newtxtoparsty*{\rmfamily}[\ttfamily]{Name}[sub][sup][Par]''
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommand{\newtxtoparsty}
+\DeclareRobustCommand{\newtxtoparsty}
   {\@ifstar{\@snewtxtoparsty}{\@newtxtoparsty}}
-\newcommandx{\@newtxtoparsty}[2][2=]
+\DeclareRobustCommandx{\@newtxtoparsty}[2][2=]
   {\newtxtopar[\defval{#2}{#1}]}
-\newcommandx{\@snewtxtoparsty}[2][2=]
+\DeclareRobustCommandx{\@snewtxtoparsty}[2][2=]
   {\newtxtopar*[\defval{#2}{#1}]}
 %    \end{macrocode}
 % \end{macro}
@@ -361,7 +361,7 @@
 %       \verb=\txtsubsup[\ttfamily]{Aa}{Bb}= = ``\txtsubsup[\ttfamily]{Aa}{Bb}''
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommand{\txtsubsup}[3][]
+\DeclareRobustCommand{\txtsubsup}[3][]
   {\ensuremath{\empchk{#2}{_{\text{#1#2}}}\empchk{#3}{^{\text{#1#3}}}}}
 %    \end{macrocode}
 % \end{macro}
@@ -394,7 +394,7 @@
 %       ``\txt*[\bfseries]{Name}[sub][sup][Ext]''
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommand{\txt}
+\DeclareRobustCommand{\txt}
   {\@ifstar{\newtxtsty*{\txtsty}}{\newtxtsty{\txtsty}}}
 %    \end{macrocode}
 % \end{macro}
@@ -423,7 +423,7 @@
 %       ``\txtarg*[\bfseries]{Name}[sub][sup][Ext1]{Arg}[Ext2]''
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommand{\txtarg}
+\DeclareRobustCommand{\txtarg}
   {\@ifstar{\newtxtargsty*{\txtsty}}{\newtxtargsty{\txtsty}}}
 %    \end{macrocode}
 % \end{macro}
@@ -452,7 +452,7 @@
 %       ``\txtoarg*[\bfseries]{Name}[sub][sup][Arg]''
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommand{\txtoarg}
+\DeclareRobustCommand{\txtoarg}
   {\@ifstar{\newtxtoargsty*{\txtsty}}{\newtxtoargsty{\txtsty}}}
 %    \end{macrocode}
 % \end{macro}
@@ -481,7 +481,7 @@
 %       ``\txtpar*[\bfseries]{Name}[sub][sup][Ext1]{Par}[Ext2]''
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommand{\txtpar}
+\DeclareRobustCommand{\txtpar}
   {\@ifstar{\newtxtparsty*{\txtsty}}{\newtxtparsty{\txtsty}}}
 %    \end{macrocode}
 % \end{macro}
@@ -510,7 +510,7 @@
 %       ``\txtopar*[\bfseries]{Name}[sub][sup][Par]''
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommand{\txtopar}
+\DeclareRobustCommand{\txtopar}
   {\@ifstar{\newtxtoparsty*{\txtsty}}{\newtxtoparsty{\txtsty}}}
 %    \end{macrocode}
 % \end{macro}
@@ -541,7 +541,7 @@
 %       \txtNewCmd*{Name}[sub][sup][Ext]
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommand{\cmdtxt}[1]
+\DeclareRobustCommand{\cmdtxt}[1]
   {\csdef{txt#1}%
     {\@ifstar%
       {\newtxtsty*{\csname txtsty#1\endcsname}}%
@@ -563,7 +563,7 @@
 %       \txtargNewCmd*{Name}[sub][sup][Ext1]{Arg}[Ext2]
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommand{\cmdtxtarg}[1]
+\DeclareRobustCommand{\cmdtxtarg}[1]
   {\csdef{txtarg#1}%
     {\@ifstar%
       {\newtxtargsty*{\csname txtsty#1\endcsname}}%
@@ -585,7 +585,7 @@
 %       \txtoargNewCmd*{Name}[sub][sup][Arg]
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommand{\cmdtxtoarg}[1]
+\DeclareRobustCommand{\cmdtxtoarg}[1]
   {\csdef{txtoarg#1}%
     {\@ifstar%
       {\newtxtoargsty*{\csname txtsty#1\endcsname}}%
@@ -607,7 +607,7 @@
 %       \txtparNewCmd*{Name}[sub][sup][Ext1]{Par}[Ext2]
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommand{\cmdtxtpar}[1]
+\DeclareRobustCommand{\cmdtxtpar}[1]
   {\csdef{txtpar#1}%
     {\@ifstar%
       {\newtxtparsty*{\csname txtsty#1\endcsname}}%
@@ -629,7 +629,7 @@
 %       \txtoparNewCmd*{Name}[sub][sup][Par]
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommand{\cmdtxtopar}[1]
+\DeclareRobustCommand{\cmdtxtopar}[1]
   {\csdef{txtopar#1}%
     {\@ifstar%
       {\newtxtoparsty*{\csname txtsty#1\endcsname}}%
@@ -657,7 +657,7 @@
 %       \txtoparNewCmd{Name}[sub][sup][Par]
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommand{\cmdtxtall}[1]
+\DeclareRobustCommand{\cmdtxtall}[1]
   {\cmdtxt{#1}\cmdtxtarg{#1}\cmdtxtoarg{#1}\cmdtxtpar{#1}\cmdtxtopar{#1}}
 %    \end{macrocode}
 % \end{macro}
@@ -695,7 +695,7 @@
 %       \verb=\cmdNameSuf*{Par}= = \cmdNameSuf*{Par}
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\usrtxt}[4][4=]
+\DeclareRobustCommandx{\usrtxt}[4][4=]
   {\csdef{#1#2}{%
     \@ifstar%
       {\csname txt#3\endcsname*{\defval{#4}{#1}}}%

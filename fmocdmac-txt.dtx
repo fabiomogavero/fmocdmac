@@ -6,6 +6,18 @@
 \iftxt@
 %    \end{macrocode}
 
+% \begin{macro}{\dotcheck}
+%   \small
+%   \begin{itemize}
+%     \item
+%       \verb=A\dotcheck a\dotcheck.a= = A\dotcheck a\dotcheck. a
+%   \end{itemize}
+%    \begin{macrocode}
+\DeclareRobustCommand{\dotcheck}
+  {\@ifnextchar.{}{.\@}}
+%    \end{macrocode}
+% \end{macro}
+
 %    \begin{macrocode}
 %%** Latin Abbreviations *****************************************************%%
 %    \end{macrocode}

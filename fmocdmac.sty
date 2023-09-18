@@ -32,7 +32,7 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesPackage{fmocdmac}
-  [2023/09/16 v0.23 FM's OCD LaTeX Macro]
+  [2023/09/18 v0.24 FM's OCD LaTeX Macro]
 
 \RequirePackage{etoolbox}
 
@@ -180,7 +180,7 @@
 %%** Tools *******************************************************************%%
 %%****************************************************************************%%
 
-\newcommand{\empchk}[2]
+\DeclareRobustCommand{\empchk}[2]
   {\if&#1&\else#2\fi}
 
 \newcommand{\defval}[2]
@@ -188,21 +188,21 @@
 
 %%****************************************************************************%%
 
-\newcommand{\arglef}[2]
+\DeclareRobustCommand{\arglef}[2]
   {\empchk{#2}{#1#2}}
 
-\newcommand{\argrig}[2]
+\DeclareRobustCommand{\argrig}[2]
   {\empchk{#1}{#1#2}}
 
-\newcommand{\argmid}[3]
+\DeclareRobustCommand{\argmid}[3]
   {\empchk{#2}{#1#2#3}}
 
-\newcommand{\argsep}[3]
+\DeclareRobustCommand{\argsep}[3]
   {\if&#1&#3\else#1\arglef{#2}{#3}\fi}
 
 %%****************************************************************************%%
 
-\newcommand{\varcmd}[6]
+\DeclareRobustCommand{\varcmd}[6]
   {\expandafter\newcommand\csname gobble#1arg\endcsname[2]
     {\csname check#1arg\endcsname{\argsep{##1}{#4}{\empchk{##2}{{##2}}}}}%
   \expandafter\newcommand\csname check#1arg\endcsname[1]
@@ -213,51 +213,51 @@
 
 %%****************************************************************************%%
 
-\newcommand{\seqoftag}[3]
+\DeclareRobustCommand{\seqoftag}[3]
   {\@for\itr:={#1}\do%
     {\expandafter\csedef{\itr#2}%
       {\noexpand\csname #3\endcsname{\itr}}}}
 
-\newcommand{\seqofcmd}[3]
+\DeclareRobustCommand{\seqofcmd}[3]
   {\@for\itr:={#1}\do%
     {\expandafter\csedef{\itr#2}%
       {\noexpand\csname #3\endcsname{\csname \itr\endcsname}}}}
 
 %%****************************************************************************%%
 
-\newcommand{\seqoflatlow}
+\DeclareRobustCommand{\seqoflatlow}
   {\seqoftag{a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z}}
 
-\newcommand{\seqoflatupp}
+\DeclareRobustCommand{\seqoflatupp}
   {\seqoftag{A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z}}
 
-\newcommand{\seqoflatlet}[2]
+\DeclareRobustCommand{\seqoflatlet}[2]
   {\seqoflatlow{#1}{#2}\seqoflatupp{#1}{#2}}
 
 %%****************************************************************************%%
 
-\newcommand{\seqofgrklow}
+\DeclareRobustCommand{\seqofgrklow}
   {\seqofcmd{alpha,beta,gamma,delta,epsilon,varepsilon,zeta,eta,theta,vartheta,%
   iota,kappa,varkappa,lambda,mu,nu,xi,omicron,pi,varpi,rho,varrho,sigma,%
   varsigma,tau,upsilon,phi,varphi,chi,psi,omega}}
 
-\newcommand{\seqofgrkupp}
+\DeclareRobustCommand{\seqofgrkupp}
   {\seqofcmd{Alpha,Beta,Gamma,Delta,Epsilon,varEpsilon,Zeta,Eta,Theta,varTheta,%
   Iota,Kappa,varKappa,Lambda,Mu,Nu,Xi,Omicron,Pi,varPi,Rho,varRho,Sigma,%
   varSigma,Tau,Upsilon,Phi,varPhi,Chi,Psi,Omega}}
 
-\newcommand{\seqofgrklet}[2]
+\DeclareRobustCommand{\seqofgrklet}[2]
   {\seqofgrklow{#1}{#2}\seqofgrkupp{#1}{#2}}
 
 %%****************************************************************************%%
 
-\newcommand{\seqoflow}[2]
+\DeclareRobustCommand{\seqoflow}[2]
   {\seqoflatlow{#1}{#2}\seqofgrklow{#1}{#2}}
 
-\newcommand{\seqofupp}[2]
+\DeclareRobustCommand{\seqofupp}[2]
   {\seqoflatupp{#1}{#2}\seqofgrkupp{#1}{#2}}
 
-\newcommand{\seqoflet}[2]
+\DeclareRobustCommand{\seqoflet}[2]
   {\seqoflow{#1}{#2}\seqofupp{#1}{#2}}
 
 %%****************************************************************************%%
@@ -360,94 +360,94 @@
 %%** Text Meta Commands ******************************************************%%
 %%****************************************************************************%%
 
-\newcommand{\newtxt}
+\DeclareRobustCommand{\newtxt}
   {\@ifstar{\@snewtxt}{\@newtxt}}
-\newcommandx{\@newtxt}[5][1=, 3=, 4=, 5=]
+\DeclareRobustCommandx{\@newtxt}[5][1=, 3=, 4=, 5=]
   {\text{#1#2\txtsubsup[#1]{#3}{#4}#5}\xspace}
-\newcommandx{\@snewtxt}[5][1=, 3=, 4=, 5=]
+\DeclareRobustCommandx{\@snewtxt}[5][1=, 3=, 4=, 5=]
   {#1#2\txtsubsup[#1]{#3}{#4}#5\normalfont\xspace}
 
-\newcommand{\newtxtsty}
+\DeclareRobustCommand{\newtxtsty}
   {\@ifstar{\@snewtxtsty}{\@newtxtsty}}
-\newcommandx{\@newtxtsty}[2][2=]
+\DeclareRobustCommandx{\@newtxtsty}[2][2=]
   {\newtxt[\defval{#2}{#1}]}
-\newcommandx{\@snewtxtsty}[2][2=]
+\DeclareRobustCommandx{\@snewtxtsty}[2][2=]
   {\newtxt*[\defval{#2}{#1}]}
 
-\newcommand{\newtxtarg}
+\DeclareRobustCommand{\newtxtarg}
   {\@ifstar{\@snewtxtarg}{\@newtxtarg}}
-\newcommandx{\@newtxtarg}[7][1=, 3=, 4=, 5=, 7=]
+\DeclareRobustCommandx{\@newtxtarg}[7][1=, 3=, 4=, 5=, 7=]
   {\newtxt[#1]{#2}[#3][#4][\argmid{#5(}{#6}{)#7}]}
-\newcommandx{\@snewtxtarg}[7][1=, 3=, 4=, 5=, 7=]
+\DeclareRobustCommandx{\@snewtxtarg}[7][1=, 3=, 4=, 5=, 7=]
   {\newtxt*[#1]{#2}[#3][#4][\argmid{#5(}{#6}{)#7}]}
 
-\newcommand{\newtxtargsty}
+\DeclareRobustCommand{\newtxtargsty}
   {\@ifstar{\@snewtxtargsty}{\@newtxtargsty}}
-\newcommandx{\@newtxtargsty}[2][2=]
+\DeclareRobustCommandx{\@newtxtargsty}[2][2=]
   {\newtxtarg[\defval{#2}{#1}]}
-\newcommandx{\@snewtxtargsty}[2][2=]
+\DeclareRobustCommandx{\@snewtxtargsty}[2][2=]
   {\newtxtarg*[\defval{#2}{#1}]}
 
-\newcommand{\newtxtoarg}
+\DeclareRobustCommand{\newtxtoarg}
   {\@ifstar{\@snewtxtoarg}{\@newtxtoarg}}
-\newcommandx{\@newtxtoarg}[5][1=, 3=, 4=, 5=]
+\DeclareRobustCommandx{\@newtxtoarg}[5][1=, 3=, 4=, 5=]
   {\newtxtarg[#1]{#2}[#3][#4][]{#5}[]}
-\newcommandx{\@snewtxtoarg}[5][1=, 3=, 4=, 5=]
+\DeclareRobustCommandx{\@snewtxtoarg}[5][1=, 3=, 4=, 5=]
   {\newtxtarg*[#1]{#2}[#3][#4][]{#5}[]}
 
-\newcommand{\newtxtoargsty}
+\DeclareRobustCommand{\newtxtoargsty}
   {\@ifstar{\@snewtxtoargsty}{\@newtxtoargsty}}
-\newcommandx{\@newtxtoargsty}[2][2=]
+\DeclareRobustCommandx{\@newtxtoargsty}[2][2=]
   {\newtxtoarg[\defval{#2}{#1}]}
-\newcommandx{\@snewtxtoargsty}[2][2=]
+\DeclareRobustCommandx{\@snewtxtoargsty}[2][2=]
   {\newtxtoarg*[\defval{#2}{#1}]}
 
-\newcommand{\newtxtpar}
+\DeclareRobustCommand{\newtxtpar}
   {\@ifstar{\@snewtxtpar}{\@newtxtpar}}
-\newcommandx{\@newtxtpar}[7][1=, 3=, 4=, 5=, 7=]
+\DeclareRobustCommandx{\@newtxtpar}[7][1=, 3=, 4=, 5=, 7=]
   {\newtxt[#1]{#2}[#3][#4][\argmid{#5[}{#6}{]#7}]}
-\newcommandx{\@snewtxtpar}[7][1=, 3=, 4=, 5=, 7=]
+\DeclareRobustCommandx{\@snewtxtpar}[7][1=, 3=, 4=, 5=, 7=]
   {\newtxt*[#1]{#2}[#3][#4][\argmid{#5[}{#6}{]#7}]}
 
-\newcommand{\newtxtparsty}
+\DeclareRobustCommand{\newtxtparsty}
   {\@ifstar{\@snewtxtparsty}{\@newtxtparsty}}
-\newcommandx{\@newtxtparsty}[2][2=]
+\DeclareRobustCommandx{\@newtxtparsty}[2][2=]
   {\newtxtpar[\defval{#2}{#1}]}
-\newcommandx{\@snewtxtparsty}[2][2=]
+\DeclareRobustCommandx{\@snewtxtparsty}[2][2=]
   {\newtxtpar*[\defval{#2}{#1}]}
 
-\newcommand{\newtxtopar}
+\DeclareRobustCommand{\newtxtopar}
   {\@ifstar{\@snewtxtopar}{\@newtxtopar}}
-\newcommandx{\@newtxtopar}[5][1=, 3=, 4=, 5=]
+\DeclareRobustCommandx{\@newtxtopar}[5][1=, 3=, 4=, 5=]
   {\newtxtpar[#1]{#2}[#3][#4][]{#5}[]}
-\newcommandx{\@snewtxtopar}[5][1=, 3=, 4=, 5=]
+\DeclareRobustCommandx{\@snewtxtopar}[5][1=, 3=, 4=, 5=]
   {\newtxtpar*[#1]{#2}[#3][#4][]{#5}[]}
 
-\newcommand{\newtxtoparsty}
+\DeclareRobustCommand{\newtxtoparsty}
   {\@ifstar{\@snewtxtoparsty}{\@newtxtoparsty}}
-\newcommandx{\@newtxtoparsty}[2][2=]
+\DeclareRobustCommandx{\@newtxtoparsty}[2][2=]
   {\newtxtopar[\defval{#2}{#1}]}
-\newcommandx{\@snewtxtoparsty}[2][2=]
+\DeclareRobustCommandx{\@snewtxtoparsty}[2][2=]
   {\newtxtopar*[\defval{#2}{#1}]}
 
-\newcommand{\txtsubsup}[3][]
+\DeclareRobustCommand{\txtsubsup}[3][]
   {\ensuremath{\empchk{#2}{_{\text{#1#2}}}\empchk{#3}{^{\text{#1#3}}}}}
 
 %%****************************************************************************%%
 
-\newcommand{\txt}
+\DeclareRobustCommand{\txt}
   {\@ifstar{\newtxtsty*{\txtsty}}{\newtxtsty{\txtsty}}}
 
-\newcommand{\txtarg}
+\DeclareRobustCommand{\txtarg}
   {\@ifstar{\newtxtargsty*{\txtsty}}{\newtxtargsty{\txtsty}}}
 
-\newcommand{\txtoarg}
+\DeclareRobustCommand{\txtoarg}
   {\@ifstar{\newtxtoargsty*{\txtsty}}{\newtxtoargsty{\txtsty}}}
 
-\newcommand{\txtpar}
+\DeclareRobustCommand{\txtpar}
   {\@ifstar{\newtxtparsty*{\txtsty}}{\newtxtparsty{\txtsty}}}
 
-\newcommand{\txtopar}
+\DeclareRobustCommand{\txtopar}
   {\@ifstar{\newtxtoparsty*{\txtsty}}{\newtxtoparsty{\txtsty}}}
 
 \newcommand{\txtsty}
@@ -455,42 +455,42 @@
 
 %%****************************************************************************%%
 
-\newcommand{\cmdtxt}[1]
+\DeclareRobustCommand{\cmdtxt}[1]
   {\csdef{txt#1}%
     {\@ifstar%
       {\newtxtsty*{\csname txtsty#1\endcsname}}%
       {\newtxtsty{\csname txtsty#1\endcsname}}}}
 
-\newcommand{\cmdtxtarg}[1]
+\DeclareRobustCommand{\cmdtxtarg}[1]
   {\csdef{txtarg#1}%
     {\@ifstar%
       {\newtxtargsty*{\csname txtsty#1\endcsname}}%
       {\newtxtargsty{\csname txtsty#1\endcsname}}}}
 
-\newcommand{\cmdtxtoarg}[1]
+\DeclareRobustCommand{\cmdtxtoarg}[1]
   {\csdef{txtoarg#1}%
     {\@ifstar%
       {\newtxtoargsty*{\csname txtsty#1\endcsname}}%
       {\newtxtoargsty{\csname txtsty#1\endcsname}}}}
 
-\newcommand{\cmdtxtpar}[1]
+\DeclareRobustCommand{\cmdtxtpar}[1]
   {\csdef{txtpar#1}%
     {\@ifstar%
       {\newtxtparsty*{\csname txtsty#1\endcsname}}%
       {\newtxtparsty{\csname txtsty#1\endcsname}}}}
 
-\newcommand{\cmdtxtopar}[1]
+\DeclareRobustCommand{\cmdtxtopar}[1]
   {\csdef{txtopar#1}%
     {\@ifstar%
       {\newtxtoparsty*{\csname txtsty#1\endcsname}}%
       {\newtxtoparsty{\csname txtsty#1\endcsname}}}}
 
-\newcommand{\cmdtxtall}[1]
+\DeclareRobustCommand{\cmdtxtall}[1]
   {\cmdtxt{#1}\cmdtxtarg{#1}\cmdtxtoarg{#1}\cmdtxtpar{#1}\cmdtxtopar{#1}}
 
 %%****************************************************************************%%
 
-\newcommandx{\usrtxt}[4][4=]
+\DeclareRobustCommandx{\usrtxt}[4][4=]
   {\csdef{#1#2}{%
     \@ifstar%
       {\csname txt#3\endcsname*{\defval{#4}{#1}}}%
@@ -502,94 +502,94 @@
 %%** Math Meta Commands ******************************************************%%
 %%****************************************************************************%%
 
-\newcommand{\newmth}
+\DeclareRobustCommand{\newmth}
   {\@ifstar{\@snewmth}{\@newmth}}
-\newcommandx{\@newmth}[5][1=, 3=, 4=, 5=]
+\DeclareRobustCommandx{\@newmth}[5][1=, 3=, 4=, 5=]
   {\ensuremath{\csname#1\endcsname{#2}\mthsubsup{#3}{#4}#5}}
-\newcommandx{\@snewmth}[5][1=, 3=, 4=, 5=]
+\DeclareRobustCommandx{\@snewmth}[5][1=, 3=, 4=, 5=]
   {\ensuremath{\csname#1\endcsname #2\mthsubsup{#3}{#4}#5}}
 
-\newcommand{\newmthsty}
+\DeclareRobustCommand{\newmthsty}
   {\@ifstar{\@snewmthsty}{\@newmthsty}}
-\newcommandx{\@newmthsty}[2][2=]
+\DeclareRobustCommandx{\@newmthsty}[2][2=]
   {\newmth[\defval{#2}{#1}]}
-\newcommandx{\@snewmthsty}[2][2=]
+\DeclareRobustCommandx{\@snewmthsty}[2][2=]
   {\newmth*[\defval{#2}{#1}]}
 
-\newcommand{\newmtharg}
+\DeclareRobustCommand{\newmtharg}
   {\@ifstar{\@snewmtharg}{\@newmtharg}}
-\newcommandx{\@newmtharg}[7][1=, 3=, 4=, 5=, 7=]
+\DeclareRobustCommandx{\@newmtharg}[7][1=, 3=, 4=, 5=, 7=]
   {\newmth[#1]{#2}[#3][#4][\argmid{#5\!\left(}{#6}{\right)\arglef{\!}{#7}}]}
-\newcommandx{\@snewmtharg}[7][1=, 3=, 4=, 5=, 7=]
+\DeclareRobustCommandx{\@snewmtharg}[7][1=, 3=, 4=, 5=, 7=]
   {\newmth[#1]{#2}[#3][#4][\argmid{#5(}{#6}{)#7}]}
 
-\newcommand{\newmthargsty}
+\DeclareRobustCommand{\newmthargsty}
   {\@ifstar{\@snewmthargsty}{\@newmthargsty}}
-\newcommandx{\@newmthargsty}[2][2=]
+\DeclareRobustCommandx{\@newmthargsty}[2][2=]
   {\newmtharg[\defval{#2}{#1}]}
-\newcommandx{\@snewmthargsty}[2][2=]
+\DeclareRobustCommandx{\@snewmthargsty}[2][2=]
   {\newmtharg*[\defval{#2}{#1}]}
 
-\newcommand{\newmthoarg}
+\DeclareRobustCommand{\newmthoarg}
   {\@ifstar{\@snewmthoarg}{\@newmthoarg}}
-\newcommandx{\@newmthoarg}[5][1=, 3=, 4=, 5=]
+\DeclareRobustCommandx{\@newmthoarg}[5][1=, 3=, 4=, 5=]
   {\newmtharg[#1]{#2}[#3][#4][]{#5}[]}
-\newcommandx{\@snewmthoarg}[5][1=, 3=, 4=, 5=]
+\DeclareRobustCommandx{\@snewmthoarg}[5][1=, 3=, 4=, 5=]
   {\newmtharg*[#1]{#2}[#3][#4][]{#5}[]}
 
-\newcommand{\newmthoargsty}
+\DeclareRobustCommand{\newmthoargsty}
   {\@ifstar{\@snewmthoargsty}{\@newmthoargsty}}
-\newcommandx{\@newmthoargsty}[2][2=]
+\DeclareRobustCommandx{\@newmthoargsty}[2][2=]
   {\newmthoarg[\defval{#2}{#1}]}
-\newcommandx{\@snewmthoargsty}[2][2=]
+\DeclareRobustCommandx{\@snewmthoargsty}[2][2=]
   {\newmthoarg*[\defval{#2}{#1}]}
 
-\newcommand{\newmthpar}
+\DeclareRobustCommand{\newmthpar}
   {\@ifstar{\@snewmthpar}{\@newmthpar}}
-\newcommandx{\@newmthpar}[7][1=, 3=, 4=, 5=, 7=]
+\DeclareRobustCommandx{\@newmthpar}[7][1=, 3=, 4=, 5=, 7=]
   {\newmth[#1]{#2}[#3][#4][\argmid{#5\!\left[}{#6}{\right]\arglef{\!}{#7}}]}
-\newcommandx{\@snewmthpar}[7][1=, 3=, 4=, 5=, 7=]
+\DeclareRobustCommandx{\@snewmthpar}[7][1=, 3=, 4=, 5=, 7=]
   {\newmth[#1]{#2}[#3][#4][\argmid{#5[}{#6}{]#7}]}
 
-\newcommand{\newmthparsty}
+\DeclareRobustCommand{\newmthparsty}
   {\@ifstar{\@snewmthparsty}{\@newmthparsty}}
-\newcommandx{\@newmthparsty}[2][2=]
+\DeclareRobustCommandx{\@newmthparsty}[2][2=]
   {\newmthpar[\defval{#2}{#1}]}
-\newcommandx{\@snewmthparsty}[2][2=]
+\DeclareRobustCommandx{\@snewmthparsty}[2][2=]
   {\newmthpar*[\defval{#2}{#1}]}
 
-\newcommand{\newmthopar}
+\DeclareRobustCommand{\newmthopar}
   {\@ifstar{\@snewmthopar}{\@newmthopar}}
-\newcommandx{\@newmthopar}[5][1=, 3=, 4=, 5=]
+\DeclareRobustCommandx{\@newmthopar}[5][1=, 3=, 4=, 5=]
   {\newmthpar[#1]{#2}[#3][#4][]{#5}[]}
-\newcommandx{\@snewmthopar}[5][1=, 3=, 4=, 5=]
+\DeclareRobustCommandx{\@snewmthopar}[5][1=, 3=, 4=, 5=]
   {\newmthpar*[#1]{#2}[#3][#4][]{#5}[]}
 
-\newcommand{\newmthoparsty}
+\DeclareRobustCommand{\newmthoparsty}
   {\@ifstar{\@snewmthoparsty}{\@newmthoparsty}}
-\newcommandx{\@newmthoparsty}[2][2=]
+\DeclareRobustCommandx{\@newmthoparsty}[2][2=]
   {\newmthopar[\defval{#2}{#1}]}
-\newcommandx{\@snewmthoparsty}[2][2=]
+\DeclareRobustCommandx{\@snewmthoparsty}[2][2=]
   {\newmthopar*[\defval{#2}{#1}]}
 
-\newcommand{\mthsubsup}[2]
+\DeclareRobustCommand{\mthsubsup}[2]
   {\empchk{#1}{_{#1}}\empchk{#2}{^{#2}}}
 
 %%****************************************************************************%%
 
-\newcommand{\mth}
+\DeclareRobustCommand{\mth}
   {\@ifstar{\newmthsty*{\mthsty}}{\newmthsty{\mthsty}}}
 
-\newcommand{\mtharg}
+\DeclareRobustCommand{\mtharg}
   {\@ifstar{\newmthargsty*{\mthsty}}{\newmthargsty{\mthsty}}}
 
-\newcommand{\mthoarg}
+\DeclareRobustCommand{\mthoarg}
   {\@ifstar{\newmthoargsty*{\mthsty}}{\newmthoargsty{\mthsty}}}
 
-\newcommand{\mthpar}
+\DeclareRobustCommand{\mthpar}
   {\@ifstar{\newmthparsty*{\mthsty}}{\newmthparsty{\mthsty}}}
 
-\newcommand{\mthopar}
+\DeclareRobustCommand{\mthopar}
   {\@ifstar{\newmthoparsty*{\mthsty}}{\newmthoparsty{\mthsty}}}
 
 \newcommand{\mthsty}
@@ -597,32 +597,32 @@
 
 %%****************************************************************************%%
 
-\newcommand{\cmdmth}[1]
+\DeclareRobustCommand{\cmdmth}[1]
   {\csdef{mth#1}%
     {\@ifstar{\newmthsty*{mthsty#1}}{\newmthsty{mthsty#1}}}}
 
-\newcommand{\cmdmtharg}[1]
+\DeclareRobustCommand{\cmdmtharg}[1]
   {\csdef{mtharg#1}%
     {\@ifstar{\newmthargsty*{mthsty#1}}{\newmthargsty{mthsty#1}}}}
 
-\newcommand{\cmdmthoarg}[1]
+\DeclareRobustCommand{\cmdmthoarg}[1]
   {\csdef{mthoarg#1}%
     {\@ifstar{\newmthoargsty*{mthsty#1}}{\newmthoargsty{mthsty#1}}}}
 
-\newcommand{\cmdmthpar}[1]
+\DeclareRobustCommand{\cmdmthpar}[1]
   {\csdef{mthpar#1}%
     {\@ifstar{\newmthparsty*{mthsty#1}}{\newmthparsty{mthsty#1}}}}
 
-\newcommand{\cmdmthopar}[1]
+\DeclareRobustCommand{\cmdmthopar}[1]
   {\csdef{mthopar#1}%
     {\@ifstar{\newmthoparsty*{mthsty#1}}{\newmthoparsty{mthsty#1}}}}
 
-\newcommand{\cmdmthall}[1]
+\DeclareRobustCommand{\cmdmthall}[1]
   {\cmdmth{#1}\cmdmtharg{#1}\cmdmthoarg{#1}\cmdmthpar{#1}\cmdmthopar{#1}}
 
 %%****************************************************************************%%
 
-\newcommandx{\usrmth}[4][4=]
+\DeclareRobustCommandx{\usrmth}[4][4=]
   {\csdef{#1#2}{%
     \@ifstar%
       {\csname mth#3\endcsname*{\defval{#4}{#1}}}%
@@ -630,31 +630,31 @@
 
 %%****************************************************************************%%
 
-\newcommandx{\usrmthlatlow}[4][4=]
+\DeclareRobustCommandx{\usrmthlatlow}[4][4=]
   {\usrmth{#1}{#2}{#3}[#4]\seqoflatlow{#1#2}{mth#3}}
 
-\newcommandx{\usrmthlatupp}[4][4=]
+\DeclareRobustCommandx{\usrmthlatupp}[4][4=]
   {\usrmth{#1}{#2}{#3}[#4]\seqoflatupp{#1#2}{mth#3}}
 
-\newcommandx{\usrmthlatlet}[4][4=]
+\DeclareRobustCommandx{\usrmthlatlet}[4][4=]
   {\usrmth{#1}{#2}{#3}[#4]\seqoflatlet{#1#2}{mth#3}}
 
-\newcommandx{\usrmthgrklow}[4][4=]
+\DeclareRobustCommandx{\usrmthgrklow}[4][4=]
   {\usrmth{#1}{#2}{#3}[#4]\seqofgrklow{#1#2}{mth#3}}
 
-\newcommandx{\usrmthgrkupp}[4][4=]
+\DeclareRobustCommandx{\usrmthgrkupp}[4][4=]
   {\usrmth{#1}{#2}{#3}[#4]\seqofgrkupp{#1#2}{mth#3}}
 
-\newcommandx{\usrmthgrklet}[4][4=]
+\DeclareRobustCommandx{\usrmthgrklet}[4][4=]
   {\usrmth{#1}{#2}{#3}[#4]\seqofgrklet{#1#2}{mth#3}}
 
-\newcommandx{\usrmthlow}[4][4=]
+\DeclareRobustCommandx{\usrmthlow}[4][4=]
   {\usrmth{#1}{#2}{#3}[#4]\seqoflow{#1#2}{mth#3}}
 
-\newcommandx{\usrmthupp}[4][4=]
+\DeclareRobustCommandx{\usrmthupp}[4][4=]
   {\usrmth{#1}{#2}{#3}[#4]\seqofupp{#1#2}{mth#3}}
 
-\newcommandx{\usrmthlet}[4][4=]
+\DeclareRobustCommandx{\usrmthlet}[4][4=]
   {\usrmth{#1}{#2}{#3}[#4]\seqoflet{#1#2}{mth#3}}
 
 %%****************************************************************************%%
@@ -667,37 +667,37 @@
 %% Style for Definitions
 \cmdtxtall{def}\newcommand{\txtstydef}{\normalfont\bfseries\em}
 
-\newcommandx{\cmdtxtdef}[2][2=]
+\DeclareRobustCommandx{\cmdtxtdef}[2][2=]
   {\usrtxt{#1}{}{def}[#2]}
 
-\newcommandx{\cmdtxtargdef}[2][2=]
+\DeclareRobustCommandx{\cmdtxtargdef}[2][2=]
   {\usrtxt{#1}{}{argdef}[#2]}
 
-\newcommandx{\cmdtxtoargdef}[2][2=]
+\DeclareRobustCommandx{\cmdtxtoargdef}[2][2=]
   {\usrtxt{#1}{}{oargdef}[#2]}
 
-\newcommandx{\cmdtxtpardef}[2][2=]
+\DeclareRobustCommandx{\cmdtxtpardef}[2][2=]
   {\usrtxt{#1}{}{pardef}[#2]}
 
-\newcommandx{\cmdtxtopardef}[2][2=]
+\DeclareRobustCommandx{\cmdtxtopardef}[2][2=]
   {\usrtxt{#1}{}{opardef}[#2]}
 
 %% Style for Abbreviations
 \cmdtxtall{abr}\newcommand{\txtstyabr}{\em}
 
-\newcommandx{\cmdtxtabr}[2][2=]
+\DeclareRobustCommandx{\cmdtxtabr}[2][2=]
   {\usrtxt{#1}{}{abr}[#2]}
 
-\newcommandx{\cmdtxtargabr}[2][2=]
+\DeclareRobustCommandx{\cmdtxtargabr}[2][2=]
   {\usrtxt{#1}{}{argabr}[#2]}
 
-\newcommandx{\cmdtxtoargabr}[2][2=]
+\DeclareRobustCommandx{\cmdtxtoargabr}[2][2=]
   {\usrtxt{#1}{}{oargabr}[#2]}
 
-\newcommandx{\cmdtxtparabr}[2][2=]
+\DeclareRobustCommandx{\cmdtxtparabr}[2][2=]
   {\usrtxt{#1}{}{parabr}[#2]}
 
-\newcommandx{\cmdtxtoparabr}[2][2=]
+\DeclareRobustCommandx{\cmdtxtoparabr}[2][2=]
   {\usrtxt{#1}{}{oparabr}[#2]}
 
 %%****************************************************************************%%
@@ -705,37 +705,37 @@
 %% Style for Names
 \cmdtxtall{name}\newcommand{\txtstyname}{\normalfont\mdseries\scshape\sffamily}
 
-\newcommandx{\cmdtxtname}[2][2=]
+\DeclareRobustCommandx{\cmdtxtname}[2][2=]
   {\usrtxt{#1}{}{name}[#2]}
 
-\newcommandx{\cmdtxtargname}[2][2=]
+\DeclareRobustCommandx{\cmdtxtargname}[2][2=]
   {\usrtxt{#1}{}{argname}[#2]}
 
-\newcommandx{\cmdtxtoargname}[2][2=]
+\DeclareRobustCommandx{\cmdtxtoargname}[2][2=]
   {\usrtxt{#1}{}{oargname}[#2]}
 
-\newcommandx{\cmdtxtparname}[2][2=]
+\DeclareRobustCommandx{\cmdtxtparname}[2][2=]
   {\usrtxt{#1}{}{parname}[#2]}
 
-\newcommandx{\cmdtxtoparname}[2][2=]
+\DeclareRobustCommandx{\cmdtxtoparname}[2][2=]
   {\usrtxt{#1}{}{oparname}[#2]}
 
 %% Style for Complexities
 \cmdtxtall{com}\newcommand{\txtstycom}{\normalfont\mdseries\scshape\rmfamily}
 
-\newcommandx{\cmdtxtcom}[2][2=]
+\DeclareRobustCommandx{\cmdtxtcom}[2][2=]
   {\usrtxt{#1}{}{com}[#2]}
 
-\newcommandx{\cmdtxtargcom}[2][2=]
+\DeclareRobustCommandx{\cmdtxtargcom}[2][2=]
   {\usrtxt{#1}{}{argcom}[#2]}
 
-\newcommandx{\cmdtxtoargcom}[2][2=]
+\DeclareRobustCommandx{\cmdtxtoargcom}[2][2=]
   {\usrtxt{#1}{}{oargcom}[#2]}
 
-\newcommandx{\cmdtxtparcom}[2][2=]
+\DeclareRobustCommandx{\cmdtxtparcom}[2][2=]
   {\usrtxt{#1}{}{parcom}[#2]}
 
-\newcommandx{\cmdtxtoparcom}[2][2=]
+\DeclareRobustCommandx{\cmdtxtoparcom}[2][2=]
   {\usrtxt{#1}{}{oparcom}[#2]}
 
 \fi
@@ -751,19 +751,19 @@
 
 \seqoflatupp{Name}{mthname}
 
-\newcommandx{\cmdmthname}[2][2=]
+\DeclareRobustCommandx{\cmdmthname}[2][2=]
   {\usrmth{#1}{Name}{name}[#2]}
 
-\newcommandx{\cmdmthargname}[2][2=]
+\DeclareRobustCommandx{\cmdmthargname}[2][2=]
   {\usrmth{#1}{Name}{argname}[#2]}
 
-\newcommandx{\cmdmthoargname}[2][2=]
+\DeclareRobustCommandx{\cmdmthoargname}[2][2=]
   {\usrmth{#1}{Name}{oargname}[#2]}
 
-\newcommandx{\cmdmthparname}[2][2=]
+\DeclareRobustCommandx{\cmdmthparname}[2][2=]
   {\usrmth{#1}{Name}{parname}[#2]}
 
-\newcommandx{\cmdmthoparname}[2][2=]
+\DeclareRobustCommandx{\cmdmthoparname}[2][2=]
   {\usrmth{#1}{Name}{oparname}[#2]}
 
 %% Style for Families
@@ -771,19 +771,19 @@
 
 \seqoflatupp{Fam}{mthfam}
 
-\newcommandx{\cmdmthfam}[2][2=]
+\DeclareRobustCommandx{\cmdmthfam}[2][2=]
   {\usrmth{#1}{Fam}{fam}[#2]}
 
-\newcommandx{\cmdmthargfam}[2][2=]
+\DeclareRobustCommandx{\cmdmthargfam}[2][2=]
   {\usrmth{#1}{Fam}{argfam}[#2]}
 
-\newcommandx{\cmdmthoargfam}[2][2=]
+\DeclareRobustCommandx{\cmdmthoargfam}[2][2=]
   {\usrmth{#1}{Fam}{oargfam}[#2]}
 
-\newcommandx{\cmdmthparfam}[2][2=]
+\DeclareRobustCommandx{\cmdmthparfam}[2][2=]
   {\usrmth{#1}{Fam}{parfam}[#2]}
 
-\newcommandx{\cmdmthoparfam}[2][2=]
+\DeclareRobustCommandx{\cmdmthoparfam}[2][2=]
   {\usrmth{#1}{Fam}{oparfam}[#2]}
 
 %% Style for Classes
@@ -791,19 +791,19 @@
 
 \seqoflatupp{Cls}{mthcls}
 
-\newcommandx{\cmdmthcls}[2][2=]
+\DeclareRobustCommandx{\cmdmthcls}[2][2=]
   {\usrmth{#1}{Cls}{cls}[#2]}
 
-\newcommandx{\cmdmthargcls}[2][2=]
+\DeclareRobustCommandx{\cmdmthargcls}[2][2=]
   {\usrmth{#1}{Cls}{argcls}[#2]}
 
-\newcommandx{\cmdmthoargcls}[2][2=]
+\DeclareRobustCommandx{\cmdmthoargcls}[2][2=]
   {\usrmth{#1}{Cls}{oargcls}[#2]}
 
-\newcommandx{\cmdmthparcls}[2][2=]
+\DeclareRobustCommandx{\cmdmthparcls}[2][2=]
   {\usrmth{#1}{Cls}{parcls}[#2]}
 
-\newcommandx{\cmdmthoparcls}[2][2=]
+\DeclareRobustCommandx{\cmdmthoparcls}[2][2=]
   {\usrmth{#1}{Cls}{oparcls}[#2]}
 
 %% Style for Signatures
@@ -811,19 +811,19 @@
 
 \seqoflatlet{Sig}{mthsig}\seqofgrklow{Sig}{mthsig}
 
-\newcommandx{\cmdmthsig}[2][2=]
+\DeclareRobustCommandx{\cmdmthsig}[2][2=]
   {\usrmth{#1}{Sig}{sig}[#2]}
 
-\newcommandx{\cmdmthargsig}[2][2=]
+\DeclareRobustCommandx{\cmdmthargsig}[2][2=]
   {\usrmth{#1}{Sig}{argsig}[#2]}
 
-\newcommandx{\cmdmthoargsig}[2][2=]
+\DeclareRobustCommandx{\cmdmthoargsig}[2][2=]
   {\usrmth{#1}{Sig}{oargsig}[#2]}
 
-\newcommandx{\cmdmthparsig}[2][2=]
+\DeclareRobustCommandx{\cmdmthparsig}[2][2=]
   {\usrmth{#1}{Sig}{parsig}[#2]}
 
-\newcommandx{\cmdmthoparsig}[2][2=]
+\DeclareRobustCommandx{\cmdmthoparsig}[2][2=]
   {\usrmth{#1}{Sig}{oparsig}[#2]}
 
 %% Style for Structures
@@ -831,19 +831,19 @@
 
 \seqoflatlet{Str}{mthstr}\seqofgrklow{Str}{mthstr}
 
-\newcommandx{\cmdmthstr}[2][2=]
+\DeclareRobustCommandx{\cmdmthstr}[2][2=]
   {\usrmth{#1}{Str}{str}[#2]}
 
-\newcommandx{\cmdmthargstr}[2][2=]
+\DeclareRobustCommandx{\cmdmthargstr}[2][2=]
   {\usrmth{#1}{Str}{argstr}[#2]}
 
-\newcommandx{\cmdmthoargstr}[2][2=]
+\DeclareRobustCommandx{\cmdmthoargstr}[2][2=]
   {\usrmth{#1}{Str}{oargstr}[#2]}
 
-\newcommandx{\cmdmthparstr}[2][2=]
+\DeclareRobustCommandx{\cmdmthparstr}[2][2=]
   {\usrmth{#1}{Str}{parstr}[#2]}
 
-\newcommandx{\cmdmthoparstr}[2][2=]
+\DeclareRobustCommandx{\cmdmthoparstr}[2][2=]
   {\usrmth{#1}{Str}{oparstr}[#2]}
 
 %% Style for Sets
@@ -851,22 +851,22 @@
 
 \seqoflet{Set}{mthset}
 
-\newcommandx{\cmdmthset}[2][2=]
+\DeclareRobustCommandx{\cmdmthset}[2][2=]
   {\usrmth{#1}{Set}{set}[#2]}
 
-\newcommandx{\cmdmthargset}[2][2=]
+\DeclareRobustCommandx{\cmdmthargset}[2][2=]
   {\usrmth{#1}{Set}{argset}[#2]}
 
-\newcommandx{\cmdmthoargset}[2][2=]
+\DeclareRobustCommandx{\cmdmthoargset}[2][2=]
   {\usrmth{#1}{Set}{oargset}[#2]}
 
-\newcommandx{\cmdmthparset}[2][2=]
+\DeclareRobustCommandx{\cmdmthparset}[2][2=]
   {\usrmth{#1}{Set}{parset}[#2]}
 
-\newcommandx{\cmdmthoparset}[2][2=]
+\DeclareRobustCommandx{\cmdmthoparset}[2][2=]
   {\usrmth{#1}{Set}{oparset}[#2]}
 
-\newcommandx{\cmdmthsetext}[3][2=, 3=]
+\DeclareRobustCommandx{\cmdmthsetext}[3][2=, 3=]
   {\cmdmthset{#1}[#2]\caselower[q]{#1}%
   \usrmthlet{\thestring}{Sym}{sym}
     [\defval{#3}{\defval{\empchk{#2}{\lowercase{#2}}}{\thestring}}]%
@@ -878,19 +878,19 @@
 
 \seqoflet{Rel}{mthrel}
 
-\newcommandx{\cmdmthrel}[2][2=]
+\DeclareRobustCommandx{\cmdmthrel}[2][2=]
   {\usrmth{#1}{Rel}{rel}[#2]}
 
-\newcommandx{\cmdmthargrel}[2][2=]
+\DeclareRobustCommandx{\cmdmthargrel}[2][2=]
   {\usrmth{#1}{Rel}{argrel}[#2]}
 
-\newcommandx{\cmdmthoargrel}[2][2=]
+\DeclareRobustCommandx{\cmdmthoargrel}[2][2=]
   {\usrmth{#1}{Rel}{oargrel}[#2]}
 
-\newcommandx{\cmdmthparrel}[2][2=]
+\DeclareRobustCommandx{\cmdmthparrel}[2][2=]
   {\usrmth{#1}{Rel}{parrel}[#2]}
 
-\newcommandx{\cmdmthoparrel}[2][2=]
+\DeclareRobustCommandx{\cmdmthoparrel}[2][2=]
   {\usrmth{#1}{Rel}{oparrel}[#2]}
 
 %% Style for Functions
@@ -898,19 +898,19 @@
 
 \seqoflet{Fun}{mthfun}
 
-\newcommandx{\cmdmthfun}[2][2=]
+\DeclareRobustCommandx{\cmdmthfun}[2][2=]
   {\usrmth{#1}{Fun}{fun}[#2]}
 
-\newcommandx{\cmdmthargfun}[2][2=]
+\DeclareRobustCommandx{\cmdmthargfun}[2][2=]
   {\usrmth{#1}{Fun}{argfun}[#2]}
 
-\newcommandx{\cmdmthoargfun}[2][2=]
+\DeclareRobustCommandx{\cmdmthoargfun}[2][2=]
   {\usrmth{#1}{Fun}{oargfun}[#2]}
 
-\newcommandx{\cmdmthparfun}[2][2=]
+\DeclareRobustCommandx{\cmdmthparfun}[2][2=]
   {\usrmth{#1}{Fun}{parfun}[#2]}
 
-\newcommandx{\cmdmthoparfun}[2][2=]
+\DeclareRobustCommandx{\cmdmthoparfun}[2][2=]
   {\usrmth{#1}{Fun}{oparfun}[#2]}
 
 %% Style for Symbols
@@ -918,19 +918,19 @@
 
 \seqoflet{Sym}{mthsym}
 
-\newcommandx{\cmdmthsym}[2][2=]
+\DeclareRobustCommandx{\cmdmthsym}[2][2=]
   {\usrmth{#1}{Sym}{sym}[#2]}
 
-\newcommandx{\cmdmthargsym}[2][2=]
+\DeclareRobustCommandx{\cmdmthargsym}[2][2=]
   {\usrmth{#1}{Sym}{argsym}[#2]}
 
-\newcommandx{\cmdmthoargsym}[2][2=]
+\DeclareRobustCommandx{\cmdmthoargsym}[2][2=]
   {\usrmth{#1}{Sym}{oargsym}[#2]}
 
-\newcommandx{\cmdmthparsym}[2][2=]
+\DeclareRobustCommandx{\cmdmthparsym}[2][2=]
   {\usrmth{#1}{Sym}{parsym}[#2]}
 
-\newcommandx{\cmdmthoparsym}[2][2=]
+\DeclareRobustCommandx{\cmdmthoparsym}[2][2=]
   {\usrmth{#1}{Sym}{oparsym}[#2]}
 
 %% Style for Elements
@@ -938,40 +938,40 @@
 
 \seqoflet{Elm}{mthelm}
 
-\newcommandx{\cmdmthelm}[2][2=]
+\DeclareRobustCommandx{\cmdmthelm}[2][2=]
   {\usrmth{#1}{Elm}{elm}[#2]}
 
-\newcommandx{\cmdmthargelm}[2][2=]
+\DeclareRobustCommandx{\cmdmthargelm}[2][2=]
   {\usrmth{#1}{Elm}{argelm}[#2]}
 
-\newcommandx{\cmdmthoargelm}[2][2=]
+\DeclareRobustCommandx{\cmdmthoargelm}[2][2=]
   {\usrmth{#1}{Elm}{oargelm}[#2]}
 
-\newcommandx{\cmdmthparelm}[2][2=]
+\DeclareRobustCommandx{\cmdmthparelm}[2][2=]
   {\usrmth{#1}{Elm}{parelm}[#2]}
 
-\newcommandx{\cmdmthoparelm}[2][2=]
+\DeclareRobustCommandx{\cmdmthoparelm}[2][2=]
   {\usrmth{#1}{Elm}{oparelm}[#2]}
 
 %%****************************************************************************%%
 
-\newcommandx{\cmdmthsymelm}[2][2=]
+\DeclareRobustCommandx{\cmdmthsymelm}[2][2=]
   {\cmdmthsym{#1}[#2]%
   \cmdmthelm{#1}[#2]}
 
-\newcommandx{\cmdmthargsymelm}[2][2=]
+\DeclareRobustCommandx{\cmdmthargsymelm}[2][2=]
   {\cmdmthargsym{#1}[#2]%
   \cmdmthargelm{#1}[#2]}
 
-\newcommandx{\cmdmthoargsymelm}[2][2=]
+\DeclareRobustCommandx{\cmdmthoargsymelm}[2][2=]
   {\cmdmthoargsym{#1}[#2]%
   \cmdmthoargelm{#1}[#2]}
 
-\newcommandx{\cmdmthparsymelm}[2][2=]
+\DeclareRobustCommandx{\cmdmthparsymelm}[2][2=]
   {\cmdmthparsym{#1}[#2]%
   \cmdmthparelm{#1}[#2]}
 
-\newcommandx{\cmdmthoparsymelm}[2][2=]
+\DeclareRobustCommandx{\cmdmthoparsymelm}[2][2=]
   {\cmdmthoparsym{#1}[#2]%
   \cmdmthoparelm{#1}[#2]}
 
@@ -981,15 +981,15 @@
 \cmdmth{luop}\newcommand{\mthstyluop}[1]{\textstyle\mathop{#1}}
 \cmdmth{lbop}\newcommand{\mthstylbop}[1]{\textstyle\mathbin{#1}}
 
-\newcommandx{\cmdmthluop}[2][2=]
+\DeclareRobustCommandx{\cmdmthluop}[2][2=]
   {\usrmth{#1}{UOp}{luop}[#2]}
-\newcommandx{\cmdmthlbop}[2][2=]
+\DeclareRobustCommandx{\cmdmthlbop}[2][2=]
   {\usrmth{#1}{BOp}{lbop}[#2]}
 
 %% Style for \LaTex Relations
 \cmdmth{lrel}\newcommand{\mthstylrel}{\mathrel}
 
-\newcommandx{\cmdmthlrel}[2][2=]
+\DeclareRobustCommandx{\cmdmthlrel}[2][2=]
   {\usrmth{#1}{Rel}{lrel}[#2]}
 
 %%****************************************************************************%%
@@ -999,19 +999,19 @@
 
 \seqoflet{Snt}{mthsnt}
 
-\newcommandx{\cmdmthsnt}[2][2=]
+\DeclareRobustCommandx{\cmdmthsnt}[2][2=]
   {\usrmth{#1}{Snt}{snt}[#2]}
 
-\newcommandx{\cmdmthargsnt}[2][2=]
+\DeclareRobustCommandx{\cmdmthargsnt}[2][2=]
   {\usrmth{#1}{Snt}{argsnt}[#2]}
 
-\newcommandx{\cmdmthoargsnt}[2][2=]
+\DeclareRobustCommandx{\cmdmthoargsnt}[2][2=]
   {\usrmth{#1}{Snt}{oargsnt}[#2]}
 
-\newcommandx{\cmdmthparsnt}[2][2=]
+\DeclareRobustCommandx{\cmdmthparsnt}[2][2=]
   {\usrmth{#1}{Snt}{parsnt}[#2]}
 
-\newcommandx{\cmdmthoparsnt}[2][2=]
+\DeclareRobustCommandx{\cmdmthoparsnt}[2][2=]
   {\usrmth{#1}{Snt}{oparsnt}[#2]}
 
 %% Style for Formulae
@@ -1019,19 +1019,19 @@
 
 \seqoflet{Frm}{mthfrm}
 
-\newcommandx{\cmdmthfrm}[2][2=]
+\DeclareRobustCommandx{\cmdmthfrm}[2][2=]
   {\usrmth{#1}{Frm}{frm}[#2]}
 
-\newcommandx{\cmdmthargfrm}[2][2=]
+\DeclareRobustCommandx{\cmdmthargfrm}[2][2=]
   {\usrmth{#1}{Frm}{argfrm}[#2]}
 
-\newcommandx{\cmdmthoargfrm}[2][2=]
+\DeclareRobustCommandx{\cmdmthoargfrm}[2][2=]
   {\usrmth{#1}{Frm}{oargfrm}[#2]}
 
-\newcommandx{\cmdmthparfrm}[2][2=]
+\DeclareRobustCommandx{\cmdmthparfrm}[2][2=]
   {\usrmth{#1}{Frm}{parfrm}[#2]}
 
-\newcommandx{\cmdmthoparfrm}[2][2=]
+\DeclareRobustCommandx{\cmdmthoparfrm}[2][2=]
   {\usrmth{#1}{Frm}{oparfrm}[#2]}
 
 %%****************************************************************************%%
@@ -1041,19 +1041,19 @@
 
 \seqoflet{Mat}{mthmat}
 
-\newcommandx{\cmdmthmat}[2][2=]
+\DeclareRobustCommandx{\cmdmthmat}[2][2=]
   {\usrmth{#1}{Mat}{mat}[#2]}
 
-\newcommandx{\cmdmthargmat}[2][2=]
+\DeclareRobustCommandx{\cmdmthargmat}[2][2=]
   {\usrmth{#1}{Mat}{argmat}[#2]}
 
-\newcommandx{\cmdmthoargmat}[2][2=]
+\DeclareRobustCommandx{\cmdmthoargmat}[2][2=]
   {\usrmth{#1}{Mat}{oargmat}[#2]}
 
-\newcommandx{\cmdmthparmat}[2][2=]
+\DeclareRobustCommandx{\cmdmthparmat}[2][2=]
   {\usrmth{#1}{Mat}{parmat}[#2]}
 
-\newcommandx{\cmdmthoparmat}[2][2=]
+\DeclareRobustCommandx{\cmdmthoparmat}[2][2=]
   {\usrmth{#1}{Mat}{oparmat}[#2]}
 
 %% Style for Vectors
@@ -1061,19 +1061,19 @@
 
 \seqoflet{Vec}{mthvec}
 
-\newcommandx{\cmdmthvec}[2][2=]
+\DeclareRobustCommandx{\cmdmthvec}[2][2=]
   {\usrmth{#1}{Vec}{vec}[#2]}
 
-\newcommandx{\cmdmthargvec}[2][2=]
+\DeclareRobustCommandx{\cmdmthargvec}[2][2=]
   {\usrmth{#1}{Vec}{argvec}[#2]}
 
-\newcommandx{\cmdmthoargvec}[2][2=]
+\DeclareRobustCommandx{\cmdmthoargvec}[2][2=]
   {\usrmth{#1}{Vec}{oargvec}[#2]}
 
-\newcommandx{\cmdmthparvec}[2][2=]
+\DeclareRobustCommandx{\cmdmthparvec}[2][2=]
   {\usrmth{#1}{Vec}{parvec}[#2]}
 
-\newcommandx{\cmdmthoparvec}[2][2=]
+\DeclareRobustCommandx{\cmdmthoparvec}[2][2=]
   {\usrmth{#1}{Vec}{oparvec}[#2]}
 
 \fi
@@ -1083,6 +1083,9 @@
 %%** Elementary Macros for Text **********************************************%%
 %%****************************************************************************%%
 \iftxt@
+
+\DeclareRobustCommand{\dotcheck}
+  {\@ifnextchar.{}{.\@}}
 
 %%** Latin Abbreviations *****************************************************%%
 
@@ -2244,7 +2247,6 @@
 
 %%** Temporal Logics II ******************************************************%%
 
-
 \cmdtxtoparname{PDL}
 
 \cmdtxtoparname{CTL}
@@ -2693,6 +2695,7 @@
 \newcommand{\bndsym}{\flat}
 \newcommand{\bndset}{Bn}
 \cmdmthsetext{Bnd}[\bndset][\bndsym]
+\cmdmthsymelm{idbnd}[\bndsym_{\text{id}}]
 \usrmth{bnd}{}{argfun}
 
 \usrmth{psn}{}{argfun}
@@ -2746,15 +2749,15 @@
 \newcommand{\symset}{\Sigma}
 \cmdmthsetext{Sym}[\symset][\symsym]
 
-\def\sttsym{q}
-\def\sttset{Q}
+\providecommand{\sttsym}{q}
+\providecommand{\sttset}{Q}
 \cmdmthsetext{Stt}[\sttset][\sttsym]
 \cmdmthset{IStt}[\sttset_{I}]
 \cmdmthsymelm{istt}[\sttsym_{I}]
 \cmdmthset{FStt}[\sttset_{F}]
 \cmdmthsymelm{fstt}[\sttsym_{F}]
 
-\def\trnsym{\delta}
+\providecommand{\trnsym}{\delta}
 \cmdmthfun{trn}[\trnsym]
 \cmdmthrel{trn}[\trnsym]
 

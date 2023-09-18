@@ -54,7 +54,7 @@
 %       \verb=\cmdNameName[sub][sub][ext]= = \cmdNameName[sub][sub][ext]
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\cmdmthname}[2][2=]
+\DeclareRobustCommandx{\cmdmthname}[2][2=]
   {\usrmth{#1}{Name}{name}[#2]}
 %    \end{macrocode}
 % \end{macro}
@@ -74,7 +74,7 @@
 %       \cmdNameName[sub][sub][ext1]{arg}[ext2]
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\cmdmthargname}[2][2=]
+\DeclareRobustCommandx{\cmdmthargname}[2][2=]
   {\usrmth{#1}{Name}{argname}[#2]}
 %    \end{macrocode}
 % \end{macro}
@@ -92,7 +92,7 @@
 %       \verb=\cmdNameName[sub][sub][arg]= = \cmdNameName[sub][sub][arg]
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\cmdmthoargname}[2][2=]
+\DeclareRobustCommandx{\cmdmthoargname}[2][2=]
   {\usrmth{#1}{Name}{oargname}[#2]}
 %    \end{macrocode}
 % \end{macro}
@@ -112,7 +112,7 @@
 %       \cmdNameName[sub][sub][ext1]{par}[ext2]
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\cmdmthparname}[2][2=]
+\DeclareRobustCommandx{\cmdmthparname}[2][2=]
   {\usrmth{#1}{Name}{parname}[#2]}
 %    \end{macrocode}
 % \end{macro}
@@ -130,7 +130,7 @@
 %       \verb=\cmdNameName[sub][sub][par]= = \cmdNameName[sub][sub][par]
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\cmdmthoparname}[2][2=]
+\DeclareRobustCommandx{\cmdmthoparname}[2][2=]
   {\usrmth{#1}{Name}{oparname}[#2]}
 %    \end{macrocode}
 % \end{macro}
@@ -183,7 +183,7 @@
 %       \verb=\cmdNameFam[sub][sub][ext]= = \cmdNameFam[sub][sub][ext]
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\cmdmthfam}[2][2=]
+\DeclareRobustCommandx{\cmdmthfam}[2][2=]
   {\usrmth{#1}{Fam}{fam}[#2]}
 %    \end{macrocode}
 % \end{macro}
@@ -203,7 +203,7 @@
 %       \cmdNameFam[sub][sub][ext1]{arg}[ext2]
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\cmdmthargfam}[2][2=]
+\DeclareRobustCommandx{\cmdmthargfam}[2][2=]
   {\usrmth{#1}{Fam}{argfam}[#2]}
 %    \end{macrocode}
 % \end{macro}
@@ -221,7 +221,7 @@
 %       \verb=\cmdFamFam[sub][sub][arg]= = \cmdFamFam[sub][sub][arg]
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\cmdmthoargfam}[2][2=]
+\DeclareRobustCommandx{\cmdmthoargfam}[2][2=]
   {\usrmth{#1}{Fam}{oargfam}[#2]}
 %    \end{macrocode}
 % \end{macro}
@@ -241,7 +241,7 @@
 %       \cmdNameFam[sub][sub][ext1]{par}[ext2]
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\cmdmthparfam}[2][2=]
+\DeclareRobustCommandx{\cmdmthparfam}[2][2=]
   {\usrmth{#1}{Fam}{parfam}[#2]}
 %    \end{macrocode}
 % \end{macro}
@@ -259,7 +259,7 @@
 %       \verb=\cmdFamFam[sub][sub][par]= = \cmdFamFam[sub][sub][par]
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\cmdmthoparfam}[2][2=]
+\DeclareRobustCommandx{\cmdmthoparfam}[2][2=]
   {\usrmth{#1}{Fam}{oparfam}[#2]}
 %    \end{macrocode}
 % \end{macro}
@@ -312,7 +312,7 @@
 %       \verb=\cmdNameCls[sub][sub][ext]= = \cmdNameCls[sub][sub][ext]
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\cmdmthcls}[2][2=]
+\DeclareRobustCommandx{\cmdmthcls}[2][2=]
   {\usrmth{#1}{Cls}{cls}[#2]}
 %    \end{macrocode}
 % \end{macro}
@@ -332,7 +332,7 @@
 %       \cmdNameCls[sub][sub][ext1]{arg}[ext2]
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\cmdmthargcls}[2][2=]
+\DeclareRobustCommandx{\cmdmthargcls}[2][2=]
   {\usrmth{#1}{Cls}{argcls}[#2]}
 %    \end{macrocode}
 % \end{macro}
@@ -350,7 +350,7 @@
 %       \verb=\cmdClsCls[sub][sub][arg]= = \cmdClsCls[sub][sub][arg]
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\cmdmthoargcls}[2][2=]
+\DeclareRobustCommandx{\cmdmthoargcls}[2][2=]
   {\usrmth{#1}{Cls}{oargcls}[#2]}
 %    \end{macrocode}
 % \end{macro}
@@ -370,7 +370,7 @@
 %       \cmdNameCls[sub][sub][ext1]{par}[ext2]
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\cmdmthparcls}[2][2=]
+\DeclareRobustCommandx{\cmdmthparcls}[2][2=]
   {\usrmth{#1}{Cls}{parcls}[#2]}
 %    \end{macrocode}
 % \end{macro}
@@ -388,7 +388,7 @@
 %       \verb=\cmdClsCls[sub][sub][par]= = \cmdClsCls[sub][sub][par]
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\cmdmthoparcls}[2][2=]
+\DeclareRobustCommandx{\cmdmthoparcls}[2][2=]
   {\usrmth{#1}{Cls}{oparcls}[#2]}
 %    \end{macrocode}
 % \end{macro}
@@ -449,7 +449,7 @@
 %       \verb=\cmdNameSig[sub][sub][ext]= = \cmdNameSig[sub][sub][ext]
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\cmdmthsig}[2][2=]
+\DeclareRobustCommandx{\cmdmthsig}[2][2=]
   {\usrmth{#1}{Sig}{sig}[#2]}
 %    \end{macrocode}
 % \end{macro}
@@ -469,7 +469,7 @@
 %       \cmdNameSig[sub][sub][ext1]{arg}[ext2]
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\cmdmthargsig}[2][2=]
+\DeclareRobustCommandx{\cmdmthargsig}[2][2=]
   {\usrmth{#1}{Sig}{argsig}[#2]}
 %    \end{macrocode}
 % \end{macro}
@@ -487,7 +487,7 @@
 %       \verb=\cmdSigSig[sub][sub][arg]= = \cmdSigSig[sub][sub][arg]
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\cmdmthoargsig}[2][2=]
+\DeclareRobustCommandx{\cmdmthoargsig}[2][2=]
   {\usrmth{#1}{Sig}{oargsig}[#2]}
 %    \end{macrocode}
 % \end{macro}
@@ -507,7 +507,7 @@
 %       \cmdNameSig[sub][sub][ext1]{par}[ext2]
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\cmdmthparsig}[2][2=]
+\DeclareRobustCommandx{\cmdmthparsig}[2][2=]
   {\usrmth{#1}{Sig}{parsig}[#2]}
 %    \end{macrocode}
 % \end{macro}
@@ -525,7 +525,7 @@
 %       \verb=\cmdSigSig[sub][sub][par]= = \cmdSigSig[sub][sub][par]
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\cmdmthoparsig}[2][2=]
+\DeclareRobustCommandx{\cmdmthoparsig}[2][2=]
   {\usrmth{#1}{Sig}{oparsig}[#2]}
 %    \end{macrocode}
 % \end{macro}
@@ -586,7 +586,7 @@
 %       \verb=\cmdNameStr[sub][sub][ext]= = \cmdNameStr[sub][sub][ext]
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\cmdmthstr}[2][2=]
+\DeclareRobustCommandx{\cmdmthstr}[2][2=]
   {\usrmth{#1}{Str}{str}[#2]}
 %    \end{macrocode}
 % \end{macro}
@@ -606,7 +606,7 @@
 %       \cmdNameStr[sub][sub][ext1]{arg}[ext2]
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\cmdmthargstr}[2][2=]
+\DeclareRobustCommandx{\cmdmthargstr}[2][2=]
   {\usrmth{#1}{Str}{argstr}[#2]}
 %    \end{macrocode}
 % \end{macro}
@@ -624,7 +624,7 @@
 %       \verb=\cmdStrStr[sub][sub][arg]= = \cmdStrStr[sub][sub][arg]
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\cmdmthoargstr}[2][2=]
+\DeclareRobustCommandx{\cmdmthoargstr}[2][2=]
   {\usrmth{#1}{Str}{oargstr}[#2]}
 %    \end{macrocode}
 % \end{macro}
@@ -644,7 +644,7 @@
 %       \cmdNameStr[sub][sub][ext1]{par}[ext2]
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\cmdmthparstr}[2][2=]
+\DeclareRobustCommandx{\cmdmthparstr}[2][2=]
   {\usrmth{#1}{Str}{parstr}[#2]}
 %    \end{macrocode}
 % \end{macro}
@@ -662,7 +662,7 @@
 %       \verb=\cmdStrStr[sub][sub][par]= = \cmdStrStr[sub][sub][par]
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\cmdmthoparstr}[2][2=]
+\DeclareRobustCommandx{\cmdmthoparstr}[2][2=]
   {\usrmth{#1}{Str}{oparstr}[#2]}
 %    \end{macrocode}
 % \end{macro}
@@ -728,7 +728,7 @@
 %       \verb=\cmdNameSet[sub][sub][ext]= = \cmdNameSet[sub][sub][ext]
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\cmdmthset}[2][2=]
+\DeclareRobustCommandx{\cmdmthset}[2][2=]
   {\usrmth{#1}{Set}{set}[#2]}
 %    \end{macrocode}
 % \end{macro}
@@ -748,7 +748,7 @@
 %       \cmdNameSet[sub][sub][ext1]{arg}[ext2]
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\cmdmthargset}[2][2=]
+\DeclareRobustCommandx{\cmdmthargset}[2][2=]
   {\usrmth{#1}{Set}{argset}[#2]}
 %    \end{macrocode}
 % \end{macro}
@@ -766,7 +766,7 @@
 %       \verb=\cmdSetSet[sub][sub][arg]= = \cmdSetSet[sub][sub][arg]
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\cmdmthoargset}[2][2=]
+\DeclareRobustCommandx{\cmdmthoargset}[2][2=]
   {\usrmth{#1}{Set}{oargset}[#2]}
 %    \end{macrocode}
 % \end{macro}
@@ -786,7 +786,7 @@
 %       \cmdNameSet[sub][sub][ext1]{par}[ext2]
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\cmdmthparset}[2][2=]
+\DeclareRobustCommandx{\cmdmthparset}[2][2=]
   {\usrmth{#1}{Set}{parset}[#2]}
 %    \end{macrocode}
 % \end{macro}
@@ -804,7 +804,7 @@
 %       \verb=\cmdSetSet[sub][sub][par]= = \cmdSetSet[sub][sub][par]
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\cmdmthoparset}[2][2=]
+\DeclareRobustCommandx{\cmdmthoparset}[2][2=]
   {\usrmth{#1}{Set}{oparset}[#2]}
 %    \end{macrocode}
 % \end{macro}
@@ -812,7 +812,7 @@
 % \begin{macro}{\cmdmthsetext}
 %   ... to do!
 %    \begin{macrocode}
-\newcommandx{\cmdmthsetext}[3][2=, 3=]
+\DeclareRobustCommandx{\cmdmthsetext}[3][2=, 3=]
   {\cmdmthset{#1}[#2]\caselower[q]{#1}%
   \usrmthlet{\thestring}{Sym}{sym}
     [\defval{#3}{\defval{\empchk{#2}{\lowercase{#2}}}{\thestring}}]%
@@ -882,7 +882,7 @@
 %       \verb=\cmdNameRel[sub][sub][ext]= = \cmdNameRel[sub][sub][ext]
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\cmdmthrel}[2][2=]
+\DeclareRobustCommandx{\cmdmthrel}[2][2=]
   {\usrmth{#1}{Rel}{rel}[#2]}
 %    \end{macrocode}
 % \end{macro}
@@ -902,7 +902,7 @@
 %       \cmdNameRel[sub][sub][ext1]{arg}[ext2]
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\cmdmthargrel}[2][2=]
+\DeclareRobustCommandx{\cmdmthargrel}[2][2=]
   {\usrmth{#1}{Rel}{argrel}[#2]}
 %    \end{macrocode}
 % \end{macro}
@@ -920,7 +920,7 @@
 %       \verb=\cmdRelRel[sub][sub][arg]= = \cmdRelRel[sub][sub][arg]
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\cmdmthoargrel}[2][2=]
+\DeclareRobustCommandx{\cmdmthoargrel}[2][2=]
   {\usrmth{#1}{Rel}{oargrel}[#2]}
 %    \end{macrocode}
 % \end{macro}
@@ -940,7 +940,7 @@
 %       \cmdNameRel[sub][sub][ext1]{par}[ext2]
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\cmdmthparrel}[2][2=]
+\DeclareRobustCommandx{\cmdmthparrel}[2][2=]
   {\usrmth{#1}{Rel}{parrel}[#2]}
 %    \end{macrocode}
 % \end{macro}
@@ -958,7 +958,7 @@
 %       \verb=\cmdRelRel[sub][sub][par]= = \cmdRelRel[sub][sub][par]
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\cmdmthoparrel}[2][2=]
+\DeclareRobustCommandx{\cmdmthoparrel}[2][2=]
   {\usrmth{#1}{Rel}{oparrel}[#2]}
 %    \end{macrocode}
 % \end{macro}
@@ -1024,7 +1024,7 @@
 %       \verb=\cmdNameFun[sub][sub][ext]= = \cmdNameFun[sub][sub][ext]
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\cmdmthfun}[2][2=]
+\DeclareRobustCommandx{\cmdmthfun}[2][2=]
   {\usrmth{#1}{Fun}{fun}[#2]}
 %    \end{macrocode}
 % \end{macro}
@@ -1044,7 +1044,7 @@
 %       \cmdNameFun[sub][sub][ext1]{arg}[ext2]
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\cmdmthargfun}[2][2=]
+\DeclareRobustCommandx{\cmdmthargfun}[2][2=]
   {\usrmth{#1}{Fun}{argfun}[#2]}
 %    \end{macrocode}
 % \end{macro}
@@ -1062,7 +1062,7 @@
 %       \verb=\cmdFunFun[sub][sub][arg]= = \cmdFunFun[sub][sub][arg]
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\cmdmthoargfun}[2][2=]
+\DeclareRobustCommandx{\cmdmthoargfun}[2][2=]
   {\usrmth{#1}{Fun}{oargfun}[#2]}
 %    \end{macrocode}
 % \end{macro}
@@ -1082,7 +1082,7 @@
 %       \cmdNameFun[sub][sub][ext1]{par}[ext2]
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\cmdmthparfun}[2][2=]
+\DeclareRobustCommandx{\cmdmthparfun}[2][2=]
   {\usrmth{#1}{Fun}{parfun}[#2]}
 %    \end{macrocode}
 % \end{macro}
@@ -1100,7 +1100,7 @@
 %       \verb=\cmdFunFun[sub][sub][par]= = \cmdFunFun[sub][sub][par]
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\cmdmthoparfun}[2][2=]
+\DeclareRobustCommandx{\cmdmthoparfun}[2][2=]
   {\usrmth{#1}{Fun}{oparfun}[#2]}
 %    \end{macrocode}
 % \end{macro}
@@ -1166,7 +1166,7 @@
 %       \verb=\cmdNameSym[sub][sub][ext]= = \cmdNameSym[sub][sub][ext]
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\cmdmthsym}[2][2=]
+\DeclareRobustCommandx{\cmdmthsym}[2][2=]
   {\usrmth{#1}{Sym}{sym}[#2]}
 %    \end{macrocode}
 % \end{macro}
@@ -1186,7 +1186,7 @@
 %       \cmdNameSym[sub][sub][ext1]{arg}[ext2]
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\cmdmthargsym}[2][2=]
+\DeclareRobustCommandx{\cmdmthargsym}[2][2=]
   {\usrmth{#1}{Sym}{argsym}[#2]}
 %    \end{macrocode}
 % \end{macro}
@@ -1204,7 +1204,7 @@
 %       \verb=\cmdSymSym[sub][sub][arg]= = \cmdSymSym[sub][sub][arg]
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\cmdmthoargsym}[2][2=]
+\DeclareRobustCommandx{\cmdmthoargsym}[2][2=]
   {\usrmth{#1}{Sym}{oargsym}[#2]}
 %    \end{macrocode}
 % \end{macro}
@@ -1224,7 +1224,7 @@
 %       \cmdNameSym[sub][sub][ext1]{par}[ext2]
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\cmdmthparsym}[2][2=]
+\DeclareRobustCommandx{\cmdmthparsym}[2][2=]
   {\usrmth{#1}{Sym}{parsym}[#2]}
 %    \end{macrocode}
 % \end{macro}
@@ -1242,7 +1242,7 @@
 %       \verb=\cmdSymSym[sub][sub][par]= = \cmdSymSym[sub][sub][par]
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\cmdmthoparsym}[2][2=]
+\DeclareRobustCommandx{\cmdmthoparsym}[2][2=]
   {\usrmth{#1}{Sym}{oparsym}[#2]}
 %    \end{macrocode}
 % \end{macro}
@@ -1308,7 +1308,7 @@
 %       \verb=\cmdNameElm[sub][sub][ext]= = \cmdNameElm[sub][sub][ext]
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\cmdmthelm}[2][2=]
+\DeclareRobustCommandx{\cmdmthelm}[2][2=]
   {\usrmth{#1}{Elm}{elm}[#2]}
 %    \end{macrocode}
 % \end{macro}
@@ -1328,7 +1328,7 @@
 %       \cmdNameElm[sub][sub][ext1]{arg}[ext2]
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\cmdmthargelm}[2][2=]
+\DeclareRobustCommandx{\cmdmthargelm}[2][2=]
   {\usrmth{#1}{Elm}{argelm}[#2]}
 %    \end{macrocode}
 % \end{macro}
@@ -1346,7 +1346,7 @@
 %       \verb=\cmdElmElm[sub][sub][arg]= = \cmdElmElm[sub][sub][arg]
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\cmdmthoargelm}[2][2=]
+\DeclareRobustCommandx{\cmdmthoargelm}[2][2=]
   {\usrmth{#1}{Elm}{oargelm}[#2]}
 %    \end{macrocode}
 % \end{macro}
@@ -1366,7 +1366,7 @@
 %       \cmdNameElm[sub][sub][ext1]{par}[ext2]
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\cmdmthparelm}[2][2=]
+\DeclareRobustCommandx{\cmdmthparelm}[2][2=]
   {\usrmth{#1}{Elm}{parelm}[#2]}
 %    \end{macrocode}
 % \end{macro}
@@ -1384,7 +1384,7 @@
 %       \verb=\cmdElmElm[sub][sub][par]= = \cmdElmElm[sub][sub][par]
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\cmdmthoparelm}[2][2=]
+\DeclareRobustCommandx{\cmdmthoparelm}[2][2=]
   {\usrmth{#1}{Elm}{oparelm}[#2]}
 %    \end{macrocode}
 % \end{macro}
@@ -1408,7 +1408,7 @@
 %       \verb=\cmdNameElm[sub][sub][ext]= = \cmdNameElm[sub][sub][ext]
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\cmdmthsymelm}[2][2=]
+\DeclareRobustCommandx{\cmdmthsymelm}[2][2=]
   {\cmdmthsym{#1}[#2]%
   \cmdmthelm{#1}[#2]}
 %    \end{macrocode}
@@ -1433,7 +1433,7 @@
 %       \cmdNameElm[sub][sub][ext1]{arg}[ext2]
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\cmdmthargsymelm}[2][2=]
+\DeclareRobustCommandx{\cmdmthargsymelm}[2][2=]
   {\cmdmthargsym{#1}[#2]%
   \cmdmthargelm{#1}[#2]}
 %    \end{macrocode}
@@ -1458,7 +1458,7 @@
 %       \cmdNameElm[sub][sub][arg]
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\cmdmthoargsymelm}[2][2=]
+\DeclareRobustCommandx{\cmdmthoargsymelm}[2][2=]
   {\cmdmthoargsym{#1}[#2]%
   \cmdmthoargelm{#1}[#2]}
 %    \end{macrocode}
@@ -1483,7 +1483,7 @@
 %       \cmdNameElm[sub][sub][ext1]{par}[ext2]
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\cmdmthparsymelm}[2][2=]
+\DeclareRobustCommandx{\cmdmthparsymelm}[2][2=]
   {\cmdmthparsym{#1}[#2]%
   \cmdmthparelm{#1}[#2]}
 %    \end{macrocode}
@@ -1508,7 +1508,7 @@
 %       \cmdNameElm[sub][sub][par]
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\cmdmthoparsymelm}[2][2=]
+\DeclareRobustCommandx{\cmdmthoparsymelm}[2][2=]
   {\cmdmthoparsym{#1}[#2]%
   \cmdmthoparelm{#1}[#2]}
 %    \end{macrocode}
@@ -1552,9 +1552,9 @@
 %       \verb=\cmdNameBOp[sub][sub][ext]= = \cmdNameBOp[sub][sub][ext]
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\cmdmthluop}[2][2=]
+\DeclareRobustCommandx{\cmdmthluop}[2][2=]
   {\usrmth{#1}{UOp}{luop}[#2]}
-\newcommandx{\cmdmthlbop}[2][2=]
+\DeclareRobustCommandx{\cmdmthlbop}[2][2=]
   {\usrmth{#1}{BOp}{lbop}[#2]}
 %    \end{macrocode}
 % \end{macro}
@@ -1585,7 +1585,7 @@
 %       \verb=\cmdNameRel[sub][sub][ext]= = \cmdNameRel[sub][sub][ext]
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\cmdmthlrel}[2][2=]
+\DeclareRobustCommandx{\cmdmthlrel}[2][2=]
   {\usrmth{#1}{Rel}{lrel}[#2]}
 %    \end{macrocode}
 % \end{macro}
@@ -1655,7 +1655,7 @@
 %       \verb=\cmdNameSnt[sub][sub][ext]= = \cmdNameSnt[sub][sub][ext]
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\cmdmthsnt}[2][2=]
+\DeclareRobustCommandx{\cmdmthsnt}[2][2=]
   {\usrmth{#1}{Snt}{snt}[#2]}
 %    \end{macrocode}
 % \end{macro}
@@ -1675,7 +1675,7 @@
 %       \cmdNameSnt[sub][sub][ext1]{arg}[ext2]
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\cmdmthargsnt}[2][2=]
+\DeclareRobustCommandx{\cmdmthargsnt}[2][2=]
   {\usrmth{#1}{Snt}{argsnt}[#2]}
 %    \end{macrocode}
 % \end{macro}
@@ -1693,7 +1693,7 @@
 %       \verb=\cmdNameSnt[sub][sub][arg]= = \cmdNameSnt[sub][sub][arg]
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\cmdmthoargsnt}[2][2=]
+\DeclareRobustCommandx{\cmdmthoargsnt}[2][2=]
   {\usrmth{#1}{Snt}{oargsnt}[#2]}
 %    \end{macrocode}
 % \end{macro}
@@ -1713,7 +1713,7 @@
 %       \cmdNameSnt[sub][sub][ext1]{par}[ext2]
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\cmdmthparsnt}[2][2=]
+\DeclareRobustCommandx{\cmdmthparsnt}[2][2=]
   {\usrmth{#1}{Snt}{parsnt}[#2]}
 %    \end{macrocode}
 % \end{macro}
@@ -1731,7 +1731,7 @@
 %       \verb=\cmdNameSnt[sub][sub][par]= = \cmdNameSnt[sub][sub][par]
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\cmdmthoparsnt}[2][2=]
+\DeclareRobustCommandx{\cmdmthoparsnt}[2][2=]
   {\usrmth{#1}{Snt}{oparsnt}[#2]}
 %    \end{macrocode}
 % \end{macro}
@@ -1797,7 +1797,7 @@
 %       \verb=\cmdNameFrm[sub][sub][ext]= = \cmdNameFrm[sub][sub][ext]
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\cmdmthfrm}[2][2=]
+\DeclareRobustCommandx{\cmdmthfrm}[2][2=]
   {\usrmth{#1}{Frm}{frm}[#2]}
 %    \end{macrocode}
 % \end{macro}
@@ -1817,7 +1817,7 @@
 %       \cmdNameFrm[sub][sub][ext1]{arg}[ext2]
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\cmdmthargfrm}[2][2=]
+\DeclareRobustCommandx{\cmdmthargfrm}[2][2=]
   {\usrmth{#1}{Frm}{argfrm}[#2]}
 %    \end{macrocode}
 % \end{macro}
@@ -1835,7 +1835,7 @@
 %       \verb=\cmdNameFrm[sub][sub][arg]= = \cmdNameFrm[sub][sub][arg]
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\cmdmthoargfrm}[2][2=]
+\DeclareRobustCommandx{\cmdmthoargfrm}[2][2=]
   {\usrmth{#1}{Frm}{oargfrm}[#2]}
 %    \end{macrocode}
 % \end{macro}
@@ -1855,7 +1855,7 @@
 %       \cmdNameFrm[sub][sub][ext1]{par}[ext2]
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\cmdmthparfrm}[2][2=]
+\DeclareRobustCommandx{\cmdmthparfrm}[2][2=]
   {\usrmth{#1}{Frm}{parfrm}[#2]}
 %    \end{macrocode}
 % \end{macro}
@@ -1873,7 +1873,7 @@
 %       \verb=\cmdNameFrm[sub][sub][par]= = \cmdNameFrm[sub][sub][par]
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\cmdmthoparfrm}[2][2=]
+\DeclareRobustCommandx{\cmdmthoparfrm}[2][2=]
   {\usrmth{#1}{Frm}{oparfrm}[#2]}
 %    \end{macrocode}
 % \end{macro}
@@ -1943,7 +1943,7 @@
 %       \verb=\cmdNameMat[sub][sub][ext]= = \cmdNameMat[sub][sub][ext]
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\cmdmthmat}[2][2=]
+\DeclareRobustCommandx{\cmdmthmat}[2][2=]
   {\usrmth{#1}{Mat}{mat}[#2]}
 %    \end{macrocode}
 % \end{macro}
@@ -1963,7 +1963,7 @@
 %       \cmdNameMat[sub][sub][ext1]{arg}[ext2]
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\cmdmthargmat}[2][2=]
+\DeclareRobustCommandx{\cmdmthargmat}[2][2=]
   {\usrmth{#1}{Mat}{argmat}[#2]}
 %    \end{macrocode}
 % \end{macro}
@@ -1981,7 +1981,7 @@
 %       \verb=\cmdNameMat[sub][sub][arg]= = \cmdNameMat[sub][sub][arg]
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\cmdmthoargmat}[2][2=]
+\DeclareRobustCommandx{\cmdmthoargmat}[2][2=]
   {\usrmth{#1}{Mat}{oargmat}[#2]}
 %    \end{macrocode}
 % \end{macro}
@@ -2001,7 +2001,7 @@
 %       \cmdNameMat[sub][sub][ext1]{par}[ext2]
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\cmdmthparmat}[2][2=]
+\DeclareRobustCommandx{\cmdmthparmat}[2][2=]
   {\usrmth{#1}{Mat}{parmat}[#2]}
 %    \end{macrocode}
 % \end{macro}
@@ -2019,7 +2019,7 @@
 %       \verb=\cmdNameMat[sub][sub][par]= = \cmdNameMat[sub][sub][par]
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\cmdmthoparmat}[2][2=]
+\DeclareRobustCommandx{\cmdmthoparmat}[2][2=]
   {\usrmth{#1}{Mat}{oparmat}[#2]}
 %    \end{macrocode}
 % \end{macro}
@@ -2085,7 +2085,7 @@
 %       \verb=\cmdNameVec[sub][sub][ext]= = \cmdNameVec[sub][sub][ext]
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\cmdmthvec}[2][2=]
+\DeclareRobustCommandx{\cmdmthvec}[2][2=]
   {\usrmth{#1}{Vec}{vec}[#2]}
 %    \end{macrocode}
 % \end{macro}
@@ -2105,7 +2105,7 @@
 %       \cmdNameVec[sub][sub][ext1]{arg}[ext2]
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\cmdmthargvec}[2][2=]
+\DeclareRobustCommandx{\cmdmthargvec}[2][2=]
   {\usrmth{#1}{Vec}{argvec}[#2]}
 %    \end{macrocode}
 % \end{macro}
@@ -2123,7 +2123,7 @@
 %       \verb=\cmdNameVec[sub][sub][arg]= = \cmdNameVec[sub][sub][arg]
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\cmdmthoargvec}[2][2=]
+\DeclareRobustCommandx{\cmdmthoargvec}[2][2=]
   {\usrmth{#1}{Vec}{oargvec}[#2]}
 %    \end{macrocode}
 % \end{macro}
@@ -2143,7 +2143,7 @@
 %       \cmdNameVec[sub][sub][ext1]{par}[ext2]
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\cmdmthparvec}[2][2=]
+\DeclareRobustCommandx{\cmdmthparvec}[2][2=]
   {\usrmth{#1}{Vec}{parvec}[#2]}
 %    \end{macrocode}
 % \end{macro}
@@ -2161,7 +2161,7 @@
 %       \verb=\cmdNameVec[sub][sub][par]= = \cmdNameVec[sub][sub][par]
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\cmdmthoparvec}[2][2=]
+\DeclareRobustCommandx{\cmdmthoparvec}[2][2=]
   {\usrmth{#1}{Vec}{oparvec}[#2]}
 %    \end{macrocode}
 % \end{macro}
