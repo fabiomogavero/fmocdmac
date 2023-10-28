@@ -298,6 +298,13 @@
 %    \end{macrocode}
 % \end{macro}
 
+% \begin{macro}{\deg}
+%   ...
+%    \begin{macrocode}
+\usrmth{deg}{}{argfun}
+%    \end{macrocode}
+% \end{macro}
+
 %    \begin{macrocode}
 %%****************************************************************************%%
 %    \end{macrocode}
@@ -599,8 +606,6 @@
 %    \begin{macrocode}
 \DeclareRobustCommand{\len}
   {\@ifstar{\@slen}{\@len}}
-\DeclareRobustCommandx{\@len}[3][1=, 2=]
-  {\mth{\argmid{#1\lvert}{#3}{#2\rvert}}}
 \DeclareRobustCommand{\@len}[1]
   {\mth{\argmid{\left\lvert}{#1}{\right\rvert}}}
 \DeclareRobustCommand{\@slen}[1]
