@@ -32,7 +32,7 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesPackage{fmocdmac}
-  [2023/11/11 v0.26 FM's OCD LaTeX Macro]
+  [2023/12/15 v0.27 FM's OCD LaTeX Macro]
 
 \RequirePackage{etoolbox}
 
@@ -2881,6 +2881,10 @@
 \SetKw{GoTo}{goto}
 \SetKw{Break}{break}
 \SetKw{Continue}{continue}
+
+\SetKw{Guess}{guess}
+\SetKw{ExsGuess}{$\exists$-guess}
+\SetKw{AllGuess}{$\forall$-guess}
 
 \SetKwIF{MIf}{MElseIf}{MElse}{\#if}{\#then}{\#else \#if}{\#else}{\#endif}
 
