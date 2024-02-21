@@ -32,7 +32,7 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesPackage{fmocdmac}
-  [2024/01/10 v0.28 FM's OCD LaTeX Macro]
+  [2024/02/21 v0.29 FM's OCD LaTeX Macro]
 
 \RequirePackage{etoolbox}
 
@@ -450,38 +450,38 @@
 \DeclareRobustCommand{\txtopar}
   {\@ifstar{\newtxtoparsty*{\txtsty}}{\newtxtoparsty{\txtsty}}}
 
-\newcommand{\txtsty}
+\DeclareRobustCommand{\txtsty}
   {\mdseries\upshape\rmfamily}
 
 %%****************************************************************************%%
 
 \DeclareRobustCommand{\cmdtxt}[1]
   {\csdef{txt#1}%
-    {\@ifstar%
+    {\protect\@ifstar%
       {\newtxtsty*{\csname txtsty#1\endcsname}}%
       {\newtxtsty{\csname txtsty#1\endcsname}}}}
 
 \DeclareRobustCommand{\cmdtxtarg}[1]
   {\csdef{txtarg#1}%
-    {\@ifstar%
+    {\protect\@ifstar%
       {\newtxtargsty*{\csname txtsty#1\endcsname}}%
       {\newtxtargsty{\csname txtsty#1\endcsname}}}}
 
 \DeclareRobustCommand{\cmdtxtoarg}[1]
   {\csdef{txtoarg#1}%
-    {\@ifstar%
+    {\protect\@ifstar%
       {\newtxtoargsty*{\csname txtsty#1\endcsname}}%
       {\newtxtoargsty{\csname txtsty#1\endcsname}}}}
 
 \DeclareRobustCommand{\cmdtxtpar}[1]
   {\csdef{txtpar#1}%
-    {\@ifstar%
+    {\protect\@ifstar%
       {\newtxtparsty*{\csname txtsty#1\endcsname}}%
       {\newtxtparsty{\csname txtsty#1\endcsname}}}}
 
 \DeclareRobustCommand{\cmdtxtopar}[1]
   {\csdef{txtopar#1}%
-    {\@ifstar%
+    {\protect\@ifstar%
       {\newtxtoparsty*{\csname txtsty#1\endcsname}}%
       {\newtxtoparsty{\csname txtsty#1\endcsname}}}}
 
@@ -491,8 +491,8 @@
 %%****************************************************************************%%
 
 \DeclareRobustCommandx{\usrtxt}[4][4=]
-  {\csdef{#1#2}{%
-    \@ifstar%
+  {\csdef{#1#2}%
+    {\protect\@ifstar%
       {\csname txt#3\endcsname*{\defval{#4}{#1}}}%
       {\csname txt#3\endcsname{\defval{#4}{#1}}}}}
 
@@ -592,30 +592,30 @@
 \DeclareRobustCommand{\mthopar}
   {\@ifstar{\newmthoparsty*{\mthsty}}{\newmthoparsty{\mthsty}}}
 
-\newcommand{\mthsty}
+\def\mthsty
   {}
 
 %%****************************************************************************%%
 
 \DeclareRobustCommand{\cmdmth}[1]
   {\csdef{mth#1}%
-    {\@ifstar{\newmthsty*{mthsty#1}}{\newmthsty{mthsty#1}}}}
+    {\protect\@ifstar{\newmthsty*{mthsty#1}}{\newmthsty{mthsty#1}}}}
 
 \DeclareRobustCommand{\cmdmtharg}[1]
   {\csdef{mtharg#1}%
-    {\@ifstar{\newmthargsty*{mthsty#1}}{\newmthargsty{mthsty#1}}}}
+    {\protect\@ifstar{\newmthargsty*{mthsty#1}}{\newmthargsty{mthsty#1}}}}
 
 \DeclareRobustCommand{\cmdmthoarg}[1]
   {\csdef{mthoarg#1}%
-    {\@ifstar{\newmthoargsty*{mthsty#1}}{\newmthoargsty{mthsty#1}}}}
+    {\protect\@ifstar{\newmthoargsty*{mthsty#1}}{\newmthoargsty{mthsty#1}}}}
 
 \DeclareRobustCommand{\cmdmthpar}[1]
   {\csdef{mthpar#1}%
-    {\@ifstar{\newmthparsty*{mthsty#1}}{\newmthparsty{mthsty#1}}}}
+    {\protect\@ifstar{\newmthparsty*{mthsty#1}}{\newmthparsty{mthsty#1}}}}
 
 \DeclareRobustCommand{\cmdmthopar}[1]
   {\csdef{mthopar#1}%
-    {\@ifstar{\newmthoparsty*{mthsty#1}}{\newmthoparsty{mthsty#1}}}}
+    {\protect\@ifstar{\newmthoparsty*{mthsty#1}}{\newmthoparsty{mthsty#1}}}}
 
 \DeclareRobustCommand{\cmdmthall}[1]
   {\cmdmth{#1}\cmdmtharg{#1}\cmdmthoarg{#1}\cmdmthpar{#1}\cmdmthopar{#1}}
@@ -623,8 +623,8 @@
 %%****************************************************************************%%
 
 \DeclareRobustCommandx{\usrmth}[4][4=]
-  {\csdef{#1#2}{%
-    \@ifstar%
+  {\csdef{#1#2}%
+    {\protect\@ifstar%
       {\csname mth#3\endcsname*{\defval{#4}{#1}}}%
       {\csname mth#3\endcsname{\defval{#4}{#1}}}}}
 
@@ -665,7 +665,8 @@
 \iftxtgen@
 
 %% Style for Definitions
-\cmdtxtall{def}\newcommand{\txtstydef}{\normalfont\bfseries\em}
+\cmdtxtall{def}
+\DeclareRobustCommand{\txtstydef}{\normalfont\bfseries\em}
 
 \DeclareRobustCommandx{\cmdtxtdef}[2][2=]
   {\usrtxt{#1}{}{def}[#2]}
@@ -683,7 +684,8 @@
   {\usrtxt{#1}{}{opardef}[#2]}
 
 %% Style for Abbreviations
-\cmdtxtall{abr}\newcommand{\txtstyabr}{\em}
+\cmdtxtall{abr}
+\DeclareRobustCommand{\txtstyabr}{\em}
 
 \DeclareRobustCommandx{\cmdtxtabr}[2][2=]
   {\usrtxt{#1}{}{abr}[#2]}
@@ -703,7 +705,8 @@
 %%****************************************************************************%%
 
 %% Style for Names
-\cmdtxtall{name}\newcommand{\txtstyname}{\normalfont\mdseries\scshape\sffamily}
+\cmdtxtall{name}
+\DeclareRobustCommand{\txtstyname}{\normalfont\mdseries\scshape\sffamily}
 
 \DeclareRobustCommandx{\cmdtxtname}[2][2=]
   {\usrtxt{#1}{}{name}[#2]}
@@ -721,7 +724,8 @@
   {\usrtxt{#1}{}{oparname}[#2]}
 
 %% Style for Complexities
-\cmdtxtall{com}\newcommand{\txtstycom}{\normalfont\mdseries\scshape\rmfamily}
+\cmdtxtall{com}
+\DeclareRobustCommand{\txtstycom}{\normalfont\mdseries\scshape\rmfamily}
 
 \DeclareRobustCommandx{\cmdtxtcom}[2][2=]
   {\usrtxt{#1}{}{com}[#2]}
@@ -747,7 +751,8 @@
 \ifmthgen@
 
 %% Style for Names
-\cmdmthall{name}\newcommand{\mthstyname}{\mathcal}
+\cmdmthall{name}
+\DeclareRobustCommand{\mthstyname}{\mathcal}
 
 \seqoflatupp{Name}{mthname}
 
@@ -767,7 +772,8 @@
   {\usrmth{#1}{Name}{oparname}[#2]}
 
 %% Style for Families
-\cmdmthall{fam}\newcommand{\mthstyfam}{\mathscr}
+\cmdmthall{fam}
+\DeclareRobustCommand{\mthstyfam}{\mathscr}
 
 \seqoflatupp{Fam}{mthfam}
 
@@ -787,7 +793,8 @@
   {\usrmth{#1}{Fam}{oparfam}[#2]}
 
 %% Style for Classes
-\cmdmthall{cls}\newcommand{\mthstycls}{\matheus}
+\cmdmthall{cls}
+\DeclareRobustCommand{\mthstycls}{\matheus}
 
 \seqoflatupp{Cls}{mthcls}
 
@@ -807,7 +814,8 @@
   {\usrmth{#1}{Cls}{oparcls}[#2]}
 
 %% Style for Signatures
-\cmdmthall{sig}\newcommand{\mthstysig}{\mathpzc}
+\cmdmthall{sig}
+\DeclareRobustCommand{\mthstysig}{\mathpzc}
 
 \seqoflatlet{Sig}{mthsig}\seqofgrklow{Sig}{mthsig}
 
@@ -827,7 +835,8 @@
   {\usrmth{#1}{Sig}{oparsig}[#2]}
 
 %% Style for Structures
-\cmdmthall{str}\newcommand{\mthstystr}{\mathfrak}
+\cmdmthall{str}
+\DeclareRobustCommand{\mthstystr}{\mathfrak}
 
 \seqoflatlet{Str}{mthstr}\seqofgrklow{Str}{mthstr}
 
@@ -847,7 +856,8 @@
   {\usrmth{#1}{Str}{oparstr}[#2]}
 
 %% Style for Sets
-\cmdmthall{set}\newcommand{\mthstyset}{\mathrm}
+\cmdmthall{set}
+\DeclareRobustCommand{\mthstyset}{\mathrm}
 
 \seqoflet{Set}{mthset}
 
@@ -874,7 +884,8 @@
     [\defval{#3}{\defval{\empchk{#2}{\lowercase{#2}}}{\thestring}}]}
 
 %% Style for Relations
-\cmdmthall{rel}\newcommand{\mthstyrel}{\mathit}
+\cmdmthall{rel}
+\DeclareRobustCommand{\mthstyrel}{\mathit}
 
 \seqoflet{Rel}{mthrel}
 
@@ -894,7 +905,8 @@
   {\usrmth{#1}{Rel}{oparrel}[#2]}
 
 %% Style for Functions
-\cmdmthall{fun}\newcommand{\mthstyfun}{\mathsf}
+\cmdmthall{fun}
+\DeclareRobustCommand{\mthstyfun}{\mathsf}
 
 \seqoflet{Fun}{mthfun}
 
@@ -914,7 +926,8 @@
   {\usrmth{#1}{Fun}{oparfun}[#2]}
 
 %% Style for Symbols
-\cmdmthall{sym}\newcommand{\mthstysym}{\mathtt}
+\cmdmthall{sym}
+\DeclareRobustCommand{\mthstysym}{\mathtt}
 
 \seqoflet{Sym}{mthsym}
 
@@ -934,7 +947,8 @@
   {\usrmth{#1}{Sym}{oparsym}[#2]}
 
 %% Style for Elements
-\cmdmthall{elm}\newcommand{\mthstyelm}{\mathnormal}
+\cmdmthall{elm}
+\DeclareRobustCommand{\mthstyelm}{\mathnormal}
 
 \seqoflet{Elm}{mthelm}
 
@@ -978,8 +992,10 @@
 %%****************************************************************************%%
 
 %% Style for \LaTex Operators
-\cmdmth{luop}\newcommand{\mthstyluop}[1]{\textstyle\mathop{#1}}
-\cmdmth{lbop}\newcommand{\mthstylbop}[1]{\textstyle\mathbin{#1}}
+\cmdmth{luop}
+\DeclareRobustCommand{\mthstyluop}[1]{\textstyle\mathop{#1}}
+\cmdmth{lbop}
+\DeclareRobustCommand{\mthstylbop}[1]{\textstyle\mathbin{#1}}
 
 \DeclareRobustCommandx{\cmdmthluop}[2][2=]
   {\usrmth{#1}{UOp}{luop}[#2]}
@@ -987,7 +1003,8 @@
   {\usrmth{#1}{BOp}{lbop}[#2]}
 
 %% Style for \LaTex Relations
-\cmdmth{lrel}\newcommand{\mthstylrel}{\mathrel}
+\cmdmth{lrel}
+\DeclareRobustCommand{\mthstylrel}{\mathrel}
 
 \DeclareRobustCommandx{\cmdmthlrel}[2][2=]
   {\usrmth{#1}{Rel}{lrel}[#2]}
@@ -995,7 +1012,8 @@
 %%****************************************************************************%%
 
 %% Style for Sentences
-\cmdmthall{snt}\newcommand{\mthstysnt}{\mathsf}
+\cmdmthall{snt}
+\DeclareRobustCommand{\mthstysnt}{\mathsf}
 
 \seqoflet{Snt}{mthsnt}
 
@@ -1015,7 +1033,8 @@
   {\usrmth{#1}{Snt}{oparsnt}[#2]}
 
 %% Style for Formulae
-\cmdmthall{frm}\newcommand{\mthstyfrm}{\mathit}
+\cmdmthall{frm}
+\DeclareRobustCommand{\mthstyfrm}{\mathit}
 
 \seqoflet{Frm}{mthfrm}
 
@@ -1037,7 +1056,8 @@
 %%****************************************************************************%%
 
 %% Style for Matrices
-\cmdmthall{mat}\newcommand{\mthstymat}[1]{\boldsymbol{\mathsf{#1}}}
+\cmdmthall{mat}
+\DeclareRobustCommand{\mthstymat}[1]{\boldsymbol{\mathsf{#1}}}
 
 \seqoflet{Mat}{mthmat}
 
@@ -1057,7 +1077,8 @@
   {\usrmth{#1}{Mat}{oparmat}[#2]}
 
 %% Style for Vectors
-\cmdmthall{vec}\newcommand{\mthstyvec}[1]{\boldsymbol{\mathit{#1}}}
+\cmdmthall{vec}
+\DeclareRobustCommand{\mthstyvec}[1]{\boldsymbol{\mathit{#1}}}
 
 \seqoflet{Vec}{mthvec}
 
@@ -1568,27 +1589,27 @@
 %%****************************************************************************%%
 \ifcom@
 
-\newcommandx{\defcomcls}[2][2=]
+\DeclareRobustCommandx{\defcomcls}[2][2=]
   {\csdef{#1}{\txtoargcom{\defval{#2}{#1}}}}
 
-\newcommandx{\defcomclsgrp}[2][2=]
+\DeclareRobustCommandx{\defcomclsgrp}[2][2=]
   {\defcomclsgrpsem{#1}{\defval{#2}{#1}}%
   \defcomclsgrpsem{#1}{\defval{#2}{#1}}[Co]}
-\newcommandx{\defcomclsgrpsem}[3][3=]
+\DeclareRobustCommandx{\defcomclsgrpsem}[3][3=]
   {\defcomclsgrpred{#3#1}{#2}[#3]%
   \defcomclsgrpred{#3D#1}{#2}[#3D]%
   \defcomclsgrpred{#3N#1}{#2}[#3N]%
   \defcomclsgrpred{#3U#1}{#2}[#3U]%
   \defcomclsgrpred{#3A#1}{#2}[#3A]}
-\newcommandx{\defcomclsgrpred}[3][3=]
+\DeclareRobustCommandx{\defcomclsgrpred}[3][3=]
   {\defcomclsgrpcmd{#1}{#2}[#3]%
   \defcomclsgrpcmd{#1E}{#2}[#3][-easy]%
   \defcomclsgrpcmd{#1H}{#2}[#3][-hard]%
   \defcomclsgrpcmd{#1C}{#2}[#3][-complete]}%
-\newcommandx{\defcomclsgrpcmd}[4][3=, 4=]
+\DeclareRobustCommandx{\defcomclsgrpcmd}[4][3=, 4=]
   {\csdef{#1}{\txtoargcom{#3#2#4}}}
 
-\newcommandx{\defcomhrc}[2][2=]
+\DeclareRobustCommandx{\defcomhrc}[2][2=]
   {\csdef{#1}{\txtoparcom{\defval{#2}{#1}}}}
 
 %%****************************************************************************%%
@@ -2838,7 +2859,7 @@
 \iffig@
 
 \RequirePackage{tikz}
-\usetikzlibrary{arrows,shapes,patterns,graphs,matrix}
+\usetikzlibrary{calc,arrows,shapes,patterns,graphs,matrix}
 
 \tikzstyle{every node} =
   [draw = none, fill = none, black, thin]

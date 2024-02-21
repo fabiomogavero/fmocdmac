@@ -27,7 +27,8 @@
 %   \end{itemize}
 %    \begin{macrocode}
 %% Style for Names
-\cmdmthall{name}\newcommand{\mthstyname}{\mathcal}
+\cmdmthall{name}
+\DeclareRobustCommand{\mthstyname}{\mathcal}
 %    \end{macrocode}
 % \end{macro}
 
@@ -156,7 +157,8 @@
 %   \end{itemize}
 %    \begin{macrocode}
 %% Style for Families
-\cmdmthall{fam}\newcommand{\mthstyfam}{\mathscr}
+\cmdmthall{fam}
+\DeclareRobustCommand{\mthstyfam}{\mathscr}
 %    \end{macrocode}
 % \end{macro}
 
@@ -285,7 +287,8 @@
 %   \end{itemize}
 %    \begin{macrocode}
 %% Style for Classes
-\cmdmthall{cls}\newcommand{\mthstycls}{\matheus}
+\cmdmthall{cls}
+\DeclareRobustCommand{\mthstycls}{\matheus}
 %    \end{macrocode}
 % \end{macro}
 
@@ -414,7 +417,8 @@
 %   \end{itemize}
 %    \begin{macrocode}
 %% Style for Signatures
-\cmdmthall{sig}\newcommand{\mthstysig}{\mathpzc}
+\cmdmthall{sig}
+\DeclareRobustCommand{\mthstysig}{\mathpzc}
 %    \end{macrocode}
 % \end{macro}
 
@@ -551,7 +555,8 @@
 %   \end{itemize}
 %    \begin{macrocode}
 %% Style for Structures
-\cmdmthall{str}\newcommand{\mthstystr}{\mathfrak}
+\cmdmthall{str}
+\DeclareRobustCommand{\mthstystr}{\mathfrak}
 %    \end{macrocode}
 % \end{macro}
 
@@ -688,7 +693,8 @@
 %   \end{itemize}
 %    \begin{macrocode}
 %% Style for Sets
-\cmdmthall{set}\newcommand{\mthstyset}{\mathrm}
+\cmdmthall{set}
+\DeclareRobustCommand{\mthstyset}{\mathrm}
 %    \end{macrocode}
 % \end{macro}
 
@@ -842,7 +848,8 @@
 %   \end{itemize}
 %    \begin{macrocode}
 %% Style for Relations
-\cmdmthall{rel}\newcommand{\mthstyrel}{\mathit}
+\cmdmthall{rel}
+\DeclareRobustCommand{\mthstyrel}{\mathit}
 %    \end{macrocode}
 % \end{macro}
 
@@ -984,7 +991,8 @@
 %   \end{itemize}
 %    \begin{macrocode}
 %% Style for Functions
-\cmdmthall{fun}\newcommand{\mthstyfun}{\mathsf}
+\cmdmthall{fun}
+\DeclareRobustCommand{\mthstyfun}{\mathsf}
 %    \end{macrocode}
 % \end{macro}
 
@@ -1126,7 +1134,8 @@
 %   \end{itemize}
 %    \begin{macrocode}
 %% Style for Symbols
-\cmdmthall{sym}\newcommand{\mthstysym}{\mathtt}
+\cmdmthall{sym}
+\DeclareRobustCommand{\mthstysym}{\mathtt}
 %    \end{macrocode}
 % \end{macro}
 
@@ -1268,7 +1277,8 @@
 %   \end{itemize}
 %    \begin{macrocode}
 %% Style for Elements
-\cmdmthall{elm}\newcommand{\mthstyelm}{\mathnormal}
+\cmdmthall{elm}
+\DeclareRobustCommand{\mthstyelm}{\mathnormal}
 %    \end{macrocode}
 % \end{macro}
 
@@ -1529,8 +1539,10 @@
 %   \end{itemize}
 %    \begin{macrocode}
 %% Style for \LaTex Operators
-\cmdmth{luop}\newcommand{\mthstyluop}[1]{\textstyle\mathop{#1}}
-\cmdmth{lbop}\newcommand{\mthstylbop}[1]{\textstyle\mathbin{#1}}
+\cmdmth{luop}
+\DeclareRobustCommand{\mthstyluop}[1]{\textstyle\mathop{#1}}
+\cmdmth{lbop}
+\DeclareRobustCommand{\mthstylbop}[1]{\textstyle\mathbin{#1}}
 %    \end{macrocode}
 % \end{macro}
 
@@ -1569,7 +1581,8 @@
 %   \end{itemize}
 %    \begin{macrocode}
 %% Style for \LaTex Relations
-\cmdmth{lrel}\newcommand{\mthstylrel}{\mathrel}
+\cmdmth{lrel}
+\DeclareRobustCommand{\mthstylrel}{\mathrel}
 %    \end{macrocode}
 % \end{macro}
 
@@ -1615,7 +1628,8 @@
 %   \end{itemize}
 %    \begin{macrocode}
 %% Style for Sentences
-\cmdmthall{snt}\newcommand{\mthstysnt}{\mathsf}
+\cmdmthall{snt}
+\DeclareRobustCommand{\mthstysnt}{\mathsf}
 %    \end{macrocode}
 % \end{macro}
 
@@ -1757,7 +1771,8 @@
 %   \end{itemize}
 %    \begin{macrocode}
 %% Style for Formulae
-\cmdmthall{frm}\newcommand{\mthstyfrm}{\mathit}
+\cmdmthall{frm}
+\DeclareRobustCommand{\mthstyfrm}{\mathit}
 %    \end{macrocode}
 % \end{macro}
 
@@ -1903,7 +1918,8 @@
 %   \end{itemize}
 %    \begin{macrocode}
 %% Style for Matrices
-\cmdmthall{mat}\newcommand{\mthstymat}[1]{\boldsymbol{\mathsf{#1}}}
+\cmdmthall{mat}
+\DeclareRobustCommand{\mthstymat}[1]{\boldsymbol{\mathsf{#1}}}
 %    \end{macrocode}
 % \end{macro}
 
@@ -2045,7 +2061,8 @@
 %   \end{itemize}
 %    \begin{macrocode}
 %% Style for Vectors
-\cmdmthall{vec}\newcommand{\mthstyvec}[1]{\boldsymbol{\mathit{#1}}}
+\cmdmthall{vec}
+\DeclareRobustCommand{\mthstyvec}[1]{\boldsymbol{\mathit{#1}}}
 %    \end{macrocode}
 % \end{macro}
 

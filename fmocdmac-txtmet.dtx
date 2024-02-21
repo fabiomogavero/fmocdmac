@@ -518,7 +518,7 @@
 % \begin{macro}{\txtsty}
 %   ... to do!
 %    \begin{macrocode}
-\newcommand{\txtsty}
+\DeclareRobustCommand{\txtsty}
   {\mdseries\upshape\rmfamily}
 %    \end{macrocode}
 % \end{macro}
@@ -543,7 +543,7 @@
 %    \begin{macrocode}
 \DeclareRobustCommand{\cmdtxt}[1]
   {\csdef{txt#1}%
-    {\@ifstar%
+    {\protect\@ifstar%
       {\newtxtsty*{\csname txtsty#1\endcsname}}%
       {\newtxtsty{\csname txtsty#1\endcsname}}}}
 %    \end{macrocode}
@@ -565,7 +565,7 @@
 %    \begin{macrocode}
 \DeclareRobustCommand{\cmdtxtarg}[1]
   {\csdef{txtarg#1}%
-    {\@ifstar%
+    {\protect\@ifstar%
       {\newtxtargsty*{\csname txtsty#1\endcsname}}%
       {\newtxtargsty{\csname txtsty#1\endcsname}}}}
 %    \end{macrocode}
@@ -587,7 +587,7 @@
 %    \begin{macrocode}
 \DeclareRobustCommand{\cmdtxtoarg}[1]
   {\csdef{txtoarg#1}%
-    {\@ifstar%
+    {\protect\@ifstar%
       {\newtxtoargsty*{\csname txtsty#1\endcsname}}%
       {\newtxtoargsty{\csname txtsty#1\endcsname}}}}
 %    \end{macrocode}
@@ -609,7 +609,7 @@
 %    \begin{macrocode}
 \DeclareRobustCommand{\cmdtxtpar}[1]
   {\csdef{txtpar#1}%
-    {\@ifstar%
+    {\protect\@ifstar%
       {\newtxtparsty*{\csname txtsty#1\endcsname}}%
       {\newtxtparsty{\csname txtsty#1\endcsname}}}}
 %    \end{macrocode}
@@ -631,7 +631,7 @@
 %    \begin{macrocode}
 \DeclareRobustCommand{\cmdtxtopar}[1]
   {\csdef{txtopar#1}%
-    {\@ifstar%
+    {\protect\@ifstar%
       {\newtxtoparsty*{\csname txtsty#1\endcsname}}%
       {\newtxtoparsty{\csname txtsty#1\endcsname}}}}
 %    \end{macrocode}
@@ -696,8 +696,8 @@
 %   \end{itemize}
 %    \begin{macrocode}
 \DeclareRobustCommandx{\usrtxt}[4][4=]
-  {\csdef{#1#2}{%
-    \@ifstar%
+  {\csdef{#1#2}%
+    {\protect\@ifstar%
       {\csname txt#3\endcsname*{\defval{#4}{#1}}}%
       {\csname txt#3\endcsname{\defval{#4}{#1}}}}}
 %    \end{macrocode}

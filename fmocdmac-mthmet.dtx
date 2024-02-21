@@ -515,7 +515,7 @@
 % \begin{macro}{\mthsty}
 %   ... to do!
 %    \begin{macrocode}
-\newcommand{\mthsty}
+\def\mthsty
   {}
 %    \end{macrocode}
 % \end{macro}
@@ -540,7 +540,7 @@
 %    \begin{macrocode}
 \DeclareRobustCommand{\cmdmth}[1]
   {\csdef{mth#1}%
-    {\@ifstar{\newmthsty*{mthsty#1}}{\newmthsty{mthsty#1}}}}
+    {\protect\@ifstar{\newmthsty*{mthsty#1}}{\newmthsty{mthsty#1}}}}
 %    \end{macrocode}
 % \end{macro}
 
@@ -560,7 +560,7 @@
 %    \begin{macrocode}
 \DeclareRobustCommand{\cmdmtharg}[1]
   {\csdef{mtharg#1}%
-    {\@ifstar{\newmthargsty*{mthsty#1}}{\newmthargsty{mthsty#1}}}}
+    {\protect\@ifstar{\newmthargsty*{mthsty#1}}{\newmthargsty{mthsty#1}}}}
 %    \end{macrocode}
 % \end{macro}
 
@@ -580,7 +580,7 @@
 %    \begin{macrocode}
 \DeclareRobustCommand{\cmdmthoarg}[1]
   {\csdef{mthoarg#1}%
-    {\@ifstar{\newmthoargsty*{mthsty#1}}{\newmthoargsty{mthsty#1}}}}
+    {\protect\@ifstar{\newmthoargsty*{mthsty#1}}{\newmthoargsty{mthsty#1}}}}
 %    \end{macrocode}
 % \end{macro}
 
@@ -600,7 +600,7 @@
 %    \begin{macrocode}
 \DeclareRobustCommand{\cmdmthpar}[1]
   {\csdef{mthpar#1}%
-    {\@ifstar{\newmthparsty*{mthsty#1}}{\newmthparsty{mthsty#1}}}}
+    {\protect\@ifstar{\newmthparsty*{mthsty#1}}{\newmthparsty{mthsty#1}}}}
 %    \end{macrocode}
 % \end{macro}
 
@@ -620,7 +620,7 @@
 %    \begin{macrocode}
 \DeclareRobustCommand{\cmdmthopar}[1]
   {\csdef{mthopar#1}%
-    {\@ifstar{\newmthoparsty*{mthsty#1}}{\newmthoparsty{mthsty#1}}}}
+    {\protect\@ifstar{\newmthoparsty*{mthsty#1}}{\newmthoparsty{mthsty#1}}}}
 %    \end{macrocode}
 % \end{macro}
 
@@ -691,8 +691,8 @@
 %   \end{itemize}
 %    \begin{macrocode}
 \DeclareRobustCommandx{\usrmth}[4][4=]
-  {\csdef{#1#2}{%
-    \@ifstar%
+  {\csdef{#1#2}%
+    {\protect\@ifstar%
       {\csname mth#3\endcsname*{\defval{#4}{#1}}}%
       {\csname mth#3\endcsname{\defval{#4}{#1}}}}}
 %    \end{macrocode}

@@ -21,7 +21,7 @@
 %       \verb=\CompClass[sub][sup][arg]= = \CompClass[sub][sup][arg] \\
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\defcomcls}[2][2=]
+\DeclareRobustCommandx{\defcomcls}[2][2=]
   {\csdef{#1}{\txtoargcom{\defval{#2}{#1}}}}
 %    \end{macrocode}
 % \end{macro}
@@ -128,21 +128,21 @@
 %       \verb=\CoACompClassC[sub][sup][arg]= = \CoACompClassC[sub][sup][arg]
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\defcomclsgrp}[2][2=]
+\DeclareRobustCommandx{\defcomclsgrp}[2][2=]
   {\defcomclsgrpsem{#1}{\defval{#2}{#1}}%
   \defcomclsgrpsem{#1}{\defval{#2}{#1}}[Co]}
-\newcommandx{\defcomclsgrpsem}[3][3=]
+\DeclareRobustCommandx{\defcomclsgrpsem}[3][3=]
   {\defcomclsgrpred{#3#1}{#2}[#3]%
   \defcomclsgrpred{#3D#1}{#2}[#3D]%
   \defcomclsgrpred{#3N#1}{#2}[#3N]%
   \defcomclsgrpred{#3U#1}{#2}[#3U]%
   \defcomclsgrpred{#3A#1}{#2}[#3A]}
-\newcommandx{\defcomclsgrpred}[3][3=]
+\DeclareRobustCommandx{\defcomclsgrpred}[3][3=]
   {\defcomclsgrpcmd{#1}{#2}[#3]%
   \defcomclsgrpcmd{#1E}{#2}[#3][-easy]%
   \defcomclsgrpcmd{#1H}{#2}[#3][-hard]%
   \defcomclsgrpcmd{#1C}{#2}[#3][-complete]}%
-\newcommandx{\defcomclsgrpcmd}[4][3=, 4=]
+\DeclareRobustCommandx{\defcomclsgrpcmd}[4][3=, 4=]
   {\csdef{#1}{\txtoargcom{#3#2#4}}}
 %    \end{macrocode}
 % \end{macro}
@@ -162,7 +162,7 @@
 %       \verb=CompHierarchy[sub][sup][par]= = \CompHierarchy[sub][sup][par] \\
 %   \end{itemize}
 %    \begin{macrocode}
-\newcommandx{\defcomhrc}[2][2=]
+\DeclareRobustCommandx{\defcomhrc}[2][2=]
   {\csdef{#1}{\txtoparcom{\defval{#2}{#1}}}}
 %    \end{macrocode}
 % \end{macro}
