@@ -1397,7 +1397,7 @@
 \DeclareRobustCommand{\@set}
   {\ifexclavar{\@e@xset{\vert}}{\@@xset{\vert}}}
 \DeclareRobustCommand{\@sset}
-  {\ifexclavar{\@e@xset{:}}{\@@xset{.\!:}}}
+  {\ifexclavar{\@e@xset{\!:\!}}{\@@xset{.\!:\!}}}
 \DeclareRobustCommand{\@@xset}[3]
   {\mth{\argmid{\left\lbrace}{\argsep{#2}{\,\middle#1\,}{#3}}{\right\rbrace}}}
 \DeclareRobustCommand{\@e@xset}[3]
@@ -1405,13 +1405,13 @@
 \DeclareRobustCommand{\setl}
   {\ifstarvar{\@ssetl}{\@setl}}
 \DeclareRobustCommand{\@setl}
-  {\ifexclavar{\@e@xsetl{\vert}}{\@@xsetl{\vert}}}
+  {\ifexclavar{\@e@xsetl{\,\vert}}{\@@xsetl{\vert}}}
 \DeclareRobustCommand{\@ssetl}
-  {\ifexclavar{\@e@xsetl{:}}{\@@xsetl{.\!\!\!:}}}
+  {\ifexclavar{\@e@xsetl{\!:}}{\@@xsetl{.\!\!:}}}
 \DeclareRobustCommand{\@@xsetl}[2]
-  {\mth{\argmid{\left\lbrace}{#2}{\,\right#1\!}}}
+  {\mth{\argmid{\left\lbrace}{#2}{\,\right#1}}}
 \DeclareRobustCommand{\@e@xsetl}[2]
-  {\mth!{\argmid{\lbrace}{#2}{\,#1\!}}}
+  {\mth!{\argmid{\lbrace}{#2}{\,#1}}}
 \DeclareRobustCommand{\setr}
   {\ifstarvar{\@setr}{\@setr}}
 \DeclareRobustCommand{\@setr}
