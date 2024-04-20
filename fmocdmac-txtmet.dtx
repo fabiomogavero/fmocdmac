@@ -19,18 +19,18 @@
 %       \verb=\newtxt[\ttfamily]{Name}[sub][sup][Ext]= =
 %       ``\newtxt[\ttfamily]{Name}[sub][sup][Ext]''
 %     \item
-%       \verb=\newtxt*[\rmfamily]{Name}[sub][sup][Ext]= =
-%       ``\newtxt*[\rmfamily]{Name}[sub][sup][Ext]''
+%       \verb=\newtxt![\rmfamily]{Name}[sub][sup][Ext]= =
+%       ``\newtxt![\rmfamily]{Name}[sub][sup][Ext]''
 %     \item
-%       \verb=\newtxt*[\sffamily]{Name}[sub][sup][Ext]= =
-%       ``\newtxt*[\sffamily]{Name}[sub][sup][Ext]''
+%       \verb=\newtxt![\sffamily]{Name}[sub][sup][Ext]= =
+%       ``\newtxt![\sffamily]{Name}[sub][sup][Ext]''
 %     \item
-%       \verb=\newtxt*[\ttfamily]{Name}[sub][sup][Ext]= =
-%       ``\newtxt*[\ttfamily]{Name}[sub][sup][Ext]''
+%       \verb=\newtxt![\ttfamily]{Name}[sub][sup][Ext]= =
+%       ``\newtxt![\ttfamily]{Name}[sub][sup][Ext]''
 %   \end{itemize}
 %    \begin{macrocode}
 \DeclareRobustCommand{\newtxt}
-  {\@ifstar{\@snewtxt}{\@newtxt}}
+  {\ifexclavar{\@snewtxt}{\@newtxt}}
 \DeclareRobustCommandx{\@newtxt}[5][1=, 3=, 4=, 5=]
   {\text{#1#2\txtsubsup[#1]{#3}{#4}#5}\xspace}
 \DeclareRobustCommandx{\@snewtxt}[5][1=, 3=, 4=, 5=]
@@ -52,22 +52,22 @@
 %       \verb=\newtxtsty{\rmfamily}[\ttfamily]{Name}[sub][sup][Ext]= =
 %       ``\newtxtsty{\rmfamily}[\ttfamily]{Name}[sub][sup][Ext]''
 %     \item
-%       \verb=\newtxtsty*{\rmfamily}{Name}[sub][sup][Ext]= =
-%       ``\newtxtsty*{\rmfamily}{Name}[sub][sup][Ext]''
+%       \verb=\newtxtsty!{\rmfamily}{Name}[sub][sup][Ext]= =
+%       ``\newtxtsty!{\rmfamily}{Name}[sub][sup][Ext]''
 %     \item
-%       \verb=\newtxtsty*{\rmfamily}[\sffamily]{Name}[sub][sup][Ext]= =
-%       ``\newtxtsty*{\rmfamily}[\sffamily]{Name}[sub][sup][Ext]''
+%       \verb=\newtxtsty!{\rmfamily}[\sffamily]{Name}[sub][sup][Ext]= =
+%       ``\newtxtsty!{\rmfamily}[\sffamily]{Name}[sub][sup][Ext]''
 %     \item
-%       \verb=\newtxtsty*{\rmfamily}[\ttfamily]{Name}[sub][sup][Ext]= =
-%       ``\newtxtsty*{\rmfamily}[\ttfamily]{Name}[sub][sup][Ext]''
+%       \verb=\newtxtsty!{\rmfamily}[\ttfamily]{Name}[sub][sup][Ext]= =
+%       ``\newtxtsty!{\rmfamily}[\ttfamily]{Name}[sub][sup][Ext]''
 %   \end{itemize}
 %    \begin{macrocode}
 \DeclareRobustCommand{\newtxtsty}
-  {\@ifstar{\@snewtxtsty}{\@newtxtsty}}
+  {\ifexclavar{\@snewtxtsty}{\@newtxtsty}}
 \DeclareRobustCommandx{\@newtxtsty}[2][2=]
   {\newtxt[\defval{#2}{#1}]}
 \DeclareRobustCommandx{\@snewtxtsty}[2][2=]
-  {\newtxt*[\defval{#2}{#1}]}
+  {\newtxt![\defval{#2}{#1}]}
 %    \end{macrocode}
 % \end{macro}
 
@@ -85,22 +85,22 @@
 %       \verb=\newtxtarg[\ttfamily]{Name}[sub][sup][Ext1]{Arg}[Ext2]= =
 %       ``\newtxtarg[\ttfamily]{Name}[sub][sup][Ext1]{Arg}[Ext2]''
 %     \item
-%       \verb=\newtxtarg*[\rmfamily]{Name}[sub][sup][Ext1]{Arg}[Ext2]= =
-%       ``\newtxtarg*[\rmfamily]{Name}[sub][sup][Ext1]{Arg}[Ext2]''
+%       \verb=\newtxtarg![\rmfamily]{Name}[sub][sup][Ext1]{Arg}[Ext2]= =
+%       ``\newtxtarg![\rmfamily]{Name}[sub][sup][Ext1]{Arg}[Ext2]''
 %     \item
-%       \verb=\newtxtarg*[\sffamily]{Name}[sub][sup][Ext1]{Arg}[Ext2]= =
-%       ``\newtxtarg*[\sffamily]{Name}[sub][sup][Ext1]{Arg}[Ext2]''
+%       \verb=\newtxtarg![\sffamily]{Name}[sub][sup][Ext1]{Arg}[Ext2]= =
+%       ``\newtxtarg![\sffamily]{Name}[sub][sup][Ext1]{Arg}[Ext2]''
 %     \item
-%       \verb=\newtxtarg*[\ttfamily]{Name}[sub][sup][Ext1]{Arg}[Ext2]= =
-%       ``\newtxtarg*[\ttfamily]{Name}[sub][sup][Ext1]{Arg}[Ext2]''
+%       \verb=\newtxtarg![\ttfamily]{Name}[sub][sup][Ext1]{Arg}[Ext2]= =
+%       ``\newtxtarg![\ttfamily]{Name}[sub][sup][Ext1]{Arg}[Ext2]''
 %   \end{itemize}
 %    \begin{macrocode}
 \DeclareRobustCommand{\newtxtarg}
-  {\@ifstar{\@snewtxtarg}{\@newtxtarg}}
+  {\ifexclavar{\@snewtxtarg}{\@newtxtarg}}
 \DeclareRobustCommandx{\@newtxtarg}[7][1=, 3=, 4=, 5=, 7=]
   {\newtxt[#1]{#2}[#3][#4][\argmid{#5(}{#6}{)#7}]}
 \DeclareRobustCommandx{\@snewtxtarg}[7][1=, 3=, 4=, 5=, 7=]
-  {\newtxt*[#1]{#2}[#3][#4][\argmid{#5(}{#6}{)#7}]}
+  {\newtxt![#1]{#2}[#3][#4][\argmid{#5(}{#6}{)#7}]}
 %    \end{macrocode}
 % \end{macro}
 
@@ -120,26 +120,26 @@
 %         \verb=[Ext1]{Arg}[Ext2]= =
 %       ``\newtxtargsty{\rmfamily}[\ttfamily]{Name}[sub][sup][Ext1]{Arg}[Ext2]''
 %     \item
-%       \verb=\newtxtargsty*{\rmfamily}{Name}[sub][sup][Ext1]{Arg}[Ext2]= =
-%       ``\newtxtargsty*{\rmfamily}{Name}[sub][sup][Ext1]{Arg}[Ext2]''
+%       \verb=\newtxtargsty!{\rmfamily}{Name}[sub][sup][Ext1]{Arg}[Ext2]= =
+%       ``\newtxtargsty!{\rmfamily}{Name}[sub][sup][Ext1]{Arg}[Ext2]''
 %     \item
-%       \verb=\newtxtargsty*{\rmfamily}[\sffamily]{Name}[sub][sup]=\!
+%       \verb=\newtxtargsty!{\rmfamily}[\sffamily]{Name}[sub][sup]=\!
 %         \verb=[Ext1]{Arg}[Ext2]= =
-%       ``\newtxtargsty*{\rmfamily}[\sffamily]{Name}[sub][sup][Ext1]{Arg}
+%       ``\newtxtargsty!{\rmfamily}[\sffamily]{Name}[sub][sup][Ext1]{Arg}
 %         [Ext2]''
 %     \item
-%       \verb=\newtxtargsty*{\rmfamily}[\ttfamily]{Name}[sub][sup]=\!
+%       \verb=\newtxtargsty!{\rmfamily}[\ttfamily]{Name}[sub][sup]=\!
 %         \verb=[Ext1]{Arg}[Ext2]= =
-%       ``\newtxtargsty*{\rmfamily}[\ttfamily]{Name}[sub][sup][Ext1]{Arg}
+%       ``\newtxtargsty!{\rmfamily}[\ttfamily]{Name}[sub][sup][Ext1]{Arg}
 %         [Ext2]''
 %   \end{itemize}
 %    \begin{macrocode}
 \DeclareRobustCommand{\newtxtargsty}
-  {\@ifstar{\@snewtxtargsty}{\@newtxtargsty}}
+  {\ifexclavar{\@snewtxtargsty}{\@newtxtargsty}}
 \DeclareRobustCommandx{\@newtxtargsty}[2][2=]
   {\newtxtarg[\defval{#2}{#1}]}
 \DeclareRobustCommandx{\@snewtxtargsty}[2][2=]
-  {\newtxtarg*[\defval{#2}{#1}]}
+  {\newtxtarg![\defval{#2}{#1}]}
 %    \end{macrocode}
 % \end{macro}
 
@@ -157,22 +157,22 @@
 %       \verb=\newtxtoarg[\ttfamily]{Name}[sub][sup][Arg]= =
 %       ``\newtxtoarg[\ttfamily]{Name}[sub][sup][Arg]''
 %     \item
-%       \verb=\newtxtoarg*[\rmfamily]{Name}[sub][sup][Arg]= =
-%       ``\newtxtoarg*[\rmfamily]{Name}[sub][sup][Arg]''
+%       \verb=\newtxtoarg![\rmfamily]{Name}[sub][sup][Arg]= =
+%       ``\newtxtoarg![\rmfamily]{Name}[sub][sup][Arg]''
 %     \item
-%       \verb=\newtxtoarg*[\sffamily]{Name}[sub][sup][Arg]= =
-%       ``\newtxtoarg*[\sffamily]{Name}[sub][sup][Arg]''
+%       \verb=\newtxtoarg![\sffamily]{Name}[sub][sup][Arg]= =
+%       ``\newtxtoarg![\sffamily]{Name}[sub][sup][Arg]''
 %     \item
-%       \verb=\newtxtoarg*[\ttfamily]{Name}[sub][sup][Arg]= =
-%       ``\newtxtoarg*[\ttfamily]{Name}[sub][sup][Arg]''
+%       \verb=\newtxtoarg![\ttfamily]{Name}[sub][sup][Arg]= =
+%       ``\newtxtoarg![\ttfamily]{Name}[sub][sup][Arg]''
 %   \end{itemize}
 %    \begin{macrocode}
 \DeclareRobustCommand{\newtxtoarg}
-  {\@ifstar{\@snewtxtoarg}{\@newtxtoarg}}
+  {\ifexclavar{\@snewtxtoarg}{\@newtxtoarg}}
 \DeclareRobustCommandx{\@newtxtoarg}[5][1=, 3=, 4=, 5=]
   {\newtxtarg[#1]{#2}[#3][#4][]{#5}[]}
 \DeclareRobustCommandx{\@snewtxtoarg}[5][1=, 3=, 4=, 5=]
-  {\newtxtarg*[#1]{#2}[#3][#4][]{#5}[]}
+  {\newtxtarg![#1]{#2}[#3][#4][]{#5}[]}
 %    \end{macrocode}
 % \end{macro}
 
@@ -190,22 +190,22 @@
 %       \verb=\newtxtoargsty{\rmfamily}[\ttfamily]{Name}[sub][sup][Arg]= =
 %       ``\newtxtoargsty{\rmfamily}[\ttfamily]{Name}[sub][sup][Arg]''
 %     \item
-%       \verb=\newtxtoargsty*{\rmfamily}{Name}[sub][sup][Arg]= =
-%       ``\newtxtoargsty*{\rmfamily}{Name}[sub][sup][Arg]''
+%       \verb=\newtxtoargsty!{\rmfamily}{Name}[sub][sup][Arg]= =
+%       ``\newtxtoargsty!{\rmfamily}{Name}[sub][sup][Arg]''
 %     \item
-%       \verb=\newtxtoargsty*{\rmfamily}[\sffamily]{Name}[sub][sup][Arg]= =
-%       ``\newtxtoargsty*{\rmfamily}[\sffamily]{Name}[sub][sup][Arg]''
+%       \verb=\newtxtoargsty!{\rmfamily}[\sffamily]{Name}[sub][sup][Arg]= =
+%       ``\newtxtoargsty!{\rmfamily}[\sffamily]{Name}[sub][sup][Arg]''
 %     \item
-%       \verb=\newtxtoargsty*{\rmfamily}[\ttfamily]{Name}[sub][sup][Arg]= =
-%       ``\newtxtoargsty*{\rmfamily}[\ttfamily]{Name}[sub][sup][Arg]''
+%       \verb=\newtxtoargsty!{\rmfamily}[\ttfamily]{Name}[sub][sup][Arg]= =
+%       ``\newtxtoargsty!{\rmfamily}[\ttfamily]{Name}[sub][sup][Arg]''
 %   \end{itemize}
 %    \begin{macrocode}
 \DeclareRobustCommand{\newtxtoargsty}
-  {\@ifstar{\@snewtxtoargsty}{\@newtxtoargsty}}
+  {\ifexclavar{\@snewtxtoargsty}{\@newtxtoargsty}}
 \DeclareRobustCommandx{\@newtxtoargsty}[2][2=]
   {\newtxtoarg[\defval{#2}{#1}]}
 \DeclareRobustCommandx{\@snewtxtoargsty}[2][2=]
-  {\newtxtoarg*[\defval{#2}{#1}]}
+  {\newtxtoarg![\defval{#2}{#1}]}
 %    \end{macrocode}
 % \end{macro}
 
@@ -223,22 +223,22 @@
 %       \verb=\newtxtpar[\ttfamily]{Name}[sub][sup][Ext1]{Par}[Ext2]= =
 %       ``\newtxtpar[\ttfamily]{Name}[sub][sup][Ext1]{Par}[Ext2]''
 %     \item
-%       \verb=\newtxtpar*[\rmfamily]{Name}[sub][sup][Ext1]{Par}[Ext2]= =
-%       ``\newtxtpar*[\rmfamily]{Name}[sub][sup][Ext1]{Par}[Ext2]''
+%       \verb=\newtxtpar![\rmfamily]{Name}[sub][sup][Ext1]{Par}[Ext2]= =
+%       ``\newtxtpar![\rmfamily]{Name}[sub][sup][Ext1]{Par}[Ext2]''
 %     \item
-%       \verb=\newtxtpar*[\sffamily]{Name}[sub][sup][Ext1]{Par}[Ext2]= =
-%       ``\newtxtpar*[\sffamily]{Name}[sub][sup][Ext1]{Par}[Ext2]''
+%       \verb=\newtxtpar![\sffamily]{Name}[sub][sup][Ext1]{Par}[Ext2]= =
+%       ``\newtxtpar![\sffamily]{Name}[sub][sup][Ext1]{Par}[Ext2]''
 %     \item
-%       \verb=\newtxtpar*[\ttfamily]{Name}[sub][sup][Ext1]{Par}[Ext2]= =
-%       ``\newtxtpar*[\ttfamily]{Name}[sub][sup][Ext1]{Par}[Ext2]''
+%       \verb=\newtxtpar![\ttfamily]{Name}[sub][sup][Ext1]{Par}[Ext2]= =
+%       ``\newtxtpar![\ttfamily]{Name}[sub][sup][Ext1]{Par}[Ext2]''
 %   \end{itemize}
 %    \begin{macrocode}
 \DeclareRobustCommand{\newtxtpar}
-  {\@ifstar{\@snewtxtpar}{\@newtxtpar}}
+  {\ifexclavar{\@snewtxtpar}{\@newtxtpar}}
 \DeclareRobustCommandx{\@newtxtpar}[7][1=, 3=, 4=, 5=, 7=]
   {\newtxt[#1]{#2}[#3][#4][\argmid{#5[}{#6}{]#7}]}
 \DeclareRobustCommandx{\@snewtxtpar}[7][1=, 3=, 4=, 5=, 7=]
-  {\newtxt*[#1]{#2}[#3][#4][\argmid{#5[}{#6}{]#7}]}
+  {\newtxt![#1]{#2}[#3][#4][\argmid{#5[}{#6}{]#7}]}
 %    \end{macrocode}
 % \end{macro}
 
@@ -258,26 +258,26 @@
 %         \verb=[Ext1]{Par}[Ext2]= =
 %       ``\newtxtparsty{\rmfamily}[\ttfamily]{Name}[sub][sup][Ext1]{Par}[Ext2]''
 %     \item
-%       \verb=\newtxtparsty*{\rmfamily}{Name}[sub][sup][Ext1]{Par}[Ext2]= =
-%       ``\newtxtparsty*{\rmfamily}{Name}[sub][sup][Ext1]{Par}[Ext2]''
+%       \verb=\newtxtparsty!{\rmfamily}{Name}[sub][sup][Ext1]{Par}[Ext2]= =
+%       ``\newtxtparsty!{\rmfamily}{Name}[sub][sup][Ext1]{Par}[Ext2]''
 %     \item
-%       \verb=\newtxtparsty*{\rmfamily}[\sffamily]{Name}[sub][sup]=\!
+%       \verb=\newtxtparsty!{\rmfamily}[\sffamily]{Name}[sub][sup]=\!
 %         \verb=[Ext1]{Par}[Ext2]= =
-%       ``\newtxtparsty*{\rmfamily}[\sffamily]{Name}[sub][sup][Ext1]{Par}
+%       ``\newtxtparsty!{\rmfamily}[\sffamily]{Name}[sub][sup][Ext1]{Par}
 %         [Ext2]''
 %     \item
-%       \verb=\newtxtparsty*{\rmfamily}[\ttfamily]{Name}[sub][sup]=\!
+%       \verb=\newtxtparsty!{\rmfamily}[\ttfamily]{Name}[sub][sup]=\!
 %         \verb=[Ext1]{Par}[Ext2]= =
-%       ``\newtxtparsty*{\rmfamily}[\ttfamily]{Name}[sub][sup][Ext1]{Par}
+%       ``\newtxtparsty!{\rmfamily}[\ttfamily]{Name}[sub][sup][Ext1]{Par}
 %         [Ext2]''
 %   \end{itemize}
 %    \begin{macrocode}
 \DeclareRobustCommand{\newtxtparsty}
-  {\@ifstar{\@snewtxtparsty}{\@newtxtparsty}}
+  {\ifexclavar{\@snewtxtparsty}{\@newtxtparsty}}
 \DeclareRobustCommandx{\@newtxtparsty}[2][2=]
   {\newtxtpar[\defval{#2}{#1}]}
 \DeclareRobustCommandx{\@snewtxtparsty}[2][2=]
-  {\newtxtpar*[\defval{#2}{#1}]}
+  {\newtxtpar![\defval{#2}{#1}]}
 %    \end{macrocode}
 % \end{macro}
 
@@ -295,22 +295,22 @@
 %       \verb=\newtxtopar[\ttfamily]{Name}[sub][sup][Par]= =
 %       ``\newtxtopar[\ttfamily]{Name}[sub][sup][Par]''
 %     \item
-%       \verb=\newtxtopar*[\rmfamily]{Name}[sub][sup][Par]= =
-%       ``\newtxtopar*[\rmfamily]{Name}[sub][sup][Par]''
+%       \verb=\newtxtopar![\rmfamily]{Name}[sub][sup][Par]= =
+%       ``\newtxtopar![\rmfamily]{Name}[sub][sup][Par]''
 %     \item
-%       \verb=\newtxtopar*[\sffamily]{Name}[sub][sup][Par]= =
-%       ``\newtxtopar*[\sffamily]{Name}[sub][sup][Par]''
+%       \verb=\newtxtopar![\sffamily]{Name}[sub][sup][Par]= =
+%       ``\newtxtopar![\sffamily]{Name}[sub][sup][Par]''
 %     \item
-%       \verb=\newtxtopar*[\ttfamily]{Name}[sub][sup][Par]= =
-%       ``\newtxtopar*[\ttfamily]{Name}[sub][sup][Par]''
+%       \verb=\newtxtopar![\ttfamily]{Name}[sub][sup][Par]= =
+%       ``\newtxtopar![\ttfamily]{Name}[sub][sup][Par]''
 %   \end{itemize}
 %    \begin{macrocode}
 \DeclareRobustCommand{\newtxtopar}
-  {\@ifstar{\@snewtxtopar}{\@newtxtopar}}
+  {\ifexclavar{\@snewtxtopar}{\@newtxtopar}}
 \DeclareRobustCommandx{\@newtxtopar}[5][1=, 3=, 4=, 5=]
   {\newtxtpar[#1]{#2}[#3][#4][]{#5}[]}
 \DeclareRobustCommandx{\@snewtxtopar}[5][1=, 3=, 4=, 5=]
-  {\newtxtpar*[#1]{#2}[#3][#4][]{#5}[]}
+  {\newtxtpar![#1]{#2}[#3][#4][]{#5}[]}
 %    \end{macrocode}
 % \end{macro}
 
@@ -328,22 +328,22 @@
 %       \verb=\newtxtoparsty{\rmfamily}[\ttfamily]{Name}[sub][sup][Par]= =
 %       ``\newtxtoparsty{\rmfamily}[\ttfamily]{Name}[sub][sup][Par]''
 %     \item
-%       \verb=\newtxtoparsty*{\rmfamily}{Name}[sub][sup][Par]= =
-%       ``\newtxtoparsty*{\rmfamily}{Name}[sub][sup][Par]''
+%       \verb=\newtxtoparsty!{\rmfamily}{Name}[sub][sup][Par]= =
+%       ``\newtxtoparsty!{\rmfamily}{Name}[sub][sup][Par]''
 %     \item
-%       \verb=\newtxtoparsty*{\rmfamily}[\sffamily]{Name}[sub][sup][Par]= =
-%       ``\newtxtoparsty*{\rmfamily}[\sffamily]{Name}[sub][sup][Par]''
+%       \verb=\newtxtoparsty!{\rmfamily}[\sffamily]{Name}[sub][sup][Par]= =
+%       ``\newtxtoparsty!{\rmfamily}[\sffamily]{Name}[sub][sup][Par]''
 %     \item
-%       \verb=\newtxtoparsty*{\rmfamily}[\ttfamily]{Name}[sub][sup][Par]= =
-%       ``\newtxtoparsty*{\rmfamily}[\ttfamily]{Name}[sub][sup][Par]''
+%       \verb=\newtxtoparsty!{\rmfamily}[\ttfamily]{Name}[sub][sup][Par]= =
+%       ``\newtxtoparsty!{\rmfamily}[\ttfamily]{Name}[sub][sup][Par]''
 %   \end{itemize}
 %    \begin{macrocode}
 \DeclareRobustCommand{\newtxtoparsty}
-  {\@ifstar{\@snewtxtoparsty}{\@newtxtoparsty}}
+  {\ifexclavar{\@snewtxtoparsty}{\@newtxtoparsty}}
 \DeclareRobustCommandx{\@newtxtoparsty}[2][2=]
   {\newtxtopar[\defval{#2}{#1}]}
 \DeclareRobustCommandx{\@snewtxtoparsty}[2][2=]
-  {\newtxtopar*[\defval{#2}{#1}]}
+  {\newtxtopar![\defval{#2}{#1}]}
 %    \end{macrocode}
 % \end{macro}
 
@@ -384,18 +384,18 @@
 %       \verb=\txt[\bfseries]{Name}[sub][sup][Ext]= =
 %       ``\txt[\bfseries]{Name}[sub][sup][Ext]''
 %     \item
-%       \verb=\txt*{Name}[sub][sup][Ext]= =
-%       ``\txt*{Name}[sub][sup][Ext]''
+%       \verb=\txt!{Name}[sub][sup][Ext]= =
+%       ``\txt!{Name}[sub][sup][Ext]''
 %     \item
-%       \verb=\txt*[\scshape]{Name}[sub][sup][Ext]= =
-%       ``\txt*[\scshape]{Name}[sub][sup][Ext]''
+%       \verb=\txt![\scshape]{Name}[sub][sup][Ext]= =
+%       ``\txt![\scshape]{Name}[sub][sup][Ext]''
 %     \item
-%       \verb=\txt*[\bfseries]{Name}[sub][sup][Ext]= =
-%       ``\txt*[\bfseries]{Name}[sub][sup][Ext]''
+%       \verb=\txt![\bfseries]{Name}[sub][sup][Ext]= =
+%       ``\txt![\bfseries]{Name}[sub][sup][Ext]''
 %   \end{itemize}
 %    \begin{macrocode}
 \DeclareRobustCommand{\txt}
-  {\@ifstar{\newtxtsty*{\txtsty}}{\newtxtsty{\txtsty}}}
+  {\ifexclavar{\newtxtsty!{\txtsty}}{\newtxtsty{\txtsty}}}
 %    \end{macrocode}
 % \end{macro}
 
@@ -413,18 +413,18 @@
 %       \verb=\txtarg[\bfseries]{Name}[sub][sup][Ext1]{Arg}[Ext2]= =
 %       ``\txtarg[\bfseries]{Name}[sub][sup][Ext1]{Arg}[Ext2]''
 %     \item
-%       \verb=\txtarg*{Name}[sub][sup][Ext1]{Arg}[Ext2]= =
-%       ``\txtarg*{Name}[sub][sup][Ext1]{Arg}[Ext2]''
+%       \verb=\txtarg!{Name}[sub][sup][Ext1]{Arg}[Ext2]= =
+%       ``\txtarg!{Name}[sub][sup][Ext1]{Arg}[Ext2]''
 %     \item
-%       \verb=\txtarg*[\scshape]{Name}[sub][sup][Ext1]{Arg}[Ext2]= =
-%       ``\txtarg*[\scshape]{Name}[sub][sup][Ext1]{Arg}[Ext2]''
+%       \verb=\txtarg![\scshape]{Name}[sub][sup][Ext1]{Arg}[Ext2]= =
+%       ``\txtarg![\scshape]{Name}[sub][sup][Ext1]{Arg}[Ext2]''
 %     \item
-%       \verb=\txtarg*[\bfseries]{Name}[sub][sup][Ext1]{Arg}[Ext2]= =
-%       ``\txtarg*[\bfseries]{Name}[sub][sup][Ext1]{Arg}[Ext2]''
+%       \verb=\txtarg![\bfseries]{Name}[sub][sup][Ext1]{Arg}[Ext2]= =
+%       ``\txtarg![\bfseries]{Name}[sub][sup][Ext1]{Arg}[Ext2]''
 %   \end{itemize}
 %    \begin{macrocode}
 \DeclareRobustCommand{\txtarg}
-  {\@ifstar{\newtxtargsty*{\txtsty}}{\newtxtargsty{\txtsty}}}
+  {\ifexclavar{\newtxtargsty!{\txtsty}}{\newtxtargsty{\txtsty}}}
 %    \end{macrocode}
 % \end{macro}
 
@@ -442,18 +442,18 @@
 %       \verb=\txtoarg[\bfseries]{Name}[sub][sup][Arg]= =
 %       ``\txtoarg[\bfseries]{Name}[sub][sup][Arg]''
 %     \item
-%       \verb=\txtoarg*{Name}[sub][sup][Arg]= =
-%       ``\txtoarg*{Name}[sub][sup][Arg]''
+%       \verb=\txtoarg!{Name}[sub][sup][Arg]= =
+%       ``\txtoarg!{Name}[sub][sup][Arg]''
 %     \item
-%       \verb=\txtoarg*[\scshape]{Name}[sub][sup][Arg]= =
-%       ``\txtoarg*[\scshape]{Name}[sub][sup][Arg]''
+%       \verb=\txtoarg![\scshape]{Name}[sub][sup][Arg]= =
+%       ``\txtoarg![\scshape]{Name}[sub][sup][Arg]''
 %     \item
-%       \verb=\txtoarg*[\bfseries]{Name}[sub][sup][Arg]= =
-%       ``\txtoarg*[\bfseries]{Name}[sub][sup][Arg]''
+%       \verb=\txtoarg![\bfseries]{Name}[sub][sup][Arg]= =
+%       ``\txtoarg![\bfseries]{Name}[sub][sup][Arg]''
 %   \end{itemize}
 %    \begin{macrocode}
 \DeclareRobustCommand{\txtoarg}
-  {\@ifstar{\newtxtoargsty*{\txtsty}}{\newtxtoargsty{\txtsty}}}
+  {\ifexclavar{\newtxtoargsty!{\txtsty}}{\newtxtoargsty{\txtsty}}}
 %    \end{macrocode}
 % \end{macro}
 
@@ -471,18 +471,18 @@
 %       \verb=\txtpar[\bfseries]{Name}[sub][sup][Ext1]{Par}[Ext2]= =
 %       ``\txtpar[\bfseries]{Name}[sub][sup][Ext1]{Par}[Ext2]''
 %     \item
-%       \verb=\txtpar*{Name}[sub][sup][Ext1]{Par}[Ext2]= =
-%       ``\txtpar*{Name}[sub][sup][Ext1]{Par}[Ext2]''
+%       \verb=\txtpar!{Name}[sub][sup][Ext1]{Par}[Ext2]= =
+%       ``\txtpar!{Name}[sub][sup][Ext1]{Par}[Ext2]''
 %     \item
-%       \verb=\txtpar*[\scshape]{Name}[sub][sup][Ext1]{Par}[Ext2]= =
-%       ``\txtpar*[\scshape]{Name}[sub][sup][Ext1]{Par}[Ext2]''
+%       \verb=\txtpar![\scshape]{Name}[sub][sup][Ext1]{Par}[Ext2]= =
+%       ``\txtpar![\scshape]{Name}[sub][sup][Ext1]{Par}[Ext2]''
 %     \item
-%       \verb=\txtpar*[\bfseries]{Name}[sub][sup][Ext1]{Par}[Ext2]= =
-%       ``\txtpar*[\bfseries]{Name}[sub][sup][Ext1]{Par}[Ext2]''
+%       \verb=\txtpar![\bfseries]{Name}[sub][sup][Ext1]{Par}[Ext2]= =
+%       ``\txtpar![\bfseries]{Name}[sub][sup][Ext1]{Par}[Ext2]''
 %   \end{itemize}
 %    \begin{macrocode}
 \DeclareRobustCommand{\txtpar}
-  {\@ifstar{\newtxtparsty*{\txtsty}}{\newtxtparsty{\txtsty}}}
+  {\ifexclavar{\newtxtparsty!{\txtsty}}{\newtxtparsty{\txtsty}}}
 %    \end{macrocode}
 % \end{macro}
 
@@ -500,18 +500,18 @@
 %       \verb=\txtopar[\bfseries]{Name}[sub][sup][Par]= =
 %       ``\txtopar[\bfseries]{Name}[sub][sup][Par]''
 %     \item
-%       \verb=\txtopar*{Name}[sub][sup][Par]= =
-%       ``\txtopar*{Name}[sub][sup][Par]''
+%       \verb=\txtopar!{Name}[sub][sup][Par]= =
+%       ``\txtopar!{Name}[sub][sup][Par]''
 %     \item
-%       \verb=\txtopar*[\scshape]{Name}[sub][sup][Par]= =
-%       ``\txtopar*[\scshape]{Name}[sub][sup][Par]''
+%       \verb=\txtopar![\scshape]{Name}[sub][sup][Par]= =
+%       ``\txtopar![\scshape]{Name}[sub][sup][Par]''
 %     \item
-%       \verb=\txtopar*[\bfseries]{Name}[sub][sup][Par]= =
-%       ``\txtopar*[\bfseries]{Name}[sub][sup][Par]''
+%       \verb=\txtopar![\bfseries]{Name}[sub][sup][Par]= =
+%       ``\txtopar![\bfseries]{Name}[sub][sup][Par]''
 %   \end{itemize}
 %    \begin{macrocode}
 \DeclareRobustCommand{\txtopar}
-  {\@ifstar{\newtxtoparsty*{\txtsty}}{\newtxtoparsty{\txtsty}}}
+  {\ifexclavar{\newtxtoparsty!{\txtsty}}{\newtxtoparsty{\txtsty}}}
 %    \end{macrocode}
 % \end{macro}
 
@@ -537,14 +537,14 @@
 %       \newcommand{\txtstyNewCmd}{\scshape\ttfamily} \\
 %       \verb=\txtNewCmd{Name}[sub][sup][Ext]= =
 %       \txtNewCmd{Name}[sub][sup][Ext] \\
-%       \verb=\txtNewCmd*{Name}[sub][sup][Ext]= =
-%       \txtNewCmd*{Name}[sub][sup][Ext]
+%       \verb=\txtNewCmd!{Name}[sub][sup][Ext]= =
+%       \txtNewCmd!{Name}[sub][sup][Ext]
 %   \end{itemize}
 %    \begin{macrocode}
 \DeclareRobustCommand{\cmdtxt}[1]
   {\csdef{txt#1}%
-    {\protect\@ifstar%
-      {\newtxtsty*{\csname txtsty#1\endcsname}}%
+    {\protect\ifexclavar%
+      {\newtxtsty!{\csname txtsty#1\endcsname}}%
       {\newtxtsty{\csname txtsty#1\endcsname}}}}
 %    \end{macrocode}
 % \end{macro}
@@ -559,14 +559,14 @@
 %       \newcommand{\txtstyNewCmd}{\scshape\ttfamily} \\
 %       \verb=\txtargNewCmd{Name}[sub][sup][Ext1]{Arg}[Ext2]= =
 %       \txtargNewCmd{Name}[sub][sup][Ext1]{Arg}[Ext2] \\
-%       \verb=\txtargNewCmd*{Name}[sub][sup][Ext1]{Arg}[Ext2]= =
-%       \txtargNewCmd*{Name}[sub][sup][Ext1]{Arg}[Ext2]
+%       \verb=\txtargNewCmd!{Name}[sub][sup][Ext1]{Arg}[Ext2]= =
+%       \txtargNewCmd!{Name}[sub][sup][Ext1]{Arg}[Ext2]
 %   \end{itemize}
 %    \begin{macrocode}
 \DeclareRobustCommand{\cmdtxtarg}[1]
   {\csdef{txtarg#1}%
-    {\protect\@ifstar%
-      {\newtxtargsty*{\csname txtsty#1\endcsname}}%
+    {\protect\ifexclavar%
+      {\newtxtargsty!{\csname txtsty#1\endcsname}}%
       {\newtxtargsty{\csname txtsty#1\endcsname}}}}
 %    \end{macrocode}
 % \end{macro}
@@ -581,14 +581,14 @@
 %       \newcommand{\txtstyNewCmd}{\scshape\ttfamily} \\
 %       \verb=\txtoargNewCmd{Name}[sub][sup][Arg]= =
 %       \txtoargNewCmd{Name}[sub][sup][Arg] \\
-%       \verb=\txtoargNewCmd*{Name}[sub][sup][Arg]= =
-%       \txtoargNewCmd*{Name}[sub][sup][Arg]
+%       \verb=\txtoargNewCmd!{Name}[sub][sup][Arg]= =
+%       \txtoargNewCmd!{Name}[sub][sup][Arg]
 %   \end{itemize}
 %    \begin{macrocode}
 \DeclareRobustCommand{\cmdtxtoarg}[1]
   {\csdef{txtoarg#1}%
-    {\protect\@ifstar%
-      {\newtxtoargsty*{\csname txtsty#1\endcsname}}%
+    {\protect\ifexclavar%
+      {\newtxtoargsty!{\csname txtsty#1\endcsname}}%
       {\newtxtoargsty{\csname txtsty#1\endcsname}}}}
 %    \end{macrocode}
 % \end{macro}
@@ -603,14 +603,14 @@
 %       \newcommand{\txtstyNewCmd}{\scshape\ttfamily} \\
 %       \verb=\txtparNewCmd{Name}[sub][sup][Ext1]{Par}[Ext2]= =
 %       \txtparNewCmd{Name}[sub][sup][Ext1]{Par}[Ext2] \\
-%       \verb=\txtparNewCmd*{Name}[sub][sup][Ext1]{Par}[Ext2]= =
-%       \txtparNewCmd*{Name}[sub][sup][Ext1]{Par}[Ext2]
+%       \verb=\txtparNewCmd!{Name}[sub][sup][Ext1]{Par}[Ext2]= =
+%       \txtparNewCmd!{Name}[sub][sup][Ext1]{Par}[Ext2]
 %   \end{itemize}
 %    \begin{macrocode}
 \DeclareRobustCommand{\cmdtxtpar}[1]
   {\csdef{txtpar#1}%
-    {\protect\@ifstar%
-      {\newtxtparsty*{\csname txtsty#1\endcsname}}%
+    {\protect\ifexclavar%
+      {\newtxtparsty!{\csname txtsty#1\endcsname}}%
       {\newtxtparsty{\csname txtsty#1\endcsname}}}}
 %    \end{macrocode}
 % \end{macro}
@@ -625,14 +625,14 @@
 %       \newcommand{\txtstyNewCmd}{\scshape\ttfamily} \\
 %       \verb=\txtoparNewCmd{Name}[sub][sup][Par]= =
 %       \txtoparNewCmd{Name}[sub][sup][Par] \\
-%       \verb=\txtoparNewCmd*{Name}[sub][sup][Par]= =
-%       \txtoparNewCmd*{Name}[sub][sup][Par]
+%       \verb=\txtoparNewCmd!{Name}[sub][sup][Par]= =
+%       \txtoparNewCmd!{Name}[sub][sup][Par]
 %   \end{itemize}
 %    \begin{macrocode}
 \DeclareRobustCommand{\cmdtxtopar}[1]
   {\csdef{txtopar#1}%
-    {\protect\@ifstar%
-      {\newtxtoparsty*{\csname txtsty#1\endcsname}}%
+    {\protect\ifexclavar%
+      {\newtxtoparsty!{\csname txtsty#1\endcsname}}%
       {\newtxtoparsty{\csname txtsty#1\endcsname}}}}
 %    \end{macrocode}
 % \end{macro}
@@ -676,10 +676,10 @@
 %       \verb=\cmdNameSuf*= = \cmdNameSuf* \\
 %       \verb=\usrtxt{cmdName}{Suf}{arg}=;\usrtxt{cmdName}{Suf}{arg} \\
 %       \verb=\cmdNameSuf{Arg}= = \cmdNameSuf{Arg} \\
-%       \verb=\cmdNameSuf*{Arg}= = \cmdNameSuf*{Arg} \\
+%       \verb=\cmdNameSuf!{Arg}= = \cmdNameSuf!{Arg} \\
 %       \verb=\usrtxt{cmdName}{Suf}{par}=;\usrtxt{cmdName}{Suf}{par} \\
 %       \verb=\cmdNameSuf{Par}= = \cmdNameSuf{Par} \\
-%       \verb=\cmdNameSuf*{Par}= = \cmdNameSuf*{Par}
+%       \verb=\cmdNameSuf!{Par}= = \cmdNameSuf!{Par}
 %     \item
 %       \verb=\usrtxt{cmdName}{Suf}{}[newName]=;
 %       \usrtxt{cmdName}{Suf}{}[newName] \\
@@ -688,17 +688,17 @@
 %       \verb=\usrtxt{cmdName}{Suf}{arg}[newName]=;\!\!
 %       \usrtxt{cmdName}{Suf}{arg}[newName] \\
 %       \verb=\cmdNameSuf{Arg}= = \cmdNameSuf{Arg} \\
-%       \verb=\cmdNameSuf*{Arg}= = \cmdNameSuf*{Arg} \\
+%       \verb=\cmdNameSuf!{Arg}= = \cmdNameSuf!{Arg} \\
 %       \verb=\usrtxt{cmdName}{Suf}{par}[newName]=;\!\!
 %       \usrtxt{cmdName}{Suf}{par}[newName] \\
 %       \verb=\cmdNameSuf{Par}= = \cmdNameSuf{Par} \\
-%       \verb=\cmdNameSuf*{Par}= = \cmdNameSuf*{Par}
+%       \verb=\cmdNameSuf!{Par}= = \cmdNameSuf!{Par}
 %   \end{itemize}
 %    \begin{macrocode}
 \DeclareRobustCommandx{\usrtxt}[4][4=]
   {\csdef{#1#2}%
-    {\protect\@ifstar%
-      {\csname txt#3\endcsname*{\defval{#4}{#1}}}%
+    {\protect\ifexclavar%
+      {\csname txt#3\endcsname!{\defval{#4}{#1}}}%
       {\csname txt#3\endcsname{\defval{#4}{#1}}}}}
 %    \end{macrocode}
 % \end{macro}

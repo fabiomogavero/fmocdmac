@@ -20,7 +20,7 @@
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\Macro, ...}
+% \begin{macro}{\Macro, \Function, \Procedure}
 %   ...
 %    \begin{macrocode}
 \SetKwFor{Macro}{macro}{}{}
@@ -44,7 +44,7 @@
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\From, ...}
+% \begin{macro}{\From, \To, \DownTo}
 %   ...
 %    \begin{macrocode}
 \SetKw{From}{from}
@@ -53,7 +53,7 @@
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\GoTo, ...}
+% \begin{macro}{\GoTo, \Break, \Continue}
 %   ...
 %    \begin{macrocode}
 \SetKw{GoTo}{goto}
@@ -62,7 +62,7 @@
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\Guess, ...}
+% \begin{macro}{\Guess, \ExsGuess, \AllGuess}
 %   ...
 %    \begin{macrocode}
 \SetKw{Guess}{guess}
@@ -71,7 +71,7 @@
 %    \end{macrocode}
 % \end{macro}
 
-% \begin{macro}{\MIf, ...}
+% \begin{macro}{\MIf, \MElseIf, \MElse}
 %   ...
 %    \begin{macrocode}
 \SetKwIF{MIf}{MElseIf}{MElse}{\#if}{\#then}{\#else \#if}{\#else}{\#endif}
@@ -81,7 +81,7 @@
 % \begin{macro}{\nlr}
 %   ...
 %    \begin{macrocode}
-\DeclareRobustCommand{\nlr}[1]
+\newrobustcmd{\nlr}[1]
   {\addtocounter{AlgoLine}{1}%
   \nlset{\arabic{AlgoLine}-\addtocounter{AlgoLine}{#1}\arabic{AlgoLine}}}
 %    \end{macrocode}

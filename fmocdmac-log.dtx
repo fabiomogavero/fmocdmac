@@ -578,13 +578,13 @@
 %   ...
 %    \begin{macrocode}
 \DeclareRobustCommand{\Exs}
-  {\@ifstar{\@sexs}{\@exs}}
+  {\ifstarvar{\@sexs}{\@exs}}
 \DeclareRobustCommand{\@sexs}[1]
   {\mth{\DMod}[#1]}
 \DeclareRobustCommand{\@exs}[1]
   {\mth{\defval{\argmid{\langle}{#1}{\rangle}}{\DMod}}}
 \DeclareRobustCommand{\All}
-  {\@ifstar{\@sall}{\@all}}
+  {\ifstarvar{\@sall}{\@all}}
 \DeclareRobustCommand{\@sall}[1]
   {\mth{\BMod}[#1]}
 \DeclareRobustCommand{\@all}[1]

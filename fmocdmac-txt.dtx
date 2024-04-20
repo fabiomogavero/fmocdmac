@@ -10,10 +10,10 @@
 %   \small
 %   \begin{itemize}
 %     \item
-%       \verb=A\dotcheck a\dotcheck.a= = A\dotcheck a\dotcheck. a
+%       \verb=A\dotcheck A\dotcheck.A= = A\dotcheck A\dotcheck. A
 %   \end{itemize}
 %    \begin{macrocode}
-\DeclareRobustCommand{\dotcheck}
+\newrobustcmd{\dotcheck}
   {\@ifnextchar.{}{.\@}}
 %    \end{macrocode}
 % \end{macro}

@@ -19,18 +19,18 @@
 %       \verb=\newmth[mathtt]{Name}[sub][sup][Ext]= =
 %       ``\newmth[mathtt]{Name}[sub][sup][Ext]''
 %     \item
-%       \verb=\newmth*[mathrm]{Name}[sub][sup][Ext]= =
-%       ``\newmth*[mathrm]{Name}[sub][sup][Ext]''
+%       \verb=\newmth![mathrm]{Name}[sub][sup][Ext]= =
+%       ``\newmth![mathrm]{Name}[sub][sup][Ext]''
 %     \item
-%       \verb=\newmth*[mathsf]{Name}[sub][sup][Ext]= =
-%       ``\newmth*[mathsf]{Name}[sub][sup][Ext]''
+%       \verb=\newmth![mathsf]{Name}[sub][sup][Ext]= =
+%       ``\newmth![mathsf]{Name}[sub][sup][Ext]''
 %     \item
-%       \verb=\newmth*[mathtt]{Name}[sub][sup][Ext]= =
-%       ``\newmth*[mathtt]{Name}[sub][sup][Ext]''
+%       \verb=\newmth![mathtt]{Name}[sub][sup][Ext]= =
+%       ``\newmth![mathtt]{Name}[sub][sup][Ext]''
 %   \end{itemize}
 %    \begin{macrocode}
 \DeclareRobustCommand{\newmth}
-  {\@ifstar{\@snewmth}{\@newmth}}
+  {\ifexclavar{\@snewmth}{\@newmth}}
 \DeclareRobustCommandx{\@newmth}[5][1=, 3=, 4=, 5=]
   {\ensuremath{\csname#1\endcsname{#2}\mthsubsup{#3}{#4}#5}}
 \DeclareRobustCommandx{\@snewmth}[5][1=, 3=, 4=, 5=]
@@ -52,22 +52,22 @@
 %       \verb=\newmthsty{mathrm}[mathtt]{Name}[sub][sup][Ext]= =
 %       ``\newmthsty{mathrm}[mathtt]{Name}[sub][sup][Ext]''
 %     \item
-%       \verb=\newmthsty*{mathrm}{Name}[sub][sup][Ext]= =
-%       ``\newmthsty*{mathrm}{Name}[sub][sup][Ext]''
+%       \verb=\newmthsty!{mathrm}{Name}[sub][sup][Ext]= =
+%       ``\newmthsty!{mathrm}{Name}[sub][sup][Ext]''
 %     \item
-%       \verb=\newmthsty*{mathrm}[mathsf]{Name}[sub][sup][Ext]= =
-%       ``\newmthsty*{mathrm}[mathsf]{Name}[sub][sup][Ext]''
+%       \verb=\newmthsty!{mathrm}[mathsf]{Name}[sub][sup][Ext]= =
+%       ``\newmthsty!{mathrm}[mathsf]{Name}[sub][sup][Ext]''
 %     \item
-%       \verb=\newmthsty*{mathrm}[mathtt]{Name}[sub][sup][Ext]= =
-%       ``\newmthsty*{mathrm}[mathtt]{Name}[sub][sup][Ext]''
+%       \verb=\newmthsty!{mathrm}[mathtt]{Name}[sub][sup][Ext]= =
+%       ``\newmthsty!{mathrm}[mathtt]{Name}[sub][sup][Ext]''
 %   \end{itemize}
 %    \begin{macrocode}
 \DeclareRobustCommand{\newmthsty}
-  {\@ifstar{\@snewmthsty}{\@newmthsty}}
+  {\ifexclavar{\@snewmthsty}{\@newmthsty}}
 \DeclareRobustCommandx{\@newmthsty}[2][2=]
   {\newmth[\defval{#2}{#1}]}
 \DeclareRobustCommandx{\@snewmthsty}[2][2=]
-  {\newmth*[\defval{#2}{#1}]}
+  {\newmth![\defval{#2}{#1}]}
 %    \end{macrocode}
 % \end{macro}
 
@@ -85,18 +85,18 @@
 %       \verb=\newmtharg[mathtt]{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
 %       ``\newmtharg[mathtt]{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]''
 %     \item
-%       \verb=\newmtharg*[mathrm]{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]=
-%       = ``\newmtharg*[mathrm]{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]''
+%       \verb=\newmtharg![mathrm]{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]=
+%       = ``\newmtharg![mathrm]{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]''
 %     \item
-%       \verb=\newmtharg*[mathsf]{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]=
-%       = ``\newmtharg*[mathsf]{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]''
+%       \verb=\newmtharg![mathsf]{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]=
+%       = ``\newmtharg![mathsf]{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]''
 %     \item
-%       \verb=\newmtharg*[mathtt]{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]=
-%       = ``\newmtharg*[mathtt]{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]''
+%       \verb=\newmtharg![mathtt]{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]=
+%       = ``\newmtharg![mathtt]{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]''
 %   \end{itemize}
 %    \begin{macrocode}
 \DeclareRobustCommand{\newmtharg}
-  {\@ifstar{\@snewmtharg}{\@newmtharg}}
+  {\ifexclavar{\@snewmtharg}{\@newmtharg}}
 \DeclareRobustCommandx{\@newmtharg}[7][1=, 3=, 4=, 5=, 7=]
   {\newmth[#1]{#2}[#3][#4][\argmid{#5\!\left(}{#6}{\right)\arglef{\!}{#7}}]}
 \DeclareRobustCommandx{\@snewmtharg}[7][1=, 3=, 4=, 5=, 7=]
@@ -123,27 +123,27 @@
 %       ``\newmthargsty{mathrm}[mathtt]{Name}[sub][sup]%
 %         [Ext1]{Arg^{Ex^{Ex}}}[Ext2]''
 %     \item
-%       \verb=\newmthargsty*{mathrm}{Name}[sub][sup]=\!
+%       \verb=\newmthargsty!{mathrm}{Name}[sub][sup]=\!
 %         \verb=[Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
-%       ``\newmthargsty*{mathrm}{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]''
+%       ``\newmthargsty!{mathrm}{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]''
 %     \item
-%       \verb=\newmthargsty*{mathrm}[mathsf]{Name}[sub][sup]=\!
+%       \verb=\newmthargsty!{mathrm}[mathsf]{Name}[sub][sup]=\!
 %         \verb=[Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
-%       ``\newmthargsty*{mathrm}[mathsf]{Name}[sub][sup]%
+%       ``\newmthargsty!{mathrm}[mathsf]{Name}[sub][sup]%
 %         [Ext1]{Arg^{Ex^{Ex}}}[Ext2]''
 %     \item
-%       \verb=\newmthargsty*{mathrm}[mathtt]{Name}[sub][sup]=\!
+%       \verb=\newmthargsty!{mathrm}[mathtt]{Name}[sub][sup]=\!
 %         \verb=[Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
-%       ``\newmthargsty*{mathrm}[mathtt]{Name}[sub][sup]%
+%       ``\newmthargsty!{mathrm}[mathtt]{Name}[sub][sup]%
 %         [Ext1]{Arg^{Ex^{Ex}}}[Ext2]''
 %   \end{itemize}
 %    \begin{macrocode}
 \DeclareRobustCommand{\newmthargsty}
-  {\@ifstar{\@snewmthargsty}{\@newmthargsty}}
+  {\ifexclavar{\@snewmthargsty}{\@newmthargsty}}
 \DeclareRobustCommandx{\@newmthargsty}[2][2=]
   {\newmtharg[\defval{#2}{#1}]}
 \DeclareRobustCommandx{\@snewmthargsty}[2][2=]
-  {\newmtharg*[\defval{#2}{#1}]}
+  {\newmtharg![\defval{#2}{#1}]}
 %    \end{macrocode}
 % \end{macro}
 
@@ -161,22 +161,22 @@
 %       \verb=\newmthoarg[mathtt]{Name}[sub][sup][Arg^{Ex^{Ex}}]= =
 %       ``\newmthoarg[mathtt]{Name}[sub][sup][Arg^{Ex^{Ex}}]''
 %     \item
-%       \verb=\newmthoarg*[mathrm]{Name}[sub][sup][Arg^{Ex^{Ex}}]= =
-%       ``\newmthoarg*[mathrm]{Name}[sub][sup][Arg^{Ex^{Ex}}]''
+%       \verb=\newmthoarg![mathrm]{Name}[sub][sup][Arg^{Ex^{Ex}}]= =
+%       ``\newmthoarg![mathrm]{Name}[sub][sup][Arg^{Ex^{Ex}}]''
 %     \item
-%       \verb=\newmthoarg*[mathsf]{Name}[sub][sup][Arg^{Ex^{Ex}}]= =
-%       ``\newmthoarg*[mathsf]{Name}[sub][sup][Arg^{Ex^{Ex}}]''
+%       \verb=\newmthoarg![mathsf]{Name}[sub][sup][Arg^{Ex^{Ex}}]= =
+%       ``\newmthoarg![mathsf]{Name}[sub][sup][Arg^{Ex^{Ex}}]''
 %     \item
-%       \verb=\newmthoarg*[mathtt]{Name}[sub][sup][Arg^{Ex^{Ex}}]= =
-%       ``\newmthoarg*[mathtt]{Name}[sub][sup][Arg^{Ex^{Ex}}]''
+%       \verb=\newmthoarg![mathtt]{Name}[sub][sup][Arg^{Ex^{Ex}}]= =
+%       ``\newmthoarg![mathtt]{Name}[sub][sup][Arg^{Ex^{Ex}}]''
 %   \end{itemize}
 %    \begin{macrocode}
 \DeclareRobustCommand{\newmthoarg}
-  {\@ifstar{\@snewmthoarg}{\@newmthoarg}}
+  {\ifexclavar{\@snewmthoarg}{\@newmthoarg}}
 \DeclareRobustCommandx{\@newmthoarg}[5][1=, 3=, 4=, 5=]
   {\newmtharg[#1]{#2}[#3][#4][]{#5}[]}
 \DeclareRobustCommandx{\@snewmthoarg}[5][1=, 3=, 4=, 5=]
-  {\newmtharg*[#1]{#2}[#3][#4][]{#5}[]}
+  {\newmtharg![#1]{#2}[#3][#4][]{#5}[]}
 %    \end{macrocode}
 % \end{macro}
 
@@ -194,22 +194,22 @@
 %       \verb=\newmthoargsty{mathrm}[mathtt]{Name}[sub][sup][Arg^{Ex^{Ex}}]= =
 %       ``\newmthoargsty{mathrm}[mathtt]{Name}[sub][sup][Arg^{Ex^{Ex}}]''
 %     \item
-%       \verb=\newmthoargsty*{mathrm}{Name}[sub][sup][Arg^{Ex^{Ex}}]= =
-%       ``\newmthoargsty*{mathrm}{Name}[sub][sup][Arg^{Ex^{Ex}}]''
+%       \verb=\newmthoargsty!{mathrm}{Name}[sub][sup][Arg^{Ex^{Ex}}]= =
+%       ``\newmthoargsty!{mathrm}{Name}[sub][sup][Arg^{Ex^{Ex}}]''
 %     \item
-%       \verb=\newmthoargsty*{mathrm}[mathsf]{Name}[sub][sup][Arg^{Ex^{Ex}}]= =
-%        ``\newmthoargsty*{mathrm}[mathsf]{Name}[sub][sup][Arg^{Ex^{Ex}}]''
+%       \verb=\newmthoargsty!{mathrm}[mathsf]{Name}[sub][sup][Arg^{Ex^{Ex}}]= =
+%        ``\newmthoargsty!{mathrm}[mathsf]{Name}[sub][sup][Arg^{Ex^{Ex}}]''
 %     \item
-%       \verb=\newmthoargsty*{mathrm}[mathtt]{Name}[sub][sup][Arg^{Ex^{Ex}}]= =
-%       ``\newmthoargsty*{mathrm}[mathtt]{Name}[sub][sup][Arg^{Ex^{Ex}}]''
+%       \verb=\newmthoargsty!{mathrm}[mathtt]{Name}[sub][sup][Arg^{Ex^{Ex}}]= =
+%       ``\newmthoargsty!{mathrm}[mathtt]{Name}[sub][sup][Arg^{Ex^{Ex}}]''
 %   \end{itemize}
 %    \begin{macrocode}
 \DeclareRobustCommand{\newmthoargsty}
-  {\@ifstar{\@snewmthoargsty}{\@newmthoargsty}}
+  {\ifexclavar{\@snewmthoargsty}{\@newmthoargsty}}
 \DeclareRobustCommandx{\@newmthoargsty}[2][2=]
   {\newmthoarg[\defval{#2}{#1}]}
 \DeclareRobustCommandx{\@snewmthoargsty}[2][2=]
-  {\newmthoarg*[\defval{#2}{#1}]}
+  {\newmthoarg![\defval{#2}{#1}]}
 %    \end{macrocode}
 % \end{macro}
 
@@ -227,18 +227,18 @@
 %       \verb=\newmthpar[mathtt]{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
 %       ``\newmthpar[mathtt]{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]''
 %     \item
-%       \verb=\newmthpar*[mathrm]{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
-%       ``\newmthpar*[mathrm]{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]''
+%       \verb=\newmthpar![mathrm]{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       ``\newmthpar![mathrm]{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]''
 %     \item
-%       \verb=\newmthpar*[mathsf]{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
-%       ``\newmthpar*[mathsf]{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]''
+%       \verb=\newmthpar![mathsf]{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       ``\newmthpar![mathsf]{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]''
 %     \item
-%       \verb=\newmthpar*[mathtt]{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
-%       ``\newmthpar*[mathtt]{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]''
+%       \verb=\newmthpar![mathtt]{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       ``\newmthpar![mathtt]{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]''
 %   \end{itemize}
 %    \begin{macrocode}
 \DeclareRobustCommand{\newmthpar}
-  {\@ifstar{\@snewmthpar}{\@newmthpar}}
+  {\ifexclavar{\@snewmthpar}{\@newmthpar}}
 \DeclareRobustCommandx{\@newmthpar}[7][1=, 3=, 4=, 5=, 7=]
   {\newmth[#1]{#2}[#3][#4][\argmid{#5\!\left[}{#6}{\right]\arglef{\!}{#7}}]}
 \DeclareRobustCommandx{\@snewmthpar}[7][1=, 3=, 4=, 5=, 7=]
@@ -265,27 +265,27 @@
 %       ``\newmthparsty{mathrm}[mathtt]{Name}[sub][sup]%
 %         [Ext1]{Par^{Ex^{Ex}}}[Ext2]''
 %     \item
-%       \verb=\newmthparsty*{mathrm}{Name}[sub][sup]=
+%       \verb=\newmthparsty!{mathrm}{Name}[sub][sup]=
 %         \verb=[Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
-%       ``\newmthparsty*{mathrm}{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]''
+%       ``\newmthparsty!{mathrm}{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]''
 %     \item
-%       \verb=\newmthparsty*{mathrm}[mathsf]{Name}[sub][sup]=\!
+%       \verb=\newmthparsty!{mathrm}[mathsf]{Name}[sub][sup]=\!
 %         \verb=[Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
-%       ``\newmthparsty*{mathrm}[mathsf]{Name}[sub][sup]%
+%       ``\newmthparsty!{mathrm}[mathsf]{Name}[sub][sup]%
 %         [Ext1]{Par^{Ex^{Ex}}}[Ext2]''
 %     \item
-%       \verb=\newmthparsty*{mathrm}[mathtt]{Name}[sub][sup]=\!
+%       \verb=\newmthparsty!{mathrm}[mathtt]{Name}[sub][sup]=\!
 %         \verb=[Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
-%       ``\newmthparsty*{mathrm}[mathtt]{Name}[sub][sup]%
+%       ``\newmthparsty!{mathrm}[mathtt]{Name}[sub][sup]%
 %         [Ext1]{Par^{Ex^{Ex}}}[Ext2]''
 %   \end{itemize}
 %    \begin{macrocode}
 \DeclareRobustCommand{\newmthparsty}
-  {\@ifstar{\@snewmthparsty}{\@newmthparsty}}
+  {\ifexclavar{\@snewmthparsty}{\@newmthparsty}}
 \DeclareRobustCommandx{\@newmthparsty}[2][2=]
   {\newmthpar[\defval{#2}{#1}]}
 \DeclareRobustCommandx{\@snewmthparsty}[2][2=]
-  {\newmthpar*[\defval{#2}{#1}]}
+  {\newmthpar![\defval{#2}{#1}]}
 %    \end{macrocode}
 % \end{macro}
 
@@ -303,22 +303,22 @@
 %       \verb=\newmthopar[mathtt]{Name}[sub][sup][Par^{Ex^{Ex}}]= =
 %       ``\newmthopar[mathtt]{Name}[sub][sup][Par^{Ex^{Ex}}]''
 %     \item
-%       \verb=\newmthopar*[mathrm]{Name}[sub][sup][Par^{Ex^{Ex}}]= =
-%       ``\newmthopar*[mathrm]{Name}[sub][sup][Par^{Ex^{Ex}}]''
+%       \verb=\newmthopar![mathrm]{Name}[sub][sup][Par^{Ex^{Ex}}]= =
+%       ``\newmthopar![mathrm]{Name}[sub][sup][Par^{Ex^{Ex}}]''
 %     \item
-%       \verb=\newmthopar*[mathsf]{Name}[sub][sup][Par^{Ex^{Ex}}]= =
-%       ``\newmthopar*[mathsf]{Name}[sub][sup][Par^{Ex^{Ex}}]''
+%       \verb=\newmthopar![mathsf]{Name}[sub][sup][Par^{Ex^{Ex}}]= =
+%       ``\newmthopar![mathsf]{Name}[sub][sup][Par^{Ex^{Ex}}]''
 %     \item
-%       \verb=\newmthopar*[mathtt]{Name}[sub][sup][Par^{Ex^{Ex}}]= =
-%       ``\newmthopar*[mathtt]{Name}[sub][sup][Par^{Ex^{Ex}}]''
+%       \verb=\newmthopar![mathtt]{Name}[sub][sup][Par^{Ex^{Ex}}]= =
+%       ``\newmthopar![mathtt]{Name}[sub][sup][Par^{Ex^{Ex}}]''
 %   \end{itemize}
 %    \begin{macrocode}
 \DeclareRobustCommand{\newmthopar}
-  {\@ifstar{\@snewmthopar}{\@newmthopar}}
+  {\ifexclavar{\@snewmthopar}{\@newmthopar}}
 \DeclareRobustCommandx{\@newmthopar}[5][1=, 3=, 4=, 5=]
   {\newmthpar[#1]{#2}[#3][#4][]{#5}[]}
 \DeclareRobustCommandx{\@snewmthopar}[5][1=, 3=, 4=, 5=]
-  {\newmthpar*[#1]{#2}[#3][#4][]{#5}[]}
+  {\newmthpar![#1]{#2}[#3][#4][]{#5}[]}
 %    \end{macrocode}
 % \end{macro}
 
@@ -336,22 +336,22 @@
 %       \verb=\newmthoparsty{mathrm}[mathtt]{Name}[sub][sup][Par^{Ex^{Ex}}]= =
 %       ``\newmthoparsty{mathrm}[mathtt]{Name}[sub][sup][Par^{Ex^{Ex}}]''
 %     \item
-%       \verb=\newmthoparsty*{mathrm}{Name}[sub][sup][Par^{Ex^{Ex}}]= =
-%       ``\newmthoparsty*{mathrm}{Name}[sub][sup][Par^{Ex^{Ex}}]''
+%       \verb=\newmthoparsty!{mathrm}{Name}[sub][sup][Par^{Ex^{Ex}}]= =
+%       ``\newmthoparsty!{mathrm}{Name}[sub][sup][Par^{Ex^{Ex}}]''
 %     \item
-%       \verb=\newmthoparsty*{mathrm}[mathsf]{Name}[sub][sup][Par^{Ex^{Ex}}]= =
-%        ``\newmthoparsty*{mathrm}[mathsf]{Name}[sub][sup][Par^{Ex^{Ex}}]''
+%       \verb=\newmthoparsty!{mathrm}[mathsf]{Name}[sub][sup][Par^{Ex^{Ex}}]= =
+%        ``\newmthoparsty!{mathrm}[mathsf]{Name}[sub][sup][Par^{Ex^{Ex}}]''
 %     \item
-%       \verb=\newmthoparsty*{mathrm}[mathtt]{Name}[sub][sup][Par^{Ex^{Ex}}]= =
-%       ``\newmthoparsty*{mathrm}[mathtt]{Name}[sub][sup][Par^{Ex^{Ex}}]''
+%       \verb=\newmthoparsty!{mathrm}[mathtt]{Name}[sub][sup][Par^{Ex^{Ex}}]= =
+%       ``\newmthoparsty!{mathrm}[mathtt]{Name}[sub][sup][Par^{Ex^{Ex}}]''
 %   \end{itemize}
 %    \begin{macrocode}
 \DeclareRobustCommand{\newmthoparsty}
-  {\@ifstar{\@snewmthoparsty}{\@newmthoparsty}}
+  {\ifexclavar{\@snewmthoparsty}{\@newmthoparsty}}
 \DeclareRobustCommandx{\@newmthoparsty}[2][2=]
   {\newmthopar[\defval{#2}{#1}]}
 \DeclareRobustCommandx{\@snewmthoparsty}[2][2=]
-  {\newmthopar*[\defval{#2}{#1}]}
+  {\newmthopar![\defval{#2}{#1}]}
 %    \end{macrocode}
 % \end{macro}
 
@@ -381,18 +381,18 @@
 %       \verb=\mth[mathtt]{Name}[sub][sup][Ext]= =
 %       ``\mth[mathtt]{Name}[sub][sup][Ext]''
 %     \item
-%       \verb=\mth*{Name}[sub][sup][Ext]= =
-%       ``\mth*{Name}[sub][sup][Ext]''
+%       \verb=\mth!{Name}[sub][sup][Ext]= =
+%       ``\mth!{Name}[sub][sup][Ext]''
 %     \item
-%       \verb=\mth*[mathbf]{Name}[sub][sup][Ext]= =
-%       ``\mth*[mathbf]{Name}[sub][sup][Ext]''
+%       \verb=\mth![mathbf]{Name}[sub][sup][Ext]= =
+%       ``\mth![mathbf]{Name}[sub][sup][Ext]''
 %     \item
-%       \verb=\mth*[mathtt]{Name}[sub][sup][Ext]= =
-%       ``\mth*[mathtt]{Name}[sub][sup][Ext]''
+%       \verb=\mth![mathtt]{Name}[sub][sup][Ext]= =
+%       ``\mth![mathtt]{Name}[sub][sup][Ext]''
 %   \end{itemize}
 %    \begin{macrocode}
 \DeclareRobustCommand{\mth}
-  {\@ifstar{\newmthsty*{\mthsty}}{\newmthsty{\mthsty}}}
+  {\ifexclavar{\newmthsty!{\mthsty}}{\newmthsty{\mthsty}}}
 %    \end{macrocode}
 % \end{macro}
 
@@ -410,18 +410,18 @@
 %       \verb=\mtharg[mathtt]{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
 %       ``\mtharg[mathtt]{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]''
 %     \item
-%       \verb=\mtharg*{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
-%       ``\mtharg*{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]''
+%       \verb=\mtharg!{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       ``\mtharg!{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]''
 %     \item
-%       \verb=\mtharg*[mathbf]{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
-%       ``\mtharg*[mathbf]{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]''
+%       \verb=\mtharg![mathbf]{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       ``\mtharg![mathbf]{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]''
 %     \item
-%       \verb=\mtharg*[mathtt]{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
-%       ``\mtharg*[mathtt]{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]''
+%       \verb=\mtharg![mathtt]{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       ``\mtharg![mathtt]{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]''
 %   \end{itemize}
 %    \begin{macrocode}
 \DeclareRobustCommand{\mtharg}
-  {\@ifstar{\newmthargsty*{\mthsty}}{\newmthargsty{\mthsty}}}
+  {\ifexclavar{\newmthargsty!{\mthsty}}{\newmthargsty{\mthsty}}}
 %    \end{macrocode}
 % \end{macro}
 
@@ -439,18 +439,18 @@
 %       \verb=\mthoarg[mathtt]{Name}[sub][sup][Arg^{Ex^{Ex}}]= =
 %       ``\mthoarg[mathtt]{Name}[sub][sup][Arg^{Ex^{Ex}}]''
 %     \item
-%       \verb=\mthoarg*{Name}[sub][sup][Arg^{Ex^{Ex}}]= =
-%       ``\mthoarg*{Name}[sub][sup][Arg^{Ex^{Ex}}]''
+%       \verb=\mthoarg!{Name}[sub][sup][Arg^{Ex^{Ex}}]= =
+%       ``\mthoarg!{Name}[sub][sup][Arg^{Ex^{Ex}}]''
 %     \item
-%       \verb=\mthoarg*[mathbf]{Name}[sub][sup][Arg^{Ex^{Ex}}]= =
-%       ``\mthoarg*[mathbf]{Name}[sub][sup][Arg^{Ex^{Ex}}]''
+%       \verb=\mthoarg![mathbf]{Name}[sub][sup][Arg^{Ex^{Ex}}]= =
+%       ``\mthoarg![mathbf]{Name}[sub][sup][Arg^{Ex^{Ex}}]''
 %     \item
-%       \verb=\mthoarg*[mathtt]{Name}[sub][sup][Arg^{Ex^{Ex}}]= =
-%       ``\mthoarg*[mathtt]{Name}[sub][sup][Arg^{Ex^{Ex}}]''
+%       \verb=\mthoarg![mathtt]{Name}[sub][sup][Arg^{Ex^{Ex}}]= =
+%       ``\mthoarg![mathtt]{Name}[sub][sup][Arg^{Ex^{Ex}}]''
 %   \end{itemize}
 %    \begin{macrocode}
 \DeclareRobustCommand{\mthoarg}
-  {\@ifstar{\newmthoargsty*{\mthsty}}{\newmthoargsty{\mthsty}}}
+  {\ifexclavar{\newmthoargsty!{\mthsty}}{\newmthoargsty{\mthsty}}}
 %    \end{macrocode}
 % \end{macro}
 
@@ -468,18 +468,18 @@
 %       \verb=\mthpar[mathtt]{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
 %       ``\mthpar[mathtt]{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]''
 %     \item
-%       \verb=\mthpar*{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
-%       ``\mthpar*{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]''
+%       \verb=\mthpar!{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       ``\mthpar!{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]''
 %     \item
-%       \verb=\mthpar*[mathbf]{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
-%       ``\mthpar*[mathbf]{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]''
+%       \verb=\mthpar![mathbf]{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       ``\mthpar![mathbf]{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]''
 %     \item
-%       \verb=\mthpar*[mathtt]{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
-%       ``\mthpar*[mathtt]{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]''
+%       \verb=\mthpar![mathtt]{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       ``\mthpar![mathtt]{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]''
 %   \end{itemize}
 %    \begin{macrocode}
 \DeclareRobustCommand{\mthpar}
-  {\@ifstar{\newmthparsty*{\mthsty}}{\newmthparsty{\mthsty}}}
+  {\ifexclavar{\newmthparsty!{\mthsty}}{\newmthparsty{\mthsty}}}
 %    \end{macrocode}
 % \end{macro}
 
@@ -497,18 +497,18 @@
 %       \verb=\mthopar[mathtt]{Name}[sub][sup][Par^{Ex^{Ex}}]= =
 %       ``\mthopar[mathtt]{Name}[sub][sup][Par^{Ex^{Ex}}]''
 %     \item
-%       \verb=\mthopar*{Name}[sub][sup][Par^{Ex^{Ex}}]= =
-%       ``\mthopar*{Name}[sub][sup][Par^{Ex^{Ex}}]''
+%       \verb=\mthopar!{Name}[sub][sup][Par^{Ex^{Ex}}]= =
+%       ``\mthopar!{Name}[sub][sup][Par^{Ex^{Ex}}]''
 %     \item
-%       \verb=\mthopar*[mathbf]{Name}[sub][sup][Par^{Ex^{Ex}}]= =
-%       ``\mthopar*[mathbf]{Name}[sub][sup][Par^{Ex^{Ex}}]''
+%       \verb=\mthopar![mathbf]{Name}[sub][sup][Par^{Ex^{Ex}}]= =
+%       ``\mthopar![mathbf]{Name}[sub][sup][Par^{Ex^{Ex}}]''
 %     \item
-%       \verb=\mthopar*[mathtt]{Name}[sub][sup][Par^{Ex^{Ex}}]= =
-%       ``\mthopar*[mathtt]{Name}[sub][sup][Par^{Ex^{Ex}}]''
+%       \verb=\mthopar![mathtt]{Name}[sub][sup][Par^{Ex^{Ex}}]= =
+%       ``\mthopar![mathtt]{Name}[sub][sup][Par^{Ex^{Ex}}]''
 %   \end{itemize}
 %    \begin{macrocode}
 \DeclareRobustCommand{\mthopar}
-  {\@ifstar{\newmthoparsty*{\mthsty}}{\newmthoparsty{\mthsty}}}
+  {\ifexclavar{\newmthoparsty!{\mthsty}}{\newmthoparsty{\mthsty}}}
 %    \end{macrocode}
 % \end{macro}
 
@@ -534,13 +534,13 @@
 %       \newcommand{\mthstyNewCmd}{\mathtt} \\
 %       \verb=\mthNewCmd{Name}[sub][sup][Ext]= =
 %       \mthNewCmd{Name}[sub][sup][Ext] \\
-%       \verb=\mthNewCmd*{Name}[sub][sup][Ext]= =
-%       \mthNewCmd*{Name}[sub][sup][Ext]
+%       \verb=\mthNewCmd!{Name}[sub][sup][Ext]= =
+%       \mthNewCmd!{Name}[sub][sup][Ext]
 %   \end{itemize}
 %    \begin{macrocode}
 \DeclareRobustCommand{\cmdmth}[1]
   {\csdef{mth#1}%
-    {\protect\@ifstar{\newmthsty*{mthsty#1}}{\newmthsty{mthsty#1}}}}
+    {\protect\ifexclavar{\newmthsty!{mthsty#1}}{\newmthsty{mthsty#1}}}}
 %    \end{macrocode}
 % \end{macro}
 
@@ -554,13 +554,13 @@
 %       \newcommand{\mthstyNewCmd}{\mathtt} \\
 %       \verb=\mthargNewCmd{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
 %       \mthargNewCmd{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2] \\
-%       \verb=\mthargNewCmd*{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
-%       \mthargNewCmd*{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]
+%       \verb=\mthargNewCmd!{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       \mthargNewCmd!{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]
 %   \end{itemize}
 %    \begin{macrocode}
 \DeclareRobustCommand{\cmdmtharg}[1]
   {\csdef{mtharg#1}%
-    {\protect\@ifstar{\newmthargsty*{mthsty#1}}{\newmthargsty{mthsty#1}}}}
+    {\protect\ifexclavar{\newmthargsty!{mthsty#1}}{\newmthargsty{mthsty#1}}}}
 %    \end{macrocode}
 % \end{macro}
 
@@ -574,13 +574,13 @@
 %       \newcommand{\mthstyNewCmd}{\mathtt} \\
 %       \verb=\mthoargNewCmd{Name}[sub][sup][Arg^{Ex^{Ex}}]= =
 %       \mthoargNewCmd{Name}[sub][sup][Arg^{Ex^{Ex}}] \\
-%       \verb=\mthoargNewCmd*{Name}[sub][sup][Arg^{Ex^{Ex}}]= =
-%       \mthoargNewCmd*{Name}[sub][sup][Arg^{Ex^{Ex}}]
+%       \verb=\mthoargNewCmd!{Name}[sub][sup][Arg^{Ex^{Ex}}]= =
+%       \mthoargNewCmd!{Name}[sub][sup][Arg^{Ex^{Ex}}]
 %   \end{itemize}
 %    \begin{macrocode}
 \DeclareRobustCommand{\cmdmthoarg}[1]
   {\csdef{mthoarg#1}%
-    {\protect\@ifstar{\newmthoargsty*{mthsty#1}}{\newmthoargsty{mthsty#1}}}}
+    {\protect\ifexclavar{\newmthoargsty!{mthsty#1}}{\newmthoargsty{mthsty#1}}}}
 %    \end{macrocode}
 % \end{macro}
 
@@ -594,13 +594,13 @@
 %       \newcommand{\mthstyNewCmd}{\mathtt} \\
 %       \verb=\mthparNewCmd{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
 %       \mthparNewCmd{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2] \\
-%       \verb=\mthparNewCmd*{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
-%       \mthparNewCmd*{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]
+%       \verb=\mthparNewCmd!{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       \mthparNewCmd!{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]
 %   \end{itemize}
 %    \begin{macrocode}
 \DeclareRobustCommand{\cmdmthpar}[1]
   {\csdef{mthpar#1}%
-    {\protect\@ifstar{\newmthparsty*{mthsty#1}}{\newmthparsty{mthsty#1}}}}
+    {\protect\ifexclavar{\newmthparsty!{mthsty#1}}{\newmthparsty{mthsty#1}}}}
 %    \end{macrocode}
 % \end{macro}
 
@@ -614,13 +614,13 @@
 %       \newcommand{\mthstyNewCmd}{\mathtt} \\
 %       \verb=\mthoparNewCmd{Name}[sub][sup][Par^{Ex^{Ex}}]= =
 %       \mthoparNewCmd{Name}[sub][sup][Par^{Ex^{Ex}}] \\
-%       \verb=\mthoparNewCmd*{Name}[sub][sup][Par^{Ex^{Ex}}]= =
-%       \mthoparNewCmd*{Name}[sub][sup][Par^{Ex^{Ex}}]
+%       \verb=\mthoparNewCmd!{Name}[sub][sup][Par^{Ex^{Ex}}]= =
+%       \mthoparNewCmd!{Name}[sub][sup][Par^{Ex^{Ex}}]
 %   \end{itemize}
 %    \begin{macrocode}
 \DeclareRobustCommand{\cmdmthopar}[1]
   {\csdef{mthopar#1}%
-    {\protect\@ifstar{\newmthoparsty*{mthsty#1}}{\newmthoparsty{mthsty#1}}}}
+    {\protect\ifexclavar{\newmthoparsty!{mthsty#1}}{\newmthoparsty{mthsty#1}}}}
 %    \end{macrocode}
 % \end{macro}
 
@@ -636,20 +636,20 @@
 %       \mthNewCmd{Name}[sub][sup][Ext] \\
 %       \verb=\mthargNewCmd{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
 %       \mthargNewCmd{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2] \\
-%       \verb=\mthargNewCmd*{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
-%       \mthargNewCmd*{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2] \\
+%       \verb=\mthargNewCmd!{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2]= =
+%       \mthargNewCmd!{Name}[sub][sup][Ext1]{Arg^{Ex^{Ex}}}[Ext2] \\
 %       \verb=\mthoargNewCmd{Name}[sub][sup][Arg^{Ex^{Ex}}]= =
 %       \mthoargNewCmd{Name}[sub][sup][Arg^{Ex^{Ex}}] \\
-%       \verb=\mthoargNewCmd*{Name}[sub][sup][Arg^{Ex^{Ex}}]= =
-%       \mthoargNewCmd*{Name}[sub][sup][Arg^{Ex^{Ex}}] \\
+%       \verb=\mthoargNewCmd!{Name}[sub][sup][Arg^{Ex^{Ex}}]= =
+%       \mthoargNewCmd!{Name}[sub][sup][Arg^{Ex^{Ex}}] \\
 %       \verb=\mthparNewCmd{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
 %       \mthparNewCmd{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2] \\
-%       \verb=\mthparNewCmd*{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
-%       \mthparNewCmd*{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2] \\
+%       \verb=\mthparNewCmd!{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2]= =
+%       \mthparNewCmd!{Name}[sub][sup][Ext1]{Par^{Ex^{Ex}}}[Ext2] \\
 %       \verb=\mthoparNewCmd{Name}[sub][sup][Par^{Ex^{Ex}}]= =
 %       \mthoparNewCmd{Name}[sub][sup][Par^{Ex^{Ex}}] \\
-%       \verb=\mthoparNewCmd*{Name}[sub][sup][Par^{Ex^{Ex}}]= =
-%       \mthoparNewCmd*{Name}[sub][sup][Par^{Ex^{Ex}}]
+%       \verb=\mthoparNewCmd!{Name}[sub][sup][Par^{Ex^{Ex}}]= =
+%       \mthoparNewCmd!{Name}[sub][sup][Par^{Ex^{Ex}}]
 %   \end{itemize}
 %    \begin{macrocode}
 \DeclareRobustCommand{\cmdmthall}[1]
@@ -671,10 +671,10 @@
 %       \verb=\cmdNameSuf*= = \cmdNameSuf* \\
 %       \verb=\usrmth{cmdName}{Suf}{arg}=;\usrmth{cmdName}{Suf}{arg} \\
 %       \verb=\cmdNameSuf{Arg^{Ex^{Ex}}}= = \cmdNameSuf{Arg^{Ex^{Ex}}} \\
-%       \verb=\cmdNameSuf*{Arg^{Ex^{Ex}}}= = \cmdNameSuf*{Arg^{Ex^{Ex}}} \\
+%       \verb=\cmdNameSuf!{Arg^{Ex^{Ex}}}= = \cmdNameSuf!{Arg^{Ex^{Ex}}} \\
 %       \verb=\usrmth{cmdName}{Suf}{par}=;\usrmth{cmdName}{Suf}{par} \\
 %       \verb=\cmdNameSuf{Par^{Ex^{Ex}}}= = \cmdNameSuf{Par^{Ex^{Ex}}} \\
-%       \verb=\cmdNameSuf*{Par^{Ex^{Ex}}}= = \cmdNameSuf*{Par^{Ex^{Ex}}}
+%       \verb=\cmdNameSuf!{Par^{Ex^{Ex}}}= = \cmdNameSuf!{Par^{Ex^{Ex}}}
 %     \item
 %       \verb=\usrmth{cmdName}{Suf}{}[newName]=;
 %       \usrmth{cmdName}{Suf}{}[newName] \\
@@ -683,17 +683,17 @@
 %       \verb=\usrmth{cmdName}{Suf}{arg}[newName]=;
 %       \usrmth{cmdName}{Suf}{arg}[newName] \\
 %       \verb=\cmdNameSuf{Arg^{Ex^{Ex}}}= = \cmdNameSuf{Arg^{Ex^{Ex}}} \\
-%       \verb=\cmdNameSuf*{Arg^{Ex^{Ex}}}= = \cmdNameSuf*{Arg^{Ex^{Ex}}} \\
+%       \verb=\cmdNameSuf!{Arg^{Ex^{Ex}}}= = \cmdNameSuf!{Arg^{Ex^{Ex}}} \\
 %       \verb=\usrmth{cmdName}{Suf}{par}[newName]=;
 %       \usrmth{cmdName}{Suf}{par}[newName] \\
 %       \verb=\cmdNameSuf{Par^{Ex^{Ex}}}= = \cmdNameSuf{Par^{Ex^{Ex}}} \\
-%       \verb=\cmdNameSuf*{Par^{Ex^{Ex}}}= = \cmdNameSuf*{Par^{Ex^{Ex}}}
+%       \verb=\cmdNameSuf!{Par^{Ex^{Ex}}}= = \cmdNameSuf!{Par^{Ex^{Ex}}}
 %   \end{itemize}
 %    \begin{macrocode}
 \DeclareRobustCommandx{\usrmth}[4][4=]
   {\csdef{#1#2}%
-    {\protect\@ifstar%
-      {\csname mth#3\endcsname*{\defval{#4}{#1}}}%
+    {\protect\ifexclavar%
+      {\csname mth#3\endcsname!{\defval{#4}{#1}}}%
       {\csname mth#3\endcsname{\defval{#4}{#1}}}}}
 %    \end{macrocode}
 % \end{macro}
