@@ -45,7 +45,7 @@ fmocdmac:| FM's OCD LaTeX Macros
 \endpreamble
 \postamble
 
-Copyright (C) 2020-2024 by Fabio Mogavero <fm@fabiomogavero.com>
+Copyright (C) 2020-2025 by Fabio Mogavero <fm@fabiomogavero.com>
 
 This work may be distributed and/or modified under the conditions of the
 LaTeX Project Public License (LPPL), either version 1.3c of this license or
@@ -116,7 +116,7 @@ install" installs the files in the local TeX tree.
 %<package>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
 %<package>\ProvidesPackage{fmocdmac}
 %<*package>
-  [2024/04/20 v0.30 FM's OCD LaTeX Macro]
+  [2025/04/21 v0.31 FM's OCD LaTeX Macro]
 %</package>
 %
 %<*driver>
@@ -230,6 +230,8 @@ install" installs the files in the local TeX tree.
 % \changes{v0.29}{2024/02/21}{Correction of fragile macros}
 %
 % \changes{v0.30}{2024/04/20}{Improvements and new command variants}
+%
+% \changes{v0.31}{2025/04/21}{Small improvements}
 %
 % \begin{abstract}
 % This package contains almost all the latex macros I heavily use in my tcs
@@ -592,7 +594,8 @@ install" installs the files in the local TeX tree.
 %    \begin{macrocode}
 \newrobustcmd{\varcmd}[6]
   {\expandafter\newcommand\csname gobble#1arg\endcsname[2]
-    {\csname check#1arg\endcsname{\argsep{##1}{#4}{\empchk{##2}{{##2}}}}}%
+    {\csname check#1arg\endcsname%
+      {\argsep{##1}{#4\allowbreak}{\empchk{##2}{{##2}}}}}%
   \expandafter\newcommand\csname check#1arg\endcsname[1]
     {\csname @ifnextchar\endcsname%
       \bgroup{\csname gobble#1arg\endcsname{##1}}{#2{##1#5}#6}}%

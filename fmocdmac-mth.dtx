@@ -114,17 +114,19 @@
 %%****************************************************************************%%
 %    \end{macrocode}
 
-% \begin{macro}{\dual, \adj, \der, \trn}
+% \begin{macro}{\comp, \dual, \adj, \der, \trn}
 %   ...
 %    \begin{macrocode}
-\DeclareRobustCommand{\dual}[1]
+\DeclareRobustCommand{\comp}[1]
   {\mth{\overline{#1}}}
+\DeclareRobustCommand{\dual}[1]
+  {\mth{\widetilde{#1}}}
 \DeclareRobustCommand{\adj}[1]
   {\mth{\mathring{#1}}}
 \DeclareRobustCommand{\der}[1]
   {\mth{\widehat{#1}}}
 \DeclareRobustCommand{\trn}[1]
-  {\mth{\widetilde{#1}}}
+  {\mth{\overbrace{#1}}}
 %    \end{macrocode}
 % \end{macro}
 
