@@ -1306,16 +1306,20 @@
 
 %%****************************************************************************%%
 
-\DeclareRobustCommand{\comp}[1]
+\DeclareRobustCommand{\comp}
+  {\ifstarvar{\@scompdual}{\@compdual}}
+\DeclareRobustCommand{\dual}
+  {\ifstarvar{\@scompdual}{\@compdual}}
+\DeclareRobustCommand{\@compdual}[1]
   {\mth{\overline{#1}}}
-\DeclareRobustCommand{\dual}[1]
+\DeclareRobustCommand{\@scompdual}[1]
   {\mth{\widetilde{#1}}}
 \DeclareRobustCommand{\adj}[1]
   {\mth{\mathring{#1}}}
 \DeclareRobustCommand{\der}[1]
   {\mth{\widehat{#1}}}
 \DeclareRobustCommand{\trn}[1]
-  {\mth{\overbrace{#1}}}
+  {\mth{\widetilde{#1}}}
 
 \DeclareRobustCommand{\vec}
   {\ifstarvar{\@svec}{\@vec}}
