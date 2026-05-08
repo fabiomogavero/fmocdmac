@@ -14,6 +14,7 @@ $(NAME).pdf: $(NAME).dtx
 	pdflatex --recorder --interaction=nonstopmode $(NAME).dtx > /dev/null
 clean:
 	rm -f $(NAME).{aux,fls,glo,gls,hd,idx,ilg,ind,ins,log,out}
+	rm -f $(NAME).{dh,ins,kaux,diagnose}
 distclean: clean
 	rm -f $(NAME).{pdf,sty} readme
 inst: all

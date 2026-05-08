@@ -32,7 +32,7 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesPackage{fmocdmac}
-  [2025/04/21 v0.31 FM's OCD LaTeX Macro]
+  [2026/05/08 v0.32 FM's OCD LaTeX Macro]
 
 \RequirePackage{etoolbox}
 
@@ -54,7 +54,7 @@
 \newif\ifamsthm@ \amsthm@true
 \DeclareOption{noamsthm}{\amsthm@false}
 
-%% Extended Theorem tools
+%% Extended theorem tools
 \newif\ifthmtls@ \thmtls@true
 \DeclareOption{nothmtls}{\thmtls@false}
 
@@ -69,6 +69,10 @@
 %% Font tools
 \newif\iffnttls@ \fnttls@true
 \DeclareOption{nofnttls}{\fnttls@false}
+
+%% Knowledge tools
+\newif\ifknwtls@ \knwtls@true
+\DeclareOption{noknwtls}{\knwtls@false}
 
 %% Camera-ready version
 \newif\ifcrv@ \crv@false
@@ -228,12 +232,24 @@
 \newrobustcmd{\seqoftag}[3]
   {\@for\itr:={#1}\do%
     {\expandafter\csedef{\itr#2}%
-      {\noexpand\csname #3\endcsname{\itr}}}}
+      {\noexpand\csname #3\endcsname{\itr}}%
+    \ifknwtls@
+      \expandafter\csedef{in\itr#2}%
+        {\noexpand\csname #3\endcsname{\intro{\itr}}}%
+      \expandafter\csedef{kl\itr#2}%
+        {\noexpand\csname #3\endcsname{\kl{\itr}}}%
+    \fi}}
 
 \newrobustcmd{\seqofcmd}[3]
   {\@for\itr:={#1}\do%
     {\expandafter\csedef{\itr#2}%
-      {\noexpand\csname #3\endcsname{\csname \itr\endcsname}}}}
+      {\noexpand\csname #3\endcsname{\csname \itr\endcsname}}%
+    \ifknwtls@
+      \expandafter\csedef{in\itr#2}%
+        {\noexpand\csname #3\endcsname{\intro{\csname \itr\endcsname}}}%
+      \expandafter\csedef{kl\itr#2}%
+        {\noexpand\csname #3\endcsname{\kl{\csname \itr\endcsname}}}
+    \fi}}
 
 %%****************************************************************************%%
 
@@ -304,7 +320,7 @@
 \fi
 
 \ifhypref@
-  % Hyper References
+  % Hyper Reference Tools
   \RequirePackage{hyperref}
   \hypersetup {
     pdfsubject    = {},
@@ -321,6 +337,15 @@
 \iffnttls@
   % Font Tools
   \RequirePackage[final]{microtype}
+\fi
+
+\ifknwtls@
+  % Knowledge Tools
+  \ifhypref@
+    \RequirePackage[xcolor,hyperref,notion]{knowledge}
+  \else
+    \RequirePackage[xcolor,notion]{knowledge}
+  \fi
 \fi
 
 \ifcrv@
@@ -520,6 +545,12 @@
   {\ensuremath{\csname#1\endcsname{#2}\mthsubsup{#3}{#4}#5}}
 \DeclareRobustCommandx{\@snewmth}[5][1=, 3=, 4=, 5=]
   {\ensuremath{\csname#1\endcsname #2\mthsubsup{#3}{#4}#5}}
+\ifknwtls@
+  \DeclareRobustCommandx{\innewmth}[5][1=, 3=, 4=, 5=]
+    {\ensuremath{\intro{\csname#1\endcsname{#2}}\mthsubsup{#3}{#4}#5}}
+  \DeclareRobustCommandx{\klnewmth}[5][1=, 3=, 4=, 5=]
+    {\ensuremath{\kl{\csname#1\endcsname{#2}}\mthsubsup{#3}{#4}#5}}
+\fi
 
 \DeclareRobustCommand{\newmthsty}
   {\ifexclavar{\@snewmthsty}{\@newmthsty}}
@@ -527,6 +558,12 @@
   {\newmth[\defval{#2}{#1}]}
 \DeclareRobustCommandx{\@snewmthsty}[2][2=]
   {\newmth![\defval{#2}{#1}]}
+\ifknwtls@
+  \DeclareRobustCommandx{\innewmthsty}[2][2=]
+    {\innewmth[\defval{#2}{#1}]}
+  \DeclareRobustCommandx{\klnewmthsty}[2][2=]
+    {\klnewmth[\defval{#2}{#1}]}
+\fi
 
 \DeclareRobustCommand{\newmtharg}
   {\ifexclavar{\@snewmtharg}{\@newmtharg}}
@@ -534,6 +571,13 @@
   {\newmth[#1]{#2}[#3][#4][\argmid{#5\!\left(}{#6}{\right)\arglef{\!}{#7}}]}
 \DeclareRobustCommandx{\@snewmtharg}[7][1=, 3=, 4=, 5=, 7=]
   {\newmth[#1]{#2}[#3][#4][\argmid{#5(}{#6}{)#7}]}
+\ifknwtls@
+  \DeclareRobustCommandx{\innewmtharg}[7][1=, 3=, 4=, 5=, 7=]
+    {\innewmth[#1]{#2}[#3][#4][\argmid{#5\!\left(}{#6}{\right)\arglef{\!}{#7}}]}
+  \DeclareRobustCommandx{\klnewmtharg}[7][1=, 3=, 4=, 5=, 7=]
+    {\klnewmth[#1]{#2}[#3][#4][\argmid{#5\!\left(}{#6}{\right)\arglef{\!}{#7}}]}
+\fi
+
 
 \DeclareRobustCommand{\newmthargsty}
   {\ifexclavar{\@snewmthargsty}{\@newmthargsty}}
@@ -541,6 +585,12 @@
   {\newmtharg[\defval{#2}{#1}]}
 \DeclareRobustCommandx{\@snewmthargsty}[2][2=]
   {\newmtharg![\defval{#2}{#1}]}
+\ifknwtls@
+  \DeclareRobustCommandx{\innewmthargsty}[2][2=]
+    {\innewmtharg[\defval{#2}{#1}]}
+  \DeclareRobustCommandx{\klnewmthargsty}[2][2=]
+    {\klnewmtharg[\defval{#2}{#1}]}
+\fi
 
 \DeclareRobustCommand{\newmthoarg}
   {\ifexclavar{\@snewmthoarg}{\@newmthoarg}}
@@ -548,6 +598,12 @@
   {\newmtharg[#1]{#2}[#3][#4][]{#5}[]}
 \DeclareRobustCommandx{\@snewmthoarg}[5][1=, 3=, 4=, 5=]
   {\newmtharg![#1]{#2}[#3][#4][]{#5}[]}
+\ifknwtls@
+  \DeclareRobustCommandx{\innewmthoarg}[5][1=, 3=, 4=, 5=]
+    {\innewmtharg[#1]{#2}[#3][#4][]{#5}[]}
+  \DeclareRobustCommandx{\klnewmthoarg}[5][1=, 3=, 4=, 5=]
+    {\klnewmtharg[#1]{#2}[#3][#4][]{#5}[]}
+\fi
 
 \DeclareRobustCommand{\newmthoargsty}
   {\ifexclavar{\@snewmthoargsty}{\@newmthoargsty}}
@@ -555,6 +611,12 @@
   {\newmthoarg[\defval{#2}{#1}]}
 \DeclareRobustCommandx{\@snewmthoargsty}[2][2=]
   {\newmthoarg![\defval{#2}{#1}]}
+\ifknwtls@
+  \DeclareRobustCommandx{\innewmthoargsty}[2][2=]
+    {\innewmthoarg[\defval{#2}{#1}]}
+  \DeclareRobustCommandx{\klnewmthoargsty}[2][2=]
+    {\klnewmthoarg[\defval{#2}{#1}]}
+\fi
 
 \DeclareRobustCommand{\newmthpar}
   {\ifexclavar{\@snewmthpar}{\@newmthpar}}
@@ -562,6 +624,12 @@
   {\newmth[#1]{#2}[#3][#4][\argmid{#5\!\left[}{#6}{\right]\arglef{\!}{#7}}]}
 \DeclareRobustCommandx{\@snewmthpar}[7][1=, 3=, 4=, 5=, 7=]
   {\newmth[#1]{#2}[#3][#4][\argmid{#5[}{#6}{]#7}]}
+\ifknwtls@
+  \DeclareRobustCommandx{\innewmthpar}[7][1=, 3=, 4=, 5=, 7=]
+    {\innewmth[#1]{#2}[#3][#4][\argmid{#5\!\left[}{#6}{\right]\arglef{\!}{#7}}]}
+  \DeclareRobustCommandx{\klnewmthpar}[7][1=, 3=, 4=, 5=, 7=]
+    {\klnewmth[#1]{#2}[#3][#4][\argmid{#5\!\left[}{#6}{\right]\arglef{\!}{#7}}]}
+\fi
 
 \DeclareRobustCommand{\newmthparsty}
   {\ifexclavar{\@snewmthparsty}{\@newmthparsty}}
@@ -569,6 +637,12 @@
   {\newmthpar[\defval{#2}{#1}]}
 \DeclareRobustCommandx{\@snewmthparsty}[2][2=]
   {\newmthpar![\defval{#2}{#1}]}
+\ifknwtls@
+  \DeclareRobustCommandx{\innewmthparsty}[2][2=]
+    {\innewmthpar[\defval{#2}{#1}]}
+  \DeclareRobustCommandx{\klnewmthparsty}[2][2=]
+    {\klnewmthpar[\defval{#2}{#1}]}
+\fi
 
 \DeclareRobustCommand{\newmthopar}
   {\ifexclavar{\@snewmthopar}{\@newmthopar}}
@@ -576,6 +650,12 @@
   {\newmthpar[#1]{#2}[#3][#4][]{#5}[]}
 \DeclareRobustCommandx{\@snewmthopar}[5][1=, 3=, 4=, 5=]
   {\newmthpar![#1]{#2}[#3][#4][]{#5}[]}
+\ifknwtls@
+  \DeclareRobustCommandx{\innewmthopar}[5][1=, 3=, 4=, 5=]
+    {\innewmthpar[#1]{#2}[#3][#4][]{#5}[]}
+  \DeclareRobustCommandx{\klnewmthopar}[5][1=, 3=, 4=, 5=]
+    {\klnewmthpar[#1]{#2}[#3][#4][]{#5}[]}
+\fi
 
 \DeclareRobustCommand{\newmthoparsty}
   {\ifexclavar{\@snewmthoparsty}{\@newmthoparsty}}
@@ -583,6 +663,12 @@
   {\newmthopar[\defval{#2}{#1}]}
 \DeclareRobustCommandx{\@snewmthoparsty}[2][2=]
   {\newmthopar![\defval{#2}{#1}]}
+\ifknwtls@
+  \DeclareRobustCommandx{\innewmthoparsty}[2][2=]
+    {\innewmthopar[\defval{#2}{#1}]}
+  \DeclareRobustCommandx{\klnewmthoparsty}[2][2=]
+    {\klnewmthopar[\defval{#2}{#1}]}
+\fi
 
 \DeclareRobustCommand{\mthsubsup}[2]
   {\empchk{#1}{_{#1}}\empchk{#2}{^{#2}}}
@@ -591,18 +677,48 @@
 
 \DeclareRobustCommand{\mth}
   {\ifexclavar{\newmthsty!{\mthsty}}{\newmthsty{\mthsty}}}
+\ifknwtls@
+  \DeclareRobustCommand{\inmth}
+    {\innewmthsty{\mthsty}}
+  \DeclareRobustCommand{\klmth}
+    {\klnewmthsty{\mthsty}}
+\fi
 
 \DeclareRobustCommand{\mtharg}
   {\ifexclavar{\newmthargsty!{\mthsty}}{\newmthargsty{\mthsty}}}
+\ifknwtls@
+  \DeclareRobustCommand{\inmtharg}
+    {\innewmthargsty{\mthsty}}
+  \DeclareRobustCommand{\klmtharg}
+    {\klnewmthargsty{\mthsty}}
+\fi
 
 \DeclareRobustCommand{\mthoarg}
   {\ifexclavar{\newmthoargsty!{\mthsty}}{\newmthoargsty{\mthsty}}}
+\ifknwtls@
+  \DeclareRobustCommand{\inmthoarg}
+    {\innewmthoargsty{\mthsty}}
+  \DeclareRobustCommand{\klmthoarg}
+    {\klnewmthoargsty{\mthsty}}
+\fi
 
 \DeclareRobustCommand{\mthpar}
   {\ifexclavar{\newmthparsty!{\mthsty}}{\newmthparsty{\mthsty}}}
+\ifknwtls@
+  \DeclareRobustCommand{\inmthpar}
+    {\innewmthparsty{\mthsty}}
+  \DeclareRobustCommand{\klmthpar}
+    {\klnewmthparsty{\mthsty}}
+\fi
 
 \DeclareRobustCommand{\mthopar}
   {\ifexclavar{\newmthoparsty!{\mthsty}}{\newmthoparsty{\mthsty}}}
+\ifknwtls@
+  \DeclareRobustCommand{\inmthopar}
+    {\innewmthoparsty{\mthsty}}
+  \DeclareRobustCommand{\klmthopar}
+    {\klnewmthoparsty{\mthsty}}
+\fi
 
 \def\mthsty
   {}
@@ -611,23 +727,53 @@
 
 \DeclareRobustCommand{\cmdmth}[1]
   {\csdef{mth#1}%
-    {\protect\ifexclavar{\newmthsty!{mthsty#1}}{\newmthsty{mthsty#1}}}}
+    {\protect\ifexclavar{\newmthsty!{mthsty#1}}{\newmthsty{mthsty#1}}}%
+  \ifknwtls@
+    \csdef{inmth#1}%
+      {\innewmthsty{mthsty#1}}%
+    \csdef{klmth#1}%
+      {\klnewmthsty{mthsty#1}}
+  \fi}
 
 \DeclareRobustCommand{\cmdmtharg}[1]
   {\csdef{mtharg#1}%
-    {\protect\ifexclavar{\newmthargsty!{mthsty#1}}{\newmthargsty{mthsty#1}}}}
+    {\protect\ifexclavar{\newmthargsty!{mthsty#1}}{\newmthargsty{mthsty#1}}}
+  \ifknwtls@
+    \csdef{inmtharg#1}%
+      {\innewmthargsty{mthargsty#1}}%
+    \csdef{klmtharg#1}%
+      {\klnewmthargsty{mthargsty#1}}
+  \fi}
 
 \DeclareRobustCommand{\cmdmthoarg}[1]
   {\csdef{mthoarg#1}%
-    {\protect\ifexclavar{\newmthoargsty!{mthsty#1}}{\newmthoargsty{mthsty#1}}}}
+    {\protect\ifexclavar{\newmthoargsty!{mthsty#1}}{\newmthoargsty{mthsty#1}}}
+  \ifknwtls@
+    \csdef{inmthoarg#1}%
+      {\innewmthoargsty{mthargsty#1}}%
+    \csdef{klmthoarg#1}%
+      {\klnewmthoargsty{mthargsty#1}}
+  \fi}
 
 \DeclareRobustCommand{\cmdmthpar}[1]
   {\csdef{mthpar#1}%
-    {\protect\ifexclavar{\newmthparsty!{mthsty#1}}{\newmthparsty{mthsty#1}}}}
+    {\protect\ifexclavar{\newmthparsty!{mthsty#1}}{\newmthparsty{mthsty#1}}}
+  \ifknwtls@
+    \csdef{inmthpar#1}%
+      {\innewmthparsty{mthargsty#1}}%
+    \csdef{klmthpar#1}%
+      {\klnewmthparsty{mthargsty#1}}
+  \fi}
 
 \DeclareRobustCommand{\cmdmthopar}[1]
   {\csdef{mthopar#1}%
-    {\protect\ifexclavar{\newmthoparsty!{mthsty#1}}{\newmthoparsty{mthsty#1}}}}
+    {\protect\ifexclavar{\newmthoparsty!{mthsty#1}}{\newmthoparsty{mthsty#1}}}
+  \ifknwtls@
+    \csdef{inmthopar#1}%
+      {\innewmthoparsty{mthargsty#1}}%
+    \csdef{klmthopar#1}%
+      {\klnewmthoparsty{mthargsty#1}}
+  \fi}
 
 \DeclareRobustCommand{\cmdmthall}[1]
   {\cmdmth{#1}\cmdmtharg{#1}\cmdmthoarg{#1}\cmdmthpar{#1}\cmdmthopar{#1}}
@@ -638,7 +784,13 @@
   {\csdef{#1#2}%
     {\protect\ifexclavar%
       {\csname mth#3\endcsname!{\defval{#4}{#1}}}%
-      {\csname mth#3\endcsname{\defval{#4}{#1}}}}}
+      {\csname mth#3\endcsname{\defval{#4}{#1}}}}%
+  \ifknwtls@
+    \csdef{in#1#2}%
+      {\csname inmth#3\endcsname{\defval{#4}{#1}}}%
+    \csdef{kl#1#2}%
+      {\csname klmth#3\endcsname{\defval{#4}{#1}}}%
+  \fi}
 
 %%****************************************************************************%%
 
