@@ -116,7 +116,7 @@ install" installs the files in the local TeX tree.
 %<package>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
 %<package>\ProvidesPackage{fmocdmac}
 %<*package>
-  [2025/04/21 v0.31 FM's OCD LaTeX Macro]
+  [2026/05/08 v0.32 FM's OCD LaTeX Macro]
 %</package>
 %
 %<*driver>
@@ -233,6 +233,8 @@ install" installs the files in the local TeX tree.
 %
 % \changes{v0.31}{2025/04/21}{Small improvements}
 %
+% \changes{v0.32}{2026/05/08}{First integration of the knowledge package}
+%
 % \begin{abstract}
 % This package contains almost all the latex macros I heavily use in my tcs
 % research activity and, in particular, in the writing of conference and journal
@@ -278,7 +280,7 @@ install" installs the files in the local TeX tree.
 \newif\ifamsthm@ \amsthm@true
 \DeclareOption{noamsthm}{\amsthm@false}
 
-%% Extended Theorem tools
+%% Extended theorem tools
 \newif\ifthmtls@ \thmtls@true
 \DeclareOption{nothmtls}{\thmtls@false}
 
@@ -293,6 +295,10 @@ install" installs the files in the local TeX tree.
 %% Font tools
 \newif\iffnttls@ \fnttls@true
 \DeclareOption{nofnttls}{\fnttls@false}
+
+%% Knowledge tools
+\newif\ifknwtls@ \knwtls@true
+\DeclareOption{noknwtls}{\knwtls@false}
 
 %% Camera-ready version
 \newif\ifcrv@ \crv@false
@@ -616,7 +622,13 @@ install" installs the files in the local TeX tree.
 \newrobustcmd{\seqoftag}[3]
   {\@for\itr:={#1}\do%
     {\expandafter\csedef{\itr#2}%
-      {\noexpand\csname #3\endcsname{\itr}}}}
+      {\noexpand\csname #3\endcsname{\itr}}%
+    \ifknwtls@
+      \expandafter\csedef{in\itr#2}%
+        {\noexpand\csname #3\endcsname{\intro{\itr}}}%
+      \expandafter\csedef{kl\itr#2}%
+        {\noexpand\csname #3\endcsname{\kl{\itr}}}%
+    \fi}}
 %    \end{macrocode}
 % \end{macro}
 
@@ -628,7 +640,13 @@ install" installs the files in the local TeX tree.
 \newrobustcmd{\seqofcmd}[3]
   {\@for\itr:={#1}\do%
     {\expandafter\csedef{\itr#2}%
-      {\noexpand\csname #3\endcsname{\csname \itr\endcsname}}}}
+      {\noexpand\csname #3\endcsname{\csname \itr\endcsname}}%
+    \ifknwtls@
+      \expandafter\csedef{in\itr#2}%
+        {\noexpand\csname #3\endcsname{\intro{\csname \itr\endcsname}}}%
+      \expandafter\csedef{kl\itr#2}%
+        {\noexpand\csname #3\endcsname{\kl{\csname \itr\endcsname}}}
+    \fi}}
 %    \end{macrocode}
 % \end{macro}
 

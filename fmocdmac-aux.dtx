@@ -30,7 +30,7 @@
 \fi
 
 \ifhypref@
-  % Hyper References
+  % Hyper Reference Tools
   \RequirePackage{hyperref}
   \hypersetup {
     pdfsubject    = {},
@@ -47,6 +47,15 @@
 \iffnttls@
   % Font Tools
   \RequirePackage[final]{microtype}
+\fi
+
+\ifknwtls@
+  % Knowledge Tools
+  \ifhypref@
+    \RequirePackage[xcolor,hyperref,notion]{knowledge}
+  \else
+    \RequirePackage[xcolor,notion]{knowledge}
+  \fi
 \fi
 
 \ifcrv@
